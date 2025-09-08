@@ -28,6 +28,8 @@ export default defineConfig([
     rules: {
       "@stylistic/indent": ["error", 4],
       "@stylistic/quotes": ["error", "single"],
+      "@stylistic/semi": ["error", "always"],
+      "@stylistic/comma-dangle": ["error", "always-multiline"],
       "simple-import-sort/imports": "error",
       "simple-import-sort/exports": "error",
     },
