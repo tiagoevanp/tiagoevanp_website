@@ -1,16 +1,30 @@
-import './Home.css';
+import { useCallback } from 'react';
 
-import { useTranslation } from 'react-i18next';
+import { TextContainer } from '../components';
+import { useTheme } from '../providers/hooks/useTheme';
 
-const Home = () => {
-    const { t } = useTranslation();
+export const Home = () => {
+    const { theme, setTheme, colors } = useTheme();
+
+    const toggleTheme = useCallback(() => {
+        setTheme(theme === 'light' ? 'dark' : 'light');
+    }, [setTheme, theme]);
+
+    const style = {
+        container: {
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100vh',
+            width: '100vw',
+            backgroundColor: colors.background,
+        },
+    };
 
     return (
-        <div>
-            <h1>{t('welcome')}</h1>
-            <p>{t('description')}</p>
+        <div css={style.container}>
+            <button type='button' onClick={toggleTheme}>Click me</button>
+            <TextContainer />
         </div>
     );
 };
-
-export default Home;
