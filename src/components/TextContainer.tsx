@@ -18,15 +18,14 @@ export const TextContainer = ({ title, paragraph, style }: TextContainerProps) =
                 border: `16px solid ${colors.border}`,
                 backgroundColor: colors.backgroundContainer,
                 borderRadius: '256px 0 256px 0',
-                color: colors.paragraph,
                 display: 'flex',
                 flexDirection: 'column',
                 boxShadow: uiUtils.shadow,
                 ...style,
             }),
             text: css({
-                '& h1': typography.h1,
-                '& p': typography.p,
+                '& h1': { color: colors.title, ...typography.h1 },
+                '& p': { color: colors.paragraph, ...typography.p },
                 marginBlock: '64px',
                 marginInline: '128px',
                 overflow: 'hidden',
@@ -37,6 +36,7 @@ export const TextContainer = ({ title, paragraph, style }: TextContainerProps) =
         colors.backgroundContainer,
         colors.border,
         colors.paragraph,
+        colors.title,
         style,
         typography.h1,
         typography.p,
@@ -44,7 +44,7 @@ export const TextContainer = ({ title, paragraph, style }: TextContainerProps) =
     ]);
 
     return (
-        <div css={styles.container}>
+        <div className='fade-background-transition' css={styles.container}>
             <div css={styles.text}>
                 {title && (
                     <h1>

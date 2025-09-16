@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { ExternalLinks } from '../assets/ExternalLinks';
 import Tiago from '../assets/images/tiago.jpg';
 import { Image, TextContainer } from '../components';
 import { Button } from '../components/Button';
@@ -9,7 +10,7 @@ import { useTheme } from '../providers/hooks/useTheme';
 
 export const Home = () => {
     const { t } = useTranslation();
-    const { colors } = useTheme();
+    const { theme, colors, setTheme } = useTheme();
 
     const styles = useMemo(
         () => ({
@@ -46,11 +47,23 @@ export const Home = () => {
     );
 
     return (
-        <div css={styles.page}>
+        <div className='fade-background-transition' css={styles.page}>
             <header css={styles.header}>
-                <Button transparent icon='github' category='brands' onClick={() => { }} />
-                <Button transparent icon='linkedin' category='brands' onClick={() => { }} />
-                <Button transparent icon='moon' category='solid' onClick={() => { }} />
+                <Button
+                    transparent
+                    icon='github'
+                    onClick={() => { window.open(ExternalLinks.github, '_blank')!.focus(); }}
+                />
+                <Button
+                    transparent
+                    icon='linkedin'
+                    onClick={() => { window.open(ExternalLinks.linkedin, '_blank')!.focus(); }}
+                />
+                <Button
+                    transparent
+                    icon={theme === 'dark' ? 'sun' : 'moon'}
+                    onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                />
             </header>
             <section css={styles.section}>
                 <Image
@@ -61,7 +74,10 @@ export const Home = () => {
                 <TextContainer title={t('welcome')} paragraph={t('lorem_ipsum')} style={{ marginInlineEnd: '126px' }} />
             </section>
             <footer css={styles.footer}>
-                <Button icon='burger' category='solid' onClick={() => { }} />
+                <Button
+                    icon='burger'
+                    onClick={() => { }}
+                />
             </footer>
         </div>
     );

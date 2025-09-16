@@ -1,6 +1,7 @@
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import i18nextLoader from 'vite-plugin-i18next-loader';
+import svgr from 'vite-plugin-svgr';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -17,5 +18,6 @@ export default defineConfig({
                 },
             },
         ),
+        svgr(),
     ],
 });

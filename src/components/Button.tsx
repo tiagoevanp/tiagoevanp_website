@@ -1,7 +1,8 @@
 import { css } from '@emotion/react';
 
 import { useTheme } from '../providers/hooks/useTheme';
-import { Icon } from './Icon';
+import type { NameProp } from './hooks/useDynamicSvgImport';
+import { SvgIcon, type SvgIconProps } from './SvgIcon';
 
 type ButtonProps = {
     transparent?: boolean
@@ -9,9 +10,8 @@ type ButtonProps = {
     style?: React.CSSProperties;
 };
 
-type IconButtonProps = ButtonProps & {
-    icon: string;
-    category?: 'solid' | 'regular' | 'brands';
+type IconButtonProps = ButtonProps & Omit<SvgIconProps, 'name' | 'style'> & {
+    icon: NameProp;
 };
 
 type TextButtonProps = ButtonProps & {
@@ -25,33 +25,37 @@ const isIconButton = (props: ButtonProps): props is IconButtonProps => {
 export const Button = (props: IconButtonProps | TextButtonProps) => {
     const { onClick, style, transparent } = props;
 
-    const { colors } = useTheme();
+    const { colors, uiUtils } = useTheme();
 
     const styles = {
         button: css({
             fontSize: '16px',
             border: 'none',
-            borderRadius: '64px 0 64px 0',
-            backgroundColor: transparent ? 'transparent' : colors.backroundButton,
-            padding: transparent ? 0 : '32px',
+            borderRadius: '48px 0 48px 0',
+            backgroundColor: transparent ? 'transparent' : colors.backgroundButton,
+            padding: 0,
             cursor: 'pointer',
-            width: 'fit-content',
-            height: 'fit-content',
+            width: '96px',
+            height: '96px',
             textAlign: 'center',
+            boxShadow: !transparent ? uiUtils.shadow : 'none',
+            '& svg': {
+                fill: transparent ? colors.icon : colors.iconSecondary,
+                width: '64px',
+            },
             ...style,
         }),
     };
 
     return (
         <button
+            className='fade-background-transition'
             css={styles.button}
             onClick={onClick}
         >
             {isIconButton(props)
-                ? <Icon
+                ? <SvgIcon
                     name={props.icon}
-                    category={props.category}
-                    style={{ color: transparent ? colors.icon : colors.iconSecondary }}
                 />
                 : props.text
             }

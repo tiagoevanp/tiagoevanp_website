@@ -12,29 +12,29 @@ const colors = {
 export const lightThemeColors = {
     background: colors.cornsilk,
     backgroundContainer: colors.imperialRed,
-    backroundButton: colors.imperialRed,
+    backgroundButton: colors.imperialRed,
     border: colors.eerieBlack,
     icon: colors.imperialRed,
     iconSecondary: colors.cornsilk,
     link: colors.cornsilk,
     linkSelected: colors.imperialRed,
     linkSelectedBackground: colors.cornsilk,
-    title: colors.imperialRed,
+    title: colors.dutchWhite,
     paragraph: colors.seaSalt,
 };
 
 export const darkThemeColors = {
     background: colors.eerieBlack,
-    backgroundContainer: colors.cornsilk,
-    backroundButton: colors.cornsilk,
-    border: colors.dutchWhite,
-    icon: colors.dutchWhite,
-    iconSecondary: colors.imperialRed,
+    backgroundContainer: colors.davisGrey,
+    backgroundButton: colors.davisGrey,
+    border: colors.eerieBlack,
+    icon: colors.seaSalt,
+    iconSecondary: colors.seaSalt,
     link: colors.eerieBlack,
     linkSelected: colors.seaSalt,
     linkSelectedBackground: colors.eerieBlack,
     title: colors.dutchWhite,
-    paragraph: colors.eerieBlack,
+    paragraph: colors.seaSalt,
 };
 
 export const typography = {
@@ -51,7 +51,7 @@ export const typography = {
 };
 
 export const uiUtils = {
-    shadow: `0 8px 16px 4px ${colors.eerieBlack}`,
+    shadow: '0 8px 16px 4px black',
 };
 
 export type ThemeContextType = {
