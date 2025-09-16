@@ -1,8 +1,6 @@
 @font-face {
       font-family: "NunitoSans";
-      src: url("assets/fonts/NunitoSans.ttf") format("ttf");
-      font-weight: normal;
-      font-style: normal;
+      src: url("assets/fonts/NunitoSans.ttf") format("trueType");
       font-display: swap;
 }
 
