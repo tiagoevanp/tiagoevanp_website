@@ -13,11 +13,11 @@ export const Image = ({ src, style: propStyle, alt }: ImageProps) => {
     const { colors, uiUtils } = useTheme();
 
     const style = useMemo(() => css({
-        border: `16px solid ${colors.border}`,
+        border: `16px solid ${colors.image.border}`,
         borderRadius: '0 50% 0 50%',
         boxShadow: uiUtils.shadow,
         ...propStyle,
-    }), [colors.border, propStyle, uiUtils.shadow]);
+    }), [colors.image.border, propStyle, uiUtils.shadow]);
 
     return (
         <img src={src} alt={alt} css={style} />

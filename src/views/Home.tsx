@@ -3,14 +3,17 @@ import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ExternalLinks } from '../assets/ExternalLinks';
-import Tiago from '../assets/images/tiago.jpg';
+import Tiago from '../assets/images/tiago.jpg'; // cSpell:words tiago
 import { Image, TextContainer } from '../components';
 import { Button } from '../components/Button';
+import { Sidebar } from '../components/Sidebar';
+import { useMenu } from '../providers/hooks/useMenu';
 import { useTheme } from '../providers/hooks/useTheme';
 
 export const Home = () => {
     const { t } = useTranslation();
     const { theme, colors, setTheme } = useTheme();
+    const { isOpened, openMenu, closeMenu } = useMenu();
 
     const styles = useMemo(
         () => ({
@@ -19,7 +22,7 @@ export const Home = () => {
                 height: '100vh',
                 width: '100vw',
                 flexDirection: 'column',
-                backgroundColor: colors.background,
+                backgroundColor: colors.page.background,
             }),
             header: css({
                 display: 'flex',
@@ -43,42 +46,50 @@ export const Home = () => {
                 paddingBlockStart: 0,
             }),
         }),
-        [colors],
+        [colors.page.background],
     );
 
     return (
         <div className='fade-background-transition' css={styles.page}>
-            <header css={styles.header}>
-                <Button
-                    transparent
-                    icon='github'
-                    onClick={() => { window.open(ExternalLinks.github, '_blank')!.focus(); }}
-                />
-                <Button
-                    transparent
-                    icon='linkedin'
-                    onClick={() => { window.open(ExternalLinks.linkedin, '_blank')!.focus(); }}
-                />
-                <Button
-                    transparent
-                    icon={theme === 'dark' ? 'sun' : 'moon'}
-                    onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                />
-            </header>
-            <section css={styles.section}>
-                <Image
-                    src={Tiago}
-                    alt={t('tiago_photo')}
-                    style={{ marginInline: '126px', maxHeight: '512px', maxWidth: '512px', flexShrink: 0 }}
-                />
-                <TextContainer title={t('welcome')} paragraph={t('lorem_ipsum')} style={{ marginInlineEnd: '126px' }} />
-            </section>
-            <footer css={styles.footer}>
-                <Button
-                    icon='burger'
-                    onClick={() => { }}
-                />
-            </footer>
+            <Sidebar />
+            <>
+                <header css={styles.header}>
+                    <Button
+                        transparent
+                        icon='github'
+                        onClick={() => { window.open(ExternalLinks.github, '_blank')!.focus(); }}
+                    />
+                    <Button
+                        transparent
+                        icon='linkedin'
+                        onClick={() => { window.open(ExternalLinks.linkedin, '_blank')!.focus(); }}
+                    />
+                    <Button
+                        transparent
+                        icon={theme === 'dark' ? 'sun' : 'moon'}
+                        onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                    />
+                </header>
+                <section css={styles.section}>
+                    <Image
+                        src={Tiago}
+                        alt={t('tiago_photo')}
+                        style={{ marginInline: '126px', maxHeight: '512px', maxWidth: '512px', flexShrink: 0 }}
+                    />
+                    <TextContainer
+                        title={t('welcome')}
+                        paragraph={t('lorem_ipsum')}
+                        style={{ marginInlineEnd: '126px' }}
+                    />
+                </section>
+                <footer css={styles.footer}>
+                    <Button
+                        icon='burger'
+                        onClick={isOpened ? closeMenu : openMenu}
+                        style={{ zIndex: 10 }}
+                    />
+                </footer>
+            </>
         </div>
     );
 };

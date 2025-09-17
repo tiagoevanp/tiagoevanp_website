@@ -10,31 +10,77 @@ const colors = {
 };
 
 export const lightThemeColors = {
-    background: colors.cornsilk,
-    backgroundContainer: colors.imperialRed,
-    backgroundButton: colors.imperialRed,
-    border: colors.eerieBlack,
-    icon: colors.imperialRed,
-    iconSecondary: colors.cornsilk,
-    link: colors.cornsilk,
-    linkSelected: colors.imperialRed,
-    linkSelectedBackground: colors.cornsilk,
-    title: colors.dutchWhite,
-    paragraph: colors.seaSalt,
+    page: {
+        background: colors.cornsilk,
+    },
+    sidebar: {
+        background: colors.imperialRed,
+    },
+    text: {
+        background:  colors.imperialRed,
+        border: colors.eerieBlack,
+        title: colors.dutchWhite,
+        paragraph: colors.seaSalt,
+    },
+    button: {
+        background: colors.imperialRed,
+        border: colors.eerieBlack,
+    },
+    image: {
+        border: colors.eerieBlack,
+    },
+    icon: {
+        fill: {
+            primary: colors.imperialRed,
+            secondary: colors.cornsilk,
+        },
+    },
+    link: {
+        default: {
+            color: colors.cornsilk,
+        },
+        selected: {
+            color: colors.imperialRed,
+            background: colors.cornsilk,
+        },
+    },
 };
 
 export const darkThemeColors = {
-    background: colors.eerieBlack,
-    backgroundContainer: colors.davisGrey,
-    backgroundButton: colors.davisGrey,
-    border: colors.eerieBlack,
-    icon: colors.seaSalt,
-    iconSecondary: colors.seaSalt,
-    link: colors.eerieBlack,
-    linkSelected: colors.seaSalt,
-    linkSelectedBackground: colors.eerieBlack,
-    title: colors.dutchWhite,
-    paragraph: colors.seaSalt,
+    page: {
+        background: colors.eerieBlack,
+    },
+    sidebar: {
+        background: colors.davisGrey,
+    },
+    text: {
+        background:  colors.davisGrey,
+        border: colors.eerieBlack,
+        title: colors.dutchWhite,
+        paragraph: colors.seaSalt,
+    },
+    button: {
+        background: colors.davisGrey,
+        border: colors.eerieBlack,
+    },
+    image: {
+        border: colors.eerieBlack,
+    },
+    icon: {
+        fill: {
+            primary: colors.seaSalt,
+            secondary: colors.seaSalt,
+        },
+    },
+    link: {
+        default: {
+            color: colors.eerieBlack,
+        },
+        selected: {
+            color: colors.seaSalt,
+            background: colors.eerieBlack,
+        },
+    },
 };
 
 export const typography = {

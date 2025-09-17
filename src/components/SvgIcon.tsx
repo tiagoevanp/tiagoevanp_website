@@ -1,22 +1,13 @@
-import { cloneElement } from 'react';
+import { css } from '@emotion/react';
 
-import useDynamicSVGImport, { type NameProp } from './hooks/useDynamicSvgImport';
+import { type NameProp } from './hooks/useDynamicSvgImport';
 
 export type SvgIconProps = {
     name: NameProp;
 };
 
 export const SvgIcon = ({ name }: SvgIconProps) => {
-    const { error, loading, SvgIcon: LoadedIcon } = useDynamicSVGImport(name);
-
-    if (error || loading) {
-        // TODO: improve those boundaries
-        return null;
-    }
-
-    if (LoadedIcon) {
-        return cloneElement(LoadedIcon);
-    }
-
-    return null;
+    return <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+        <path css={css({ d: `var(--${name}-path)` })}/>
+    </svg>;
 };

@@ -17,5 +17,5 @@ body {
 }
 
 .fade-background-transition {
-  transition: background-color, 500ms, easy-in-out;
+  transition: background-color 0.5s ease-in-out;
 }

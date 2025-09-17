@@ -21,8 +21,9 @@ const useDynamicSVGImport = (name: NameProp, options: OptionsProp = {}) => {
         const importIcon = async () => {
             try {
                 const { default: ReactComponent } = await import(`../../assets/icons/${name}.svg?react`);
-                setSvgIcon(ReactComponent);
-                onCompleted?.(name, ReactComponent);
+                console.log(ReactComponent());
+                setSvgIcon(ReactComponent());
+                onCompleted?.(name, ReactComponent());
             } catch (err) {
                 setError(err);
                 onError?.(err);
