@@ -4,16 +4,13 @@ import { useTranslation } from 'react-i18next';
 
 import { ExternalLinks } from '../assets/ExternalLinks';
 import Tiago from '../assets/images/tiago.jpg'; // cSpell:words tiago
-import { Image, TextContainer } from '../components';
-import { Button } from '../components/Button';
-import { Sidebar } from '../components/Sidebar';
-import { useMenu } from '../providers/hooks/useMenu';
+import { Button, Image, TextContainer } from '../components';
+import { Navbar, NavbarLink } from '../components/Navbar';
 import { useTheme } from '../providers/hooks/useTheme';
 
 export const Home = () => {
     const { t } = useTranslation();
     const { theme, colors, setTheme } = useTheme();
-    const { isOpened, openMenu, closeMenu } = useMenu();
 
     const styles = useMemo(
         () => ({
@@ -24,13 +21,12 @@ export const Home = () => {
                 flexDirection: 'column',
                 backgroundColor: colors.page.background,
             }),
-            header: css({
+            navbarItems: css({
+                height: '100%',
                 display: 'flex',
-                justifyContent: 'flex-end',
+                gap: '32px',
                 alignItems: 'center',
-                padding: '64px',
-                paddingBlockEnd: '0',
-                gap: '64px',
+                marginInline: '32px',
             }),
             section: css({
                 display: 'flex',
@@ -50,46 +46,52 @@ export const Home = () => {
     );
 
     return (
-        <div className='fade-background-transition' css={styles.page}>
-            <Sidebar />
-            <>
-                <header css={styles.header}>
+        <div className='fade-colors-transition' css={styles.page}>
+            <Navbar>
+                <div css={styles.navbarItems}>
+                    <NavbarLink to='test'>
+                        {t('Link 1')}
+                    </NavbarLink>
+                    <NavbarLink to='test'>
+                        {t('Link 2')}
+                    </NavbarLink>
+                    <NavbarLink to='test'>
+                        {t('Link 3')}
+                    </NavbarLink>
+                </div>
+                <div css={styles.navbarItems}>
                     <Button
-                        transparent
                         icon='github'
                         onClick={() => { window.open(ExternalLinks.github, '_blank')!.focus(); }}
                     />
                     <Button
-                        transparent
                         icon='linkedin'
                         onClick={() => { window.open(ExternalLinks.linkedin, '_blank')!.focus(); }}
                     />
                     <Button
-                        transparent
                         icon={theme === 'dark' ? 'sun' : 'moon'}
                         onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                     />
-                </header>
-                <section css={styles.section}>
-                    <Image
-                        src={Tiago}
-                        alt={t('tiago_photo')}
-                        style={{ marginInline: '126px', maxHeight: '512px', maxWidth: '512px', flexShrink: 0 }}
-                    />
-                    <TextContainer
-                        title={t('welcome')}
-                        paragraph={t('lorem_ipsum')}
-                        style={{ marginInlineEnd: '126px' }}
-                    />
-                </section>
-                <footer css={styles.footer}>
-                    <Button
-                        icon='burger'
-                        onClick={isOpened ? closeMenu : openMenu}
-                        style={{ zIndex: 10 }}
-                    />
-                </footer>
-            </>
+                </div>
+            </Navbar>
+            <section css={styles.section}>
+                <Image
+                    src={Tiago}
+                    alt={t('tiago_photo')}
+                    style={{
+                        marginInline: '128px',
+                        maxHeight: '512px',
+                        maxWidth: '512px',
+                        flexShrink: 0,
+                        rotate: '-5deg',
+                    }}
+                />
+                <TextContainer
+                    title={t('welcome')}
+                    paragraph={t('lorem_ipsum')}
+                    style={{ marginInlineEnd: '126px' }}
+                />
+            </section>
         </div>
     );
 };

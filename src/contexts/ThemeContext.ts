@@ -1,103 +1,93 @@
 import { createContext } from 'react';
 
-const colors = {
+const palette = {
     imperialRed: '#E43636',
-    cornsilk: '#F6EFD2',
-    dutchWhite: '#E2DDB4',
+    indianRed: '#E35959',
+    midnightGreen: '#114B5F',
+    darkSlateGray: '#2F535E',
+    gunmetal: '#1E2528',
     eerieBlack: '#1F1F1F',
-    davisGrey: '#555555',
     seaSalt: '#FAFAFA',
 };
 
 export const lightThemeColors = {
     page: {
-        background: colors.cornsilk,
+        background: palette.seaSalt,
     },
-    sidebar: {
-        background: colors.imperialRed,
+    navbar: {
+        background: palette.midnightGreen,
+        link: {
+            color: palette.seaSalt,
+        },
     },
     text: {
-        background:  colors.imperialRed,
-        border: colors.eerieBlack,
-        title: colors.dutchWhite,
-        paragraph: colors.seaSalt,
-    },
-    button: {
-        background: colors.imperialRed,
-        border: colors.eerieBlack,
-    },
-    image: {
-        border: colors.eerieBlack,
+        title: palette.imperialRed,
+        paragraph: palette.eerieBlack,
     },
     icon: {
         fill: {
-            primary: colors.imperialRed,
-            secondary: colors.cornsilk,
-        },
-    },
-    link: {
-        default: {
-            color: colors.cornsilk,
-        },
-        selected: {
-            color: colors.imperialRed,
-            background: colors.cornsilk,
+            primary: palette.seaSalt,
         },
     },
 };
 
 export const darkThemeColors = {
     page: {
-        background: colors.eerieBlack,
+        background: palette.gunmetal,
     },
-    sidebar: {
-        background: colors.davisGrey,
+    navbar: {
+        background: palette.darkSlateGray,
+        link: {
+            color: palette.seaSalt,
+        },
     },
     text: {
-        background:  colors.davisGrey,
-        border: colors.eerieBlack,
-        title: colors.dutchWhite,
-        paragraph: colors.seaSalt,
-    },
-    button: {
-        background: colors.davisGrey,
-        border: colors.eerieBlack,
-    },
-    image: {
-        border: colors.eerieBlack,
+        title: palette.indianRed,
+        paragraph: palette.seaSalt,
     },
     icon: {
         fill: {
-            primary: colors.seaSalt,
-            secondary: colors.seaSalt,
-        },
-    },
-    link: {
-        default: {
-            color: colors.eerieBlack,
-        },
-        selected: {
-            color: colors.seaSalt,
-            background: colors.eerieBlack,
+            primary: palette.seaSalt,
+            secondary: palette.seaSalt,
         },
     },
 };
 
 export const typography = {
     h1: {
-        fontSize: '64px',
-        lineHeight: '64px',
+        fontSize: '48px',
+        lineHeight: '52.8px',
         fontWeight: 600,
+    },
+    h2: {
+        fontSize: '32px',
+        lineHeight: '35.2px',
+        fontWeight: 500,
+    },
+    h3: {
+        fontSize: '24px',
+        lineHeight: '26.4px',
+        fontWeight: 500,
+    },
+    h4: {
+        fontSize: '20px',
+        lineHeight: '22px',
+        fontWeight: 500,
     },
     p: {
         fontSize: '16px',
-        lineHeight: '19.2px',
+        lineHeight: '17.6px',
+        fontWeight: 400,
+    },
+    p2: {
+        fontSize: '18px',
+        lineHeight: '19.8px',
         fontWeight: 400,
     },
 };
 
 export const uiUtils = {
-    shadow: '0 8px 16px 4px black',
+    shadow: '0 8px 16px 4px rgba(0, 0, 0, 50%)',
 };
 
 export type ThemeContextType = {

@@ -7,19 +7,18 @@ type ImageProps = {
     src: string;
     style?: React.CSSProperties;
     alt?: string;
+    onClick?: () => void;
 };
 
-export const Image = ({ src, style: propStyle, alt }: ImageProps) => {
-    const { colors, uiUtils } = useTheme();
+export const Image = ({ src, style: propStyle, alt, onClick }: ImageProps) => {
+    const { uiUtils } = useTheme();
 
     const style = useMemo(() => css({
-        border: `16px solid ${colors.image.border}`,
-        borderRadius: '0 50% 0 50%',
         boxShadow: uiUtils.shadow,
         ...propStyle,
-    }), [colors.image.border, propStyle, uiUtils.shadow]);
+    }), [propStyle, uiUtils.shadow]);
 
     return (
-        <img src={src} alt={alt} css={style} />
+        <img src={src} alt={alt} css={style} onClick={onClick} />
     );
 };
