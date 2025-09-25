@@ -18,29 +18,36 @@ export const TextContainer = ({ title, paragraph, style }: TextContainerProps) =
                 display: 'flex',
                 flexDirection: 'column',
                 ...style,
-            }),
-            text: css({
-                '& h1': { color: colors.text.title, ...typography.h1 },
-                '& p': { color: colors.text.paragraph, ...typography.p },
-                marginInline: '64px',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
+
+                '& h1, & p': {
+                    marginInline: '64px',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                },
+
+                '& h1': {
+                    color: colors.text.title,
+                    ...typography.h1,
+                },
+
+                '& p': {
+                    color: colors.text.paragraph,
+                    ...typography.p2,
+                },
             }),
         };
-    }, [colors.text, style, typography.h1, typography.p]);
+    }, [colors.text, style, typography.h1, typography.p2]);
 
     return (
-        <div className='fade-colors-transition' css={styles.container}>
-            <div css={styles.text}>
-                {title && (
-                    <h1 className='fade-colors-transition'>
-                        {title}
-                    </h1>
-                )}
-                <p className='fade-colors-transition'>
-                    {paragraph}
-                </p>
-            </div>
-        </div>
+        <section className='fade-colors-transition fade-in-animation' css={styles.container}>
+            {title && (
+                <h1 className='fade-colors-transition'>
+                    {title}
+                </h1>
+            )}
+            <p className='fade-colors-transition'>
+                {paragraph}
+            </p>
+        </section>
     );
 };

@@ -34,21 +34,25 @@ export const Button = (props: IconButtonProps | TextButtonProps) => {
             cursor: 'pointer',
             width: '32px',
             height: '32px',
-            textAlign: 'center',
 
             '&:hover': {
                 '& svg': {
-                    width: '36px',
+                    display: 'block',
+                    transform: 'scale(1.4)',
                     rotate: '15deg',
+
+                    '& path': {
+                        fill: colors.icon.fill.hover,
+                    },
                 },
             },
 
             '& svg': {
                 width: '32px',
-                transition: 'rotate 0.2s ease-out, width 0.2s linear',
+                transition: 'rotate 0.2s ease-out, transform 0.2s linear',
 
                 '& path': {
-                    fill: colors.icon.fill.primary,
+                    fill: colors.icon.fill.color,
                 },
             },
             ...style,

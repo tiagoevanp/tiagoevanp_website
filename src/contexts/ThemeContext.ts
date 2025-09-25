@@ -5,6 +5,8 @@ const palette = {
     indianRed: '#E35959',
     midnightGreen: '#114B5F',
     darkSlateGray: '#2F535E',
+    amber: '#F3B700',
+    naplesYellow: '#F2CE61',
     gunmetal: '#1E2528',
     eerieBlack: '#1F1F1F',
     seaSalt: '#FAFAFA',
@@ -18,6 +20,13 @@ export const lightThemeColors = {
         background: palette.midnightGreen,
         link: {
             color: palette.seaSalt,
+            hover: {
+                color: palette.amber,
+            },
+            selected: {
+                background: palette.amber,
+                color: palette.midnightGreen,
+            },
         },
     },
     text: {
@@ -26,7 +35,8 @@ export const lightThemeColors = {
     },
     icon: {
         fill: {
-            primary: palette.seaSalt,
+            color: palette.seaSalt,
+            hover: palette.amber,
         },
     },
 };
@@ -39,6 +49,13 @@ export const darkThemeColors = {
         background: palette.darkSlateGray,
         link: {
             color: palette.seaSalt,
+            hover: {
+                color: palette.naplesYellow,
+            },
+            selected: {
+                background: palette.naplesYellow,
+                color: palette.darkSlateGray,
+            },
         },
     },
     text: {
@@ -47,8 +64,8 @@ export const darkThemeColors = {
     },
     icon: {
         fill: {
-            primary: palette.seaSalt,
-            secondary: palette.seaSalt,
+            color: palette.seaSalt,
+            hover: palette.naplesYellow,
         },
     },
 };
@@ -88,6 +105,7 @@ export const typography = {
 
 export const uiUtils = {
     shadow: '0 8px 16px 4px rgba(0, 0, 0, 50%)',
+    lightShadow: '0 8px 16px 4px rgba(0, 0, 0, 10%)',
 };
 
 export type ThemeContextType = {

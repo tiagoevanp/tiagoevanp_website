@@ -1,24 +1,24 @@
 import { css } from '@emotion/react';
-import { useMemo } from 'react';
+import { type CSSProperties, useMemo } from 'react';
 
 import { useTheme } from '../providers/hooks/useTheme';
 
 type ImageProps = {
     src: string;
-    style?: React.CSSProperties;
+    style?: CSSProperties;
     alt?: string;
     onClick?: () => void;
 };
 
-export const Image = ({ src, style: propStyle, alt, onClick }: ImageProps) => {
+export const Image = ({ src, style: cssObject, alt, onClick }: ImageProps) => {
     const { uiUtils } = useTheme();
 
-    const style = useMemo(() => css({
+    const cssStyle = useMemo(() => css({
         boxShadow: uiUtils.shadow,
-        ...propStyle,
-    }), [propStyle, uiUtils.shadow]);
+        ...cssObject,
+    }), [cssObject, uiUtils.shadow]);
 
     return (
-        <img src={src} alt={alt} css={style} onClick={onClick} />
+        <img css={cssStyle} src={src} alt={alt} onClick={onClick} />
     );
 };

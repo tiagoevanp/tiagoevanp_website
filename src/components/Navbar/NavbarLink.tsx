@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import { type PropsWithChildren, useMemo } from 'react';
-import { NavLink } from 'react-router';
+import { NavLink, useLocation } from 'react-router';
 
 import { useTheme } from '../../providers/hooks/useTheme';
 
@@ -9,14 +9,47 @@ type NavbarLinkProps = PropsWithChildren<{
 }>;
 
 export const NavbarLink = ({ children, to }: NavbarLinkProps) => {
-    const { colors, typography } = useTheme();
+    const { pathname } = useLocation();
+    const { colors, typography, uiUtils: { lightShadow } } = useTheme();
     const styles = useMemo(() => ({
         navLink: css({
-            color: colors.navbar.link.color,
+            position: 'relative',
+            padding: '8px',
+            backgroundColor: pathname === to ? colors.navbar.link.selected.background : '',
+            color: pathname === to ? colors.navbar.link.selected.color : colors.navbar.link.color,
             textDecoration: 'none',
-            ...typography.p2,
+            ...typography.p,
+
+            ...(pathname === to) && {
+                boxShadow: lightShadow,
+            },
+
+            ...(pathname !== to) && {
+                '&:hover, &:focus': {
+                    color: colors.navbar.link.hover.color,
+                },
+            },
+
+            '&::after': {
+                content:  '\'\'',
+                position: 'absolute',
+                margin: 'auto',
+                left: 0,
+                bottom: '-8px',
+                width: '100%',
+                height: '2px',
+                backgroundColor: colors.navbar.link.color,
+                transform: 'scale(0)',
+                transformOrigin: 'center',
+                transition: 'transform 0.2s ease-out',
+            },
+
+            '&:hover::after': {
+                transform: 'scale(1)',
+                backgroundColor: colors.navbar.link.hover.color,
+            },
         }),
-    }), [colors.navbar.link.color, typography.p2]);
+    }), [colors.navbar.link, pathname, to, typography.p]);
 
     return <NavLink css={styles.navLink} to={to}>
         {children}

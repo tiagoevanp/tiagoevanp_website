@@ -16,6 +16,11 @@ body {
   min-height: 100vh;
 }
 
+ul, ol, li {
+  padding: 0;
+  margin: 0;
+}
+
 .fade-colors-transition {
   transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
 }
