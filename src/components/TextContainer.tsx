@@ -17,7 +17,7 @@ export const TextContainer = ({ title, paragraph }: TextContainerProps) => {
                 display: 'flex',
                 flex: '1 4 auto',
                 flexDirection: 'column',
-                minWidth: '380px',
+                minWidth: '300px',
 
                 '& h1': {
                     color: colors.text.title,

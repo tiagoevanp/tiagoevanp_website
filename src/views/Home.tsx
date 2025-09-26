@@ -19,6 +19,7 @@ export const Home = () => {
             page: css({
                 display: 'flex',
                 height: '100%',
+                minHeight: '100vh',
                 width: '100%',
                 flexDirection: 'column',
                 backgroundColor: colors.page.background,
@@ -32,13 +33,14 @@ export const Home = () => {
                 marginInline: '32px',
             }),
             content: css({
+                flex: 1,
                 display: 'flex',
                 flexDirection: size === 'large' ? 'row' : 'column',
                 justifyContent: 'space-evenly',
                 alignItems: 'center',
                 height: '100%',
-                margin: '128px',
-                gap: '128px',
+                margin: size ==='large' ? '128px' : '64px',
+                gap: size === 'large' ? '128px' : '64px',
             }),
         }),
         [colors.page.background, size],
@@ -67,7 +69,7 @@ export const Home = () => {
                                     </NavbarLink>
                                 </li>
                             </>
-                            : <Button icon='burger' onClick={() => {}} />
+                            : <Button icon='bars' onClick={() => {}} />
                     }
                 </ul>
                 <ul style={{ justifyContent: 'flex-end' }} css={styles.navbarItems}>

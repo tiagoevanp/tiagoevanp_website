@@ -1,6 +1,6 @@
 import { type ReactElement, useEffect, useState } from 'react';
 
-export type NameProp = 'moon' | 'sun' | 'burger' | 'github' | 'linkedin';
+export type NameProp = 'moon' | 'sun' | 'bars' | 'github' | 'linkedin';
 
 type OptionsProp = {
     onCompleted?: (name: string, component: ReactElement<SVGElement>) => void;
