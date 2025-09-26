@@ -49,7 +49,16 @@ export const NavbarLink = ({ children, to }: NavbarLinkProps) => {
                 backgroundColor: colors.navbar.link.hover.color,
             },
         }),
-    }), [colors.navbar.link, pathname, to, typography.p]);
+    }), [
+        colors.navbar.link.color,
+        colors.navbar.link.hover.color,
+        colors.navbar.link.selected.background,
+        colors.navbar.link.selected.color,
+        lightShadow,
+        pathname,
+        to,
+        typography.p,
+    ]);
 
     return <NavLink css={styles.navLink} to={to}>
         {children}

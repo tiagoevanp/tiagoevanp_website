@@ -19,6 +19,8 @@ export const Image = ({ src, style: cssObject, alt, onClick }: ImageProps) => {
     }), [cssObject, uiUtils.shadow]);
 
     return (
-        <img css={cssStyle} src={src} alt={alt} onClick={onClick} />
+        <div css={cssStyle}>
+            <img css={css({ width: '100%', height: '100%' })} src={src} alt={alt} onClick={onClick} />
+        </div>
     );
 };

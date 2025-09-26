@@ -18,8 +18,8 @@ export const Home = () => {
         () => ({
             page: css({
                 display: 'flex',
-                height: '100vh',
-                width: '100vw',
+                height: '100%',
+                width: '100%',
                 flexDirection: 'column',
                 backgroundColor: colors.page.background,
             }),
@@ -33,13 +33,13 @@ export const Home = () => {
             }),
             content: css({
                 display: 'flex',
+                height: '100%',
+                flexDirection: size === 'large' ? 'row' : 'column',
                 justifyContent: 'space-evenly',
                 alignItems: 'center',
-                height: '100%',
-                width: '100%',
             }),
         }),
-        [colors.page.background],
+        [colors.page.background, size],
     );
 
     return (
@@ -93,9 +93,9 @@ export const Home = () => {
                 <Image
                     style={{
                         marginInline: '128px',
-                        maxHeight: '512px',
-                        maxWidth: '512px',
-                        flexShrink: 0,
+                        marginBlock: '64px',
+                        minWidth: '256px',
+                        flexShrink: 1,
                         rotate: '-5deg',
                     }}
                     src={Tiago}
@@ -104,7 +104,6 @@ export const Home = () => {
                 <TextContainer
                     title={t('welcome')}
                     paragraph={t('lorem_ipsum')}
-                    style={{ marginInlineEnd: '126px' }}
                 />
             </div>
         </div>

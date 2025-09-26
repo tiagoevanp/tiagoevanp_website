@@ -11,9 +11,8 @@ export const Navbar = ({ children }: NavbarProps) => {
     const styles = {
         container: css({
             display: 'flex',
-            position: 'absolute',
-            width: '100vw',
-            height: '96px',
+            width: '100%',
+            minHeight: '96px',
             background: colors.navbar.background,
             boxShadow: uiUtils.shadow,
             alignItems: 'center',

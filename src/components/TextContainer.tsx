@@ -6,10 +6,9 @@ import { useTheme } from '../providers/hooks/useTheme';
 type TextContainerProps = {
     title?: string;
     paragraph: string;
-    style?: React.CSSProperties;
 };
 
-export const TextContainer = ({ title, paragraph, style }: TextContainerProps) => {
+export const TextContainer = ({ title, paragraph }: TextContainerProps) => {
     const { colors, typography } = useTheme();
 
     const styles = useMemo(() => {
@@ -17,12 +16,11 @@ export const TextContainer = ({ title, paragraph, style }: TextContainerProps) =
             container: css({
                 display: 'flex',
                 flexDirection: 'column',
-                ...style,
+                flexShrink: 10,
+                minWidth: '380px',
 
                 '& h1, & p': {
                     marginInline: '64px',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
                 },
 
                 '& h1': {
@@ -36,7 +34,7 @@ export const TextContainer = ({ title, paragraph, style }: TextContainerProps) =
                 },
             }),
         };
-    }, [colors.text, style, typography.h1, typography.p2]);
+    }, [colors.text, typography.h1, typography.p2]);
 
     return (
         <section className='fade-colors-transition fade-in-animation' css={styles.container}>
