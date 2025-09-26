@@ -20,7 +20,12 @@ export const Image = ({ src, style: cssObject, alt, onClick }: ImageProps) => {
 
     return (
         <div css={cssStyle}>
-            <img css={css({ width: '100%', height: '100%' })} src={src} alt={alt} onClick={onClick} />
+            <img
+                style={{ width: '100%', height: '100%', verticalAlign: 'middle' }}
+                src={src}
+                alt={alt}
+                onClick={onClick}
+            />
         </div>
     );
 };

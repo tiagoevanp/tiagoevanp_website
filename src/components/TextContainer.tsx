@@ -15,13 +15,9 @@ export const TextContainer = ({ title, paragraph }: TextContainerProps) => {
         return {
             container: css({
                 display: 'flex',
+                flex: '1 4 auto',
                 flexDirection: 'column',
-                flexShrink: 10,
                 minWidth: '380px',
-
-                '& h1, & p': {
-                    marginInline: '64px',
-                },
 
                 '& h1': {
                     color: colors.text.title,

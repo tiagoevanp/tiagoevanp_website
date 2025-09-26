@@ -33,10 +33,12 @@ export const Home = () => {
             }),
             content: css({
                 display: 'flex',
-                height: '100%',
                 flexDirection: size === 'large' ? 'row' : 'column',
                 justifyContent: 'space-evenly',
                 alignItems: 'center',
+                height: '100%',
+                margin: '128px',
+                gap: '128px',
             }),
         }),
         [colors.page.background, size],
@@ -92,10 +94,9 @@ export const Home = () => {
             <div css={styles.content}>
                 <Image
                     style={{
-                        marginInline: '128px',
-                        marginBlock: '64px',
+                        flex: '1 1 auto',
                         minWidth: '256px',
-                        flexShrink: 1,
+                        maxWidth: '512px',
                         rotate: '-5deg',
                     }}
                     src={Tiago}
