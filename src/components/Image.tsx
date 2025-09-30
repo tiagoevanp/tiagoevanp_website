@@ -5,22 +5,42 @@ import { useTheme } from '../providers/hooks/useTheme';
 
 type ImageProps = {
     src: string;
-    style?: CSSProperties;
+    containerStyle?: CSSProperties;
+    imageStyle?: CSSProperties;
     alt?: string;
     onClick?: () => void;
 };
 
-export const Image = ({ src, style: cssObject, alt, onClick }: ImageProps) => {
-    const { uiUtils } = useTheme();
+export const Image = ({
+    src, containerStyle: cssContainerObject,
+    imageStyle: cssImageObject,
+    alt,
+    onClick,
+}: ImageProps) => {
+    const { colors, uiUtils } = useTheme();
 
-    const cssStyle = useMemo(() => css({
+    const cssContainerStyle = useMemo(() => css({
+        ...cssContainerObject,
+        // boxShadow: uiUtils.shadow,
+
+        '--bg-first-color': colors.home.image.primaryBackground,
+        '--bg-second-color': colors.home.image.secondaryBackground,
+    }), [
+        colors.home.image.primaryBackground,
+        colors.home.image.secondaryBackground,
+        cssContainerObject,
+        // uiUtils.shadow,
+    ]);
+
+    const cssImageStyle = css({
+        ...cssImageObject,
         boxShadow: uiUtils.shadow,
-        ...cssObject,
-    }), [cssObject, uiUtils.shadow]);
+    });
 
     return (
-        <div css={cssStyle}>
+        <div className='background-bars' css={cssContainerStyle}>
             <img
+                css={cssImageStyle}
                 style={{ width: '100%', height: '100%', verticalAlign: 'middle' }}
                 src={src}
                 alt={alt}

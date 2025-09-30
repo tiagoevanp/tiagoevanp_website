@@ -4,13 +4,33 @@
       font-display: swap;
 }
 
+@font-face {
+      font-family: "Nunito";
+      src: url("assets/fonts/Nunito.ttf") format("trueType");
+      font-display: swap;
+}
+
+@font-face {
+      font-family: "RobotoFlex";
+      src: url("assets/fonts/RobotoFlex.ttf") format("trueType");
+      font-display: swap;
+}
+
+@font-face {
+  font-family: "NotoSans";
+  src: url("assets/fonts/NotoSans.ttf") format("trueType");
+  font-display: swap;
+}
+
 :root {
-  font-family: "NunitoSans", system-ui, Arial, sans-serif;
+  font-family: "NotoSans", system-ui, Arial, sans-serif;
   color-scheme: light dark;
   text-rendering: optimizeLegibility;
 }
 
 #root {
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
   width: 100vw;
   height: 100%;
@@ -29,5 +49,13 @@ ul, ol, li {
 }
 
 .fade-colors-transition {
-  transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+  transition: background 0.5s ease-in-out, background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+.background-bars {
+  background: linear-gradient(45deg,var(--bg-second-color) 34%, var(--bg-first-color) 35%, var(--bg-first-color) 40%, var(--bg-second-color) 41%, var(--bg-second-color) 59%, var(--bg-first-color)  60%, var(--bg-first-color) 65%, var(--bg-second-color) 66%),linear-gradient(135deg,var(--bg-second-color) 34%, var(--bg-first-color) 35%, var(--bg-first-color) 40%, var(--bg-second-color) 41%, var(--bg-second-color) 59%, var(--bg-first-color)  60%, var(--bg-first-color) 65%, var(--bg-second-color) 66%);
+  /* background: linear-gradient(45deg, var(--h1-bg-color) 0%, var(--h1-bg-color) 9%,var(--h1-bg-second-color) 9%, var(--h1-bg-second-color) 10%, var(--h1-bg-color) 10%, var(--h1-bg-color) 19%,var(--h1-bg-second-color) 19%,var(--h1-bg-second-color) 20%, var(--h1-bg-color) 20%, var(--h1-bg-color) 29%,var(--h1-bg-second-color) 29%,var(--h1-bg-second-color) 30%, var(--h1-bg-color) 30%, var(--h1-bg-color) 39%,var(--h1-bg-second-color) 39%,var(--h1-bg-second-color) 40%, var(--h1-bg-color) 40%, var(--h1-bg-color) 49%,var(--h1-bg-second-color) 49%,var(--h1-bg-second-color) 50%, var(--h1-bg-color) 50%, var(--h1-bg-color) 59%,var(--h1-bg-second-color) 59%,var(--h1-bg-second-color) 60%, var(--h1-bg-color) 60%, var(--h1-bg-color) 69%,var(--h1-bg-second-color) 69%,var(--h1-bg-second-color) 70%, var(--h1-bg-color) 70%, var(--h1-bg-color) 79%,var(--h1-bg-second-color) 70%,var(--h1-bg-second-color) 80%, var(--h1-bg-color) 80%, var(--h1-bg-color) 89%,var(--h1-bg-second-color) 89%,var(--h1-bg-second-color) 90%, var(--h1-bg-color) 90%, var(--h1-bg-color) 100%); */
+  background-size: 2em 2em;
+  background-color: transparent;
+  opacity: 1;
 }

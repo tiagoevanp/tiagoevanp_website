@@ -29,9 +29,19 @@ export const lightThemeColors = {
             },
         },
     },
-    text: {
-        title: palette.imperialRed,
-        paragraph: palette.eerieBlack,
+    home: {
+        image: {
+            primaryBackground: palette.amber,
+            secondaryBackground: 'transparent',
+        },
+    },
+    section: {
+        text: {
+            title: {
+                color: palette.imperialRed,
+            },
+            color: palette.eerieBlack,
+        },
     },
     icon: {
         fill: {
@@ -58,9 +68,19 @@ export const darkThemeColors = {
             },
         },
     },
-    text: {
-        title: palette.indianRed,
-        paragraph: palette.seaSalt,
+    home: {
+        image: {
+            primaryBackground: palette.naplesYellow,
+            secondaryBackground: 'transparent',
+        },
+    },
+    section: {
+        text: {
+            title: {
+                color: palette.indianRed,
+            },
+            color: palette.seaSalt,
+        },
     },
     icon: {
         fill: {
@@ -73,33 +93,21 @@ export const darkThemeColors = {
 export const typography = {
     h1: {
         fontSize: '48px',
-        lineHeight: '52.8px',
-        fontWeight: 600,
+        fontWeight: 400,
     },
     h2: {
-        fontSize: '32px',
-        lineHeight: '35.2px',
-        fontWeight: 500,
-    },
-    h3: {
-        fontSize: '24px',
-        lineHeight: '26.4px',
-        fontWeight: 500,
-    },
-    h4: {
-        fontSize: '20px',
-        lineHeight: '22px',
-        fontWeight: 500,
+        fontSize: '28px',
+        fontWeight: 400,
     },
     p: {
-        fontSize: '16px',
-        lineHeight: '17.6px',
+        fontSize: '18px',
+        lineHeight: '26px',
         fontWeight: 400,
     },
     p2: {
-        fontSize: '18px',
-        lineHeight: '19.8px',
-        fontWeight: 400,
+        fontSize: '20px',
+        lineHeight: '28px',
+        fontWeight: 500,
     },
 };
 

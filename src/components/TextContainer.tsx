@@ -5,10 +5,11 @@ import { useTheme } from '../providers/hooks/useTheme';
 
 type TextContainerProps = {
     title?: string;
+    subtitle?: string;
     paragraph: string;
 };
 
-export const TextContainer = ({ title, paragraph }: TextContainerProps) => {
+export const TextContainer = ({ title, subtitle, paragraph }: TextContainerProps) => {
     const { colors, typography } = useTheme();
 
     const styles = useMemo(() => {
@@ -20,17 +21,23 @@ export const TextContainer = ({ title, paragraph }: TextContainerProps) => {
                 minWidth: '300px',
 
                 '& h1': {
-                    color: colors.text.title,
+                    width: 'fit-content',
+                    color: colors.section.text.title.color,
                     ...typography.h1,
                 },
 
+                '& h2': {
+                    color: colors.section.text.color,
+                    ...typography.h2,
+                },
+
                 '& p': {
-                    color: colors.text.paragraph,
-                    ...typography.p2,
+                    color: colors.section.text.color,
+                    ...typography.p,
                 },
             }),
         };
-    }, [colors.text, typography.h1, typography.p2]);
+    }, [colors.section.text.color, colors.section.text.title.color, typography.h1, typography.h2, typography.p]);
 
     return (
         <section className='fade-colors-transition fade-in-animation' css={styles.container}>
@@ -38,6 +45,11 @@ export const TextContainer = ({ title, paragraph }: TextContainerProps) => {
                 <h1 className='fade-colors-transition'>
                     {title}
                 </h1>
+            )}
+            {subtitle && (
+                <h2 className='fade-colors-transition'>
+                    {subtitle}
+                </h2>
             )}
             <p className='fade-colors-transition'>
                 {paragraph}

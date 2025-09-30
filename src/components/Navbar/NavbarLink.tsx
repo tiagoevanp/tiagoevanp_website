@@ -25,7 +25,7 @@ export const NavbarLink = ({ children, to }: NavbarLinkProps) => {
             },
 
             ...(pathname !== to) && {
-                '&:hover, &:focus': {
+                '&:hover': {
                     color: colors.navbar.link.hover.color,
                 },
             },
@@ -60,7 +60,7 @@ export const NavbarLink = ({ children, to }: NavbarLinkProps) => {
         typography.p,
     ]);
 
-    return <NavLink css={styles.navLink} to={to}>
+    return <NavLink className='fade-colors-transition' css={styles.navLink} to={to}>
         {children}
     </NavLink>;
 };
