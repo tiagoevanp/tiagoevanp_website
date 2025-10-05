@@ -31,6 +31,7 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                 <li>
                     <Button
                         icon='github'
+                        variant='large'
                         onClick={() => {
                             window.open(ExternalLinks.github, '_blank', 'noopener, noreferrer');
                         }}
@@ -39,6 +40,7 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                 <li>
                     <Button
                         icon='linkedin'
+                        variant='large'
                         onClick={() => {
                             window.open(ExternalLinks.linkedin, '_blank', 'noopener, noreferrer');
                         }}
@@ -47,6 +49,7 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                 <li>
                     <Button
                         icon={theme === 'dark' ? 'sun' : 'moon'}
+                        variant='large'
                         onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                     />
                 </li>

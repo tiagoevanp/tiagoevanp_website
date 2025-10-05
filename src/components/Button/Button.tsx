@@ -1,9 +1,10 @@
-import type { NameProp } from '../hooks/useDynamicSvgImport';
+import { NameProp } from '../SvgIcon/icons';
 import { SvgIcon, type SvgIconProps } from '../SvgIcon/SvgIcon';
 import styles from './Button.module.sass';
 
 type ButtonProps = {
     onClick: () => void;
+    variant: 'small' | 'medium' | 'large';
     style?: React.CSSProperties;
 };
 
@@ -22,13 +23,13 @@ const isIconButton = (props: ButtonProps): props is IconButtonProps => {
 export const Button = (props: IconButtonProps | TextButtonProps) => {
     return (
         <button
-            className={`fade-colors-transition ${styles.button}`}
+            className={`fade-colors-transition ${styles.button} ${styles[props.variant]}`}
             onClick={props.onClick}
         >
             {isIconButton(props)
                 ? <SvgIcon
                     name={props.icon}
-                    variant='medium'
+                    variant={props.variant}
                 />
                 : props.text
             }
