@@ -1,0 +1,19 @@
+{
+  "title": "Site do Tiago",
+  "home": {
+    "title": "Olá, eu sou o Tiago",
+    "subtitle": "Engenheiro Frontend Sênior | Especialista em React & TypeScript",
+    "paragraph": "Desenvolvedor autodidata com forte capacidade de aprendizado e perfil colaborativo. Apaixonado por tecnologia e inovação, sempre em busca de novos conhecimentos. Minha sensibilidade artística agrega criatividade única aos projetos de desenvolvimento.",
+    "image_alt": "Foto de Tiago"
+  },
+  "navbar": {
+    "home_link": "Página Inicial",
+    "skills_link": "Habilidades"
+  },
+  "sidebar": {
+    "input": {
+      "placeholder": "Pesquisar..."
+    }
+  },
+  "lorem_ipsum": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+}

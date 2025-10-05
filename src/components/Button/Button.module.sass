@@ -1,0 +1,24 @@
+
+.button
+    border: none
+    background-color: transparent
+    padding: 0
+    cursor: pointer
+    width: 32px
+    height: 32px
+
+    & svg
+        width: 32px
+        transition: rotate 0.2s ease-out, transform 0.2s linear
+
+        & path
+            fill: var(--icon-fill-color)
+
+    &:hover
+        & svg
+            display: block
+            transform: scale(1.4)
+            rotate: 15deg
+
+            & path
+                fill: var(--icon-fill-hover)
