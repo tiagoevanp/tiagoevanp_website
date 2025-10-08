@@ -3,6 +3,7 @@ import './globals.sass';
 import type { Metadata } from 'next';
 import { Noto_Sans } from 'next/font/google';
 
+import { SidebarProvider } from '@/providers/SidebarProvider';
 import { ThemeProvider } from '@/providers/ThemeProvider';
 import { PageNavbar } from '@/UI/PageNavbar/PageNavbar';
 
@@ -29,7 +30,9 @@ export default function RootLayout({
                     defaultTheme="system"
                     enableSystem
                 >
-                    <PageNavbar>{children}</PageNavbar>
+                    <SidebarProvider>
+                        <PageNavbar>{children}</PageNavbar>
+                    </SidebarProvider>
                 </ThemeProvider>
             </body>
         </html>

@@ -1,7 +1,8 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
 import { useTheme } from 'next-themes';
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, useEffect, useState } from 'react';
 
 import { Button, Navbar, NavbarLink } from '@/components';
 import { useTranslation } from '@/i18n/client';
@@ -12,22 +13,28 @@ import styles from './PageNavbar.module.sass';
 export const PageNavbar = ({ children }: PropsWithChildren) => {
     const { t } = useTranslation();
     const { theme, setTheme } = useTheme();
+    const path = usePathname();
+    const [toggleThemeIcon, setToggleThemeIcon] = useState<'sun' | 'moon'>('moon');
+
+    useEffect(() => {
+        setToggleThemeIcon(theme === 'dark' ? 'sun' : 'moon');
+    }, [theme]);
 
     return <div className={`fade-colors-transition ${styles.page}`}>
         <Navbar>
-            <ul className={styles['navbar-item']}>
+            <ul className={styles['navbar-list']}>
                 <li>
-                    <NavbarLink to='/'>
+                    <NavbarLink to='/' className={path === '/' ? styles['navbar-link-active'] : ''}>
                         {t('navbar.home_link')}
                     </NavbarLink>
                 </li>
                 <li>
-                    <NavbarLink to='/skill-docs'>
+                    <NavbarLink to='/skill-docs' className={path === '/skill-docs' ? styles['navbar-link-active'] : ''}>
                         {t('navbar.skills_link')}
                     </NavbarLink>
                 </li>
             </ul>
-            <ul style={{ justifyContent: 'flex-end' }} className={styles['navbar-item']}>
+            <ul style={{ justifyContent: 'flex-end' }} className={styles['navbar-list']}>
                 <li>
                     <Button
                         icon='github'
@@ -48,7 +55,7 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                 </li>
                 <li>
                     <Button
-                        icon={theme === 'dark' ? 'sun' : 'moon'}
+                        icon={toggleThemeIcon}
                         variant='large'
                         onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                     />

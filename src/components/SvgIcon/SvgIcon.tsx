@@ -1,3 +1,5 @@
+'use client';
+
 import { NameProp, svgPaths } from './icons';
 import styles from './SvgIcon.module.sass';
 
