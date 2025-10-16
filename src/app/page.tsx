@@ -14,6 +14,7 @@ export default function Home() {
                 containerStyle={styles['image-container']}
                 imageStyle={styles.image}
                 src='/tiago.jpg'
+                placeholder='/tiago_placeholder.jpg'
                 alt={t('home.image_alt')}
             />
             <TextContainer

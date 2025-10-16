@@ -1,14 +1,20 @@
 import './globals.sass';
 
 import type { Metadata } from 'next';
-import { Noto_Sans } from 'next/font/google';
+import { Noto_Sans, Noto_Sans_Mono } from 'next/font/google';
 
+import i18next from '@/i18n/i18next';
 import { SidebarProvider } from '@/providers/SidebarProvider';
 import { ThemeProvider } from '@/providers/ThemeProvider';
 import { PageNavbar } from '@/UI/PageNavbar/PageNavbar';
 
 const notoSans = Noto_Sans({
     variable: '--font-noto-sans',
+    subsets: ['latin'],
+});
+
+const notoSansMono = Noto_Sans_Mono({
+    variable: '--font-noto-sans-mono',
     subsets: ['latin'],
 });
 
@@ -23,8 +29,8 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html suppressHydrationWarning>
-            <body className={`${notoSans.variable}`}>
+        <html suppressHydrationWarning lang={i18next.language}>
+            <body className={`${notoSans.variable} ${notoSansMono.variable}`}>
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="system"

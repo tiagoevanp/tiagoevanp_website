@@ -29,7 +29,10 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                     </NavbarLink>
                 </li>
                 <li>
-                    <NavbarLink to='/skill-docs' className={path === '/skill-docs' ? styles['navbar-link-active'] : ''}>
+                    <NavbarLink
+                        to='/skill-docs'
+                        className={path.match('/skill-docs') !== null ? styles['navbar-link-active'] : ''}
+                    >
                         {t('navbar.skills_link')}
                     </NavbarLink>
                 </li>
