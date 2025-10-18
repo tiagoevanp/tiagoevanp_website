@@ -1,3 +1,5 @@
+$margin-block: 16px
+
 .h1
     color: var(--section-text-title)
 
@@ -6,6 +8,72 @@
 
 .p
     color: var(--section-text-color)
+    margin-block: $margin-block
+
+.a
+    color: var(--section-link)
+    position: relative
+    transition: color 0.2s ease-out
+
+    &::after
+        content: ''
+        position: absolute
+        margin: auto
+        left: 0
+        bottom: -8px
+        width: 100%
+        height: 2px
+        background-color: var(--section-link)
+        transform: scale(1)
+        transform-origin: center
+        transition: background-color 0.2s ease-out
+
+    &:hover
+        color: var(--section-link-hover)
+
+        &::after
+            background-color: var(--section-link-hover)
+
+.hr
+    border: solid 2px var(--section-hr)
+    margin-block-start: $margin-block / 2
+    margin-block-end: $margin-block
+
+.ul
+    margin-block: $margin-block
+    margin-inline-start: 32px
 
 .li
-    color: var(--section-text-color)
+    color: var(--section-li)
+
+.blockquote
+    display: flex
+    align-content: center
+    margin-block: $margin-block * 2
+    padding-inline: 16px
+    font-style: italic
+    color: var(--blockquote-text)
+
+    p
+        padding: 16px
+
+.blockquote::before 
+    content: open-quote
+    align-content: flex-start
+    font-size: 48px
+    color: var(--blockquote-pseudo-element)
+
+.blockquote::after
+    align-content: flex-end
+    content: close-quote
+    font-size: 48px
+    color: var(--blockquote-pseudo-element)
+
+.img
+    max-width: 512px
+    border-radius: 8px
+    box-shadow: var(--shadow)
+
+.img-container
+    display: inline-block
+    margin-block: $margin-block

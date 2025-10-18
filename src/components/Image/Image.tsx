@@ -8,6 +8,7 @@ type ImageProps = {
     alt: string;
     containerStyle: string;
     imageStyle: string;
+    caption?: string;
     onClick?: () => void;
 };
 
@@ -17,10 +18,11 @@ export const Image = ({
     alt,
     containerStyle,
     imageStyle,
+    caption,
     onClick,
 }: ImageProps) => {
     return (
-        <div className={`${styles.container} ${containerStyle}`}>
+        <figure className={`${styles.figure} ${containerStyle}`}>
             <NextImage
                 className={`${styles.image} ${imageStyle}`}
                 width={512}
@@ -31,6 +33,7 @@ export const Image = ({
                 placeholder='blur'
                 blurDataURL={placeholder}
             />
-        </div>
+            { caption && <figcaption className={styles.figcaption}>{caption}</figcaption> }
+        </figure>
     );
 };

@@ -11,7 +11,7 @@ import { ExternalLinks } from '@/lib/ExternalLinks';
 import styles from './PageNavbar.module.sass';
 
 export const PageNavbar = ({ children }: PropsWithChildren) => {
-    const { t } = useTranslation();
+    const { t, i18n: { language } } = useTranslation();
     const { theme, setTheme } = useTheme();
     const path = usePathname();
     const [toggleThemeIcon, setToggleThemeIcon] = useState<'sun' | 'moon'>('moon');
@@ -30,7 +30,7 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                 </li>
                 <li>
                     <NavbarLink
-                        to='/skill-docs'
+                        to={`/skill-docs/semantic/${language}`}
                         className={path.match('/skill-docs') !== null ? styles['navbar-link-active'] : ''}
                     >
                         {t('navbar.skills_link')}
@@ -40,7 +40,9 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
             <ul style={{ justifyContent: 'flex-end' }} className={styles['navbar-list']}>
                 <li>
                     <Button
+                        role='menuitem'
                         icon='github'
+                        description={t('navbar.button_github')}
                         variant='large'
                         onClick={() => {
                             window.open(ExternalLinks.github, '_blank', 'noopener, noreferrer');
@@ -49,7 +51,9 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                 </li>
                 <li>
                     <Button
+                        role='menuitem'
                         icon='linkedin'
+                        description={t('navbar.button_linkedin')}
                         variant='large'
                         onClick={() => {
                             window.open(ExternalLinks.linkedin, '_blank', 'noopener, noreferrer');
@@ -58,15 +62,17 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                 </li>
                 <li>
                     <Button
+                        role='menuitem'
                         icon={toggleThemeIcon}
+                        description={t('navbar.button_theme')}
                         variant='large'
                         onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                     />
                 </li>
             </ul>
         </Navbar>
-        <div className={styles.content}>
+        <main className={styles.content}>
             {children}
-        </div>
+        </main>
     </div>;
 };

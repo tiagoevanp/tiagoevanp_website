@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
     images: { unoptimized: true },
     pageExtensions: ['md', 'mdx', 'ts', 'tsx'],
     reactStrictMode: true,
+    expireTime: 30,
 };
 
 const withMDX = createMDX({

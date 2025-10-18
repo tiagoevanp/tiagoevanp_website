@@ -5,12 +5,12 @@ export const groups: SidebarItem[] = [
         group: 'HTML & CSS',
         items: [
             {
-                id: '1',
+                id: '0',
                 title: 'Semântica',
                 href: 'semantic',
             },
             {
-                id: '2',
+                id: '1',
                 title: 'Item 2',
                 href: 'item-2',
             },
@@ -20,7 +20,7 @@ export const groups: SidebarItem[] = [
         group: 'Group 2',
         items: [
             {
-                id: '3',
+                id: '0',
                 title: 'Item 3',
                 href: 'item-3',
             },

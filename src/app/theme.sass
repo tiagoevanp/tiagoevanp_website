@@ -1,3 +1,5 @@
+@use 'sass:meta'
+
 $IMPERIAL_RED: #E43636
 $INDIAN_RED: #E35959
 $MIDNIGHT_GREEN: #114B5F
@@ -13,6 +15,8 @@ $SILVER: #AEAEAE
 $DIM_GRAY: #6E6E6E
 
 html.light
+    @include meta.load-css("highlight.js/styles/panda-syntax-light.min")
+
     --page-background: #{$SEA_SALT}
     --navbar-border: #{$MIDNIGHT_GREEN}
     --navbar-link-color: #{$MIDNIGHT_GREEN}
@@ -28,14 +32,27 @@ html.light
     --home-image-secondary-background: transparent
     --section-text-title: #{$ZOMP}
     --section-text-color: #{$EERIE_BLACK}
+    --section-hr: #{$ZOMP}
+    --section-li: #{$EERIE_BLACK}
+    --section-link: #{$ZOMP}
+    --section-link-hover: #{$MIDNIGHT_GREEN}
+    --footer-hr: #{$SILVER}
+    --footer-text: #{$EERIE_BLACK}
+    --blockquote-text: #{$EERIE_BLACK}
+    --blockquote-pseudo-element: #{$ZOMP}
     --icon-fill-color: #{$MIDNIGHT_GREEN}
     --icon-fill-hover: #{$ZOMP}
     --input-icon: #{$MIDNIGHT_GREEN}
     --input-border: #{$MIDNIGHT_GREEN}
     --input-placeholder: #{$SILVER}
     --input-value: #{$EERIE_BLACK}
+    --image-caption-background: #{$ZOMP}
+    --image-caption-color: #{$SEA_SALT}
+
 
 html.dark
+    @include meta.load-css("highlight.js/styles/panda-syntax-dark.min")
+
     --page-background: #{$GUNMETAL}
     --navbar-border: #{$DARK_SLATE_GRAY}
     --navbar-link-color: #{$SEA_SALT}
@@ -51,6 +68,14 @@ html.dark
     --home-image-secondary-background: transparent
     --section-text-title: #{$CAMBRIDGE_BLUE}
     --section-text-color: #{$SEA_SALT}
+    --section-hr: #{$CAMBRIDGE_BLUE}
+    --section-li: #{$SEA_SALT}
+    --section-link: #{$CAMBRIDGE_BLUE}
+    --section-link-hover: #{$DARK_SLATE_GRAY}
+    --footer-hr: #{$SILVER}
+    --footer-text: #{$SEA_SALT}
+    --blockquote-text: #{$SEA_SALT}
+    --blockquote-pseudo-element: #{$CAMBRIDGE_BLUE}
     --icon-fill-color: #{$DARK_SLATE_GRAY}
     --icon-fill-hover: #{$CAMBRIDGE_BLUE}
     --input-icon: #{$CAMBRIDGE_BLUE}

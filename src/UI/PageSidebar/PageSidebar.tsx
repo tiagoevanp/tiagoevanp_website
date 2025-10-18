@@ -12,11 +12,11 @@ import styles from './PageSidebar.module.sass';
 export const PageSidebar = () => {
     const groups = useSidebarItems();
     const path = usePathname();
-    const { i18n } = useTranslation();
+    const { t, i18n } = useTranslation();
 
     const skillsPath = '/skill-docs';
 
-    return <nav className={styles.nav}>
+    return <nav aria-label={t('sidebar.aria_label')} className={styles.nav}>
         <SearchInput />
         <ul>
             {groups.map(({ group, items }) => {
