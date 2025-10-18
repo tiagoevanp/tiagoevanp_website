@@ -1,26 +1,48 @@
 'use client';
 
-import { createContext, type PropsWithChildren } from 'react';
+import { createContext, type PropsWithChildren, useState } from 'react';
 
-import { groups } from './lib/items';
+import GroupsList from './lib/GroupsList';
 
-type GroupItem = {
+export type GroupItem = {
     id: string;
     title: string;
     href: string;
 };
 
-export type SidebarItem = {
-    group: string;
-    items: GroupItem[];
+export type SidebarGroup = {
+    [key: string]: GroupItem[];
 };
 
 type SidebarContextType = {
-    groups: SidebarItem[];
+    groups: SidebarGroup;
+    filteredGroups: SidebarGroup;
+    setFilteredGroups: (value: SidebarGroup) => void;
+    next?: GroupItem;
+    setNext: (value: GroupItem) => void
 };
 
-export const SidebarContext = createContext<SidebarContextType>({ groups });
+export const SidebarContext = createContext<SidebarContextType>({
+    groups: {},
+    filteredGroups: {},
+    setFilteredGroups: () => null,
+    next: undefined,
+    setNext: () => null,
+});
 
 export function SidebarProvider({ children }: PropsWithChildren) {
-    return <SidebarContext.Provider value={{ groups }}>{children}</SidebarContext.Provider>;
+    const [filteredGroups, setFilteredGroups] = useState(GroupsList.all);
+    const [next, setNext] = useState<GroupItem>();
+
+    return <SidebarContext.Provider
+        value={{
+            groups: GroupsList.all,
+            filteredGroups,
+            setFilteredGroups,
+            next,
+            setNext,
+        }}
+    >
+        {children}
+    </SidebarContext.Provider>;
 }

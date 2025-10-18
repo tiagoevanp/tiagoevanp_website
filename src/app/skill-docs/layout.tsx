@@ -20,7 +20,7 @@ export default function SkillDocsLayout({
     useEffect(() => {
         document.querySelectorAll('code').forEach((block) => {
             if (block && !block.hasAttribute('data-hljs-highlighted')) {
-                hljs.highlightBlock(block as HTMLElement);
+                hljs.highlightElement(block as HTMLElement);
                 block.setAttribute('data-hljs-highlighted', 'true');
             }
         });
@@ -31,12 +31,6 @@ export default function SkillDocsLayout({
             <PageSidebar />
             <section className={styles.content}>
                 {children}
-                <footer className={styles.footer}>
-                    <a href='asd' aria-hidden={true} style={{ visibility: true ? 'visible' : 'hidden' }}>
-                        {t('Previous')}
-                    </a>
-                    <a href='das' aria-hidden={true} style={{ visibility: true ? 'visible' : 'hidden' }}>{t('Next')}</a>
-                </footer>
             </section>
         </div>
     );
