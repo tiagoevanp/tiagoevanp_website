@@ -71,7 +71,7 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                 </li>
             </ul>
         </Navbar>
-        <main>
+        <main className={styles.content}>
             {children}
         </main>
     </div>;

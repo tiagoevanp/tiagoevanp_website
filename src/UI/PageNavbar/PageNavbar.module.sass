@@ -1,18 +1,16 @@
 .page
   display: grid
-  grid-template-rows: 1fr auto 
+  grid-template-rows: 96px auto 
   font-family: var(--font-noto-sans)
   background-color: var(--page-background)
-  min-height: 100vh;
+  max-height: 100vh;
   width: 100vw;
-  height: 100%;
   overflow: hidden;
 
 .navbar-list
   display: flex
   align-items: center
   width: 100%
-  height: 96px
   margin-inline: 32px
   gap: 32px
   list-style: none
@@ -21,3 +19,8 @@
   background-color: var(--navbar-link-active-background)
   color: var(--navbar-link-active-color)
   box-shadow: var(--light-shadow)
+
+.content
+  display: flex
+  flex-grow: 1
+  flex-shrink: 0
