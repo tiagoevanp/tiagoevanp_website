@@ -1,0 +1,36 @@
+.footer
+    display: flex
+    justify-content: space-between
+    margin-block: 64px
+    border-top: solid 2px var(--footer-hr)
+
+.link
+    color: var(--footer-text)
+    display: inline-block;
+    position: relative
+
+.next:after
+    content: ''
+    display: inline-block
+    position: absolute
+    top: 50%
+    right: -12px
+    height: 8px
+    width: 8px
+    margin-top: -4px
+    border-right: 2px solid var(--footer-text)
+    border-top: 2px solid var(--footer-text)
+    transform: rotate(45deg);
+
+.previous:before
+    content: ''
+    display: inline-block
+    position: absolute
+    top: 50%
+    left: -12px
+    height: 8px
+    width: 8px
+    margin-top: -4px
+    border-right: 2px solid var(--footer-text)
+    border-top: 2px solid var(--footer-text)
+    transform: rotate(225deg);

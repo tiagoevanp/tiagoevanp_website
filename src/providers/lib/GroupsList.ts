@@ -11,7 +11,7 @@ class GroupsList {
         return this.groups;
     }
 
-    setItem(group: string, item?: GroupItem) {
+    setItem(group: keyof SidebarGroup, item?: GroupItem) {
         if (item) {
             this.groups[group].push(item);
         }

@@ -4,7 +4,6 @@ import hljs from 'highlight.js';
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 
-import { useTranslation } from '@/i18n/client';
 import { PageSidebar } from '@/UI/PageSidebar/PageSidebar';
 
 import styles from './layout.module.sass';
@@ -14,7 +13,6 @@ export default function SkillDocsLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    const { t } = useTranslation();
     const path = usePathname();
 
     useEffect(() => {

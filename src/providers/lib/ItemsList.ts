@@ -7,17 +7,17 @@ class ItemsList {
         this.items = [
             {
                 id: 'semantic',
-                title: 'Semântica',
+                title: 'semantic',
                 href: 'semantic',
             },
             {
                 id: 'aria',
-                title: 'ARIA',
+                title: 'aria',
                 href: 'aria',
             },
             {
                 id: 'es6',
-                title: 'ES6+',
+                title: 'es6-plus',
                 href: 'es6-plus',
             },
         ];

@@ -1,0 +1,67 @@
+import { Footer } from '@/components';
+
+WAI-ARIA (Aplicações de Internet Ricas e Acessíveis)
+=============================
+_________
+
+ARIA é um conjunto de atributos que tornam conteúdo web mais acessível para pessoas com deficiência, especialmente para aplicações dinâmicas e componentes complexos.
+
+Os atributos ARIA podem ser usados em alguns casos específicos:
+
+- Componentes Complexos Sem Equivalentes HTML
+- Atualizações Dinâmicas de Conteúdo (Controle de estado como `aria-hidden`)
+- Formulários com Validação
+
+## Exemplos:
+__________
+
+Conteúdo de um menu em barra de navegação HTML:
+
+```html
+<nav aria-label="Menu principal">
+    <button aria-expanded="false" aria-controls="menu-list">
+        Menu
+    </button>
+    <ul id="menu-list" aria-hidden="true">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">Sobre</a></li>
+    </ul>
+</nav>
+```
+Conteúdo de um formulário HTML:
+
+```html
+<form>
+    <label for="password">Senha</label>
+    <input type="password" id="password" aria-describedby="password-help password-error" aria-invalid="false">
+
+    <div id="password-help" class="help-text">
+        Mínimo 8 caracteres com letras e números
+    </div>
+    <div id="password-error" class="error-text" aria-live="polite"></div>
+</form>
+```
+
+Controle do formulário feito através do Javascript:
+
+```javascript
+document.getElementById('password').addEventListener('input', (e) => {
+    const elValue = e.target.value;
+    const errorElement = document.getElementById('password-error');
+
+    if (elValue.length > 0 && elValue.length < 8) {
+        e.target.setAttribute('aria-invalid', 'true');
+
+        errorElement.textContent = 'Senha muito curta';
+    } else {
+        e.target.setAttribute('aria-invalid', 'false');
+
+        errorElement.textContent = '';
+    }
+});
+```
+
+>**Regra de ouro a ser seguida**, não use ARIA se existir um elemento HTML nativo com a semântica e comportamento que você precisa.
+
+
+<Footer previous={{title: 'sidebar.items.semantic', href: 'semantic'}} next={{title: 'sidebar.items.es6-plus', href: 'es6-plus'}} />

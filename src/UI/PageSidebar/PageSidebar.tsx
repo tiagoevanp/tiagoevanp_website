@@ -10,7 +10,7 @@ import { useSidebarContext } from '@/providers/hooks/useSidebarContext';
 import styles from './PageSidebar.module.sass';
 
 export const PageSidebar = () => {
-    const { filteredGroups } = useSidebarContext();
+    const { groups } = useSidebarContext();
     const path = usePathname();
     const { t, i18n } = useTranslation();
 
@@ -19,10 +19,10 @@ export const PageSidebar = () => {
     return <nav aria-label={t('sidebar.aria_label')} className={styles.nav}>
         <SearchInput />
         <ul>
-            {Object.keys(filteredGroups).map((name) => {
-                if (filteredGroups[name].length > 0) {
+            {Object.keys(groups).map((name) => {
+                if (groups[name].length > 0) {
                     return <div key={name}><li className={styles.group}><h2>{name}</h2></li> {
-                        filteredGroups[name].map(({ id, href, title }) => {
+                        groups[name].map(({ id, href, title }) => {
                             return (
                                 <li key={id} >
                                     <Link
@@ -33,7 +33,7 @@ export const PageSidebar = () => {
                                                 : styles.link
                                         }
                                     >
-                                        <p>{title}</p>
+                                        <p>{t(`sidebar.items.${title}`)}</p>
                                     </Link>
                                 </li>
                             );
