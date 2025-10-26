@@ -1,14 +1,15 @@
 .nav
     border-inline-end: solid 4px var(--sidebar-border)
     z-index: var(--elevated-index)
-    padding-inline: 34px
+    padding-inline: 32px
+    padding-block: 32px
+    height: calc(100vh - 128px)
+    overflow: auto
 
     ul
         list-style: none
 
 .group
-    margin-block-start: 32px
-    margin-block-end: 16px
     color: var(--sidebar-group)
 
 .link
@@ -21,4 +22,5 @@
     border-inline-start: solid 1px var(--sidebar-item-border-color)
 
 .link-active
+    color: var(--sidebar-item-border-active)
     border-inline-start: solid 4px var(--sidebar-item-border-active)

@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import { PropsWithChildren, useEffect, useState } from 'react';
 
-import { Button, Navbar, NavbarLink } from '@/components';
+import { Banner, Button, Navbar, NavbarLink } from '@/components';
 import { useTranslation } from '@/i18n/client';
 import { ExternalLinks } from '@/lib/ExternalLinks';
 
@@ -79,6 +79,7 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                 </li>
             </ul>
         </Navbar>
+        {path.match('/skill-docs') && <Banner message={t('page_under_construction')} variant='warning' />}
         <main className={styles.content}>
             {children}
         </main>

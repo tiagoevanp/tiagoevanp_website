@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { SearchInput } from '@/components/SearchInput/SearchInput';
+// import { SearchInput } from '@/components/SearchInput/SearchInput';
 import { useTranslation } from '@/i18n/client';
 import { useSidebarContext } from '@/providers/hooks/useSidebarContext';
 
@@ -17,7 +17,7 @@ export const PageSidebar = () => {
     const skillsPath = '/skill-docs';
 
     return <nav aria-label={t('sidebar.aria_label')} className={styles.nav}>
-        <SearchInput />
+        {/* <SearchInput /> */}
         <ul>
             {Object.keys(groups).map((name) => {
                 if (groups[name].length > 0) {

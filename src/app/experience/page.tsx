@@ -2,8 +2,7 @@
 
 import Link from 'next/link';
 
-import { SvgIcon } from '@/components';
-import { Tag } from '@/components/Tag/Tag';
+import { SvgIcon, Tag } from '@/components';
 import { useTranslation } from '@/i18n/client';
 import { ExternalLinks } from '@/lib/ExternalLinks';
 

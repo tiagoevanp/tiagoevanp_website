@@ -6,6 +6,7 @@ class GroupsList {
         'HTML & CSS': [],
         'Javascript & Typescript': [],
         'React': [],
+        'Outro': [],
     };
 
     get all() {
@@ -31,5 +32,6 @@ groupsList.setItem('Javascript & Typescript', ItemsList.getItem('es6'));
 groupsList.setItem('Javascript & Typescript', ItemsList.getItem('async'));
 groupsList.setItem('Javascript & Typescript', ItemsList.getItem('web-apis'));
 groupsList.setItem('React', ItemsList.getItem('lifecycle'));
+groupsList.setItem('Outro', ItemsList.getItem('lifecycle'));
 
 export default groupsList;
