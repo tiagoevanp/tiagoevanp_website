@@ -27,7 +27,7 @@ export default function SkillDocsLayout({
     return (
         <div className={styles.container}>
             <PageSidebar />
-            <section className={styles.content}>
+            <section className={styles.section}>
                 {children}
             </section>
         </div>

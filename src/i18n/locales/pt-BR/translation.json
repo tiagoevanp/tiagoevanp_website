@@ -47,20 +47,20 @@
   },
   "experience": {
     "rocket_chat": {
-      "title": "Engenheiro de Software",
-      "subtitle": "Principais Conquistas e Responsabilidades:",
-      "company": "Rocket.Chat",
+      "title": "Rocket.Chat",
+      "occupation": "Engenheiro de Software",
       "full_time": "Período Integral",
       "time": "out de 2020 - set de 2025 · 5 anos",
       "location": "Porto Alegre, Rio Grande do Sul, Brasil · Remota",
-      "description": "Como um contribuidor chave para a maior plataforma de comunicação open-source do mundo, fui responsável por desenvolver e manter funcionalidades de alto impacto para milhões de usuários. Colaborei diariamente com uma equipe global distribuída e multifuncional em um ambiente totalmente remoto e de código aberto.",
-      "paragraphs": [
-          "Led the development of critical frontend features for the Omnichannel suite, enhancing live chat capabilities for enterprises and improving the integration with major messaging platforms, directly impacting user satisfaction and platform adoption.",
-          "Engineered and shipped robust, reusable UI components through the UiKit lib, ensuring consistency across the Rocket.Chat ecosystem, including the apps marketplace.",
-          "Significantly improved application performance and user experience by identifying and resolving complex bugs, optimizing React components, and implementing efficient state management solutions, leading to measurable reductions in load time.",
-          "Championed code quality and best practices by actively participating in code reviews, contributing to architectural discussions, and increasing test coverage by writing unit, integration, and end-to-end tests with Jest, React Testing Library, and Playwright.",
-          "Mentored junior developers and fostered a collaborative environment through knowledge-sharing sessions and constructive feedback, enhancing team productivity and skill growth."
-      ]
+      "description": "Como um contribuidor chave para a maior plataforma de comunicação open-source do mundo, fui responsável por desenvolver e manter funcionalidades de alto impacto para milhões de usuários. Colaborei diariamente com uma equipe global distribuída e multifuncional em um ambiente totalmente remoto e de código aberto.\rLed the development of critical frontend features for the Omnichannel suite, enhancing live chat capabilities for enterprises and improving the integration with major messaging platforms, directly impacting user satisfaction and platform adoption.\rEngineered and shipped robust, reusable UI components through the UiKit lib, ensuring consistency across the Rocket.Chat ecosystem, including the apps marketplace.\rSignificantly improved application performance and user experience by identifying and resolving complex bugs, optimizing React components, and implementing efficient state management solutions, leading to measurable reductions in load time.\rChampioned code quality and best practices by actively participating in code reviews, contributing to architectural discussions, and increasing test coverage by writing unit, integration, and end-to-end tests with Jest, React Testing Library, and Playwright.\rMentored junior developers and fostered a collaborative environment through knowledge-sharing sessions and constructive feedback, enhancing team productivity and skill growth."
+    },
+    "canopus": {
+      "title": "Canopus",
+      "occupation": "Engenheiro de Software",
+      "full_time": "Período Integral",
+      "time": "set de 2017 - out de 2020 · 3 anos 2 meses",
+      "location": "Porto Alegre, Rio Grande do Sul, Brasil · Presencial",
+      "description": "Atuei no desenvolvimento de mais de 10 projetos de sistemas web sob demanda, com foco em segurança da informação e soluções personalizadas para clientes.\rImplementei integrações com módulos financeiros, incluindo geração de boletos bancários e relatórios estatísticos para análise de dados.\rColaborei na modernização e manutenção de sistemas legados, implementando novas funcionalidades e corrigindo problemas críticos que impactaram positivamente mais de 50.000 usuários."
     }
   },
   "javascript": "Javascript",
@@ -73,5 +73,12 @@
   "react_testing_library": "React Testing Library",
   "playwright": "Playwright",
   "git": "Git",
+  "php": "PHP",
+  "fullstack": "Fullstack",
+  "python": "Python",
+  "dotnet": ".NET",
+  "postgresql": "PostgreSQL",
+  "mysql": "MySQL",
+  "oracledb": "OracleDB",
   "lorem_ipsum": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 }
