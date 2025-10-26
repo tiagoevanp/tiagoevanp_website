@@ -16,9 +16,44 @@ class ItemsList {
                 href: 'aria',
             },
             {
+                id: 'modern-layouts',
+                title: 'modern_layouts',
+                href: 'modern-layouts',
+            },
+            {
+                id: 'animations-transitions',
+                title: 'animations_and_transitions',
+                href: 'animations-transitions',
+            },
+            {
+                id: 'sass',
+                title: 'sass',
+                href: 'sass',
+            },
+            {
+                id: 'css-in-js',
+                title: 'css_in_js',
+                href: 'css-in-js',
+            },
+            {
                 id: 'es6',
-                title: 'es6-plus',
+                title: 'es6_plus',
                 href: 'es6-plus',
+            },
+            {
+                id: 'async',
+                title: 'asynchronism',
+                href: 'async',
+            },
+            {
+                id: 'web-apis',
+                title: 'web_apis',
+                href: 'web-apis',
+            },
+            {
+                id: 'lifecycle',
+                title: 'lifecycle',
+                href: 'lifecycle',
             },
         ];
     }

@@ -2,12 +2,12 @@
 
 $IMPERIAL_RED: #E43636
 $INDIAN_RED: #E35959
+$AMBER: #F3B700
+$NAPLES_YELLOW: #F2CE61
 $MIDNIGHT_GREEN: #114B5F
 $DARK_SLATE_GRAY: #2F535E
 $ZOMP: #539987
 $CAMBRIDGE_BLUE: #73998F
-$AMBER: #F3B700
-$NAPLES_YELLOW: #F2CE61
 $GUNMETAL: #1E2528
 $EERIE_BLACK: #1F1F1F
 $SEA_SALT: #FAFAFA
@@ -15,6 +15,13 @@ $SILVER: #AEAEAE
 $DIM_GRAY: #6E6E6E
 
 html.light
+    & .color-examples
+        --red: #{$IMPERIAL_RED}
+        --green-blue: #{$MIDNIGHT_GREEN}
+        --yellow: #{$AMBER}
+        --gray: #{$DIM_GRAY}
+        --text: #{$SEA_SALT}
+
     @include meta.load-css("highlight.js/styles/panda-syntax-light.min")
 
     --page-background: #{$SEA_SALT}
@@ -26,7 +33,7 @@ html.light
     --sidebar-border: #{$MIDNIGHT_GREEN}
     --sidebar-group: #{$ZOMP}
     --sidebar-item-color: #{$EERIE_BLACK}
-    --sidebar-item-border-color: #{$SILVER}
+    --sidebar-item-border-color: #{$DIM_GRAY}
     --sidebar-item-border-active: #{$ZOMP}
     --home-image-primary-background: #{$ZOMP}
     --home-image-secondary-background: transparent
@@ -51,6 +58,13 @@ html.light
 
 
 html.dark
+    & .color-examples
+        --red: #{$INDIAN_RED}
+        --green-blue: #{$DARK_SLATE_GRAY}
+        --yellow: #{$NAPLES_YELLOW}
+        --gray: #{$SILVER}
+        --text: #{$EERIE_BLACK}
+
     @include meta.load-css("highlight.js/styles/panda-syntax-dark.min")
 
     --page-background: #{$GUNMETAL}

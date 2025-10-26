@@ -26,7 +26,7 @@ export const Footer = ({ previous, next }: FooterProps) => {
             aria-hidden={!previous}
             style={{ visibility: previous ? 'visible' : 'hidden' }}
         >
-            {t(previous?.title ?? '')}
+            {previous?.title ? t(`sidebar.items.${previous?.title}`) : 'Previous'}
         </Link>
         <Link
             className={`${styles.link} ${styles.next}`}
@@ -34,7 +34,7 @@ export const Footer = ({ previous, next }: FooterProps) => {
             aria-hidden={!next}
             style={{ visibility: next ? 'visible' : 'hidden' }}
         >
-            {t(next?.title ?? '')}
+            {next?.title ? t(`sidebar.items.${next?.title}`) : 'Next'}
         </Link>
     </footer>;
 };

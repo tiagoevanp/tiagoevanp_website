@@ -1,0 +1,18 @@
+import { Footer } from '@/components';
+import { AnimationsAndTransitionsExample } from '../AnimationsAndTransitionsExample';
+
+Animações e transições
+======================
+
+As **transições** CSS são ideais para mudanças suaves entre estados, exigindo sempre um gatilho como `hover`, `focus` ou `active`. Elas funcionam como efeitos de transição simples - perfeitos para botões que mudam de cor ao passar o mouse, menus que deslizam suavemente ou elementos que alteram opacidade. A sintaxe é direta: você define a propriedade a ser animada, a duração e a curva de aceleração.
+
+Já as **animações** CSS oferecem controle total sobre sequências complexas através de *keyframes*, podendo executar automaticamente sem interação do usuário. São perfeitas para loading spinners, elementos que pulsam continuamente, textos que digitam automaticamente ou sequências elaboradas de entrada e saída. Com keyframes você define pontos específicos do comportamento da animação (0 - 100%).
+
+
+>Para performance, é preferivel `transform` e `opacity` em vez de propriedades como `width` ou `margin`. E é importante também considerar acessibilidade com `prefers-reduced-motion` para usuários sensíveis a movimento.
+
+## Exemplos práticos
+
+<AnimationsAndTransitionsExample />
+
+<Footer previous={{ title: 'modern_layouts', href: 'modern-layouts' }} next={{ title: 'sass', href: 'sass' }} />

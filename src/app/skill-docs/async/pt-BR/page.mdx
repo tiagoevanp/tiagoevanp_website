@@ -1,0 +1,69 @@
+import { Footer } from '@/components';
+
+Assincronismo
+===========
+
+JavaScript é single-threaded, mas precisa lidar com operações que levam tempo (como requisições de rede, leitura de arquivos, timers). O assincronismo permite que o código não espere por essas operações - ele continua executando outras tarefas e volta quando a operação assíncrona termina.
+
+Abaixo um exemplo de como funciona o uso de `async` e `await` a partir do ES2017 comparado ao uso de promises introduzido no ES6:
+
+```JavaScript
+// Uma Promise representa um valor que pode estar disponível agora, no futuro ou nunca
+const promise = new Promise((resolve, reject) => {
+    // Simulando operação assíncrona
+    setTimeout(() => {
+        const success = true;
+        if (success) {
+            resolve('Dados carregados com sucesso!');
+        } else {
+            reject('Erro ao carregar dados');
+        }
+    }, 2000);
+});
+
+// Usando a Promise ES6
+promise
+    .then(result => {
+        console.log(result); // "Dados carregados com sucesso!"
+    })
+    .catch(error => {
+        console.error(error); // "Erro ao carregar dados"
+});
+
+// Usando Async/Await - Sintaxe mais limpa ES2017
+async function loadData() {
+    try {
+        const result = await promise;
+        console.log(result);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+loadData();
+```
+
+## Event loop
+
+JavaScript usa um event loop para gerenciar operações assíncronas:
+
+1. Código síncrono executa primeiro
+2. _Callbacks_ assíncronos vão para a _callback queue_
+3. Quando a _call stack_ está vazia, o _event loop_ move _callbacks_ para execução
+
+## Microtasks vs Macrotasks
+```JavaScript
+// Microtasks (Promises) têm prioridade
+Promise.resolve().then(() => console.log('Microtask'));
+
+// Macrotasks (setTimeout) executam depois
+setTimeout(() => console.log('Macrotask'), 0);
+
+console.log('Código síncrono');
+
+// "Código síncrono"
+// "Microtask"
+// "Macrotask"
+```
+
+<Footer previous={{ title: 'es6_plus', href: 'es6-plus' }} next={{ title: 'web_apis', href: 'web-apis' }}/>

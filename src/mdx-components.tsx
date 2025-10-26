@@ -29,6 +29,9 @@ const components = {
     ul: ({ children }) => (
         <ul className={styles.ul}>{children}</ul>
     ),
+    ol: ({ children }) => (
+        <ol className={styles.ol}>{children}</ol>
+    ),
     li: ({ children }) => (
         <li className={styles.li}>{children}</li>
     ),

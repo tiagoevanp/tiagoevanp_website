@@ -1,8 +1,7 @@
 import { Footer } from '@/components';
 
 WAI-ARIA (Aplicações de Internet Ricas e Acessíveis)
-=============================
-_________
+=========
 
 ARIA é um conjunto de atributos que tornam conteúdo web mais acessível para pessoas com deficiência, especialmente para aplicações dinâmicas e componentes complexos.
 
@@ -12,10 +11,7 @@ Os atributos ARIA podem ser usados em alguns casos específicos:
 - Atualizações Dinâmicas de Conteúdo (Controle de estado como `aria-hidden`)
 - Formulários com Validação
 
-## Exemplos:
-__________
-
-Conteúdo de um menu em barra de navegação HTML:
+Exemplo de conteúdo de um menu em barra de navegação em HTML:
 
 ```html
 <nav aria-label="Menu principal">
@@ -28,7 +24,7 @@ Conteúdo de um menu em barra de navegação HTML:
     </ul>
 </nav>
 ```
-Conteúdo de um formulário HTML:
+Exemplo de conteúdo de um formulário em HTML:
 
 ```html
 <form>
@@ -64,4 +60,4 @@ document.getElementById('password').addEventListener('input', (e) => {
 >**Regra de ouro a ser seguida**, não use ARIA se existir um elemento HTML nativo com a semântica e comportamento que você precisa.
 
 
-<Footer previous={{title: 'sidebar.items.semantic', href: 'semantic'}} next={{title: 'sidebar.items.es6-plus', href: 'es6-plus'}} />
+<Footer previous={{title: 'semantic', href: 'semantic'}} next={{title: 'modern_layouts', href: 'modern-layouts'}} />

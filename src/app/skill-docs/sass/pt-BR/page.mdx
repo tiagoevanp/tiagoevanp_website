@@ -1,0 +1,111 @@
+import { Footer } from '@/components'
+
+SASS (Syntactically Awesome Style Sheets)
+=========
+
+Pré-processador CSS que adiciona funcionalidades avançadas como variáveis, aninhamento e mixins.
+
+Contém duas sintaxes diferentes:
+- SCSS (`.scss`) - Similar ao CSS onde é utilizado `{}` e `;`
+- Sass (`.sass`) - Identada e sem `{}` e `;`
+
+A seguir alguns exemplos dos benfícios de se utilizar a ferramenta:
+
+## Variáveis
+
+```scss
+$primary-color: #007bff;
+$spacing: 1rem;
+
+.btn {
+  background: $primary-color;
+  padding: $spacing;
+}
+```
+
+## Aninhamento (Nesting)
+
+```scss
+.nav {
+  background: #333;
+  
+  &__list {
+    display: flex;
+    
+    &__item {
+      margin: 0 1rem;
+      
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+}
+```
+
+## Mixins (Funções reutilizáveis)
+
+```scss
+@mixin flex($position) {
+  display: flex;
+  justify-content: $position;
+  align-items: $position;
+}
+
+.container {
+  @include flex(center);
+  height: 100vh;
+}
+```
+
+## Extensões (Placeholders)
+
+```scss
+%button-base {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+}
+
+.btn-primary {
+  @extend %button-base;
+  background: blue;
+}
+
+.btn-secondary {
+  @extend %button-base;
+  background: gray;
+}
+```
+
+## Parciais e Importação
+
+```scss
+// _variables.scss
+$colors: (
+  primary: #007bff,
+  secondary: #6c757d
+);
+
+// main.scss
+@import 'variables';
+
+.btn {
+  background: map-get($colors, primary);
+}
+```
+
+## Funções e Operações
+
+```scss
+@function calculate-rem($size) {
+  @return $size / 16px * 1rem;
+}
+
+.container {
+  font-size: calculate-rem(18px);
+  width: 100% / 3;
+}
+```
+
+<Footer previous={{ title: 'animations_and_transitions', href: 'animations-transitions' }} next={{ title: 'css_in_js', href: 'css-in-js' }} />

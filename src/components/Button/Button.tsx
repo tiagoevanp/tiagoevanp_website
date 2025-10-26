@@ -1,5 +1,3 @@
-import { AriaAttributes, AriaRole } from 'react';
-
 import { NameProp } from '../SvgIcon/icons';
 import { SvgIcon, type SvgIconProps } from '../SvgIcon/SvgIcon';
 import styles from './Button.module.sass';

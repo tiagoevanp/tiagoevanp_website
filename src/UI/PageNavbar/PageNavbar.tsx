@@ -36,6 +36,14 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                         {t('navbar.skills_link')}
                     </NavbarLink>
                 </li>
+                <li>
+                    <NavbarLink
+                        to={'/experience'}
+                        className={path.match('/experience') !== null ? styles['navbar-link-active'] : ''}
+                    >
+                        {t('navbar.experience')}
+                    </NavbarLink>
+                </li>
             </ul>
             <ul style={{ justifyContent: 'flex-end' }} className={styles['navbar-list']}>
                 <li>
