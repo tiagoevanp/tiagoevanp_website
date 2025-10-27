@@ -1,0 +1,60 @@
+import { Footer } from '@/components';
+
+Semantics
+=========
+
+Semantics in HTML refers to the use of HTML elements that carry meaning about the type of content they wrap, both for the browser and the developer.
+
+In other words, it's about using the right tag for the right content.
+
+Example of non-semantic HTML:
+
+```html
+<div id="header">
+    <div class="big-title">My Awesome Website</div>
+</div>
+<div id="nav">
+    <div class="link">Home</div>
+    <div class="link">About</div>
+</div>
+<div id="main-content">
+    <div class="article">
+        <div class="title">Article Title</div>
+        <div class="paragraph">This is a paragraph <span class="bold">very important</span>.</div>
+    </div>
+</div>
+<div id="footer">
+    <div class="text">Copyright 2024</div>
+</div>
+```
+
+To the browser, everything is just a div. It doesn't know what is a header, a navigation section, or the main article. Screen readers for visually impaired people will have difficulty navigating. Search engines (Google) don't understand the structure and importance of the content.
+
+Example of semantic HTML (same content):
+
+```html
+<header>
+    <h1>My Awesome Website</h1>
+</header>
+<nav>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+</nav>
+<main>
+    <article>
+        <h2>Article Title</h2>
+        <p>This is a paragraph <strong>very important</strong>.</p>
+    </article>
+</main>
+<footer>
+    <p>Copyright 2024</p>
+</footer>
+```
+
+Now screen readers can identify: "Here is the main header", "Here begins the navigation menu", "Here is the main content", "Here is an article". This allows users to navigate the website efficiently.
+
+Search engines give more weight to content inside tags like `<h1>`, `<article>`, and `<main>`. They understand the hierarchical structure and relevance of your content, which can improve your positioning in search results.
+
+For developers, it's much easier to understand and maintain code where `<nav>` means "navigation" and `<footer>` means "footer" than a sea of `<div id="nav">` and `<div id="footer">`. There is a universal agreement about what each semantic tag represents. This makes the code more predictable and readable for any developer in the world.
+
+<Footer next={{title: 'aria', href: 'aria'}}/>

@@ -1,0 +1,54 @@
+import { Footer } from '@/components';
+
+CSS-in-JS
+=========
+
+Approach where styles are written directly in JavaScript instead of separate CSS files. Styles are dynamically generated and injected into the DOM. There are several popular libraries for this purpose, such as [Styled-components](https://styled-components.com/) and [Emotion](https://emotion.sh/docs/introduction), which also has integration with Styled-components syntax.
+
+Example using Styled-components:
+
+```js
+import styled from 'styled-components';
+
+const Container = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: ${props => props.compact ? '1rem' : '2rem'};
+`;
+
+const Title = styled.h1`
+  color: ${({ theme }) => theme.colors.primary};
+  font-size: 2rem;
+`;
+```
+
+Example using Emotion:
+
+```js
+import { css } from '@emotion/react';
+
+const buttonStyles = css`
+  padding: 1rem 2rem;
+  background: #007bff;
+  color: white;
+  
+  &:hover {
+    background: #0056b3;
+  }
+`;
+
+const Button = () => {
+  return <button css={buttonStyles}>Click</button>;
+}
+```
+
+Among the main advantages, we can highlight:
+
+- Component-scoped styling
+- Dynamic properties
+- Easy theming via Context API (React)
+- Simple maintenance
+
+> For websites with static pages or that require high performance, CSS-in-JS doesn't offer significant advantages. However, for modern React applications with extensive component libraries and dynamic styling, it's an interesting option.
+
+<Footer previous={{ title: 'sass', href: 'sass' }} next={{ title: 'es6_plus', href: 'es6-plus'}} />

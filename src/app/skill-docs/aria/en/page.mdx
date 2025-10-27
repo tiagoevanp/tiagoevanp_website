@@ -1,0 +1,63 @@
+import { Footer } from '@/components';
+
+WAI-ARIA (Web Accessible Rich Internet Applications)
+=========
+
+ARIA is a set of attributes that make web content more accessible for people with disabilities, especially for dynamic applications and complex components.
+
+ARIA attributes can be used in specific cases:
+
+- Complex Components Without HTML Equivalents
+- Dynamic Content Updates (State control like `aria-hidden`)
+- Forms with Validation
+
+Example of a navigation menu content in HTML:
+
+```html
+<nav aria-label="Main menu">
+    <button aria-expanded="false" aria-controls="menu-list">
+        Menu
+    </button>
+    <ul id="menu-list" aria-hidden="true">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+    </ul>
+</nav>
+```
+
+Example of form content in HTML:
+
+```html
+<form>
+    <label for="password">Password</label>
+    <input type="password" id="password" aria-describedby="password-help password-error" aria-invalid="false">
+
+    <div id="password-help" class="help-text">
+        Minimum 8 characters with letters and numbers
+    </div>
+    <div id="password-error" class="error-text" aria-live="polite"></div>
+</form>
+```
+
+Form control implemented through JavaScript:
+
+```javascript
+document.getElementById('password').addEventListener('input', (e) => {
+    const elValue = e.target.value;
+    const errorElement = document.getElementById('password-error');
+
+    if (elValue.length > 0 && elValue.length < 8) {
+        e.target.setAttribute('aria-invalid', 'true');
+
+        errorElement.textContent = 'Password too short';
+    } else {
+        e.target.setAttribute('aria-invalid', 'false');
+
+        errorElement.textContent = '';
+    }
+});
+```
+
+> Golden rule to follow: Don't use ARIA if there's a native HTML element with the semantics and behavior you need.
+
+<Footer previous={{title: 'semantic', href: 'semantic'}} next={{title: 'modern_layouts', href: 'modern-layouts'}} />

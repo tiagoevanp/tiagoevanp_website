@@ -1,7 +1,86 @@
 {
-  "title": "vas ads sad as ",
-  "welcome": "Hi there, I'm Tiago",
-  "Home": "Home",
-  "Skills": "Skills",
+  "title": "Tiago's website",
+  "home": {
+    "title": "Hi, I'm Tiago",
+    "subtitle": "Senior Frontend Engineer | React & TypeScript Specialist",
+    "paragraph": "Self-taught developer with strong learning ability and collaborative profile. Passionate about technology and innovation, always seeking new knowledge. My artistic sensibility adds unique creativity to development projects.",
+    "image_alt": "Tiago's photo"
+  },
+  "navbar": {
+    "home_link": "Home",
+    "skills_link": "Skills",
+    "experience": "Experience",
+    "aria_label": "Main menu",
+    "button_github": "Button to go to Tiago's Github page",
+    "button_linkedin": "Button to go to Tiago's Linkedin page",
+    "button_theme": "Button to switch light and dark theme"
+  },
+  "sidebar": {
+    "input": {
+      "placeholder": "Search..."
+    },
+    "items": {
+      "semantic": "Semantics",
+      "aria": "WAI-ARIA",
+      "modern_layouts": "Modern CSS layouts",
+      "animations_and_transitions": "Animations and transitions",
+      "sass": "SASS",
+      "css_in_js": "CSS-in-JS",
+      "es6_plus": "ES6+",
+      "asynchronism": "Asynchronism",
+      "web_apis": "Web APIs",
+      "lifecycle": "Lifecycle"
+    },
+    "aria_label": "Secondary menu"
+  },
+  "skill_docs": {
+    "mobile": "This page is temporarily exclusive for larger screens!",
+    "example_animation_transitions": {
+      "hover_me": "Hover me",
+      "click_me": "Click here",
+      "jumping": "Jumping"
+    },
+    "example_ecma_script": {
+      "caption": "caption",
+      "es5": "ES5",
+      "es6": "ES6"
+    }
+  },
+  "experience": {
+    "rocket_chat": {
+      "title": "Rocket.Chat",
+      "occupation": "Software Engineer",
+      "full_time": "Full-time",
+      "time": "Oct 2020 - Sep 2025 · 5 years",
+      "location": "Porto Alegre, Rio Grande do Sul, Brazil · Remote",
+      "description": "As a key contributor to the world's largest open-source communication platform, I was responsible for developing and maintaining high-impact features for millions of users. I collaborated daily with a global, distributed, and cross-functional team in a fully remote and open-source environment.\rLed the development of critical frontend features for the Omnichannel suite, enhancing live chat capabilities for enterprises and improving the integration with major messaging platforms, directly impacting user satisfaction and platform adoption.\rEngineered and shipped robust, reusable UI components through the UiKit lib, ensuring consistency across the Rocket.Chat ecosystem, including the apps marketplace.\rSignificantly improved application performance and user experience by identifying and resolving complex bugs, optimizing React components, and implementing efficient state management solutions, leading to measurable reductions in load time.\rChampioned code quality and best practices by actively participating in code reviews, contributing to architectural discussions, and increasing test coverage by writing unit, integration, and end-to-end tests with Jest, React Testing Library, and Playwright.\rMentored junior developers and fostered a collaborative environment through knowledge-sharing sessions and constructive feedback, enhancing team productivity and skill growth."
+    },
+    "canopus": {
+      "title": "Canopus",
+      "occupation": "Software Engineer",
+      "full_time": "Full-time",
+      "time": "Sep 2017 - Oct 2020 · 3 years 2 months",
+      "location": "Porto Alegre, Rio Grande do Sul, Brazil · On-site",
+      "description": "Worked on the development of over 10 custom web system projects, with a focus on information security and tailored solutions for clients.\rImplemented integrations with financial modules, including bank slip generation and statistical reports for data analysis.\rCollaborated on modernizing and maintaining legacy systems, implementing new features and fixing critical issues that positively impacted over 50,000 users."
+    }
+  },
+  "page_under_construction": "This page is under construction and constantly being updated, stay tuned!",
+  "javascript": "JavaScript",
+  "typescript": "TypeScript",
+  "react": "React",
+  "meteor": "Meteor.js",
+  "node": "Node.js",
+  "mongodb": "MongoDB",
+  "jest": "Jest",
+  "react_testing_library": "React Testing Library",
+  "playwright": "Playwright",
+  "git": "Git",
+  "php": "PHP",
+  "fullstack": "Fullstack",
+  "python": "Python",
+  "dotnet": ".NET",
+  "postgresql": "PostgreSQL",
+  "mysql": "MySQL",
+  "oracledb": "OracleDB",
   "lorem_ipsum": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 }

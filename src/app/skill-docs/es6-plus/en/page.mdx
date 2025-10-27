@@ -1,0 +1,219 @@
+import { Footer } from '@/components';
+
+ES6+
+====
+
+ECMAScript is the standard specification that defines the JavaScript language. When we talk about modern JavaScript, we're actually referring to implementations of the ECMAScript standard.
+
+The most significant milestone for ECMAScript versions was ES6 (2015), also known as ES2015, which introduced *arrow functions*, classes, modules, *template literals*, and many other features that revolutionized how we write JavaScript.
+
+Below are some comparative examples between ES5 and ES6:
+
+## const, let, var
+```JavaScript
+// ES5
+var example = 'this var can be changed and its scope is function-based';
+
+// ES6
+let example2 = 'this var can be changed, but its scope is block-based';
+const example3 = 'this var is immutable, but its scope is block-based';
+
+const a = 1;
+let b = 3;
+var c = 5;
+
+if (true) {
+    const a = 2;
+    let b = 4
+    var c = 6;
+    console.log(a); // 2
+    console.log(b); // 4
+    console.log(c) // 6
+}
+
+console.log(a); // 1
+console.log(b); // 3
+console.log(c); // 6
+
+a = 2; // error
+b = 4;
+c = 7;
+
+console.log(b); // 4
+console.log(c); // 7
+```
+
+## Arrow function
+
+```JavaScript
+    // ES5
+function (parameters) {
+    ...
+    return something;
+}
+
+var object = {
+    value: 1,
+    getValue: function() {
+        return this.value;
+    }
+};
+
+console.log(object.getValue()); // 1
+
+// ES6
+
+// Concise syntax
+const sum = (a, b) => a + b;
+
+// Implicit return
+const square = x => x * x;
+
+// Lexical this (doesn't change)
+const obj = {
+    value: 10,
+    getValue: () => this.value // Doesn't work as expected
+};
+```
+
+## Template literals
+
+```JavaScript
+const name = "Tiago";
+const message = `Hello, ${name}!
+Welcome to the system.`;
+
+// Hello, Tiago!
+// Welcome to the system.
+```
+
+## Destructuring
+
+```JavaScript
+// ES6
+// Array
+const [a, b] = [1, 2];
+
+// Object
+const { name, age } = person;
+
+// Function parameters
+function showData() {
+    console.log(a); // 1
+    console.log(b); // 2
+    console.log(`${name} is ${age} years old`); // João is 18 years old
+}
+```
+
+## Spread and Rest
+
+```JavaScript
+// Spread
+const numbers = [1, 2, 3];
+const newNumbers = [...numbers, 4, 5];
+console.log(newNumbers) // [1, 2, 3, 4, 5] 
+
+// Rest
+function sum(...numbers) {
+    return numbers.reduce((acc, val) => acc + val, 0);
+}
+```
+
+## class
+
+```JavaScript
+// ES5
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+}
+
+// ES6
+class Person {
+    private name;
+
+    constructor(name) {
+        this.name = name;
+    }
+    
+    speak() {
+        return `Hello, I'm ${this.name}`;
+    }
+
+    static species = "Human";
+}
+```
+
+## Modules
+
+```JavaScript
+// ES5
+var PI = 3.14;
+module.exports = PI
+
+// Another file
+var PI = require(./math.js);
+
+// ES6
+export const PI = 3.14;
+export default function sum(a, b) { return a + b; }
+
+// Another file
+import sum, { PI } from './math.js';
+```
+
+## Promises and Async/Await
+
+```JavaScript
+// Promise
+fetch('/api/data')
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
+
+// Async/Await
+async function getData() {
+    try {
+        const response = await fetch('/api/data');
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+```
+
+## Map and Set
+
+```JavaScript
+const map = new Map();
+map.set('key', 'value');
+
+const set = new Set([1, 2, 3, 3, 2]); // [1, 2, 3]
+```
+
+## Optional chaining (?.)
+
+```JavaScript
+const city = user?.address?.city;
+// If the object or any of the properties is null/undefined, returns undefined without throwing an error
+```
+
+## Nullish coalescing (??)
+
+```JavaScript
+const value = input ?? "default value";
+// Only returns default value if input is null/undefined
+```
+
+## Useful array methods
+
+```JavaScript
+[1, 2, 3].map(x => x * 2);        // [2, 4, 6]
+[1, 2, 3].filter(x => x > 1);     // [2, 3]
+[1, 2, 3].find(x => x > 1);       // 2
+[1, 2, 3].some(x => x > 2);       // true
+[1, 2, 3].every(x => x > 0);      // true
+```
+
+<Footer previous={{ title: 'css_in_js', href: 'css-in-js' }} next={{ title: 'asynchronism', href: 'async'}} />

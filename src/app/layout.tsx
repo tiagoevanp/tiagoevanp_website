@@ -20,7 +20,7 @@ const notoSansMono = Noto_Sans_Mono({
 });
 
 export const metadata: Metadata = {
-    title: 'Tiago Webpage',
+    title: 'Tiago\'s Webpage',
     description: 'Site pessoal de Tiago',
     authors: [{ name: 'Tiago the EvanBrother' }],
     keywords: [
@@ -50,9 +50,9 @@ export const metadata: Metadata = {
     openGraph: {
         type: 'website',
         url: 'https://tiagoevanp.github.io/',
-        title: 'Tiago Webpage',
+        title: 'Tiago\'s Webpage',
         description: 'Personal webpage from Tiago the EvanBrother',
-        siteName: 'Tiago Webpage',
+        siteName: 'Tiago\'s Webpage',
     },
     twitter: {
         card: 'summary_large_image',
@@ -71,7 +71,10 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html suppressHydrationWarning lang={i18next.language}>
+        <html suppressHydrationWarning lang='en'>
+            <head>
+                <link rel="icon" href="/icons/favicon.ico" sizes="any" />
+            </head>
             <body className={`${notoSans.variable} ${notoSansMono.variable}`}>
                 <ThemeProvider
                     attribute="class"

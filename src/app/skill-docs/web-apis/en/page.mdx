@@ -1,0 +1,74 @@
+import { Footer } from '@/components';
+
+Web APIs
+===========
+
+Web APIs are sets of tools and functionalities built directly into browsers that significantly expand JavaScript's capabilities.
+
+In practice, Web APIs are divided into several specialized categories. We have storage APIs like LocalStorage and IndexedDB to store data in the browser; communication APIs like Fetch and WebSockets to exchange information with servers; interface APIs like History and Fullscreen to control user experience; and hardware APIs like Geolocation, Camera and Device Orientation to access device physical resources.
+
+What makes these APIs particularly powerful is their asynchronous nature. Most operate in the background, allowing the user interface to remain responsive while tasks like loading data or processing files happen in parallel. Additionally, they follow strict security protocols, requiring explicit user permission to access sensitive resources like camera or location.
+
+Below are some usage examples:
+
+## Geolocation
+```JavaScript
+// Check if browser supports geolocation
+if ("geolocation" in navigator) {
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      document.getElementById("map").innerHTML = `
+        <p>You are at: ${position.coords.latitude}, ${position.coords.longitude}</p>
+      `;
+    },
+    (error) => {
+      alert("Could not get your location");
+    },
+    {
+      enableHighAccuracy: true, // Higher precision
+      timeout: 10000, // 10 second timeout
+      maximumAge: 60000 // 1 minute cache
+    }
+  );
+} else {
+  alert("Geolocation not supported in this browser");
+}
+```
+
+## LocalStorage
+
+```JavaScript
+// Save data
+localStorage.setItem("name", "John Silva");
+
+// Retrieve data
+const user = localStorage.getItem("name");
+console.log("User:", user); // "John Silva"
+
+// Remove specific item
+localStorage.removeItem("name");
+
+// Clear everything
+localStorage.clear();
+```
+
+## Fetch
+
+```JavaScript
+async function getUsers() {
+  try {
+    const response = await fetch('https://webpage.com/users');
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+    
+    const users = await response.json();
+    showUsers(users);
+  } catch (error) {
+    console.error('Failed to fetch users:', error);
+  }
+}
+```
+
+<Footer previous={{ title: 'asynchronism', href: 'async' }} next={{ title: 'lifecycle', href: 'lifecycle' }} />

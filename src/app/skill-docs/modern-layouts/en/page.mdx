@@ -1,0 +1,76 @@
+import { Footer } from '@/components';
+import { FlexBoxGridExample } from '../FlexBoxGridExample';
+
+Modern CSS Layouts
+=========
+
+**Flexbox** and **Grid** are the main layout techniques in modern CSS, each with its specific purpose.
+
+## Flexbox
+
+One-dimensional, ideal for organizing elements in a single direction - either row or column. Some examples of components that work very well with it are navigation menus, toolbars, and cards. Its strength lies in intelligently distributing space between elements and centering content with properties like `justify-content` and `align-items`.
+
+## Grid
+
+Two-dimensional, controls both rows and columns simultaneously. It's perfect for complex layouts like complete page structures, galleries, and dashboards. With Grid you define specific areas using `grid-template-areas` and create responsive grids with `repeat(auto-fit, minmax())`.
+
+Roughly speaking, Grid is used for important structures like the base style that defines the website layout, and Flexbox is used for internal components. They are complementary: a website can have a Grid container defining header, main, and sidebar, while within these areas we use Flexbox to align menus and content.
+
+Simple usage example, below the HTML code:
+
+```html
+<div class="container">
+    <header class="header">Header</header>
+    <main class="main">Content</main>
+    <nav class="sidebar">
+        Sidebar
+    </nav>
+    <footer class="footer">Footer</footer>
+</div>
+```
+
+Followed by the CSS styling:
+
+```css
+.container {
+    display: grid;
+    grid-template-areas:
+        'header header header header'
+        'main main . sidebar'
+        'footer footer footer footer';
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 8px;
+}
+
+.header {
+    grid-area: header;
+    display: flex;
+}
+
+.main {
+    grid-area: main;
+    display: flex;
+}
+
+.sidebar {
+    grid-area: sidebar;
+    display: flex;
+}
+
+.footer {
+    grid-area: footer;
+    display: flex;
+}
+```
+
+The generated content would be something like this:
+
+<FlexBoxGridExample />
+
+## External links
+
+- [Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+- [Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
+
+<Footer previous={{ title: 'aria', href: 'aria' }} next={{ title: 'animations_and_transitions', href: 'animations-transitions' }} />

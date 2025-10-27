@@ -1,0 +1,72 @@
+import { Footer } from '@/components';
+
+Asynchronism
+===========
+
+JavaScript is single-threaded, but needs to handle time-consuming operations (like network requests, file reading, timers). Asynchronism allows the code not to wait for these operations - it continues executing other tasks and returns when the asynchronous operation finishes.
+
+Below is an example of how `async` and `await` work from ES2017 compared to the use of promises introduced in ES6:
+
+```JavaScript
+// A Promise represents a value that may be available now, in the future, or never
+const promise = new Promise((resolve, reject) => {
+    // Simulating asynchronous operation
+    setTimeout(() => {
+        const success = true;
+        if (success) {
+            resolve('Data loaded successfully!');
+        } else {
+            reject('Error loading data');
+        }
+    }, 2000);
+});
+
+// Using Promise ES6
+promise
+    .then(result => {
+        console.log(result); // "Data loaded successfully!"
+    })
+    .catch(error => {
+        console.error(error); // "Error loading data"
+});
+
+// Using Async/Await - Cleaner syntax ES2017
+async function loadData() {
+    try {
+        const result = await promise;
+        console.log(result);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+loadData();
+```
+
+## Event loop
+
+JavaScript uses an event loop to manage asynchronous operations:
+
+1. Synchronous code executes first
+2. Asynchronous callbacks go to the callback queue
+3. When the call stack is empty, the event loop moves callbacks for execution
+
+## Microtasks vs Macrotasks
+
+```JavaScript
+// Microtasks (Promises) have priority
+Promise.resolve().then(() => console.log('Microtask'));
+
+// Macrotasks (setTimeout) execute after
+setTimeout(() => console.log('Macrotask'), 0);
+
+console.log('Synchronous code');
+
+// "Synchronous code"
+// "Microtask"
+// "Macrotask"
+```
+
+<Footer previous={{ title: 'es6_plus', href: 'es6-plus' }} next={{ title: 'web_apis', href: 'web-apis' }}/>
+
+
