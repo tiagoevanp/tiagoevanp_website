@@ -11,14 +11,16 @@
         & path
             fill: var(--icon-fill-color)
 
-    &:hover
-        & svg
-            display: block
-            transform: scale(1.4)
-            rotate: 15deg
+    @media (hover: hover)
+        &:hover
+            
+            & svg
+                display: block
+                transform: scale(1.4)
+                rotate: 15deg
 
-            & path
-                fill: var(--icon-fill-hover)
+                & path
+                    fill: var(--icon-fill-hover)
 
 .large
     height: 48px

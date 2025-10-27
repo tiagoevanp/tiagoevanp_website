@@ -1,10 +1,12 @@
 .container
     display: grid
-    grid-template-columns: 1fr 1fr
-    gap: 64px; 
+    grid-template-columns: repeat(auto-fit, minmax(256px, 1fr))
     align-items: center
-    height: 100%
-    margin-inline: 128px
+    justify-content: space-around
+    height: calc(100vh - 96px)
+    padding: 32px
+    gap: 32px
+    overflow: auto
 
 .image-container
     min-width: 256px
@@ -14,7 +16,9 @@
     background: linear-gradient(45deg, var(--home-image-secondary-background) 34%, var(--home-image-primary-background) 35%, var(--home-image-primary-background) 40%, var(--home-image-secondary-background) 41%, var(--home-image-secondary-background) 59%, var(--home-image-primary-background)  60%, var(--home-image-primary-background) 65%, var(--home-image-secondary-background) 66%), linear-gradient(135deg,var(--home-image-secondary-background) 34%, var(--home-image-primary-background) 35%, var(--home-image-primary-background) 40%, var(--home-image-secondary-background) 41%, var(--home-image-secondary-background) 59%, var(--home-image-primary-background)  60%, var(--home-image-primary-background) 65%, var(--home-image-secondary-background) 66%)
     background-size: 2em 2em
     background-color: transparent
+    justify-self: center
 
 .image
     rotate: -10deg
     box-shadow: var(--shadow)
+    justify-self: center

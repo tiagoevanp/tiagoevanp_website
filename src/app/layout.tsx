@@ -4,6 +4,7 @@ import type { Metadata, Viewport } from 'next';
 import { Noto_Sans, Noto_Sans_Mono } from 'next/font/google';
 
 import i18next from '@/i18n/i18next';
+import { ScreenProvider } from '@/providers/ScreenProvider';
 import { SidebarProvider } from '@/providers/SidebarProvider';
 import { ThemeProvider } from '@/providers/ThemeProvider';
 import { PageNavbar } from '@/UI/PageNavbar/PageNavbar';
@@ -77,9 +78,11 @@ export default function RootLayout({
                     defaultTheme="system"
                     enableSystem
                 >
-                    <SidebarProvider>
-                        <PageNavbar>{children}</PageNavbar>
-                    </SidebarProvider>
+                    <ScreenProvider>
+                        <SidebarProvider>
+                            <PageNavbar>{children}</PageNavbar>
+                        </SidebarProvider>
+                    </ScreenProvider>
                 </ThemeProvider>
             </body>
         </html>

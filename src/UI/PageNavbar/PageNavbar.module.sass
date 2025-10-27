@@ -1,26 +1,40 @@
 .page
-  display: grid
-  grid-template-rows: 96px auto 
-  height: 100vh
-  width: 100vw;
-  overflow: hidden;
-  background-color: var(--page-background)
-  font-family: var(--font-noto-sans)
+    display: grid
+    grid-template-rows: 96px auto 
+    height: 100vh
+    width: 100vw;
+    overflow: hidden;
+    background-color: var(--page-background)
+    font-family: var(--font-noto-sans)
+
+.ellipsis-button
+    margin-inline: 32px
+
+.dropdown
+    ul
+        background-color: var(--page-background)
+        color: var(--navbar-link-color)
+        position: absolute
+        z-index: 100
+        width: 100%
+        li
+            width: 100%
+            padding: 16px
+            border-block-end: solid 2px var(--navbar-dropdown-border)
 
 .navbar-list
-  display: flex
-  align-items: center
-  width: 100%
-  margin-inline: 32px
-  gap: 32px
-  list-style: none
+    display: flex
+    align-items: center
+    margin-inline: 32px
+    gap: 32px
+    list-style: none
 
 .navbar-link-active
-  background-color: var(--navbar-link-active-background)
-  color: var(--navbar-link-active-color)
-  box-shadow: var(--light-shadow)
+    background-color: var(--navbar-link-active-background)
+    color: var(--navbar-link-active-color)
+    box-shadow: var(--light-shadow)
 
 .content
-  display: flex
-  flex-grow: 1
-  flex-shrink: 0
+    display: flex
+    flex-grow: 1
+    flex-shrink: 0

@@ -5,6 +5,7 @@ import styles from './Button.module.sass';
 type DefaultButtonProps = {
     onClick: () => void;
     variant: 'small' | 'medium' | 'large';
+    className?: string;
     style?: React.CSSProperties;
     role?: 'menuitem';
 };
@@ -28,7 +29,7 @@ export const Button = (props: ButtonProps) => {
     return (
         <button
             role={props.role}
-            className={`fade-colors-transition ${styles.button} ${styles[props.variant]}`}
+            className={`fade-colors-transition ${styles.button} ${styles[props.variant]} ${props.className}`}
             onClick={props.onClick}
             {...(isIconButton(props) && { 'aria-label': props.description })}
         >

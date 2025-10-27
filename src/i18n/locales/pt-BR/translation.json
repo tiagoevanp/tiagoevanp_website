@@ -34,6 +34,7 @@
     "aria_label": "Menu secundário"
   },
   "skill_docs": {
+    "mobile": "Esta página está temporariamente exclusiva para telas maiores!",
     "example_animation_transitions": {
       "hover_me": "Passe o mouse",
       "click_me": "Clique aqui",
