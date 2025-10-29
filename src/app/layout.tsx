@@ -71,7 +71,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html suppressHydrationWarning lang='en'>
+        <html suppressHydrationWarning lang={i18next.language}>
             <head>
                 <link rel="icon" href="/icons/favicon.ico" sizes="any" />
             </head>
