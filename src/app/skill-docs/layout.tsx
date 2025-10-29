@@ -37,8 +37,8 @@ export default function SkillDocsLayout({
                 </section>
             </div>
 
-            : <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <SvgIcon name='person-digging' variant='large' />
+            : <div className={styles.wip}>
+                <SvgIcon className={styles.icon} name='person-digging' variant='large' />
                 <p style={{ marginInline: '30px' }}>{t('skill_docs.mobile')}</p>
             </div>
 
