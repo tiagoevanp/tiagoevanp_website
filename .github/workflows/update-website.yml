@@ -11,9 +11,8 @@ jobs:
       - name: Clone tiagoevanp_website and build
         uses: actions/checkout@v4
       
-      - name: Move to the repo project and install pnpm packages
+      - name: install pnpm packages
         run: |
-          cd tiagoevanp_website
           pnpm i
 
       - name: Build project
@@ -26,9 +25,8 @@ jobs:
           repository: 'tiagoevanp/tiagoevanp.github.io'
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Move to project folder and configure user.name and user.email
+      - name: Configure user.name and user.email
         run: |
-          cd tiagoevanp.github.io
           git config user.name "Tiago Evangelista Pinto"
           git config user.email "tiagoevanp@hotmail.com"
 
