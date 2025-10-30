@@ -10,40 +10,41 @@ jobs:
     steps:
       - name: Clone tiagoevanp_website and build
         uses: actions/checkout@v4
+        with:
+          path: source-repo
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4.2.0
         with:
           version: 10
-      - name: install pnpm packages
+      - name: Install pnpm packages and build
         run: |
+          cd source-repo
           pnpm i
-
-      - name: Build project
-        run:
           pnpm run build
 
       - name: Clone tiagoevanp.github.io project
         uses: actions/checkout@v4
         with:
           repository: 'tiagoevanp/tiagoevanp.github.io'
-          token: ${{ secrets.GITHUB_TOKEN }}
+          path: targe-repo
 
       - name: Configure user.name and user.email
         run: |
           git config user.name "Tiago Evangelista Pinto"
           git config user.email "tiagoevanp@hotmail.com"
 
-      # - name: Copy from tiagoevanp_website/out to tiagoevanp.github.io project
-      # - run:
-      #   cp -Taf /tiagoevanp_website/out/. /tiago.github.io/
+      - name: Copy from tiagoevanp_website/out to tiagoevanp.github.io project
+        run:
+          cp -R source-repo/out/* /targe-repo/
       
-      # - name: Commit changes and push into main
-      # - run: |
-      #     curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-      #     https://api.github.com/repos/${{ github.repository }}/issues
-      #   cd tiago.github.io
-      #   git add -A 
-      #   git commit -m "Update new version website"
-      #   git push origin main
+      - name: Commit changes and push into main
+        run: |
+          cd target-repo
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.TARGET_REPO_TOKEN }}
 
