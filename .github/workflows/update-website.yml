@@ -22,13 +22,12 @@ jobs:
           cd source-repo
           pnpm i
           pnpm run build
-          cd ..
 
       - name: Clone tiagoevanp.github.io project
         uses: actions/checkout@v4
         with:
           repository: 'tiagoevanp/tiagoevanp.github.io'
-          path: targe-repo
+          path: target-repo
 
       - name: Configure user.name and user.email
         run: |
