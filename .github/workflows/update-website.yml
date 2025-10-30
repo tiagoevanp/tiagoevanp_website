@@ -31,6 +31,7 @@ jobs:
 
       - name: Configure user.name and user.email
         run: |
+          cd target-repo
           git config user.name "Tiago Evangelista Pinto"
           git config user.email "tiagoevanp@hotmail.com"
 
