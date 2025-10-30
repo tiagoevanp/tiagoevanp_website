@@ -37,7 +37,7 @@ jobs:
 
       - name: Copy from tiagoevanp_website/out to tiagoevanp.github.io project
         run:
-          cp -R source-repo/out/* /targe-repo/
+          cp -R source-repo/out/* /target-repo/
       
       - name: Commit changes and push into main
         run: |
