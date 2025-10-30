@@ -17,9 +17,9 @@ jobs:
 
       - name: Clone tiagoevanp.github.io project
         uses: actions/checkout@v4
-          with:
-            repository: 'tiagoevanp/tiagoevanp.github.io'
-            token: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          repository: 'tiagoevanp/tiagoevanp.github.io'
+          token: ${{ secrets.GITHUB_TOKEN }}
       - run:
           cd tiagoevanp.github.io
           git config user.name "Tiago Evangelista Pinto"
