@@ -42,10 +42,9 @@ jobs:
       - name: Commit changes and push into main
         run: |
           cd target-repo
-          git remote -v
           git add -A
           git commit -m "update-${{ github.run_id }}"
-          git push origin main
+          git push origin master
         env:
           GITHUB_TOKEN: ${{ secrets.TARGET_REPO_TOKEN }}
 
