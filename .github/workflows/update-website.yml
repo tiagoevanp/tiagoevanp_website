@@ -25,11 +25,10 @@ jobs:
         with:
           repository: 'tiagoevanp/tiagoevanp.github.io'
           token: ${{ secrets.GITHUB_TOKEN }}
-        run:
-          cd tiagoevanp.github.io
 
-      - name: Configure user.name and user.email
+      - name: Move to project folder and configure user.name and user.email
         run: |
+          cd tiagoevanp.github.io
           git config user.name "Tiago Evangelista Pinto"
           git config user.email "tiagoevanp@hotmail.com"
 
