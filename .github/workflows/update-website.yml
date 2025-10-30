@@ -11,9 +11,9 @@ jobs:
       - name: Clone tiagoevanp_website and build
         uses: actions/checkout@v4
       - run:
-        cd tiagoevanp_website
-        pnpm i
-        pnpm run build
+          cd tiagoevanp_website
+          pnpm i
+          pnpm run build
 
       - name: Clone tiagoevanp.github.io project
         uses: actions/checkout@v4
@@ -21,9 +21,9 @@ jobs:
             repository: 'tiagoevanp/tiagoevanp.github.io'
             token: ${{ secrets.GITHUB_TOKEN }}
       - run:
-        cd tiagoevanp.github.io
-        git config user.name "Tiago Evangelista Pinto"
-        git config user.email "tiagoevanp@hotmail.com"
+          cd tiagoevanp.github.io
+          git config user.name "Tiago Evangelista Pinto"
+          git config user.email "tiagoevanp@hotmail.com"
 
       # - name: Copy from tiagoevanp_website/out to tiagoevanp.github.io project
       # - run:
