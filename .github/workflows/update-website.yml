@@ -10,6 +10,9 @@ jobs:
     steps:
       - name: Clone tiagoevanp_website and build
         uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4.2.0
       
       - name: install pnpm packages
         run: |
