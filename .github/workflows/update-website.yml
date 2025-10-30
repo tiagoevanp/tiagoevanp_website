@@ -1,4 +1,4 @@
-name: Website Update
+name: update-website
 run-name: ${{ github.actor }} is performing update on website
 on:
   push:
