@@ -43,6 +43,7 @@ jobs:
         run: |
           cd target-repo
           git add -A
+          git commit -m "update-${{ github.run_id }}"
           git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.TARGET_REPO_TOKEN }}
