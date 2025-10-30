@@ -9,16 +9,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Clone tiagoevanp_website and build
-      - env: GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run:
+      - run: |
+          curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          https://api.github.com/repos/${{ github.repository }}/issues
         git clone git@github.com:tiagoevanp/tiagoevanp_website.git
         cd tiagoevanp_website
         pnpm i
         pnpm run build
 
       - name: Clone tiagoevanp.github.io project
-      - env: GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run:
+      - run: |
+          curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          https://api.github.com/repos/${{ github.repository }}/issues
         git clone git@github.com:tiagoevanp/tiagoevanp.github.io.git
         cd tiagoevanp.github.io
         git config user.name "Tiago Evangelista Pinto"
@@ -29,8 +31,9 @@ jobs:
         cp -Taf /tiagoevanp_website/out/. /tiago.github.io/
       
       - name: Commit changes and push into main
-      - env: GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run:
+      - run: |
+          curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          https://api.github.com/repos/${{ github.repository }}/issues
         cd tiago.github.io
         git add -A 
         git commit -m "Update new version website"
