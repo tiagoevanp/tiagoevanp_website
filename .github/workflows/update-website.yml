@@ -22,6 +22,7 @@ jobs:
           cd source-repo
           pnpm i
           pnpm run build
+          cd ..
 
       - name: Clone tiagoevanp.github.io project
         uses: actions/checkout@v4
