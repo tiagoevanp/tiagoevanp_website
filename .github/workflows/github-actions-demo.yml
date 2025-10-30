@@ -1,18 +1,38 @@
-name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push]
+name: Website Update
+run-name: ${{ github.actor }} is performing update on website
+on:
+  push:
+    branches:
+      - 'main'
 jobs:
-  Explore-GitHub-Actions:
+  update-website-repo:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Check out repository code
-        uses: actions/checkout@v5
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - name: Clone tiagoevanp_website and build
+      - env: GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run:
+        git clone git@github.com:tiagoevanp/tiagoevanp_website.git
+        cd tiagoevanp_website
+        pnpm i
+        pnpm run build
+
+      - name: Clone tiagoevanp.github.io project
+      - env: GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run:
+        git clone git@github.com:tiagoevanp/tiagoevanp.github.io.git
+        cd tiagoevanp.github.io
+        git config user.name "Tiago Evangelista Pinto"
+        git config user.email "tiagoevanp@hotmail.com"
+
+      - name: Copy from tiagoevanp_website/out to tiagoevanp.github.io project
+      - run:
+        cp -Taf /tiagoevanp_website/out/. /tiago.github.io/
+      
+      - name: Commit changes and push into main
+      - env: GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run:
+        cd tiago.github.io
+        git add -A 
+        git commit -m "Update new version website"
+        git push origin main
+
