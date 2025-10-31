@@ -7,8 +7,6 @@ on:
 jobs:
   update-website-repo:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - name: Clone tiagoevanp_website and build
         uses: actions/checkout@v4
@@ -43,7 +41,7 @@ jobs:
       
       - name: Commit changes and push into main
         env:
-          GITHUB_TOKEN: ${{ secrets.TARGET_REPO_TOKEN }}
+          GH_TOKEN: ${{ secrets.TARGET_REPO_TOKEN }}
         run: |
           cd target-repo
           git add -A
