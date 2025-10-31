@@ -46,4 +46,4 @@ jobs:
           cd target-repo
           git add -A
           git commit -m "update-${{ github.run_id }}"
-          git push --set-upstream https://user:$GH_TOKEN@github.com/tiagoevanp/tiago.github.io master
+          git push --set-upstream https://user:$GH_TOKEN@github.com/tiagoevanp/tiagoevanp.github.io master
