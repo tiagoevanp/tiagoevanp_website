@@ -8,15 +8,18 @@
     font-family: var(--font-noto-sans)
 
 .ellipsis-button
-    margin-inline: 32px
+    margin-inline-start: 32px
 
-.dropdown
+.dropdown-container
+    position: relative
+
+.mobile-dropdown
+    position: absolute
+    width: 100%
+    z-index: 1000
     ul
         background-color: var(--page-background)
         color: var(--navbar-link-color)
-        position: absolute
-        z-index: 100
-        width: 100%
         li
             width: 100%
             padding: 16px

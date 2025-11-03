@@ -13,7 +13,10 @@
     "aria_label": "Main menu",
     "button_github": "Button to go to Tiago's Github page",
     "button_linkedin": "Button to go to Tiago's Linkedin page",
-    "button_theme": "Button to switch light and dark theme"
+    "button_theme": "Button to switch light and dark theme",
+    "button_language": "Button to switch language",
+    "english": "English",
+    "portuguese": "Portuguese"
   },
   "sidebar": {
     "input": {

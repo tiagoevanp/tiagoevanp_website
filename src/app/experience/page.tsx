@@ -17,7 +17,7 @@ const Experience = () => {
                 {t('experience.rocket_chat.title')}
             </h1>
             <Link href={ExternalLinks.rocketchat} rel='noopener noreferrer' target='_blank'>
-                <SvgIcon name='externalLink' variant='large'/>
+                <SvgIcon name='external-link' variant='large'/>
             </Link>
         </div>
         <div className={styles['job-info']}>
@@ -57,7 +57,7 @@ const Experience = () => {
                 {t('experience.canopus.title')}
             </h1>
             <Link href={ExternalLinks.canopus} rel='noopener noreferrer' target='_blank'>
-                <SvgIcon name='externalLink' variant='large'/>
+                <SvgIcon name='external-link' variant='large'/>
             </Link>
         </div>
         <div className={styles['job-info']}>

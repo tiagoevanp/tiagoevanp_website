@@ -1,0 +1,24 @@
+.dropdown
+    position: absolute
+    width: 256px
+    top: -8px
+    right: 16px
+    padding: 8px
+    border-radius: 2px
+    background-color: var(--dropdown-background)
+    color: var(--dropdown-text)
+    z-index: 10000
+
+    &::before
+        display: block
+        position: absolute
+        right: 32px
+        top: -2px
+        content: ''
+        width: 10px
+        height: 10px
+        border: solid var(--dropdown-background)
+        transform: rotate(45deg)
+        border-width: 16px 0 0 16px
+        border-radius: 2px
+        margin: -10px
