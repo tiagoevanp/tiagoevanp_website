@@ -142,7 +142,9 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                 </ul>
             </nav>}
         </div>
-        {path.match('/skill-docs') && <Banner message={t('page_under_construction')} variant='warning' />}
+        <div className={styles['banner-container']}>
+            {path.match('/skill-docs') && <Banner message={t('page_under_construction')} variant='warning' />}
+        </div>
         <main className={styles.content}>
             {children}
         </main>

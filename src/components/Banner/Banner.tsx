@@ -1,3 +1,7 @@
+'use client';
+
+import { useState } from 'react';
+
 import { SvgIcon } from '../SvgIcon/SvgIcon';
 import styles from './Banner.module.sass';
 
@@ -7,8 +11,13 @@ type BannerProps = {
 };
 
 export const Banner = ({ message, variant }: BannerProps) => {
-    return <div className={`${styles.banner} ${styles[variant]}`} role="banner">
-        <p>{message}</p>
-        <SvgIcon name='warning' variant='medium' />
+    const [hidden, setHidden] = useState(false);
+
+    return <div className={`${styles.banner} ${styles[variant]} ${hidden ? styles.hidden : ''}`} role="banner">
+        <div className={styles.content}>
+            <SvgIcon name='warning' variant='small' />
+            <p>{message}</p>
+        </div>
+        <button className={styles.close} onClick={() => setHidden(true)}>X</button>
     </div>;
 };

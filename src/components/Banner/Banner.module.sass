@@ -1,19 +1,42 @@
 .banner
     display: flex
-    justify-content: center
+    position: absolute
+    justify-content: space-between
     align-items: center
     gap: 16px
     width: 100vw
     min-height: 48px
     max-height: 96px
     padding-inline: 16px
+    background-color: var(--banner-background)
     color: var(--banner-text)
+    z-index: 100000
+
+.content
+    display: flex
+    gap: 16px
+    align-items: center
 
 .warning
     border-block: 4px solid var(--banner-warning)
 
 
     & svg
-        margin-block-start: 4px
         & path
             fill: var(--banner-icon-warning)
+
+.hidden
+    visibility: hidden
+
+.close
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 16px
+    height: 16px
+    padding: 8px
+    background-color: transparent
+    border: 2px solid var(--banner-close-border)
+    color: var(--banner-close-text)
+    border-radius: 2px
+    cursor: pointer
