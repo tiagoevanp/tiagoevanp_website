@@ -3,7 +3,6 @@ import './globals.sass';
 import type { Metadata, Viewport } from 'next';
 import { Noto_Sans, Noto_Sans_Mono } from 'next/font/google';
 
-import i18next from '@/i18n/i18next';
 import { ScreenProvider } from '@/providers/ScreenProvider';
 import { SidebarProvider } from '@/providers/SidebarProvider';
 import { ThemeProvider } from '@/providers/ThemeProvider';
@@ -71,7 +70,8 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html suppressHydrationWarning lang={i18next.language}>
+        // eslint-disable-next-line jsx-a11y/html-has-lang
+        <html suppressHydrationWarning>
             <head>
                 <link rel="icon" href="/icons/favicon.ico" sizes="any" />
             </head>
