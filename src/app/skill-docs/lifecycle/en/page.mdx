@@ -1,6 +1,58 @@
 import { Footer } from '@/components';
 
 Lifecycle
-===========
+=========
 
-<Footer previous={{ title: 'web_apis', href: 'web-apis' }} />
+The lifecycle in React represents the different stages a component goes through, from its creation (mounting) to its end (unmounting) in the application.
+
+Lifecycle phases
+----------------
+
+1. Mounting (When the component is created and will be inserted into the DOM)
+2. Updating (Phase where the component undergoes DOM updates due to changes in `props` or state)
+3. Unmounting (End of the cycle where the component is removed from the DOM)
+
+Lifecycle management
+--------------------
+
+Example of how to manage a component's lifecycle using Hooks:
+
+```javascript
+import { useState, useEffect } from 'react';
+
+function MyFunctionalComponent() {
+  const [counter, setCounter] = useState(0);
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    console.log('mounted or updated');
+    
+    return () => {
+      console.log('unmounted');
+    };
+  });
+
+  useEffect(() => {
+    console.log('mounted (runs only once)');
+
+    fetch('/api/data')
+      .then(response => response.json())
+      .then(setData);
+  }, []);
+
+  useEffect(() => {
+    console.log('updated (runs only when counter changes)');
+  }, [counter]);
+
+  return (
+    <div>
+      <p>Counter: {counter}</p>
+      <button onClick={() => setCounter(counter + 1)}>
+        Increment
+      </button>
+    </div>
+  );
+}
+```
+
+<Footer previous={{ title: 'web_apis', href: 'web-apis' }} next={{ title: 'state_management', href: 'state-management' }} />

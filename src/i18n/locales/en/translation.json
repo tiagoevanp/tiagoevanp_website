@@ -1,5 +1,10 @@
 {
   "title": "Tiago's website",
+  "not_found": {
+    "title": "Not Found",
+    "description": "This page couldn't be found",
+    "return_home": "Return home"
+  },
   "home": {
     "title": "Hi, I'm Tiago",
     "subtitle": "Senior Frontend Engineer | React & TypeScript Specialist",
@@ -32,7 +37,8 @@
       "es6_plus": "ES6+",
       "asynchronism": "Asynchronism",
       "web_apis": "Web APIs",
-      "lifecycle": "Lifecycle"
+      "lifecycle": "Lifecycle",
+      "state_management": "State management"
     },
     "aria_label": "Secondary menu"
   },
@@ -47,6 +53,35 @@
       "caption": "caption",
       "es5": "ES5",
       "es6": "ES6"
+    },
+    "example_state_management": {
+      "caption": "Comparison table between Redux and Context API",
+      "characteristics": "Characteristics",
+      "complexity": {
+        "title": "Complexity",
+        "redux": "More boilerplate",
+        "context_api": "Less code"
+      },
+      "tooling": {
+        "title": "Tooling",
+        "redux": "Redux DevTools",
+        "context_api": "React DevTools"
+      },
+      "performance": {
+        "title": "Performance",
+        "redux": "Optimized",
+        "context_api": "Poorly used can cause re-renders"
+      },
+      "use_cases": {
+        "title": "Use cases",
+        "redux": "Complex applications",
+        "context_api": "Simple/medium applications"
+      },
+      "learning_curve": {
+        "title": "Learning curve",
+        "redux": "Higher",
+        "context_api": "Lower"
+      }
     }
   },
   "experience": {

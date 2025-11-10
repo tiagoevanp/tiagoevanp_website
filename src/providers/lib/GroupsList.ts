@@ -31,5 +31,6 @@ groupsList.setItem('Javascript & Typescript', ItemsList.getItem('es6'));
 groupsList.setItem('Javascript & Typescript', ItemsList.getItem('async'));
 groupsList.setItem('Javascript & Typescript', ItemsList.getItem('web-apis'));
 groupsList.setItem('React', ItemsList.getItem('lifecycle'));
+groupsList.setItem('React', ItemsList.getItem('state-management'));
 
 export default groupsList;

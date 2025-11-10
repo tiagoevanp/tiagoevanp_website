@@ -55,6 +55,11 @@ class ItemsList {
                 title: 'lifecycle',
                 href: 'lifecycle',
             },
+            {
+                id: 'state-management',
+                title: 'state_management',
+                href: 'state-management',
+            },
         ];
     }
 

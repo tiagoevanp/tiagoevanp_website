@@ -1,6 +1,58 @@
 import { Footer } from '@/components';
 
 Ciclo de vida
-===========
+=============
 
-<Footer previous={{ title: 'web_apis', href: 'web-apis' }} />
+O ciclo de vida no React representa os diferentes estágios pelos quais um componente passa, desde sua criação (montagem) até seu fim (desmontagem) na aplicação.
+
+Fases do ciclo
+--------------
+
+1. Montagem (Momento onde o componente é criado e será inserido no DOM)
+2. Atualização (Fase onde o componente sofre atualizações na DOM devido a mudança em `props` ou estado)
+3. Desmontagem (Fim do ciclo onde o componente é removido da DOM)
+
+Gerenciamento do ciclo de vida
+------------------------------
+
+Exemplo de como gerenciar ciclo de vida de um componente usando Hooks:
+
+```javascript
+import { useState, useEffect } from 'react';
+
+function MeuComponenteFuncional() {
+  const [counter, setCounter] = useState(0);
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    console.log('mounted or updated');
+    
+    return () => {
+      console.log('unmounted');
+    };
+  });
+
+  useEffect(() => {
+    console.log('mounted (runs only once)');
+
+    fetch('/api/dados')
+      .then(response => response.json())
+      .then(setData);
+  }, []);
+
+  useEffect(() => {
+    console.log('updated (runs only when counter change)');
+  }, [counter]);
+
+  return (
+    <div>
+      <p>Counter: {counter}</p>
+      <button onClick={() => setContador(counter + 1)}>
+        Increment
+      </button>
+    </div>
+  );
+}
+``` 
+
+<Footer previous={{ title: 'web_apis', href: 'web-apis' }} next={{ title: 'state_management', href: 'state-management' }} />

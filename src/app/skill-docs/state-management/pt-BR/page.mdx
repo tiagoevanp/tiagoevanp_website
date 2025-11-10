@@ -1,0 +1,171 @@
+import { Footer } from '@/components';
+import { ComparativeTableExample } from '../ComparativeTableExample'
+
+Gerenciamento de estado
+===========
+
+Context API
+-----------
+
+A Context API é uma funcionalidade do React que permite compartilhar dados entre componentes sem precisar passar `props` manualmente em cada nível da árvore de componentes (_prop drilling_).
+
+Exemplo de criação de um contexto e seu provider:
+
+```javascript
+import React, { createContext, useState, useContext } from 'react';
+
+const ThemeContext = createContext();
+
+export const ThemeProvider = ({ children }) => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const toggleTheme = () => {
+    setIsDarkMode(prev => !prev);
+  };
+
+  const value = {
+    isDarkMode,
+    toggleTheme,
+    theme: isDarkMode ? 'dark' : 'light'
+  };
+
+  return (
+    <ThemeContext.Provider value={value}>
+      {children}
+    </ThemeContext.Provider>
+  );
+};
+
+export const useTheme = () => {
+  const context = useContext(ThemeContext);
+  
+  if (!context) {
+    throw new Error('useTheme must be used within a ThemeProvider');
+  }
+  
+  return context;
+};
+```
+
+Redux
+-----
+
+O Redux é uma biblioteca JavaScript para gerenciamento de estado de aplicações. Ele funciona como um _container de estado previsível_ que ajuda a gerenciar o estado global da sua aplicação de maneira consistente.
+
+Princípios Fundamentais:
+
+1. Single Source of Truth
+    - Todo o estado da aplicação está armazenado em um único objeto chamado store
+
+2. State é Read-Only
+    - O estado não pode ser modificado diretamente
+    - Mudanças são feitas através de actions
+
+3. Mudanças são Feitas com Pure Functions
+    - Reducers são funções puras que especificam como o estado muda
+
+Exemplo de uso:
+
+```javascript
+// store.js
+import { createStore } from 'redux';
+
+// Actions
+const ADD_TODO = 'ADD_TODO';
+const TOGGLE_TODO = 'TOGGLE_TODO';
+
+// Action Creators
+export const addTodo = (text) => ({
+  type: ADD_TODO,
+  payload: { id: Date.now(), text, completed: false }
+});
+
+export const toggleTodo = (id) => ({
+  type: TOGGLE_TODO,
+  payload: id
+});
+
+// Reducer
+const initialState = {
+  todos: []
+};
+
+const todoReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case ADD_TODO:
+      return {
+        ...state,
+        todos: [...state.todos, action.payload]
+      };
+    
+    case TOGGLE_TODO:
+      return {
+        ...state,
+        todos: state.todos.map(todo =>
+          todo.id === action.payload
+            ? { ...todo, completed: !todo.completed }
+            : todo
+        )
+      };
+    
+    default:
+      return state;
+  }
+};
+
+// Store
+export const store = createStore(todoReducer);
+
+// App.js
+import React from 'react';
+import { Provider } from 'react-redux';
+import { store } from './store';
+import TodoList from './components/TodoList';
+import AddTodo from './components/AddTodo';
+
+function App() {
+  return (
+    <Provider store={store}>
+      <div className="App">
+        <h1>Todo App com Redux</h1>
+        <AddTodo />
+        <TodoList />
+      </div>
+    </Provider>
+  );
+}
+
+// components/AddTodo.js
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addTodo } from '../store';
+
+const AddTodo = () => {
+  const [text, setText] = useState('');
+  const dispatch = useDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (text.trim()) {
+      dispatch(addTodo(text));
+      setText('');
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        placeholder="Add todo..."
+      />
+      <button type="submit">Add</button>
+    </form>
+  );
+};
+```
+
+<ComparativeTableExample />
+
+<Footer previous={{ title: 'lifecycle', href: 'lifecycle' }} />

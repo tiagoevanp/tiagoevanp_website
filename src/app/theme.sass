@@ -24,6 +24,10 @@ html.light
 
     @include meta.load-css("highlight.js/styles/panda-syntax-light.min")
 
+    --h1: #{$MIDNIGHT_GREEN}
+    --h2: #{$EERIE_BLACK}
+    --p: #{$EERIE_BLACK}
+    --a: #{$ZOMP}
     --page-background: #{$SEA_SALT}
     --navbar-border: #{$MIDNIGHT_GREEN}
     --navbar-dropdown-border: #{$MIDNIGHT_GREEN}
@@ -68,6 +72,9 @@ html.light
     --banner-icon-warning: #{$AMBER}
     --dropdown-background: #{$MIDNIGHT_GREEN}
     --dropdown-text: #{$SEA_SALT}
+    --table-thead-background: #{$ZOMP}
+    --table-thead-color: #{$SEA_SALT}
+    --table-border: #{$ZOMP}
 
 html.dark
     & .color-examples
@@ -79,6 +86,10 @@ html.dark
 
     @include meta.load-css("highlight.js/styles/panda-syntax-dark.min")
 
+    --h1: #{$CAMBRIDGE_BLUE}
+    --h2: #{$SEA_SALT}
+    --p: #{$SEA_SALT}
+    --a: #{$CAMBRIDGE_BLUE}
     --page-background: #{$GUNMETAL}
     --navbar-border: #{$CAMBRIDGE_BLUE}
     --navbar-dropdown-border: #{$CAMBRIDGE_BLUE}
@@ -121,6 +132,9 @@ html.dark
     --banner-close-border: #{$CAMBRIDGE_BLUE}
     --dropdown-background: #{$CAMBRIDGE_BLUE}
     --dropdown-text: #{$SEA_SALT}
+    --table-thead-background: #{$CAMBRIDGE_BLUE}
+    --table-thead-color: #{$SEA_SALT}
+    --table-border: #{$CAMBRIDGE_BLUE}
 
 h1
     font-size: 48px
