@@ -45,3 +45,23 @@ Not checked: <short list and why>
 ```
 
 Order issues by severity. Keep evidence concrete — quote the failing output or line.
+
+## Filing issues
+
+Only file GitHub issues when the user explicitly asks you to, and only for the issues they name (typically ones deferred out of the current task's scope). Before filing, check `gh issue list --state open` and don't duplicate an existing issue. File each one with `gh issue create --title "<title>" --label bug --body-file <file>`, writing the body to a temp file first, in this format:
+
+```
+**Type:** bug · **Priority:** P1 | P2 | P3 · **Effort:** S | M | L
+
+### Why
+<user impact; reference the originating issue, e.g. "Follow-up to #1">
+
+### Description
+<where it happens (file:line or route), evidence, and the suggested fix>
+
+### Acceptance criteria
+- [ ] <verifiable criterion>
+- [ ] `pnpm lint` and `pnpm build` pass
+```
+
+Report the URL of each issue you created.
