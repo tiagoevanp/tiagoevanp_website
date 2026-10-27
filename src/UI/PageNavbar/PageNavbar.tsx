@@ -1,25 +1,60 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useTheme } from 'next-themes';
-import { PropsWithChildren, useEffect, useState } from 'react';
+import { PropsWithChildren, startTransition, useEffect, useState } from 'react';
 
 import { Banner, Button, Dropdown, DropdownOption, Navbar, NavbarLink } from '@/components';
-import { useTranslation } from '@/i18n/client';
+import {
+    changeSkillDocLanguage,
+    getSkillDocLanguage,
+    getSkillDocPath,
+    saveLanguage,
+    useTranslation,
+} from '@/i18n/client';
 import { ExternalLinks } from '@/lib/ExternalLinks';
 import { useScreenContext } from '@/providers/hooks/useScreenContext';
 
 import styles from './PageNavbar.module.sass';
 
+let latestPick = 0;
+
 export const PageNavbar = ({ children }: PropsWithChildren) => {
-    const { t, i18n: { language, changeLanguage } } = useTranslation();
+    const { t, i18n: { language, changeLanguage, loadLanguages } } = useTranslation();
     const { theme, setTheme } = useTheme();
     const { isMobile } = useScreenContext();
     const path = usePathname();
+    const router = useRouter();
     const [toggleThemeIcon, setToggleThemeIcon] = useState<'sun' | 'moon'>('moon');
     const [mobileDropdownIsOpen, setMobileDropdownOpen] = useState(false);
     const [languageDropdownIsOpen, setLanguageDropdownOpen] = useState(false);
+
+    const selectLanguage = async (newLanguage: string) => {
+        const pick = ++latestPick;
+
+        saveLanguage(newLanguage);
+        setLanguageDropdownOpen(false);
+
+        if (getSkillDocLanguage(path)) {
+            const { pathname: pickPathname, search, hash } = window.location;
+            const target = `${getSkillDocPath(path, newLanguage)}${search}${hash}`;
+
+            router.prefetch(target);
+            await loadLanguages(newLanguage).catch(() => undefined);
+
+            if (pick !== latestPick || window.location.pathname !== pickPathname) return;
+
+            startTransition(() => {
+                changeSkillDocLanguage(newLanguage);
+                router.push(target);
+            });
+
+            return;
+        }
+
+        changeLanguage(newLanguage);
+    };
 
     useEffect(() => {
         setToggleThemeIcon(theme === 'dark' ? 'sun' : 'moon');
@@ -108,10 +143,10 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
         <div className={styles['dropdown-container']}>
             {languageDropdownIsOpen &&
                 <Dropdown name="language">
-                    <DropdownOption onClick={() => {changeLanguage('en'); setLanguageDropdownOpen(false);}}>
+                    <DropdownOption onClick={() => selectLanguage('en')}>
                         {t('navbar.english')}
                     </DropdownOption>
-                    <DropdownOption onClick={() => {changeLanguage('pt-BR'); setLanguageDropdownOpen(false);}}>
+                    <DropdownOption onClick={() => selectLanguage('pt-BR')}>
                         {t('navbar.portuguese')}
                     </DropdownOption>
                 </Dropdown>
