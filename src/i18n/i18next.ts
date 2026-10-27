@@ -3,6 +3,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import resourcesToBackend from 'i18next-resources-to-backend';
 import { initReactI18next } from 'react-i18next/initReactI18next';
 
+import { getSkillDocLanguage } from './paths';
 import { defaultNS, fallbackLng, languages } from './settings';
 
 const runsOnServerSide = typeof window === 'undefined';
@@ -12,12 +13,14 @@ i18next
     .use(LanguageDetector)
     .use(initReactI18next)
     .init({
+        lng: runsOnServerSide ? undefined : getSkillDocLanguage(window.location.pathname),
         supportedLngs: languages,
         fallbackLng,
         fallbackNS: defaultNS,
         defaultNS,
         detection: {
-            order: ['localStorage', 'htmlTag', 'cookie', 'navigator'],
+            order: ['localStorage', 'cookie', 'navigator'],
+            caches: [],
         },
         preload: runsOnServerSide ? languages : [],
     });
