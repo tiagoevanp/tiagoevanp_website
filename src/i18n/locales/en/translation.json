@@ -16,10 +16,11 @@
     "skills_link": "Skills",
     "experience": "Experience",
     "aria_label": "Main menu",
-    "button_github": "Button to go to Tiago's Github page",
-    "button_linkedin": "Button to go to Tiago's Linkedin page",
+    "button_github": "Tiago on GitHub",
+    "button_linkedin": "Tiago on LinkedIn",
     "button_theme": "Button to switch light and dark theme",
     "button_language": "Button to switch language",
+    "button_ellipsis": "Navigation menu",
     "english": "English",
     "portuguese": "Portuguese"
   },
@@ -91,7 +92,8 @@
       "full_time": "Full-time",
       "time": "Oct 2020 - Sep 2025 · 5 years",
       "location": "Porto Alegre, Rio Grande do Sul, Brazil · Remote",
-      "description": "As a key contributor to the world's largest open-source communication platform, I was responsible for developing and maintaining high-impact features for millions of users. I collaborated daily with a global, distributed, and cross-functional team in a fully remote and open-source environment.\rLed the development of critical frontend features for the Omnichannel suite, enhancing live chat capabilities for enterprises and improving the integration with major messaging platforms, directly impacting user satisfaction and platform adoption.\rEngineered and shipped robust, reusable UI components through the UiKit lib, ensuring consistency across the Rocket.Chat ecosystem, including the apps marketplace.\rSignificantly improved application performance and user experience by identifying and resolving complex bugs, optimizing React components, and implementing efficient state management solutions, leading to measurable reductions in load time.\rChampioned code quality and best practices by actively participating in code reviews, contributing to architectural discussions, and increasing test coverage by writing unit, integration, and end-to-end tests with Jest, React Testing Library, and Playwright.\rMentored junior developers and fostered a collaborative environment through knowledge-sharing sessions and constructive feedback, enhancing team productivity and skill growth."
+      "description": "As a key contributor to the world's largest open-source communication platform, I was responsible for developing and maintaining high-impact features for millions of users. I collaborated daily with a global, distributed, and cross-functional team in a fully remote and open-source environment.\rLed the development of critical frontend features for the Omnichannel suite, enhancing live chat capabilities for enterprises and improving the integration with major messaging platforms, directly impacting user satisfaction and platform adoption.\rEngineered and shipped robust, reusable UI components through the UiKit lib, ensuring consistency across the Rocket.Chat ecosystem, including the apps marketplace.\rSignificantly improved application performance and user experience by identifying and resolving complex bugs, optimizing React components, and implementing efficient state management solutions, leading to measurable reductions in load time.\rChampioned code quality and best practices by actively participating in code reviews, contributing to architectural discussions, and increasing test coverage by writing unit, integration, and end-to-end tests with Jest, React Testing Library, and Playwright.\rMentored junior developers and fostered a collaborative environment through knowledge-sharing sessions and constructive feedback, enhancing team productivity and skill growth.",
+      "website_link": "Rocket.Chat website (opens in new tab)"
     },
     "canopus": {
       "title": "Canopus",
@@ -99,10 +101,14 @@
       "full_time": "Full-time",
       "time": "Sep 2017 - Oct 2020 · 3 years 2 months",
       "location": "Porto Alegre, Rio Grande do Sul, Brazil · On-site",
-      "description": "Worked on the development of over 10 custom web system projects, with a focus on information security and tailored solutions for clients.\rImplemented integrations with financial modules, including bank slip generation and statistical reports for data analysis.\rCollaborated on modernizing and maintaining legacy systems, implementing new features and fixing critical issues that positively impacted over 50,000 users."
+      "description": "Worked on the development of over 10 custom web system projects, with a focus on information security and tailored solutions for clients.\rImplemented integrations with financial modules, including bank slip generation and statistical reports for data analysis.\rCollaborated on modernizing and maintaining legacy systems, implementing new features and fixing critical issues that positively impacted over 50,000 users.",
+      "website_link": "Canopus website (opens in new tab)"
     }
   },
   "page_under_construction": "This page is under construction and constantly being updated, stay tuned!",
+  "banner": {
+    "close": "Close notice"
+  },
   "javascript": "JavaScript",
   "typescript": "TypeScript",
   "react": "React",
