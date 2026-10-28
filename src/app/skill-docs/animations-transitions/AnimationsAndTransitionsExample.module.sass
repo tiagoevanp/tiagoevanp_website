@@ -20,6 +20,15 @@
         border-radius: 8px
         box-shadow: 2px 2px 4px black
 
+    // Stack the examples on narrow screens
+    @media (max-width: 767.98px)
+        grid-template-areas: 'a' 'b' 'c' 'd'
+        grid-template-columns: minmax(0, 1fr)
+        grid-template-rows: auto
+        gap: 32px
+        padding: 16px
+        font-size: 20px
+
 .background-color-transition
     grid-area: a
     background-color: var(--red)

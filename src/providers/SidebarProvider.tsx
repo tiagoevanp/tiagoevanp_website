@@ -20,6 +20,9 @@ type SidebarContextType = {
     setFilteredGroups: (value: SidebarGroup) => void;
     next?: GroupItem;
     setNext: (value: GroupItem) => void
+    // Whether the sidebar drawer is open on smaller screens
+    isOpen: boolean;
+    setOpen: (value: boolean) => void;
 };
 
 export const SidebarContext = createContext<SidebarContextType>({
@@ -28,11 +31,14 @@ export const SidebarContext = createContext<SidebarContextType>({
     setFilteredGroups: () => null,
     next: undefined,
     setNext: () => null,
+    isOpen: false,
+    setOpen: () => null,
 });
 
 export function SidebarProvider({ children }: PropsWithChildren) {
     const [filteredGroups, setFilteredGroups] = useState(GroupsList.all);
     const [next, setNext] = useState<GroupItem>();
+    const [isOpen, setOpen] = useState(false);
 
     return <SidebarContext.Provider
         value={{
@@ -41,6 +47,8 @@ export function SidebarProvider({ children }: PropsWithChildren) {
             setFilteredGroups,
             next,
             setNext,
+            isOpen,
+            setOpen,
         }}
     >
         {children}

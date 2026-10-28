@@ -2,10 +2,17 @@ $margin-block: 16px
 
 .h1
     color: var(--section-text-title)
+    // Long single words (e.g. in pt-BR titles) must not overflow narrow screens
+    overflow-wrap: break-word
+    hyphens: auto
+
+    @media (max-width: 767.98px)
+        font-size: 36px
 
 .h2
     margin-top: $margin-block
     color: var(--section-text-subtitle)
+    overflow-wrap: break-word
 
 .p
     color: var(--section-text-color)

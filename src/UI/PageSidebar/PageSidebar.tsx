@@ -9,7 +9,12 @@ import { useSidebarContext } from '@/providers/hooks/useSidebarContext';
 
 import styles from './PageSidebar.module.sass';
 
-export const PageSidebar = () => {
+type PageSidebarProps = {
+    // Called when an article is picked, e.g. to close the drawer on smaller screens
+    onNavigate?: () => void;
+};
+
+export const PageSidebar = ({ onNavigate }: PageSidebarProps) => {
     const { groups } = useSidebarContext();
     const path = usePathname();
     const { t, i18n } = useTranslation();
@@ -27,6 +32,7 @@ export const PageSidebar = () => {
                                 <li key={id} >
                                     <Link
                                         href={`${skillsPath}/${href}/${i18n.language}`}
+                                        onClick={onNavigate}
                                         className={
                                             path.match(href) !== null
                                                 ? `${styles['link-active']} ${styles.link}`

@@ -39,12 +39,12 @@
       "asynchronism": "Assincronismo",
       "web_apis": "Web apis",
       "lifecycle": "Ciclo de vida",
-      "state_management": "Gerencimaneto de estado"
+      "state_management": "Gerenciamento de estado"
     },
-    "aria_label": "Menu secundário"
+    "aria_label": "Menu secundário",
+    "toggle": "Tópicos"
   },
   "skill_docs": {
-    "mobile": "Esta página está temporariamente exclusiva para telas maiores!",
     "example_animation_transitions": {
       "hover_me": "Passe o mouse",
       "click_me": "Clique aqui",

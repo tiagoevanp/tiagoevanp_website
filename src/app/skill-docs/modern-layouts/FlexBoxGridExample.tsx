@@ -4,17 +4,18 @@ export const FlexBoxGridExample = () => {
             display: 'grid',
             gridTemplateAreas:
             '\'header header header header\' \'main main . sidebar\' \'footer footer footer footer\'',
-            gridTemplateColumns: '1fr 1fr 1fr 1fr',
+            // minmax(0, 1fr) and the clamps below let the example shrink to narrow screens
+            gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
             gridTemplateRows: 'auto',
             gap: '8px',
             width: '100%',
             height: '400px',
             marginBlock: '16px',
-            padding: '32px',
+            padding: 'clamp(8px, 4vw, 32px)',
             borderRadius: '4px',
             border: '2px solid var(--gray)',
             color: 'var(--text)',
-            fontSize: '24px',
+            fontSize: 'clamp(14px, 4vw, 24px)',
         },
         header: {
             gridArea: 'header',

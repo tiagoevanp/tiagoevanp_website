@@ -41,10 +41,10 @@
       "lifecycle": "Lifecycle",
       "state_management": "State management"
     },
-    "aria_label": "Secondary menu"
+    "aria_label": "Secondary menu",
+    "toggle": "Topics"
   },
   "skill_docs": {
-    "mobile": "This page is temporarily exclusive for larger screens!",
     "example_animation_transitions": {
       "hover_me": "Hover me",
       "click_me": "Click here",
