@@ -16,7 +16,12 @@ const Experience = () => {
             <h1>
                 {t('experience.rocket_chat.title')}
             </h1>
-            <Link href={ExternalLinks.rocketchat} rel='noopener noreferrer' target='_blank'>
+            <Link
+                href={ExternalLinks.rocketchat}
+                rel='noopener noreferrer'
+                target='_blank'
+                aria-label={t('experience.rocket_chat.website_link')}
+            >
                 <SvgIcon name='external-link' variant='large'/>
             </Link>
         </div>
@@ -56,7 +61,12 @@ const Experience = () => {
             <h1>
                 {t('experience.canopus.title')}
             </h1>
-            <Link href={ExternalLinks.canopus} rel='noopener noreferrer' target='_blank'>
+            <Link
+                href={ExternalLinks.canopus}
+                rel='noopener noreferrer'
+                target='_blank'
+                aria-label={t('experience.canopus.website_link')}
+            >
                 <SvgIcon name='external-link' variant='large'/>
             </Link>
         </div>

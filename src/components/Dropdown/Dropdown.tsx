@@ -7,5 +7,5 @@ type DropdownProps = PropsWithChildren<{
 }>;
 
 export const Dropdown = ({ name, children }: DropdownProps) => {
-    return <div className={styles.dropdown} role='listbox' id={name}>{children}</div>;
+    return <div className={styles.dropdown} role='menu' id={name}>{children}</div>;
 };

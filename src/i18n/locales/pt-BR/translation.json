@@ -16,10 +16,11 @@
     "skills_link": "Habilidades",
     "experience": "Experiência",
     "aria_label": "Menu principal",
-    "button_github": "Botão ir para página do Github de Tiago",
-    "button_linkedin": "Botão ir para página do Linkedin de Tiago",
+    "button_github": "Tiago no GitHub",
+    "button_linkedin": "Tiago no LinkedIn",
     "button_theme": "Botão para mudar tema claro e escuro",
     "button_language": "Botão para mudar a linguagem",
+    "button_ellipsis": "Menu de navegação",
     "english": "Inglês",
     "portuguese": "Português"
   },
@@ -91,7 +92,8 @@
       "full_time": "Período Integral",
       "time": "out de 2020 - set de 2025 · 5 anos",
       "location": "Porto Alegre, Rio Grande do Sul, Brasil · Remota",
-      "description": "Como um contribuidor chave para a maior plataforma de comunicação open-source do mundo, fui responsável por desenvolver e manter funcionalidades de alto impacto para milhões de usuários. Colaborei diariamente com uma equipe global distribuída e multifuncional em um ambiente totalmente remoto e de código aberto.\rLed the development of critical frontend features for the Omnichannel suite, enhancing live chat capabilities for enterprises and improving the integration with major messaging platforms, directly impacting user satisfaction and platform adoption.\rEngineered and shipped robust, reusable UI components through the UiKit lib, ensuring consistency across the Rocket.Chat ecosystem, including the apps marketplace.\rSignificantly improved application performance and user experience by identifying and resolving complex bugs, optimizing React components, and implementing efficient state management solutions, leading to measurable reductions in load time.\rChampioned code quality and best practices by actively participating in code reviews, contributing to architectural discussions, and increasing test coverage by writing unit, integration, and end-to-end tests with Jest, React Testing Library, and Playwright.\rMentored junior developers and fostered a collaborative environment through knowledge-sharing sessions and constructive feedback, enhancing team productivity and skill growth."
+      "description": "Como um contribuidor chave para a maior plataforma de comunicação open-source do mundo, fui responsável por desenvolver e manter funcionalidades de alto impacto para milhões de usuários. Colaborei diariamente com uma equipe global distribuída e multifuncional em um ambiente totalmente remoto e de código aberto.\rLed the development of critical frontend features for the Omnichannel suite, enhancing live chat capabilities for enterprises and improving the integration with major messaging platforms, directly impacting user satisfaction and platform adoption.\rEngineered and shipped robust, reusable UI components through the UiKit lib, ensuring consistency across the Rocket.Chat ecosystem, including the apps marketplace.\rSignificantly improved application performance and user experience by identifying and resolving complex bugs, optimizing React components, and implementing efficient state management solutions, leading to measurable reductions in load time.\rChampioned code quality and best practices by actively participating in code reviews, contributing to architectural discussions, and increasing test coverage by writing unit, integration, and end-to-end tests with Jest, React Testing Library, and Playwright.\rMentored junior developers and fostered a collaborative environment through knowledge-sharing sessions and constructive feedback, enhancing team productivity and skill growth.",
+      "website_link": "Site da Rocket.Chat (abre em nova aba)"
     },
     "canopus": {
       "title": "Canopus",
@@ -99,10 +101,14 @@
       "full_time": "Período Integral",
       "time": "set de 2017 - out de 2020 · 3 anos 2 meses",
       "location": "Porto Alegre, Rio Grande do Sul, Brasil · Presencial",
-      "description": "Atuei no desenvolvimento de mais de 10 projetos de sistemas web sob demanda, com foco em segurança da informação e soluções personalizadas para clientes.\rImplementei integrações com módulos financeiros, incluindo geração de boletos bancários e relatórios estatísticos para análise de dados.\rColaborei na modernização e manutenção de sistemas legados, implementando novas funcionalidades e corrigindo problemas críticos que impactaram positivamente mais de 50.000 usuários."
+      "description": "Atuei no desenvolvimento de mais de 10 projetos de sistemas web sob demanda, com foco em segurança da informação e soluções personalizadas para clientes.\rImplementei integrações com módulos financeiros, incluindo geração de boletos bancários e relatórios estatísticos para análise de dados.\rColaborei na modernização e manutenção de sistemas legados, implementando novas funcionalidades e corrigindo problemas críticos que impactaram positivamente mais de 50.000 usuários.",
+      "website_link": "Site da Canopus (abre em nova aba)"
     }
   },
   "page_under_construction": "Esta página segue em construção e em constante atualização, fique de olho!",
+  "banner": {
+    "close": "Fechar aviso"
+  },
   "javascript": "Javascript",
   "typescript": "TypeScript",
   "react": "React",

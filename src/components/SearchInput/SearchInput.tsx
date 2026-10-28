@@ -36,7 +36,7 @@ export const SearchInput = () => {
 
     return (
         <div className={`${styles.container} ${customClass}`} role='group'>
-            <SvgIcon className={styles.icon} variant={'small'} name="magnifying-glass" aria-hidden='true' />
+            <SvgIcon className={styles.icon} variant={'small'} name="magnifying-glass" />
             <input
                 name='search'
                 className={styles.input}

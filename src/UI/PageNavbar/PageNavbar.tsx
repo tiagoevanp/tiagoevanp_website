@@ -88,10 +88,11 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                 </ul>
                 : <Button
                     className={styles['ellipsis-button']}
-                    role='menuitem'
                     icon='ellipsis'
                     description={t('navbar.button_ellipsis')}
                     variant='medium'
+                    aria-expanded={mobileDropdownIsOpen}
+                    aria-controls='mobile-menu'
                     onClick={() => {
                         setMobileDropdownOpen((value) => !value);
                     }}
@@ -100,29 +101,22 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
             <ul style={{ justifyContent: 'flex-end' }} className={styles['navbar-list']}>
                 <li>
                     <Button
-                        role='menuitem'
                         icon='github'
                         description={t('navbar.button_github')}
                         variant='medium'
-                        onClick={() => {
-                            window.open(ExternalLinks.github, '_blank', 'noopener, noreferrer');
-                        }}
+                        href={ExternalLinks.github}
                     />
                 </li>
                 <li>
                     <Button
-                        role='menuitem'
                         icon='linkedin'
                         description={t('navbar.button_linkedin')}
                         variant='medium'
-                        onClick={() => {
-                            window.open(ExternalLinks.linkedin, '_blank', 'noopener, noreferrer');
-                        }}
+                        href={ExternalLinks.linkedin}
                     />
                 </li>
                 <li>
                     <Button
-                        role='menuitem'
                         icon={toggleThemeIcon}
                         description={t('navbar.button_theme')}
                         variant='medium'
@@ -131,10 +125,11 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                 </li>
                 <li>
                     <Button
-                        role='menuitem'
                         icon='language'
                         description={t('navbar.button_language')}
                         variant='medium'
+                        aria-expanded={languageDropdownIsOpen}
+                        aria-controls='language'
                         onClick={() => setLanguageDropdownOpen((value) => !value)}
                     />
                 </li>
@@ -151,29 +146,29 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                     </DropdownOption>
                 </Dropdown>
             }
-            {mobileDropdownIsOpen && <nav className={styles['mobile-dropdown']}>
+            {mobileDropdownIsOpen && <nav id='mobile-menu' className={styles['mobile-dropdown']}>
                 <ul className='fade-colors-transition'>
-                    <Link href='/' onClick={() => setMobileDropdownOpen(false)}>
-                        <li>
+                    <li>
+                        <Link href='/' onClick={() => setMobileDropdownOpen(false)}>
                             {t('navbar.home_link')}
-                        </li>
-                    </Link>
-                    <Link
-                        href={`/skill-docs/semantic/${language}`}
-                        onClick={() => setMobileDropdownOpen(false)}
-                    >
-                        <li>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            href={`/skill-docs/semantic/${language}`}
+                            onClick={() => setMobileDropdownOpen(false)}
+                        >
                             {t('navbar.skills_link')}
-                        </li>
-                    </Link>
-                    <Link
-                        href={'/experience'}
-                        onClick={() => setMobileDropdownOpen(false)}
-                    >
-                        <li>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            href={'/experience'}
+                            onClick={() => setMobileDropdownOpen(false)}
+                        >
                             {t('navbar.experience')}
-                        </li>
-                    </Link>
+                        </Link>
+                    </li>
                 </ul>
             </nav>}
         </div>
