@@ -1,45 +1,19 @@
 import { Ref } from 'react';
 
-import { NameProp } from '../SvgIcon/icons';
-import { SvgIcon, type SvgIconProps } from '../SvgIcon/SvgIcon';
 import styles from './Button.module.sass';
 
-type DefaultButtonProps = {
-    variant: 'small' | 'medium' | 'large';
+type ButtonProps = {
+    children: string;
     className?: string;
-    style?: React.CSSProperties;
-    'aria-expanded'?: boolean;
-    'aria-controls'?: string;
+    'aria-label'?: string;
 } & (
     | { onClick: () => void; href?: never; ref?: Ref<HTMLButtonElement> }
     // With href it renders an external link that opens in a new tab
     | { href: string; onClick?: never; ref?: never }
 );
 
-type IconButtonProps = DefaultButtonProps & Omit<SvgIconProps, 'name' | 'variant' | 'label'> & {
-    icon: NameProp;
-    description: string;
-};
-
-type TextButtonProps = DefaultButtonProps & {
-    text: string;
-};
-
-const isIconButton = (props: ButtonProps): props is IconButtonProps => {
-    return (props as IconButtonProps).icon !== undefined;
-};
-
-type ButtonProps = (IconButtonProps | TextButtonProps);
-
 export const Button = (props: ButtonProps) => {
-    const className = `fade-colors-transition ${styles.button} ${styles[props.variant]} ${props.className}`;
-    const content = isIconButton(props)
-        ? <SvgIcon
-            name={props.icon}
-            variant={props.variant}
-        />
-        : props.text;
-    const ariaLabel = isIconButton(props) && { 'aria-label': props.description };
+    const className = props.className ? `${styles.button} ${props.className}` : styles.button;
 
     if (props.href !== undefined) {
         return (
@@ -48,9 +22,9 @@ export const Button = (props: ButtonProps) => {
                 href={props.href}
                 target='_blank'
                 rel='noopener noreferrer'
-                {...ariaLabel}
+                aria-label={props['aria-label']}
             >
-                {content}
+                {props.children}
             </a>
         );
     }
@@ -60,11 +34,9 @@ export const Button = (props: ButtonProps) => {
             ref={props.ref}
             className={className}
             onClick={props.onClick}
-            aria-expanded={props['aria-expanded']}
-            aria-controls={props['aria-controls']}
-            {...ariaLabel}
+            aria-label={props['aria-label']}
         >
-            {content}
+            {props.children}
         </button>
     );
 };

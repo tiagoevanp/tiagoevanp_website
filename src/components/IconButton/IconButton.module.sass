@@ -1,0 +1,33 @@
+
+.button
+    display: inline-block
+    border: none
+    background-color: transparent
+    padding: 0
+    cursor: pointer
+
+    & svg
+        transition: rotate 0.2s ease-out, transform 0.2s linear
+
+        & path
+            fill: var(--icon-fill-color)
+
+    @media (hover: hover)
+        &:hover
+            
+            & svg
+                display: block
+                transform: scale(1.4)
+                rotate: 15deg
+
+                & path
+                    fill: var(--icon-fill-hover)
+
+.large
+    height: 48px
+
+.medium
+    height: 32px
+
+.small
+    height: 16px

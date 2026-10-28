@@ -1,33 +1,24 @@
-
 .button
-    display: inline-block
-    border: none
+    display: inline-flex
+    align-items: center
+    min-height: 44px
+    padding: 8px 16px
+    border: 2px solid var(--navbar-border)
+    border-radius: 2px
     background-color: transparent
-    padding: 0
+    font-family: inherit
+    font-size: 18px
+    color: var(--navbar-link-color)
     cursor: pointer
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out
 
-    & svg
-        transition: rotate 0.2s ease-out, transform 0.2s linear
+    &:hover
+        background-color: var(--button-hover-background)
+        color: var(--button-hover-color)
 
-        & path
-            fill: var(--icon-fill-color)
+    &:focus-visible
+        outline: 2px solid var(--navbar-border)
+        outline-offset: 2px
 
-    @media (hover: hover)
-        &:hover
-            
-            & svg
-                display: block
-                transform: scale(1.4)
-                rotate: 15deg
-
-                & path
-                    fill: var(--icon-fill-hover)
-
-.large
-    height: 48px
-
-.medium
-    height: 32px
-
-.small
-    height: 16px
+    @media (prefers-reduced-motion: reduce)
+        transition: none

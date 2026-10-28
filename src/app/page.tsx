@@ -1,6 +1,6 @@
 'use client';
 
-import { Image, TextContainer } from '@/components';
+import { Availability, Image, TextContainer } from '@/components';
 import { useTranslation } from '@/i18n/client';
 
 import styles from './page.module.sass';
@@ -20,6 +20,7 @@ export default function Home() {
             <TextContainer
                 title={t('home.title')}
                 subtitle={t('home.subtitle')}
+                aside={<Availability />}
                 paragraph={t('home.paragraph')}
             />
         </div>

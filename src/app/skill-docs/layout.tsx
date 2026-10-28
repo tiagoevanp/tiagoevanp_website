@@ -4,7 +4,7 @@ import hljs from 'highlight.js';
 import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useRef } from 'react';
 
-import { Button } from '@/components';
+import { IconButton } from '@/components';
 import { useTranslation } from '@/i18n/client';
 import { useSidebarContext } from '@/providers/hooks/useSidebarContext';
 import { PageSidebar } from '@/UI/PageSidebar/PageSidebar';
@@ -72,7 +72,7 @@ export default function SkillDocsLayout({
 
     return <div className={styles.container}>
         <div className={styles.toolbar}>
-            <Button
+            <IconButton
                 ref={toggleRef}
                 icon='bars'
                 description={t('sidebar.toggle')}

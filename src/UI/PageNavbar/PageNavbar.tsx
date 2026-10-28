@@ -5,7 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import { PropsWithChildren, startTransition, useEffect, useState } from 'react';
 
-import { Banner, Button, Dropdown, DropdownOption, Navbar, NavbarLink } from '@/components';
+import { Banner, Dropdown, DropdownOption, IconButton, Navbar, NavbarLink } from '@/components';
 import {
     changeSkillDocLanguage,
     getSkillDocLanguage,
@@ -96,7 +96,7 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                         </NavbarLink>
                     </li>
                 </ul>
-                : <Button
+                : <IconButton
                     className={styles['ellipsis-button']}
                     icon='ellipsis'
                     description={t('navbar.button_ellipsis')}
@@ -111,7 +111,7 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
             }
             <ul style={{ justifyContent: 'flex-end' }} className={styles['navbar-list']}>
                 <li>
-                    <Button
+                    <IconButton
                         icon='github'
                         description={t('navbar.button_github')}
                         variant='medium'
@@ -119,7 +119,7 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                     />
                 </li>
                 <li>
-                    <Button
+                    <IconButton
                         icon='linkedin'
                         description={t('navbar.button_linkedin')}
                         variant='medium'
@@ -127,7 +127,7 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                     />
                 </li>
                 <li>
-                    <Button
+                    <IconButton
                         icon={toggleThemeIcon}
                         description={t('navbar.button_theme')}
                         variant='medium'
@@ -135,7 +135,7 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                     />
                 </li>
                 <li>
-                    <Button
+                    <IconButton
                         icon='language'
                         description={t('navbar.button_language')}
                         variant='medium'

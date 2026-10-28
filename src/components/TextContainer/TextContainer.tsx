@@ -1,12 +1,15 @@
+import type { ReactNode } from 'react';
+
 import styles from './TextContainer.module.sass';
 
 type TextContainerProps = {
     title?: string;
     subtitle?: string;
+    aside?: ReactNode;
     paragraph: string;
 };
 
-export const TextContainer = ({ title, subtitle, paragraph }: TextContainerProps) => {
+export const TextContainer = ({ title, subtitle, aside, paragraph }: TextContainerProps) => {
     return (
         <section className={styles.container}>
             {title && (
@@ -19,6 +22,7 @@ export const TextContainer = ({ title, subtitle, paragraph }: TextContainerProps
                     {subtitle}
                 </h2>
             )}
+            {aside}
             <p className={styles.paragraph}>
                 {paragraph}
             </p>
