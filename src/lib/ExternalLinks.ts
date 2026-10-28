@@ -3,4 +3,5 @@ export const ExternalLinks = {
     linkedin: 'https://www.linkedin.com/in/tiago-evangelista-pinto/',
     rocketchat: 'https://www.rocket.chat/',
     canopus: 'http://canopusonline.com',
+    ducon: 'https://ducon.com.br/',
 };

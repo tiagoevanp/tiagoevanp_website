@@ -90,13 +90,38 @@
     }
   },
   "experience": {
+    "page_title": "Experience",
+    "ducon": {
+      "title": "Ducon Corretora de Seguros",
+      "occupation": "Full-stack Developer",
+      "full_time": "Full-time",
+      "time": "Dec 2025 - Jul 2026 · 8 months",
+      "location": "Porto Alegre, Rio Grande do Sul, Brazil · On-site",
+      "highlights": [
+        "Modernized legacy insurance systems using React and Laravel.",
+        "Containerized legacy applications with Docker, simplifying deployment and infrastructure management.",
+        "Improved deployment reliability by migrating applications to VPS environments.",
+        "Collaborated with marketing and product teams to maintain CMS-driven websites.",
+        "Collaborated on CI/CD workflows using GitHub Actions to support automated build and deployment processes."
+      ],
+      "website_link": "Ducon website (opens in new tab)"
+    },
     "rocket_chat": {
       "title": "Rocket.Chat",
       "occupation": "Software Engineer",
       "full_time": "Full-time",
       "time": "Oct 2020 - Sep 2025 · 5 years",
       "location": "Porto Alegre, Rio Grande do Sul, Brazil · Remote",
-      "description": "As a key contributor to the world's largest open-source communication platform, I was responsible for developing and maintaining high-impact features for millions of users. I collaborated daily with a global, distributed, and cross-functional team in a fully remote and open-source environment.\rLed the development of critical frontend features for the Omnichannel suite, enhancing live chat capabilities for enterprises and improving the integration with major messaging platforms, directly impacting user satisfaction and platform adoption.\rEngineered and shipped robust, reusable UI components through the UiKit lib, ensuring consistency across the Rocket.Chat ecosystem, including the apps marketplace.\rSignificantly improved application performance and user experience by identifying and resolving complex bugs, optimizing React components, and implementing efficient state management solutions, leading to measurable reductions in load time.\rChampioned code quality and best practices by actively participating in code reviews, contributing to architectural discussions, and increasing test coverage by writing unit, integration, and end-to-end tests with Jest, React Testing Library, and Playwright.\rMentored junior developers and fostered a collaborative environment through knowledge-sharing sessions and constructive feedback, enhancing team productivity and skill growth.",
+      "highlights": [
+        "Designed, developed, and delivered frontend features for a communication platform serving over 12 million users.",
+        "Led the migration of large frontend modules from JavaScript to TypeScript, modernizing approximately 30% of the codebase and improving maintainability and type safety.",
+        "Designed and implemented 5 reusable UiKit components used by Rocket.Chat marketplace applications, improving consistency and extensibility for third-party app developers.",
+        "Resolved more than 30 critical Omnichannel issues, improving platform stability and customer experience.",
+        "Reviewed more than 300 pull requests, improving code quality, consistency, and engineering standards across the frontend codebase.",
+        "Mentored frontend engineers through code reviews and technical guidance, helping improve TypeScript adoption and code quality across multiple squads.",
+        "Collaborated with Product Managers, Designers, and engineers to define scalable frontend architecture and deliver complex UI initiatives.",
+        "Improved frontend reliability, accessibility, and developer experience by expanding automated test coverage and enhancing shared component patterns with React Testing Library, Jest, and TypeScript."
+      ],
       "website_link": "Rocket.Chat website (opens in new tab)"
     },
     "canopus": {
@@ -105,7 +130,11 @@
       "full_time": "Full-time",
       "time": "Sep 2017 - Oct 2020 · 3 years 2 months",
       "location": "Porto Alegre, Rio Grande do Sul, Brazil · On-site",
-      "description": "Worked on the development of over 10 custom web system projects, with a focus on information security and tailored solutions for clients.\rImplemented integrations with financial modules, including bank slip generation and statistical reports for data analysis.\rCollaborated on modernizing and maintaining legacy systems, implementing new features and fixing critical issues that positively impacted over 50,000 users.",
+      "highlights": [
+        "Delivered 10+ custom web applications for enterprise and public-sector clients with a strong focus on security and business process automation.",
+        "Developed financial features including boleto (Brazilian bank slip) generation, reporting, and payment workflows.",
+        "Maintained and evolved a legacy platform serving more than 50,000 users, delivering new features and production fixes."
+      ],
       "website_link": "Canopus website (opens in new tab)"
     },
     "education": {
@@ -144,5 +173,10 @@
   "postgresql": "PostgreSQL",
   "mysql": "MySQL",
   "oracledb": "OracleDB",
+  "react_router": "React Router",
+  "shadcn_ui": "shadcn/ui",
+  "laravel": "Laravel",
+  "docker": "Docker",
+  "vps": "VPS",
   "lorem_ipsum": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 }
