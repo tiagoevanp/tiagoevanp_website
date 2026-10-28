@@ -8,6 +8,10 @@
   "home": {
     "title": "Olá, eu sou o Tiago",
     "subtitle": "Engenheiro Frontend Sênior | Especialista em React & TypeScript",
+    "availability_title": "Disponível para contratação",
+    "availability_text": "Em busca da minha próxima vaga como frontend sênior. Vamos conversar?",
+    "availability_linkedin": "Fale comigo no LinkedIn",
+    "availability_linkedin_label": "Fale comigo no LinkedIn (abre em nova aba)",
     "paragraph": "Desenvolvedor autodidata com forte capacidade de aprendizado e perfil colaborativo. Apaixonado por tecnologia e inovação, sempre em busca de novos conhecimentos. Minha sensibilidade artística agrega criatividade única aos projetos de desenvolvimento.",
     "image_alt": "Foto de Tiago"
   },

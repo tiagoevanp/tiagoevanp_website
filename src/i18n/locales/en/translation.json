@@ -8,6 +8,10 @@
   "home": {
     "title": "Hi, I'm Tiago",
     "subtitle": "Senior Frontend Engineer | React & TypeScript Specialist",
+    "availability_title": "Available for hire",
+    "availability_text": "Looking for my next senior frontend role. Let's talk.",
+    "availability_linkedin": "Message me on LinkedIn",
+    "availability_linkedin_label": "Message me on LinkedIn (opens in new tab)",
     "paragraph": "Self-taught developer with strong learning ability and collaborative profile. Passionate about technology and innovation, always seeking new knowledge. My artistic sensibility adds unique creativity to development projects.",
     "image_alt": "Tiago's photo"
   },
