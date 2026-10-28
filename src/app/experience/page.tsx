@@ -101,6 +101,34 @@ const Experience = () => {
                 {t('experience.canopus.description')}
             </p>
         </div>
+        <section className={styles.subsection} aria-labelledby='education-title'>
+            <h2 id='education-title' className={styles['section-title']}>
+                {t('experience.education.title')}
+            </h2>
+            <div className={styles['job-info']}>
+                <h3 className={styles['entry-title']}>
+                    {t('experience.education.ifrs.institution')}
+                </h3>
+                <p>
+                    {t('experience.education.ifrs.degree')}
+                </p>
+                <p>
+                    <span>
+                        {t('experience.education.ifrs.time')}
+                    </span>
+                </p>
+            </div>
+        </section>
+        <section className={styles.subsection} aria-labelledby='languages-title'>
+            <h2 id='languages-title' className={styles['section-title']}>
+                {t('experience.languages.title')}
+            </h2>
+            <ul className={styles.languages}>
+                <li>{t('experience.languages.pt')}</li>
+                <li>{t('experience.languages.en')}</li>
+                <li>{t('experience.languages.es')}</li>
+            </ul>
+        </section>
     </section>;
 };
 

@@ -107,6 +107,20 @@
       "location": "Porto Alegre, Rio Grande do Sul, Brazil · On-site",
       "description": "Worked on the development of over 10 custom web system projects, with a focus on information security and tailored solutions for clients.\rImplemented integrations with financial modules, including bank slip generation and statistical reports for data analysis.\rCollaborated on modernizing and maintaining legacy systems, implementing new features and fixing critical issues that positively impacted over 50,000 users.",
       "website_link": "Canopus website (opens in new tab)"
+    },
+    "education": {
+      "title": "Education",
+      "ifrs": {
+        "institution": "IFRS – Federal Institute of Rio Grande do Sul",
+        "degree": "Bachelor's degree in Internet Systems Technology",
+        "time": "2019 – Dec 2027 (expected)"
+      }
+    },
+    "languages": {
+      "title": "Languages",
+      "pt": "Portuguese — Native",
+      "en": "English — Full professional proficiency",
+      "es": "Spanish — Limited working proficiency"
     }
   },
   "page_under_construction": "This page is under construction and constantly being updated, stay tuned!",
