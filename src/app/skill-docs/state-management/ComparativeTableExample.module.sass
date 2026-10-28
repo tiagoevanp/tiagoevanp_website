@@ -19,3 +19,14 @@
         border-block-end: solid var(--table-border) 2px
         th, td
             padding: 16px
+
+    // Tighter cells so the three columns fit narrow screens
+    @media (max-width: 767.98px)
+        font-size: 14px
+
+        caption
+            font-size: 16px
+
+        thead tr th, tbody tr th, tbody tr td
+            padding-block: 8px
+            padding-inline: 4px

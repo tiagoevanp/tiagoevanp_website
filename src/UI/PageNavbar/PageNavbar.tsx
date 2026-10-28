@@ -15,6 +15,7 @@ import {
 } from '@/i18n/client';
 import { ExternalLinks } from '@/lib/ExternalLinks';
 import { useScreenContext } from '@/providers/hooks/useScreenContext';
+import { useSidebarContext } from '@/providers/hooks/useSidebarContext';
 
 import styles from './PageNavbar.module.sass';
 
@@ -24,6 +25,7 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
     const { t, i18n: { language, changeLanguage, loadLanguages } } = useTranslation();
     const { theme, setTheme } = useTheme();
     const { isMobile } = useScreenContext();
+    const { isOpen: sidebarIsOpen, setOpen: setSidebarOpen } = useSidebarContext();
     const path = usePathname();
     const router = useRouter();
     const [toggleThemeIcon, setToggleThemeIcon] = useState<'sun' | 'moon'>('moon');
@@ -60,6 +62,14 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
         setToggleThemeIcon(theme === 'dark' ? 'sun' : 'moon');
     }, [theme]);
 
+    // Only one overlay at a time: opening the skill-docs sidebar drawer closes the navbar menus
+    useEffect(() => {
+        if (sidebarIsOpen) {
+            setMobileDropdownOpen(false);
+            setLanguageDropdownOpen(false);
+        }
+    }, [sidebarIsOpen]);
+
     return <div className={`fade-colors-transition ${styles.page}`}>
         <Navbar>
             {!isMobile
@@ -95,6 +105,7 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                     aria-controls='mobile-menu'
                     onClick={() => {
                         setMobileDropdownOpen((value) => !value);
+                        setSidebarOpen(false);
                     }}
                 />
             }
@@ -130,7 +141,10 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                         variant='medium'
                         aria-expanded={languageDropdownIsOpen}
                         aria-controls='language'
-                        onClick={() => setLanguageDropdownOpen((value) => !value)}
+                        onClick={() => {
+                            setLanguageDropdownOpen((value) => !value);
+                            setSidebarOpen(false);
+                        }}
                     />
                 </li>
             </ul>

@@ -2,14 +2,16 @@
 
 import hljs from 'highlight.js';
 import { usePathname } from 'next/navigation';
-import { useEffect } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
-import { SvgIcon } from '@/components';
+import { Button } from '@/components';
 import { useTranslation } from '@/i18n/client';
-import { useScreenContext } from '@/providers/hooks/useScreenContext';
+import { useSidebarContext } from '@/providers/hooks/useSidebarContext';
 import { PageSidebar } from '@/UI/PageSidebar/PageSidebar';
 
 import styles from './layout.module.sass';
+
+const sidebarId = 'skill-docs-sidebar';
 
 export default function SkillDocsLayout({
     children,
@@ -18,7 +20,17 @@ export default function SkillDocsLayout({
 }>) {
     const { t } = useTranslation();
     const path = usePathname();
-    const { isDesktop } = useScreenContext();
+    const { isOpen, setOpen } = useSidebarContext();
+    const toggleRef = useRef<HTMLButtonElement>(null);
+    const sidebarRef = useRef<HTMLDivElement>(null);
+
+    const closeSidebar = useCallback((restoreFocus: boolean) => {
+        setOpen(false);
+
+        if (restoreFocus) {
+            toggleRef.current?.focus();
+        }
+    }, [setOpen]);
 
     useEffect(() => {
         document.querySelectorAll('code').forEach((block) => {
@@ -29,18 +41,64 @@ export default function SkillDocsLayout({
         });
     }, [path]);
 
-    return (
-        isDesktop
-            ? <div className={styles.container}><PageSidebar />
-                <section className={styles.section}>
-                    {children}
-                </section>
-            </div>
+    // The drawer only exists on smaller screens (see layout.module.sass), so this only runs there
+    useEffect(() => {
+        if (!isOpen) return;
 
-            : <div className={styles.wip}>
-                <SvgIcon className={styles.icon} name='person-digging' variant='large' />
-                <p style={{ marginInline: '30px' }}>{t('skill_docs.mobile')}</p>
-            </div>
+        sidebarRef.current?.querySelector('a')?.focus();
 
-    );
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                closeSidebar(true);
+            }
+        };
+
+        const handlePointerDown = (event: PointerEvent) => {
+            const target = event.target as Node;
+
+            if (!sidebarRef.current?.contains(target) && !toggleRef.current?.contains(target)) {
+                closeSidebar(false);
+            }
+        };
+
+        document.addEventListener('keydown', handleKeyDown);
+        document.addEventListener('pointerdown', handlePointerDown);
+
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+            document.removeEventListener('pointerdown', handlePointerDown);
+        };
+    }, [isOpen, closeSidebar]);
+
+    return <div className={styles.container}>
+        <div className={styles.toolbar}>
+            <Button
+                ref={toggleRef}
+                icon='bars'
+                description={t('sidebar.toggle')}
+                variant='medium'
+                aria-expanded={isOpen}
+                aria-controls={sidebarId}
+                onClick={() => setOpen(!isOpen)}
+            />
+        </div>
+        <div
+            ref={sidebarRef}
+            id={sidebarId}
+            className={isOpen ? `${styles.sidebar} ${styles['sidebar-open']}` : styles.sidebar}
+            onBlur={(event) => {
+                const next = event.relatedTarget;
+
+                // Close when keyboard focus leaves the drawer, but not when it goes back to the toggle
+                if (isOpen && next && !event.currentTarget.contains(next) && next !== toggleRef.current) {
+                    closeSidebar(false);
+                }
+            }}
+        >
+            <PageSidebar onNavigate={() => closeSidebar(true)} />
+        </div>
+        <section className={styles.section}>
+            {children}
+        </section>
+    </div>;
 }

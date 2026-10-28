@@ -1,3 +1,5 @@
+import { Ref } from 'react';
+
 import { NameProp } from '../SvgIcon/icons';
 import { SvgIcon, type SvgIconProps } from '../SvgIcon/SvgIcon';
 import styles from './Button.module.sass';
@@ -9,9 +11,9 @@ type DefaultButtonProps = {
     'aria-expanded'?: boolean;
     'aria-controls'?: string;
 } & (
-    | { onClick: () => void; href?: never }
+    | { onClick: () => void; href?: never; ref?: Ref<HTMLButtonElement> }
     // With href it renders an external link that opens in a new tab
-    | { href: string; onClick?: never }
+    | { href: string; onClick?: never; ref?: never }
 );
 
 type IconButtonProps = DefaultButtonProps & Omit<SvgIconProps, 'name' | 'variant' | 'label'> & {
@@ -55,6 +57,7 @@ export const Button = (props: ButtonProps) => {
 
     return (
         <button
+            ref={props.ref}
             className={className}
             onClick={props.onClick}
             aria-expanded={props['aria-expanded']}
