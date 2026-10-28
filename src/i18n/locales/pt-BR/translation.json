@@ -107,6 +107,20 @@
       "location": "Porto Alegre, Rio Grande do Sul, Brasil · Presencial",
       "description": "Atuei no desenvolvimento de mais de 10 projetos de sistemas web sob demanda, com foco em segurança da informação e soluções personalizadas para clientes.\rImplementei integrações com módulos financeiros, incluindo geração de boletos bancários e relatórios estatísticos para análise de dados.\rColaborei na modernização e manutenção de sistemas legados, implementando novas funcionalidades e corrigindo problemas críticos que impactaram positivamente mais de 50.000 usuários.",
       "website_link": "Site da Canopus (abre em nova aba)"
+    },
+    "education": {
+      "title": "Formação",
+      "ifrs": {
+        "institution": "IFRS – Instituto Federal do Rio Grande do Sul",
+        "degree": "Graduação em Tecnologia em Sistemas para Internet",
+        "time": "2019 – dez de 2027 (previsão)"
+      }
+    },
+    "languages": {
+      "title": "Idiomas",
+      "pt": "Português — Nativo",
+      "en": "Inglês — Proficiência profissional completa",
+      "es": "Espanhol — Proficiência profissional limitada"
     }
   },
   "page_under_construction": "Esta página segue em construção e em constante atualização, fique de olho!",
