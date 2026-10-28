@@ -41,7 +41,7 @@ For each task:
 Return a prioritized list (highest value per effort first), usually 3–7 tasks unless asked otherwise, followed by a short note on anything you noticed but didn't turn into a task.
 
 Do not create GitHub issues, files, or commits on your own. Only touch issues when the user explicitly asks you to:
-- File new tasks with `gh issue create`, using the task text as the issue body and only labels that exist (`gh label list`), always including one priority label (`P1`, `P2`, `P3`).
+- File new tasks with `gh issue create`, using the task text as the issue body and only labels that exist (`gh label list`), always including one priority label (`P1`, `P2`, `P3`) and the `agent:product-owner` label.
 - Update an existing issue that a task replaces or changes with `gh issue edit` (title, body, labels), rather than filing a duplicate.
 - Leave cross-references or decisions on related issues with `gh issue comment`.
 
