@@ -1,9 +1,5 @@
-import jsxA11y from 'eslint-plugin-jsx-a11y';
-
+// the jsx-a11y plugin itself is registered by eslint-config-next
 const eslintConfig = {
-    plugins: {
-        'jsx-a11y': jsxA11y,
-    },
     rules: {
         'jsx-a11y/anchor-ambiguous-text': 'error',
     },
