@@ -19,12 +19,16 @@ const notoSansMono = Noto_Sans_Mono({
     subsets: ['latin'],
 });
 
+const description = 'Personal webpage of Tiago, a full-stack engineer and React & TypeScript expert '
+    + 'who also builds with PHP/Laravel and works as an AI engineer.';
+
 export const metadata: Metadata = {
     title: 'Tiago\'s Webpage',
-    description: 'Site pessoal de Tiago',
+    description,
     authors: [{ name: 'Tiago the EvanBrother' }],
     keywords: [
         'Tiago',
+        'full-stack',
         'frontend',
         'frontend developer',
         'backend',
@@ -38,6 +42,11 @@ export const metadata: Metadata = {
         'typescript',
         'node.js',
         'next.js',
+        'php',
+        'laravel',
+        'python',
+        'ai engineer',
+        'agentic ai',
     ],
     // default values, included to show explicit knowledge of SEO robots
     robots: {
@@ -51,7 +60,7 @@ export const metadata: Metadata = {
         type: 'website',
         url: 'https://tiagoevanp.github.io/',
         title: 'Tiago\'s Webpage',
-        description: 'Personal webpage from Tiago the EvanBrother',
+        description,
         siteName: 'Tiago\'s Webpage',
     },
     twitter: {
