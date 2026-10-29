@@ -27,7 +27,7 @@ const subscribeToNothing = () => () => {};
 export const PageNavbar = ({ children }: PropsWithChildren) => {
     const { t, i18n: { language, changeLanguage, loadLanguages } } = useTranslation();
     const { resolvedTheme, setTheme } = useTheme();
-    const { isMobile } = useScreenContext();
+    const { isTablet, isDesktop } = useScreenContext();
     const { isOpen: sidebarIsOpen, setOpen: setSidebarOpen } = useSidebarContext();
     const path = usePathname();
     const router = useRouter();
@@ -45,6 +45,11 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
     const isHomePage = path === '/';
     const isSkillDocsPage = path.match('/skill-docs') !== null;
     const isExperiencePage = path.match('/experience') !== null;
+
+    // CSS hides the menu button and menu above phone widths, so close the menu when resized past them
+    if (mobileDropdownIsOpen && (isTablet || isDesktop)) {
+        setMobileDropdownOpen(false);
+    }
 
     // Only one overlay at a time: opening the skill-docs sidebar drawer closes the navbar menus
     if (sidebarIsOpen !== previousSidebarIsOpen) {
@@ -107,49 +112,48 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
 
     return <div className={`fade-colors-transition ${styles.page}`}>
         <Navbar>
-            {!isMobile
-                ? <ul className={styles['navbar-list']}>
-                    <li>
-                        <NavbarLink
-                            to='/'
-                            className={isHomePage ? styles['navbar-link-active'] : ''}
-                            aria-current={isHomePage ? 'page' : undefined}
-                        >
-                            {t('navbar.home_link')}
-                        </NavbarLink>
-                    </li>
-                    <li>
-                        <NavbarLink
-                            to={`/skill-docs/semantic/${language}`}
-                            className={isSkillDocsPage ? styles['navbar-link-active'] : ''}
-                            aria-current={isSkillDocsPage ? 'page' : undefined}
-                        >
-                            {t('navbar.skills_link')}
-                        </NavbarLink>
-                    </li>
-                    <li>
-                        <NavbarLink
-                            to={'/experience'}
-                            className={isExperiencePage ? styles['navbar-link-active'] : ''}
-                            aria-current={isExperiencePage ? 'page' : undefined}
-                        >
-                            {t('navbar.experience')}
-                        </NavbarLink>
-                    </li>
-                </ul>
-                : <IconButton
-                    className={styles['ellipsis-button']}
-                    icon='ellipsis'
-                    description={t('navbar.button_ellipsis')}
-                    variant='medium'
-                    aria-expanded={mobileDropdownIsOpen}
-                    aria-controls='mobile-menu'
-                    onClick={() => {
-                        setMobileDropdownOpen((value) => !value);
-                        setSidebarOpen(false);
-                    }}
-                />
-            }
+            {/* Both variants are rendered; CSS shows one per breakpoint so the static HTML matches the screen */}
+            <ul className={`${styles['navbar-list']} ${styles['navbar-list-desktop']}`}>
+                <li>
+                    <NavbarLink
+                        to='/'
+                        className={isHomePage ? styles['navbar-link-active'] : ''}
+                        aria-current={isHomePage ? 'page' : undefined}
+                    >
+                        {t('navbar.home_link')}
+                    </NavbarLink>
+                </li>
+                <li>
+                    <NavbarLink
+                        to={`/skill-docs/semantic/${language}`}
+                        className={isSkillDocsPage ? styles['navbar-link-active'] : ''}
+                        aria-current={isSkillDocsPage ? 'page' : undefined}
+                    >
+                        {t('navbar.skills_link')}
+                    </NavbarLink>
+                </li>
+                <li>
+                    <NavbarLink
+                        to={'/experience'}
+                        className={isExperiencePage ? styles['navbar-link-active'] : ''}
+                        aria-current={isExperiencePage ? 'page' : undefined}
+                    >
+                        {t('navbar.experience')}
+                    </NavbarLink>
+                </li>
+            </ul>
+            <IconButton
+                className={styles['ellipsis-button']}
+                icon='ellipsis'
+                description={t('navbar.button_ellipsis')}
+                variant='medium'
+                aria-expanded={mobileDropdownIsOpen}
+                aria-controls='mobile-menu'
+                onClick={() => {
+                    setMobileDropdownOpen((value) => !value);
+                    setSidebarOpen(false);
+                }}
+            />
             <ul style={{ justifyContent: 'flex-end' }} className={styles['navbar-list']}>
                 <li>
                     <IconButton
