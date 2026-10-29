@@ -12,7 +12,7 @@ export default function Home() {
         <div className={styles.container}>
             <TextContainer
                 title={t('home.title')}
-                subtitle={t('home.subtitle')}
+                subtitle={t('home.roles', { returnObjects: true }) as string[]}
                 aside={<Availability />}
                 paragraph={t('home.paragraph')}
             />

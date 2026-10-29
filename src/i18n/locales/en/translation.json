@@ -7,7 +7,12 @@
   },
   "home": {
     "title": "Hi, I'm Tiago",
-    "subtitle": "Fullstack Engineer | React & TypeScript Expert | PHP Laravel Developer | AI Engineer",
+    "roles": [
+      "Fullstack Engineer",
+      "React & TypeScript Expert",
+      "PHP Laravel Developer",
+      "AI Engineer"
+    ],
     "availability_title": "Available for hire",
     "availability_text": "Looking for my next senior frontend role. Let's talk.",
     "availability_linkedin": "Message me on LinkedIn",

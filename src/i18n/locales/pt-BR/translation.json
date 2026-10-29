@@ -7,7 +7,12 @@
   },
   "home": {
     "title": "Olá, eu sou o Tiago",
-    "subtitle": "Engenheiro Fullstack | Especialista em React e TypeScript | Desenvolvedor PHP Laravel | Engenheiro de IA",
+    "roles": [
+      "Engenheiro Fullstack",
+      "Especialista em React e TypeScript",
+      "Desenvolvedor PHP Laravel",
+      "Engenheiro de IA"
+    ],
     "availability_title": "Disponível para contratação",
     "availability_text": "Em busca da minha próxima vaga como frontend sênior. Vamos conversar?",
     "availability_linkedin": "Fale comigo no LinkedIn",
