@@ -155,11 +155,12 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
         <div className={styles['dropdown-container']}>
             {languageDropdownIsOpen &&
                 <Dropdown name="language">
-                    <DropdownOption onClick={() => selectLanguage('en')}>
-                        {t('navbar.english')}
+                    {/* Each language is named in itself, so it reads the same in any UI language */}
+                    <DropdownOption lang='en' checked={language === 'en'} onClick={() => selectLanguage('en')}>
+                        English
                     </DropdownOption>
-                    <DropdownOption onClick={() => selectLanguage('pt-BR')}>
-                        {t('navbar.portuguese')}
+                    <DropdownOption lang='pt-BR' checked={language === 'pt-BR'} onClick={() => selectLanguage('pt-BR')}>
+                        Português (Brasil)
                     </DropdownOption>
                 </Dropdown>
             }
