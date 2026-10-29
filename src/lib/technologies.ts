@@ -6,7 +6,6 @@ export const Technologies = {
     dotnet: '.NET',
     extjs: 'Ext.js',
     flask: 'Flask',
-    fullstack: 'Fullstack',
     git: 'Git',
     javascript: 'JavaScript',
     jest: 'Jest',

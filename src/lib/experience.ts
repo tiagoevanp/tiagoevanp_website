@@ -49,7 +49,6 @@ export const jobs: Job[] = [
         id: 'canopus',
         url: ExternalLinks.canopus,
         technologies: [
-            Technologies.fullstack,
             Technologies.javascript,
             Technologies.extjs,
             Technologies.php,
