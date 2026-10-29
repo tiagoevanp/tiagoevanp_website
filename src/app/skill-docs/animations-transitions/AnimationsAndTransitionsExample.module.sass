@@ -58,6 +58,23 @@
     background-color: var(--yellow)
     animation: 2s ease-in-out infinite jump
 
+// The demos only show motion when the reader hasn't asked to reduce it
+.reduced-motion-note
+    display: none
+    margin-top: 16px
+    color: var(--text)
+    font-size: 16px
+
+@media (prefers-reduced-motion: reduce)
+    .transform-transition:hover
+        transform: none
+
+    .jump-animation
+        animation: none
+
+    .reduced-motion-note
+        display: block
+
 @keyframes jump
     10%
         transform: scale3d(1.05, 0.8, 1) translate(0, 10%)

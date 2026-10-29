@@ -7,7 +7,7 @@
     cursor: pointer
 
     & svg
-        transition: rotate 0.2s ease-out, transform 0.2s linear
+        transition: transform 0.2s linear
 
         & path
             fill: var(--icon-fill-color)
@@ -17,11 +17,14 @@
             
             & svg
                 display: block
-                transform: scale(1.4)
-                rotate: 15deg
+                transform: scale(1.15) rotate(8deg)
 
                 & path
                     fill: var(--icon-fill-hover)
+
+    @media (prefers-reduced-motion: reduce)
+        &:hover svg
+            transform: none
 
 .large
     height: 48px
