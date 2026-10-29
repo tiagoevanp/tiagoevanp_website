@@ -55,7 +55,8 @@
     "example_animation_transitions": {
       "hover_me": "Hover me",
       "click_me": "Click here",
-      "jumping": "Jumping"
+      "jumping": "Jumping",
+      "reduced_motion_note": "Your system asks for reduced motion, so the movement in these examples is paused. Turn that setting off to see them animate."
     },
     "example_ecma_script": {
       "caption": "caption",
