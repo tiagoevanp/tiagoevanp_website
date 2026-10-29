@@ -24,9 +24,11 @@
         li
             width: 100%
             border-block-end: solid 2px var(--navbar-dropdown-border)
+        // Inherit the menu colour; the global `a` colour fails contrast on this background
         a
             display: block
             padding: 16px
+            color: inherit
 
 .navbar-list
     display: flex
