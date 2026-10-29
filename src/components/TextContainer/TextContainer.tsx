@@ -8,9 +8,11 @@ type TextContainerProps = {
     subtitle?: string | string[];
     aside?: ReactNode;
     paragraph: string;
+    // Rendered after the paragraph, e.g. calls to action
+    actions?: ReactNode;
 };
 
-export const TextContainer = ({ title, subtitle, aside, paragraph }: TextContainerProps) => {
+export const TextContainer = ({ title, subtitle, aside, paragraph, actions }: TextContainerProps) => {
     return (
         <section className={styles.container}>
             {title && (
@@ -37,6 +39,7 @@ export const TextContainer = ({ title, subtitle, aside, paragraph }: TextContain
             <p className={styles.paragraph}>
                 {paragraph}
             </p>
+            {actions}
         </section>
     );
 };

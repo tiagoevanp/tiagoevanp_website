@@ -19,6 +19,12 @@ export default function Home() {
                     subtitle={t('home.roles', { returnObjects: true }) as string[]}
                     aside={<Availability />}
                     paragraph={t('home.paragraph')}
+                    actions={
+                        <Link className={styles['experience-link']} href='/experience'>
+                            {t('home.cta_experience')}
+                            <span aria-hidden='true'> →</span>
+                        </Link>
+                    }
                 />
                 <Image
                     containerStyle={styles['image-container']}

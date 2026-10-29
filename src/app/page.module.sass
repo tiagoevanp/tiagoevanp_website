@@ -30,6 +30,19 @@ $two-columns-breakpoint: 992px
         grid-template-columns: minmax(0, 5fr) minmax(0, 7fr)
         align-items: center
 
+.experience-link
+    display: inline-flex
+    align-items: center
+    align-self: flex-start
+    min-height: 44px
+    margin-block-start: 16px
+    font-size: 18px
+    color: var(--navbar-link-color)
+
+    &:focus-visible
+        outline: 2px solid var(--navbar-border)
+        outline-offset: 2px
+
 .image-container
     width: 100%
     max-width: 200px
