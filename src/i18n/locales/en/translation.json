@@ -22,7 +22,7 @@
   },
   "navbar": {
     "home_link": "Home",
-    "skills_link": "Skills",
+    "skills_link": "Skill docs",
     "experience": "Experience",
     "aria_label": "Main menu",
     "button_github": "Tiago on GitHub",
