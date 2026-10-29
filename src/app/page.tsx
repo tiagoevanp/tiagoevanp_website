@@ -10,18 +10,18 @@ export default function Home() {
 
     return (
         <div className={styles.container}>
+            <TextContainer
+                title={t('home.title')}
+                subtitle={t('home.roles', { returnObjects: true }) as string[]}
+                aside={<Availability />}
+                paragraph={t('home.paragraph')}
+            />
             <Image
                 containerStyle={styles['image-container']}
                 imageStyle={styles.image}
                 src='/tiago.jpg'
                 placeholder='/tiago_placeholder.jpg'
                 alt={t('home.image_alt')}
-            />
-            <TextContainer
-                title={t('home.title')}
-                subtitle={t('home.subtitle')}
-                aside={<Availability />}
-                paragraph={t('home.paragraph')}
             />
         </div>
     );

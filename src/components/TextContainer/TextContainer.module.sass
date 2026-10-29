@@ -4,15 +4,43 @@
     flex-shrink: 4
     flex-basis: 0
     flex-direction: column
-    min-width: 300px
+    min-width: 0
 
 .title
     margin-block-end: 16px
     color: var(--section-text-title)
+    text-wrap: balance
 
 .subtitle
     margin-block-end: 32px
     color: var(--section-text-color)
+    overflow-wrap: break-word
+    text-wrap: balance
+    // Clips the separator of every part that starts a line, see .subtitle-parts
+    overflow: hidden
+
+// Each part draws its separator in its start padding, and the list is pulled back by that width,
+// so a part that wraps to the start of a line has its separator hidden: no "|" at a line start or end
+.subtitle-parts
+    display: flex
+    flex-wrap: wrap
+    margin-inline-start: -1.25em
+
+.subtitle-part
+    position: relative
+    // Every part reserves the separator width, so a part that wraps inside itself keeps its lines visible
+    padding-inline-start: 1.25em
+    text-wrap: balance
+
+    // The separator stays in the accessible name, which reads like the original "A | B | C" text
+    &:not(:first-child)::before
+        content: '|'
+        position: absolute
+        inset-inline-start: 0
+        inline-size: 1.25em
+        text-align: center
 
 .paragraph
+    max-inline-size: 60ch
     color: var(--section-text-color)
+    text-wrap: pretty

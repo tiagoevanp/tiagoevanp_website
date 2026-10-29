@@ -4,7 +4,8 @@ import styles from './TextContainer.module.sass';
 
 type TextContainerProps = {
     title?: string;
-    subtitle?: string;
+    // A list renders as parts separated by "|" that never leave a separator at a line start or end
+    subtitle?: string | string[];
     aside?: ReactNode;
     paragraph: string;
 };
@@ -19,7 +20,17 @@ export const TextContainer = ({ title, subtitle, aside, paragraph }: TextContain
             )}
             {subtitle && (
                 <h2 className={styles.subtitle}>
-                    {subtitle}
+                    {Array.isArray(subtitle)
+                        ? (
+                            <span className={styles['subtitle-parts']}>
+                                {subtitle.map(part => (
+                                    <span key={part} className={styles['subtitle-part']}>
+                                        {part}
+                                    </span>
+                                ))}
+                            </span>
+                        )
+                        : subtitle}
                 </h2>
             )}
             {aside}

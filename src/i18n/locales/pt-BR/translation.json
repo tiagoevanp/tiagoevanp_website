@@ -7,12 +7,17 @@
   },
   "home": {
     "title": "Olá, eu sou o Tiago",
-    "subtitle": "Engenheiro Fullstack | Especialista em React & TypeScript | Desenvolvedor PHP Laravel | Engenheiro de IA",
+    "roles": [
+      "Engenheiro Fullstack",
+      "Especialista em React e TypeScript",
+      "Desenvolvedor PHP Laravel",
+      "Engenheiro de IA"
+    ],
     "availability_title": "Disponível para contratação",
     "availability_text": "Em busca da minha próxima vaga como frontend sênior. Vamos conversar?",
     "availability_linkedin": "Fale comigo no LinkedIn",
     "availability_linkedin_label": "Fale comigo no LinkedIn (abre em nova aba)",
-    "paragraph": "Desenvolvedor autodidata com forte capacidade de aprendizado e perfil colaborativo. Apaixonado por tecnologia e inovação, sempre em busca de novos conhecimentos. Minha sensibilidade artística agrega criatividade única aos projetos de desenvolvimento.",
+    "paragraph": "Engenheiro de software full-stack, trabalhando com JavaScript, TypeScript, PHP e Python. Passei cinco anos na Rocket.Chat desenvolvendo funcionalidades de frontend para uma plataforma de comunicação open-source usada por milhões de pessoas, incluindo a suíte Omnichannel e componentes reutilizáveis do UiKit. Curso graduação em Tecnologia em Sistemas para Internet no IFRS e valorizo colaboração e inovação.",
     "image_alt": "Foto de Tiago"
   },
   "navbar": {
