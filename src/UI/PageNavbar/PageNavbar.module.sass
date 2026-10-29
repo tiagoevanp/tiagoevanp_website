@@ -11,7 +11,8 @@
     background-color: var(--page-background)
 
 .ellipsis-button
-    margin-inline-start: 32px
+    // Matches the 16px phone gutter of the navbar lists and the page content
+    margin-inline-start: 16px
 
     // Both navbar variants are in the static HTML and CSS picks one, so nothing shifts on hydration.
     // display: none also hides the other from assistive tech and the tab order.
@@ -55,10 +56,20 @@
     gap: 32px
     list-style: none
 
-    // Tablet widths: the desktop links plus icons (longer in pt-BR) need tighter spacing to fit
-    @media (min-width: $bp-tablet) and (max-width: 991.98px)
+    // Tablet widths: the desktop links plus icons (longer in pt-BR) need tighter spacing to fit.
+    // Phones: the menu button plus four icons only fit at 320px with it, and the sun icon is wider than the moon
+    @media (max-width: 991.98px)
         margin-inline: 16px
         gap: 16px
+
+.theme-button
+    // As wide as the sun icon (576/512 of 32px), which is 4px wider than the moon,
+    // so the icons before it don't move when the theme changes
+    width: 36px
+
+    // Centred both while the svg is inline (the button's text-align) and while hover makes it a block
+    svg
+        margin-inline: auto
 
 .navbar-list-desktop
     @media (max-width: $bp-mobile)

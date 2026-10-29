@@ -173,6 +173,7 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                 </li>
                 <li>
                     <IconButton
+                        className={styles['theme-button']}
                         icon={isDarkTheme ? 'sun' : 'moon'}
                         description={t('navbar.button_theme')}
                         variant='medium'
