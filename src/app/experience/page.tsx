@@ -34,7 +34,7 @@ const Experience = () => {
                 </div>
                 <div className={styles['job-info']}>
                     <div className={styles.technologies}>
-                        {technologies.map((tech) => <Tag key={tech}>{t(tech)}</Tag>)}
+                        {technologies.map((tech) => <Tag key={tech}>{tech}</Tag>)}
                     </div>
                     <p>
                         <span>
