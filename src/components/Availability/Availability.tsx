@@ -17,13 +17,17 @@ export const Availability = () => {
             <p className={styles.text}>
                 {t('home.availability_text')}
             </p>
-            <Button
-                className={styles.action}
-                href={ExternalLinks.linkedin}
-                aria-label={t('home.availability_linkedin_label')}
-            >
-                {t('home.availability_linkedin')}
-            </Button>
+            <div className={styles.actions}>
+                <Button
+                    href={ExternalLinks.linkedin}
+                    aria-label={t('home.availability_linkedin_label')}
+                >
+                    {t('home.availability_linkedin')}
+                </Button>
+                <Button href={ExternalLinks.email}>
+                    {t('home.availability_email')}
+                </Button>
+            </div>
         </div>
     );
 };
