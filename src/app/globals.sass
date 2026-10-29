@@ -47,15 +47,16 @@ a
   color: var(--a)
   text-decoration: none
 
-*:focus
-  outline-color: #305CDE
+:focus-visible
+  outline: 2px solid var(--focus-ring)
+  outline-offset: 2px
 
 .focused
-  outline-style: auto
-  outline-color: #305CDE
+  outline: 2px solid var(--focus-ring)
+  outline-offset: 2px
 
 .focused:focus-within path
-  fill: #305CDE
+  fill: var(--focus-ring)
 
 .fade-colors-transition
   transition: background-color 0.2s ease-in-out

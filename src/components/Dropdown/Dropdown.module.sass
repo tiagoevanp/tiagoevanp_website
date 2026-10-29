@@ -1,13 +1,17 @@
 .dropdown
     position: absolute
     width: 256px
-    top: -8px
+    // Just below the navbar's 4px bottom border, with the arrow overlapping it
+    top: calc(100% - 4px)
     right: 16px
     padding: 8px
     border-radius: 2px
     background-color: var(--dropdown-background)
     color: var(--dropdown-text)
+    list-style: none
     z-index: 10000
+    // The page focus ring disappears on the dropdown background
+    --focus-ring: var(--dropdown-focus-ring)
 
     &::before
         display: block

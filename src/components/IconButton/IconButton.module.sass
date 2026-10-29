@@ -22,6 +22,10 @@
                 & path
                     fill: var(--icon-fill-hover)
 
+    // Keyboard focus gets the hover colour too, without the hover motion
+    &:focus-visible svg path
+        fill: var(--icon-fill-hover)
+
     @media (prefers-reduced-motion: reduce)
         &:hover svg
             transform: none
