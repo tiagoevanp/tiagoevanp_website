@@ -12,6 +12,7 @@ export { getSkillDocLanguage, getSkillDocPath } from './paths';
 const storageKey = 'i18nextLng';
 let pathLanguage: string | undefined;
 let chosenLanguage: string | undefined;
+let detected = false;
 
 i18next.on('languageChanged', (lng) => {
     if (pathLanguage && lng !== pathLanguage) i18next.changeLanguage(pathLanguage);
@@ -38,15 +39,18 @@ export const useTranslation = () => {
 
     useEffect(() => {
         if (!lng) {
-            if (!pathLanguage) return;
+            if (!pathLanguage && detected) return;
 
+            detected = true;
             pathLanguage = undefined;
 
+            // Without a chosen language the detector picks the saved or browser one
             i18next.changeLanguage(chosenLanguage);
 
             return;
         }
 
+        detected = true;
         pathLanguage = lng;
 
         if (i18next.resolvedLanguage === lng) return;
