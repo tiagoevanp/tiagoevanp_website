@@ -1,22 +1,44 @@
+
+// Text first on phones and tablets, photo on the left from this width up
+$two-columns-breakpoint: 992px
+
 .container
     display: grid
-    grid-template-columns: repeat(auto-fit, minmax(256px, 1fr))
-    align-items: center
-    justify-content: space-around
-    height: calc(100vh - 96px)
-    padding: 32px
+    grid-template-columns: minmax(0, 1fr)
+    align-content: center
+    flex-grow: 1
+    min-width: 0
+    // dvh follows mobile browser toolbars, vh is the fallback
+    min-height: calc(100vh - 96px)
+    min-height: calc(100dvh - 96px)
+    padding: 24px 16px
     gap: 32px
-    overflow: auto
+
+    @media (min-width: $two-columns-breakpoint)
+        grid-template-columns: minmax(0, 5fr) minmax(0, 7fr)
+        align-items: center
+        max-width: 1200px
+        margin-inline: auto
+        padding: 32px
 
 .image-container
-    min-width: 256px
-    max-width: 512px
+    width: 100%
+    max-width: 200px
     rotate: 5deg
     padding: 8px
     background: linear-gradient(45deg, var(--home-image-secondary-background) 34%, var(--home-image-primary-background) 35%, var(--home-image-primary-background) 40%, var(--home-image-secondary-background) 41%, var(--home-image-secondary-background) 59%, var(--home-image-primary-background)  60%, var(--home-image-primary-background) 65%, var(--home-image-secondary-background) 66%), linear-gradient(135deg,var(--home-image-secondary-background) 34%, var(--home-image-primary-background) 35%, var(--home-image-primary-background) 40%, var(--home-image-secondary-background) 41%, var(--home-image-secondary-background) 59%, var(--home-image-primary-background)  60%, var(--home-image-primary-background) 65%, var(--home-image-secondary-background) 66%)
     background-size: 2em 2em
     background-color: transparent
     justify-self: center
+
+    @media (min-width: 768px)
+        max-width: 280px
+
+    // The photo comes after the text in the DOM, so place it in the first column explicitly
+    @media (min-width: $two-columns-breakpoint)
+        grid-column: 1
+        grid-row: 1
+        max-width: 512px
 
 .image
     rotate: -10deg
