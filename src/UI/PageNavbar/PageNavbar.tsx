@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useTheme } from 'next-themes';
-import { PropsWithChildren, startTransition, useState, useSyncExternalStore } from 'react';
+import { PropsWithChildren, startTransition, useEffect, useRef, useState, useSyncExternalStore } from 'react';
 
 import { Banner, Dropdown, DropdownOption, IconButton, Navbar, NavbarLink } from '@/components';
 import {
@@ -35,10 +35,16 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
     const [mobileDropdownIsOpen, setMobileDropdownOpen] = useState(false);
     const [languageDropdownIsOpen, setLanguageDropdownOpen] = useState(false);
     const [previousSidebarIsOpen, setPreviousSidebarIsOpen] = useState(sidebarIsOpen);
+    const languageToggleRef = useRef<HTMLButtonElement>(null);
+    const languageItemRef = useRef<HTMLLIElement>(null);
 
     // Undefined until hydrated, so the server and first client render match.
     // resolvedTheme follows the OS while the visitor hasn't picked a theme
     const isDarkTheme = !isHydrated || resolvedTheme === undefined ? undefined : resolvedTheme === 'dark';
+
+    const isHomePage = path === '/';
+    const isSkillDocsPage = path.match('/skill-docs') !== null;
+    const isExperiencePage = path.match('/experience') !== null;
 
     // Only one overlay at a time: opening the skill-docs sidebar drawer closes the navbar menus
     if (sidebarIsOpen !== previousSidebarIsOpen) {
@@ -50,11 +56,34 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
         }
     }
 
+    // Escape closes the language dropdown. Focus goes back to the toggle unless the visitor has moved on elsewhere
+    useEffect(() => {
+        if (!languageDropdownIsOpen) return;
+
+        const onKeyDown = (e: KeyboardEvent) => {
+            if (e.key !== 'Escape') return;
+
+            const focused = document.activeElement;
+
+            setLanguageDropdownOpen(false);
+
+            if (focused === document.body || languageItemRef.current?.contains(focused)) {
+                languageToggleRef.current?.focus();
+            }
+        };
+
+        document.addEventListener('keydown', onKeyDown);
+
+        return () => document.removeEventListener('keydown', onKeyDown);
+    }, [languageDropdownIsOpen]);
+
     const selectLanguage = async (newLanguage: string) => {
         const pick = ++latestPick;
 
         saveLanguage(newLanguage);
         setLanguageDropdownOpen(false);
+        // The picked option unmounts with the dropdown, so keep focus on the toggle
+        languageToggleRef.current?.focus();
 
         if (getSkillDocLanguage(path)) {
             const { pathname: pickPathname, search, hash } = window.location;
@@ -81,14 +110,19 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
             {!isMobile
                 ? <ul className={styles['navbar-list']}>
                     <li>
-                        <NavbarLink to='/' className={path === '/' ? styles['navbar-link-active'] : ''}>
+                        <NavbarLink
+                            to='/'
+                            className={isHomePage ? styles['navbar-link-active'] : ''}
+                            aria-current={isHomePage ? 'page' : undefined}
+                        >
                             {t('navbar.home_link')}
                         </NavbarLink>
                     </li>
                     <li>
                         <NavbarLink
                             to={`/skill-docs/semantic/${language}`}
-                            className={path.match('/skill-docs') !== null ? styles['navbar-link-active'] : ''}
+                            className={isSkillDocsPage ? styles['navbar-link-active'] : ''}
+                            aria-current={isSkillDocsPage ? 'page' : undefined}
                         >
                             {t('navbar.skills_link')}
                         </NavbarLink>
@@ -96,7 +130,8 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                     <li>
                         <NavbarLink
                             to={'/experience'}
-                            className={path.match('/experience') !== null ? styles['navbar-link-active'] : ''}
+                            className={isExperiencePage ? styles['navbar-link-active'] : ''}
+                            aria-current={isExperiencePage ? 'page' : undefined}
                         >
                             {t('navbar.experience')}
                         </NavbarLink>
@@ -141,8 +176,10 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                         onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
                     />
                 </li>
-                <li>
+                {/* The dropdown follows its toggle, so it sits inside the navbar landmark and is next in tab order */}
+                <li ref={languageItemRef}>
                     <IconButton
+                        ref={languageToggleRef}
                         icon='language'
                         description={t('navbar.button_language')}
                         variant='medium'
@@ -153,31 +190,40 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                             setSidebarOpen(false);
                         }}
                     />
+                    {languageDropdownIsOpen &&
+                        <Dropdown name="language">
+                            {/* Each language is named in itself, so it reads the same in any UI language */}
+                            <DropdownOption lang='en' selected={language === 'en'} onClick={() => selectLanguage('en')}>
+                                English
+                            </DropdownOption>
+                            <DropdownOption
+                                lang='pt-BR'
+                                selected={language === 'pt-BR'}
+                                onClick={() => selectLanguage('pt-BR')}
+                            >
+                                Português (Brasil)
+                            </DropdownOption>
+                        </Dropdown>
+                    }
                 </li>
             </ul>
         </Navbar>
         <div className={styles['dropdown-container']}>
-            {languageDropdownIsOpen &&
-                <Dropdown name="language">
-                    {/* Each language is named in itself, so it reads the same in any UI language */}
-                    <DropdownOption lang='en' checked={language === 'en'} onClick={() => selectLanguage('en')}>
-                        English
-                    </DropdownOption>
-                    <DropdownOption lang='pt-BR' checked={language === 'pt-BR'} onClick={() => selectLanguage('pt-BR')}>
-                        Português (Brasil)
-                    </DropdownOption>
-                </Dropdown>
-            }
             {mobileDropdownIsOpen && <nav id='mobile-menu' className={styles['mobile-dropdown']}>
                 <ul className='fade-colors-transition'>
                     <li>
-                        <Link href='/' onClick={() => setMobileDropdownOpen(false)}>
+                        <Link
+                            href='/'
+                            aria-current={isHomePage ? 'page' : undefined}
+                            onClick={() => setMobileDropdownOpen(false)}
+                        >
                             {t('navbar.home_link')}
                         </Link>
                     </li>
                     <li>
                         <Link
                             href={`/skill-docs/semantic/${language}`}
+                            aria-current={isSkillDocsPage ? 'page' : undefined}
                             onClick={() => setMobileDropdownOpen(false)}
                         >
                             {t('navbar.skills_link')}
@@ -186,6 +232,7 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                     <li>
                         <Link
                             href={'/experience'}
+                            aria-current={isExperiencePage ? 'page' : undefined}
                             onClick={() => setMobileDropdownOpen(false)}
                         >
                             {t('navbar.experience')}

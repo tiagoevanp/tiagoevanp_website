@@ -30,6 +30,10 @@
             padding: 16px
             color: inherit
 
+            // The links span the full width, so an outside ring would be cut off at the screen edges
+            &:focus-visible
+                outline-offset: -4px
+
 .navbar-list
     display: flex
     align-items: center
