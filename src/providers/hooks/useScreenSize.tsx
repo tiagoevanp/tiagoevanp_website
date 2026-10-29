@@ -1,31 +1,34 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useSyncExternalStore } from 'react';
 
-export const useScreenSize = () => {
-    const [screenSize, setScreenSize] = useState({
-        width: 0,
-        height: 0,
-    });
+type ScreenSize = {
+    width: number;
+    height: number;
+};
 
-    useEffect(() => {
-        setScreenSize({ width: window.innerWidth, height: window.innerHeight });
-        const handleResize = () => {
-            setScreenSize({
-                width: window.innerWidth,
-                height: window.innerHeight,
-            });
-        };
+let screenSize: ScreenSize | undefined;
 
-        window.addEventListener('resize', handleResize);
+const subscribe = (onResize: () => void) => {
+    window.addEventListener('resize', onResize);
 
-        // Clean up the event listener when the component unmounts
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []); // Empty dependency array ensures the effect runs only once on mount
+    return () => {
+        window.removeEventListener('resize', onResize);
+    };
+};
+
+// Returns the same object while the size is unchanged, so it doesn't re-render on every read
+const getSnapshot = () => {
+    if (screenSize?.width !== window.innerWidth || screenSize.height !== window.innerHeight) {
+        screenSize = { width: window.innerWidth, height: window.innerHeight };
+    }
 
     return screenSize;
 };
+
+// Unknown on the server (static export); hydration uses this too, so the size is only read after it
+const getServerSnapshot = () => undefined;
+
+export const useScreenSize = () => useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
 export default useScreenSize;

@@ -12,7 +12,7 @@ type ButtonProps = {
     | { href: string; onClick?: never; ref?: never }
 );
 
-export const Button = (props: ButtonProps) => {
+export const Button = ({ ref, ...props }: ButtonProps) => {
     const className = props.className ? `${styles.button} ${props.className}` : styles.button;
 
     if (props.href !== undefined) {
@@ -31,7 +31,7 @@ export const Button = (props: ButtonProps) => {
 
     return (
         <button
-            ref={props.ref}
+            ref={ref}
             className={className}
             onClick={props.onClick}
             aria-label={props['aria-label']}

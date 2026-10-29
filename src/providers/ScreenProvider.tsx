@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, PropsWithChildren, useEffect, useState } from 'react';
+import { createContext, PropsWithChildren } from 'react';
 
 import useScreenSize from './hooks/useScreenSize';
 
@@ -10,42 +10,29 @@ type ScreenContextType = {
     isMobile: boolean;
 };
 
-export const ScreenContext = createContext<ScreenContextType>({
-    isDesktop: false,
-    isTablet: false,
-    isMobile: false,
-});
+// Shared objects keep the context value stable while the breakpoint is unchanged
+const unknownScreen = { isDesktop: false, isTablet: false, isMobile: false };
+const mobileScreen = { isDesktop: false, isTablet: false, isMobile: true };
+const tabletScreen = { isDesktop: false, isTablet: true, isMobile: false };
+const desktopScreen = { isDesktop: true, isTablet: false, isMobile: false };
+
+export const ScreenContext = createContext<ScreenContextType>(unknownScreen);
+
+const getScreen = (width: number | undefined) => {
+    // Undefined until hydrated, so the server and first client render match
+    if (width === undefined) return unknownScreen;
+
+    if (width < 768) return mobileScreen;
+
+    if (width < 992) return tabletScreen;
+
+    return desktopScreen;
+};
 
 export function ScreenProvider({
     children,
 }: PropsWithChildren) {
-    const { width } = useScreenSize();
-    const [value, setValue] = useState({ isDesktop: false, isTablet: false, isMobile: false });
-
-    useEffect(() => {
-        if (width < 768) {
-            return setValue({
-                isDesktop: false,
-                isTablet: false,
-                isMobile: true,
-            });
-        }
-
-        if (width < 992) {
-            return setValue({
-                isDesktop: false,
-                isTablet: true,
-                isMobile: false,
-            });
-        }
-
-        return setValue({
-            isDesktop: true,
-            isTablet: false,
-            isMobile: false,
-        });
-
-    }, [width]);
+    const value = getScreen(useScreenSize()?.width);
 
     return <ScreenContext.Provider value={value}>{children}</ScreenContext.Provider>;
 }

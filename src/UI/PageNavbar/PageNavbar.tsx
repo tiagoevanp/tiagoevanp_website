@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useTheme } from 'next-themes';
-import { PropsWithChildren, startTransition, useEffect, useState } from 'react';
+import { PropsWithChildren, startTransition, useState, useSyncExternalStore } from 'react';
 
 import { Banner, Dropdown, DropdownOption, IconButton, Navbar, NavbarLink } from '@/components';
 import {
@@ -21,6 +21,9 @@ import styles from './PageNavbar.module.sass';
 
 let latestPick = 0;
 
+// Nothing to subscribe to: only tells hydration (server snapshot) apart from later renders
+const subscribeToNothing = () => () => {};
+
 export const PageNavbar = ({ children }: PropsWithChildren) => {
     const { t, i18n: { language, changeLanguage, loadLanguages } } = useTranslation();
     const { resolvedTheme, setTheme } = useTheme();
@@ -28,10 +31,24 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
     const { isOpen: sidebarIsOpen, setOpen: setSidebarOpen } = useSidebarContext();
     const path = usePathname();
     const router = useRouter();
-    // Undefined until mounted, so the server and first client render match
-    const [isDarkTheme, setDarkTheme] = useState<boolean>();
+    const isHydrated = useSyncExternalStore(subscribeToNothing, () => true, () => false);
     const [mobileDropdownIsOpen, setMobileDropdownOpen] = useState(false);
     const [languageDropdownIsOpen, setLanguageDropdownOpen] = useState(false);
+    const [previousSidebarIsOpen, setPreviousSidebarIsOpen] = useState(sidebarIsOpen);
+
+    // Undefined until hydrated, so the server and first client render match.
+    // resolvedTheme follows the OS while the visitor hasn't picked a theme
+    const isDarkTheme = !isHydrated || resolvedTheme === undefined ? undefined : resolvedTheme === 'dark';
+
+    // Only one overlay at a time: opening the skill-docs sidebar drawer closes the navbar menus
+    if (sidebarIsOpen !== previousSidebarIsOpen) {
+        setPreviousSidebarIsOpen(sidebarIsOpen);
+
+        if (sidebarIsOpen) {
+            setMobileDropdownOpen(false);
+            setLanguageDropdownOpen(false);
+        }
+    }
 
     const selectLanguage = async (newLanguage: string) => {
         const pick = ++latestPick;
@@ -58,19 +75,6 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
 
         changeLanguage(newLanguage);
     };
-
-    // resolvedTheme follows the OS while the visitor hasn't picked a theme
-    useEffect(() => {
-        setDarkTheme(resolvedTheme === undefined ? undefined : resolvedTheme === 'dark');
-    }, [resolvedTheme]);
-
-    // Only one overlay at a time: opening the skill-docs sidebar drawer closes the navbar menus
-    useEffect(() => {
-        if (sidebarIsOpen) {
-            setMobileDropdownOpen(false);
-            setLanguageDropdownOpen(false);
-        }
-    }, [sidebarIsOpen]);
 
     return <div className={`fade-colors-transition ${styles.page}`}>
         <Navbar>

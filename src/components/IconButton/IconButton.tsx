@@ -19,7 +19,7 @@ type IconButtonProps = Omit<SvgIconProps, 'name' | 'variant' | 'label'> & {
     | { href: string; onClick?: never; ref?: never }
 );
 
-export const IconButton = (props: IconButtonProps) => {
+export const IconButton = ({ ref, ...props }: IconButtonProps) => {
     const baseClassName = `fade-colors-transition ${styles.button} ${styles[props.variant]}`;
     const className = props.className ? `${baseClassName} ${props.className}` : baseClassName;
     const content = <SvgIcon
@@ -43,7 +43,7 @@ export const IconButton = (props: IconButtonProps) => {
 
     return (
         <button
-            ref={props.ref}
+            ref={ref}
             className={className}
             onClick={props.onClick}
             aria-expanded={props['aria-expanded']}
