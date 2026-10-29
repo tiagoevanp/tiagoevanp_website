@@ -12,6 +12,7 @@ type IconButtonProps = Omit<SvgIconProps, 'name' | 'variant' | 'label'> & {
     style?: React.CSSProperties;
     'aria-expanded'?: boolean;
     'aria-controls'?: string;
+    'aria-pressed'?: boolean;
 } & (
     | { onClick: () => void; href?: never; ref?: Ref<HTMLButtonElement> }
     // With href it renders an external link that opens in a new tab
@@ -47,6 +48,7 @@ export const IconButton = (props: IconButtonProps) => {
             onClick={props.onClick}
             aria-expanded={props['aria-expanded']}
             aria-controls={props['aria-controls']}
+            aria-pressed={props['aria-pressed']}
             aria-label={props.description}
         >
             {content}

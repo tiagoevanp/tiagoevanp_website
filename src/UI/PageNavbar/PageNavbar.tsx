@@ -23,12 +23,13 @@ let latestPick = 0;
 
 export const PageNavbar = ({ children }: PropsWithChildren) => {
     const { t, i18n: { language, changeLanguage, loadLanguages } } = useTranslation();
-    const { theme, setTheme } = useTheme();
+    const { resolvedTheme, setTheme } = useTheme();
     const { isMobile } = useScreenContext();
     const { isOpen: sidebarIsOpen, setOpen: setSidebarOpen } = useSidebarContext();
     const path = usePathname();
     const router = useRouter();
-    const [toggleThemeIcon, setToggleThemeIcon] = useState<'sun' | 'moon'>('moon');
+    // Undefined until mounted, so the server and first client render match
+    const [isDarkTheme, setDarkTheme] = useState<boolean>();
     const [mobileDropdownIsOpen, setMobileDropdownOpen] = useState(false);
     const [languageDropdownIsOpen, setLanguageDropdownOpen] = useState(false);
 
@@ -58,9 +59,10 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
         changeLanguage(newLanguage);
     };
 
+    // resolvedTheme follows the OS while the visitor hasn't picked a theme
     useEffect(() => {
-        setToggleThemeIcon(theme === 'dark' ? 'sun' : 'moon');
-    }, [theme]);
+        setDarkTheme(resolvedTheme === undefined ? undefined : resolvedTheme === 'dark');
+    }, [resolvedTheme]);
 
     // Only one overlay at a time: opening the skill-docs sidebar drawer closes the navbar menus
     useEffect(() => {
@@ -128,10 +130,11 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                 </li>
                 <li>
                     <IconButton
-                        icon={toggleThemeIcon}
+                        icon={isDarkTheme ? 'sun' : 'moon'}
                         description={t('navbar.button_theme')}
                         variant='medium'
-                        onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                        aria-pressed={isDarkTheme}
+                        onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
                     />
                 </li>
                 <li>
