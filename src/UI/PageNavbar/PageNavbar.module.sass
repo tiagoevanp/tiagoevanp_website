@@ -1,3 +1,5 @@
+@use '../../app/breakpoints' as *
+
 .page
     display: grid
     grid-template-rows: 96px 0 0 auto 
@@ -11,6 +13,13 @@
 .ellipsis-button
     margin-inline-start: 32px
 
+    // Both navbar variants are in the static HTML and CSS picks one, so nothing shifts on hydration.
+    // display: none also hides the other from assistive tech and the tab order.
+    // The doubled class outranks IconButton's own display whatever order the CSS chunks load in
+    @media (min-width: $bp-tablet)
+        &#{&}
+            display: none
+
 .dropdown-container
     position: relative
 
@@ -18,6 +27,11 @@
     position: absolute
     width: 100%
     z-index: 1100
+
+    // Never shown above phone widths, even before the resize handler closes it
+    @media (min-width: $bp-tablet)
+        display: none
+
     ul
         background-color: var(--page-background)
         color: var(--navbar-link-color)
@@ -42,9 +56,13 @@
     list-style: none
 
     // Tablet widths: the desktop links plus icons (longer in pt-BR) need tighter spacing to fit
-    @media (min-width: 768px) and (max-width: 991.98px)
+    @media (min-width: $bp-tablet) and (max-width: 991.98px)
         margin-inline: 16px
         gap: 16px
+
+.navbar-list-desktop
+    @media (max-width: $bp-mobile)
+        display: none
 
 .navbar-link-active
     background-color: var(--navbar-link-active-background)

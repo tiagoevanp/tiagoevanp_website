@@ -1,3 +1,5 @@
+@use '../../breakpoints' as *
+
 .tab
     font-size: 18px
     font-weight: 400
@@ -21,7 +23,7 @@
             padding: 16px
 
     // Tighter cells so the three columns fit narrow screens
-    @media (max-width: 767.98px)
+    @media (max-width: $bp-mobile)
         font-size: 14px
 
         caption

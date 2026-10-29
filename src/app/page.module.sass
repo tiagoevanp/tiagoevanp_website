@@ -1,3 +1,4 @@
+@use 'breakpoints' as *
 
 // Text first on phones and tablets, photo on the left from this width up
 $two-columns-breakpoint: 992px
@@ -39,7 +40,7 @@ $two-columns-breakpoint: 992px
     background-color: transparent
     justify-self: center
 
-    @media (min-width: 768px)
+    @media (min-width: $bp-tablet)
         max-width: 280px
 
     // The photo comes after the text in the DOM, so place it in the first column explicitly
