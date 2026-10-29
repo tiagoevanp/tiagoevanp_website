@@ -84,3 +84,7 @@
 .content
     display: flex
 
+    // Focusable only from script (tabIndex -1) so focus has somewhere to go when the banner is dismissed
+    &:focus
+        outline: none
+
