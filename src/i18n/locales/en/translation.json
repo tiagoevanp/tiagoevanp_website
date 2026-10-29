@@ -18,7 +18,16 @@
     "availability_linkedin": "Message me on LinkedIn",
     "availability_linkedin_label": "Message me on LinkedIn (opens in new tab)",
     "paragraph": "Full-stack software engineer working with JavaScript, TypeScript, PHP and Python. I spent five years at Rocket.Chat building front-end features for an open-source communication platform used by millions, including the Omnichannel suite and reusable UiKit components. I'm pursuing a bachelor's degree in Internet Systems Technology at IFRS and value collaboration and innovation.",
-    "image_alt": "Tiago's photo"
+    "image_alt": "Tiago's photo",
+    "stack_title": "Tech stack",
+    "skill_docs_title": "From my skill docs",
+    "skill_docs_summaries": {
+      "semantic": "Why the right HTML element matters",
+      "aria": "Roles, states and properties for accessible components",
+      "state_management": "Redux vs Context API, compared"
+    },
+    "skill_docs_read": "Read",
+    "skill_docs_see_all": "See all articles"
   },
   "navbar": {
     "home_link": "Home",
