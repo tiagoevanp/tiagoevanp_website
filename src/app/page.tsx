@@ -22,6 +22,7 @@ export default function Home() {
                 src='/tiago.jpg'
                 placeholder='/tiago_placeholder.jpg'
                 alt={t('home.image_alt')}
+                preload
             />
         </div>
     );
