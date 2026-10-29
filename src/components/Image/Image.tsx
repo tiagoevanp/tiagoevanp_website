@@ -9,6 +9,7 @@ type ImageProps = {
     containerStyle: string;
     imageStyle: string;
     caption?: string;
+    preload?: boolean;
     onClick?: () => void;
 };
 
@@ -19,6 +20,7 @@ export const Image = ({
     containerStyle,
     imageStyle,
     caption,
+    preload,
     onClick,
 }: ImageProps) => {
     return (
@@ -32,6 +34,8 @@ export const Image = ({
                 onClick={onClick}
                 placeholder='blur'
                 blurDataURL={placeholder}
+                preload={preload}
+                fetchPriority={preload ? 'high' : undefined}
             />
             { caption && <figcaption className={styles.figcaption}>{caption}</figcaption> }
         </figure>
