@@ -1,16 +1,14 @@
 .banner
     display: flex
-    position: absolute
     justify-content: space-between
     align-items: center
     gap: 16px
-    width: 100vw
+    width: 100%
     min-height: 48px
     max-height: 96px
     padding-inline: 16px
     background-color: var(--banner-background)
     color: var(--banner-text)
-    z-index: 1000
 
 .content
     display: flex
@@ -26,7 +24,8 @@
             fill: var(--banner-icon-warning)
 
 .hidden
-    visibility: hidden
+    // Takes no space once dismissed, so the content moves back up
+    display: none
 
 .close
     display: flex

@@ -2,7 +2,8 @@
 
 .page
     display: grid
-    grid-template-rows: 96px 0 0 auto 
+    // The banner row is in flow and collapses when there is no banner; 1fr makes the content fill the rest
+    grid-template-rows: 96px 0 auto 1fr
     // minmax(0, 1fr) keeps wide content from stretching the page past the viewport
     grid-template-columns: minmax(0, 1fr)
     min-height: 100vh
@@ -83,5 +84,3 @@
 .content
     display: flex
 
-.banner-container
-    position: relative
