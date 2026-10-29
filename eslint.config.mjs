@@ -25,9 +25,6 @@ const eslintConfig = [
             'array-bracket-spacing': ['error', 'never'],
             'comma-spacing': ['error', { 'before': false, 'after': true }],
             'eol-last': ['error'],
-            // React Compiler rules added by eslint-config-next 16; existing code still needs refactoring for them
-            'react-hooks/set-state-in-effect': 'off',
-            'react-hooks/refs': 'off',
         },
     },
     simpleImport,
