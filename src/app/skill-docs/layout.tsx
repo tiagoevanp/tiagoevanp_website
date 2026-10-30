@@ -39,7 +39,34 @@ export default function SkillDocsLayout({
                 block.setAttribute('data-hljs-highlighted', 'true');
             }
         });
-    }, [path]);
+
+        // Blocks that scroll sideways need a Tab stop so keyboard users can scroll them (Safari
+        // doesn't make scroll areas focusable on its own). Blocks that fit get none.
+        const blocks = Array.from(document.querySelectorAll<HTMLElement>('pre > code'));
+
+        const updateFocusable = (block: HTMLElement) => {
+            if (block.scrollWidth > block.clientWidth) {
+                block.setAttribute('tabindex', '0');
+                // The code role can't be named, so the block is labelled as a group
+                block.setAttribute('role', 'group');
+                block.setAttribute('aria-label', t('skill_docs.code_example'));
+            } else {
+                block.removeAttribute('tabindex');
+                block.removeAttribute('role');
+                block.removeAttribute('aria-label');
+            }
+        };
+
+        const observer = new ResizeObserver((entries) => {
+            entries.forEach((entry) => updateFocusable(entry.target as HTMLElement));
+        });
+
+        blocks.forEach((block) => observer.observe(block));
+        // The web font can be wider than the fallback without changing the block's size
+        document.fonts.ready.then(() => blocks.forEach(updateFocusable));
+
+        return () => observer.disconnect();
+    }, [path, t]);
 
     // The drawer only exists on smaller screens (see layout.module.sass), so this only runs there
     useEffect(() => {

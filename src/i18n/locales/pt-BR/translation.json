@@ -63,6 +63,7 @@
     "toggle": "Tópicos"
   },
   "skill_docs": {
+    "code_example": "Exemplo de código",
     "example_animation_transitions": {
       "hover_me": "Passe o mouse",
       "click_me": "Clique aqui",

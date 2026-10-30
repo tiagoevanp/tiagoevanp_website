@@ -63,6 +63,7 @@
     "toggle": "Topics"
   },
   "skill_docs": {
+    "code_example": "Code example",
     "example_animation_transitions": {
       "hover_me": "Hover me",
       "click_me": "Click here",
