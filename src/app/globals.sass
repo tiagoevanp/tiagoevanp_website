@@ -7,10 +7,14 @@ html
   min-height: 100vh;
   height: 100%;
   overflow-x: hidden
+  // The document scrolls on every page, so keep hash links, PageDown and focused elements clear of the sticky header
+  scroll-padding-top: var(--navbar-height)
 
 body
   min-height: 100vh;
-  overflow-x: hidden
+  // clip, not hidden: hidden would make body a scroll container that never scrolls, and the sticky header would
+  // stick to it instead of the viewport
+  overflow-x: clip
 
 body
   font-family: var(--font-noto-sans), sans-serif

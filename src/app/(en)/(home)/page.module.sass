@@ -22,8 +22,8 @@ $two-columns-breakpoint: 992px
     grid-template-columns: minmax(0, 1fr)
     align-content: center
     // dvh follows mobile browser toolbars, vh is the fallback
-    min-height: calc(100vh - 96px)
-    min-height: calc(100dvh - 96px)
+    min-height: calc(100vh - var(--navbar-height))
+    min-height: calc(100dvh - var(--navbar-height))
     gap: 32px
 
     @media (min-width: $two-columns-breakpoint)
