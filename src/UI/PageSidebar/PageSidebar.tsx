@@ -26,25 +26,28 @@ export const PageSidebar = ({ onNavigate }: PageSidebarProps) => {
         <ul>
             {Object.keys(groups).map((name) => {
                 if (groups[name].length > 0) {
-                    return <div key={name}><li className={styles.group}><h2>{name}</h2></li> {
-                        groups[name].map(({ id, href, title }) => {
-                            return (
-                                <li key={id} >
-                                    <Link
-                                        href={`${skillsPath}/${href}/${i18n.language}`}
-                                        onClick={onNavigate}
-                                        className={
-                                            path.match(href) !== null
-                                                ? `${styles['link-active']} ${styles.link}`
-                                                : styles.link
-                                        }
-                                    >
-                                        <p>{t(`sidebar.items.${title}`)}</p>
-                                    </Link>
-                                </li>
-                            );
-                        })
-                    }</div>;
+                    return <li key={name} className={styles.group}>
+                        <h2>{name}</h2>
+                        <ul>
+                            {groups[name].map(({ id, href, title }) => {
+                                return (
+                                    <li key={id} >
+                                        <Link
+                                            href={`${skillsPath}/${href}/${i18n.language}`}
+                                            onClick={onNavigate}
+                                            className={
+                                                path.match(href) !== null
+                                                    ? `${styles['link-active']} ${styles.link}`
+                                                    : styles.link
+                                            }
+                                        >
+                                            <p>{t(`sidebar.items.${title}`)}</p>
+                                        </Link>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </li>;
                 }
             })}
         </ul>
