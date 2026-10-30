@@ -98,140 +98,147 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
     };
 
     return <div className={`fade-colors-transition ${styles.page}`}>
-        <Navbar>
-            {/* Both variants are rendered; CSS shows one per breakpoint so the static HTML matches the screen */}
-            <ul className={`${styles['navbar-list']} ${styles['navbar-list-desktop']}`}>
-                <li>
-                    <NavbarLink
-                        to='/'
-                        className={isHomePage ? styles['navbar-link-active'] : ''}
-                        aria-current={isHomePage ? 'page' : undefined}
-                    >
-                        {t('navbar.home_link')}
-                    </NavbarLink>
-                </li>
-                <li>
-                    <NavbarLink
-                        to='/skill-docs'
-                        className={isSkillDocsPage ? styles['navbar-link-active'] : ''}
-                        aria-current={isSkillDocsPage ? 'page' : undefined}
-                    >
-                        {t('navbar.skills_link')}
-                    </NavbarLink>
-                </li>
-                <li>
-                    <NavbarLink
-                        to={'/experience'}
-                        className={isExperiencePage ? styles['navbar-link-active'] : ''}
-                        aria-current={isExperiencePage ? 'page' : undefined}
-                    >
-                        {t('navbar.experience')}
-                    </NavbarLink>
-                </li>
-            </ul>
-            <IconButton
-                className={styles['ellipsis-button']}
-                icon='ellipsis'
-                description={t('navbar.button_ellipsis')}
-                variant='medium'
-                aria-expanded={mobileDropdownIsOpen}
-                aria-controls='mobile-menu'
-                onClick={() => {
-                    setMobileDropdownOpen((value) => !value);
-                    setSidebarOpen(false);
-                }}
-            />
-            <ul style={{ justifyContent: 'flex-end' }} className={styles['navbar-list']}>
-                <li>
-                    <IconButton
-                        icon='github'
-                        description={t('navbar.button_github')}
-                        variant='medium'
-                        href={ExternalLinks.github}
-                    />
-                </li>
-                <li>
-                    <IconButton
-                        icon='linkedin'
-                        description={t('navbar.button_linkedin')}
-                        variant='medium'
-                        href={ExternalLinks.linkedin}
-                    />
-                </li>
-                <li>
-                    <IconButton
-                        className={styles['theme-button']}
-                        icon={isDarkTheme ? 'sun' : 'moon'}
-                        description={t('navbar.button_theme')}
-                        variant='medium'
-                        aria-pressed={isDarkTheme}
-                        onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
-                    />
-                </li>
-                {/* The dropdown follows its toggle, so it sits inside the navbar landmark and is next in tab order */}
-                <li ref={languageItemRef}>
-                    <IconButton
-                        ref={languageToggleRef}
-                        icon='language'
-                        description={t('navbar.button_language')}
-                        variant='medium'
-                        aria-expanded={languageDropdownIsOpen}
-                        aria-controls='language'
-                        onClick={() => {
-                            setLanguageDropdownOpen((value) => !value);
-                            setSidebarOpen(false);
-                        }}
-                    />
-                    {languageDropdownIsOpen &&
-                        <Dropdown name="language">
-                            {/* Each language is named in itself, so it reads the same in any UI language */}
-                            <DropdownOption lang='en' selected={language === 'en'} onClick={() => selectLanguage('en')}>
-                                English
-                            </DropdownOption>
-                            <DropdownOption
-                                lang='pt-BR'
-                                selected={language === 'pt-BR'}
-                                onClick={() => selectLanguage('pt-BR')}
-                            >
-                                Português (Brasil)
-                            </DropdownOption>
-                        </Dropdown>
-                    }
-                </li>
-            </ul>
-        </Navbar>
-        <div className={styles['dropdown-container']}>
-            {mobileDropdownIsOpen && <nav id='mobile-menu' className={styles['mobile-dropdown']}>
-                <ul className='fade-colors-transition'>
+        <div className={`fade-colors-transition ${styles.header}`}>
+            <Navbar>
+                {/* Both variants are rendered; CSS shows one per breakpoint so the static HTML matches the screen */}
+                <ul className={`${styles['navbar-list']} ${styles['navbar-list-desktop']}`}>
                     <li>
-                        <Link
-                            href='/'
+                        <NavbarLink
+                            to='/'
+                            className={isHomePage ? styles['navbar-link-active'] : ''}
                             aria-current={isHomePage ? 'page' : undefined}
-                            onClick={() => setMobileDropdownOpen(false)}
                         >
                             {t('navbar.home_link')}
-                        </Link>
+                        </NavbarLink>
                     </li>
                     <li>
-                        <Link
-                            href='/skill-docs'
+                        <NavbarLink
+                            to='/skill-docs'
+                            className={isSkillDocsPage ? styles['navbar-link-active'] : ''}
                             aria-current={isSkillDocsPage ? 'page' : undefined}
-                            onClick={() => setMobileDropdownOpen(false)}
                         >
                             {t('navbar.skills_link')}
-                        </Link>
+                        </NavbarLink>
                     </li>
                     <li>
-                        <Link
-                            href={'/experience'}
+                        <NavbarLink
+                            to={'/experience'}
+                            className={isExperiencePage ? styles['navbar-link-active'] : ''}
                             aria-current={isExperiencePage ? 'page' : undefined}
-                            onClick={() => setMobileDropdownOpen(false)}
                         >
                             {t('navbar.experience')}
-                        </Link>
+                        </NavbarLink>
                     </li>
                 </ul>
-            </nav>}
+                <IconButton
+                    className={styles['ellipsis-button']}
+                    icon='ellipsis'
+                    description={t('navbar.button_ellipsis')}
+                    variant='medium'
+                    aria-expanded={mobileDropdownIsOpen}
+                    aria-controls='mobile-menu'
+                    onClick={() => {
+                        setMobileDropdownOpen((value) => !value);
+                        setSidebarOpen(false);
+                    }}
+                />
+                <ul style={{ justifyContent: 'flex-end' }} className={styles['navbar-list']}>
+                    <li>
+                        <IconButton
+                            icon='github'
+                            description={t('navbar.button_github')}
+                            variant='medium'
+                            href={ExternalLinks.github}
+                        />
+                    </li>
+                    <li>
+                        <IconButton
+                            icon='linkedin'
+                            description={t('navbar.button_linkedin')}
+                            variant='medium'
+                            href={ExternalLinks.linkedin}
+                        />
+                    </li>
+                    <li>
+                        <IconButton
+                            className={styles['theme-button']}
+                            icon={isDarkTheme ? 'sun' : 'moon'}
+                            description={t('navbar.button_theme')}
+                            variant='medium'
+                            aria-pressed={isDarkTheme}
+                            onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+                        />
+                    </li>
+                    {/* The dropdown follows its toggle, so it sits inside the navbar landmark and is next in
+                        tab order */}
+                    <li ref={languageItemRef}>
+                        <IconButton
+                            ref={languageToggleRef}
+                            icon='language'
+                            description={t('navbar.button_language')}
+                            variant='medium'
+                            aria-expanded={languageDropdownIsOpen}
+                            aria-controls='language'
+                            onClick={() => {
+                                setLanguageDropdownOpen((value) => !value);
+                                setSidebarOpen(false);
+                            }}
+                        />
+                        {languageDropdownIsOpen &&
+                            <Dropdown name="language">
+                                {/* Each language is named in itself, so it reads the same in any UI language */}
+                                <DropdownOption
+                                    lang='en'
+                                    selected={language === 'en'}
+                                    onClick={() => selectLanguage('en')}
+                                >
+                                    English
+                                </DropdownOption>
+                                <DropdownOption
+                                    lang='pt-BR'
+                                    selected={language === 'pt-BR'}
+                                    onClick={() => selectLanguage('pt-BR')}
+                                >
+                                    Português (Brasil)
+                                </DropdownOption>
+                            </Dropdown>
+                        }
+                    </li>
+                </ul>
+            </Navbar>
+            <div className={styles['dropdown-container']}>
+                {mobileDropdownIsOpen && <nav id='mobile-menu' className={styles['mobile-dropdown']}>
+                    <ul className='fade-colors-transition'>
+                        <li>
+                            <Link
+                                href='/'
+                                aria-current={isHomePage ? 'page' : undefined}
+                                onClick={() => setMobileDropdownOpen(false)}
+                            >
+                                {t('navbar.home_link')}
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                href='/skill-docs'
+                                aria-current={isSkillDocsPage ? 'page' : undefined}
+                                onClick={() => setMobileDropdownOpen(false)}
+                            >
+                                {t('navbar.skills_link')}
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                href={'/experience'}
+                                aria-current={isExperiencePage ? 'page' : undefined}
+                                onClick={() => setMobileDropdownOpen(false)}
+                            >
+                                {t('navbar.experience')}
+                            </Link>
+                        </li>
+                    </ul>
+                </nav>}
+            </div>
         </div>
         <main className={styles.content} tabIndex={-1}>
             {children}

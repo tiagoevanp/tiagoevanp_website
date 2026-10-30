@@ -2,8 +2,8 @@
 
 .page
     display: grid
-    // The navbar, the zero-height mobile menu anchor, and the content; 1fr makes the content fill the rest
-    grid-template-rows: 96px 0 1fr
+    // The sticky header and the content; 1fr makes the content fill the rest
+    grid-template-rows: var(--navbar-height) 1fr
     // minmax(0, 1fr) keeps wide content from stretching the page past the viewport
     grid-template-columns: minmax(0, 1fr)
     min-height: 100vh
@@ -21,6 +21,15 @@
     @media (min-width: $bp-tablet)
         &#{&}
             display: none
+
+// The navbar plus the mobile menu anchored under it, so the menu opens below the header however far the page has
+// scrolled. Above the skill-docs drawer and toolbar (--elevated-index), so the navbar menus open over them
+.header
+    position: sticky
+    top: 0
+    z-index: 1200
+    // Opaque (the navbar itself is transparent), so the page doesn't show through as it scrolls underneath
+    background-color: var(--page-background)
 
 .dropdown-container
     position: relative
