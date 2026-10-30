@@ -38,6 +38,8 @@ jobs:
         with:
           repository: 'tiagoevanp/tiagoevanp.github.io'
           path: target-repo
+          # the push below authenticates with TARGET_REPO_TOKEN instead
+          persist-credentials: false
 
       - name: Configure user.name and user.email
         run: |
@@ -62,5 +64,4 @@ jobs:
             exit 0
           fi
           git commit -m "update-${{ github.run_id }}"
-          git config --unset-all http.https://github.com/.extraheader
           git push --set-upstream https://user:$GH_TOKEN@github.com/tiagoevanp/tiagoevanp.github.io master
