@@ -17,6 +17,16 @@ class GroupsList {
             this.groups[group].push(item);
         }
     }
+
+    // The docs around `href`, flattened across groups in the order the sidebar shows them
+    getSiblings(href: string): { previous?: GroupItem; next?: GroupItem } {
+        const items = Object.values(this.groups).flat();
+        const index = items.findIndex((item) => item.href === href);
+
+        if (index === -1) return {};
+
+        return { previous: items[index - 1], next: items[index + 1] };
+    }
 }
 
 const groupsList = new GroupsList();
