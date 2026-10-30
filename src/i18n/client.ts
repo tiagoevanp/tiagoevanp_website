@@ -6,11 +6,10 @@ import { useTranslation as useT } from 'react-i18next';
 
 import i18next from './i18next';
 import { getSkillDocLanguage } from './paths';
-import { fallbackLng } from './settings';
+import { fallbackLng, storageKey } from './settings';
 
 export { getSkillDocLanguage, getSkillDocPath, getSkillDocSlug } from './paths';
 
-const storageKey = 'i18nextLng';
 let pathLanguage: string | undefined;
 let chosenLanguage: string | undefined;
 let detected = false;
@@ -28,6 +27,9 @@ const rememberReadingLanguage = (lng: string) => {
         // storage unavailable: those pages fall back to the saved or browser language
     }
 };
+
+// Until detection runs, <html lang> stays as the static HTML or an inline script set it (see HtmlLang.tsx)
+export const hasDetectedLanguage = () => detected;
 
 export const saveLanguage = (lng: string) => {
     chosenLanguage = lng;

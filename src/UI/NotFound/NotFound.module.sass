@@ -17,3 +17,10 @@
     &:focus-visible
         outline: 2px solid var(--navbar-border)
         outline-offset: 2px
+
+.copy
+    display: contents
+
+:global(html:not([lang='pt-BR'])) .copy[lang='pt-BR'],
+:global(html[lang='pt-BR']) .copy:not([lang='pt-BR'])
+    display: none
