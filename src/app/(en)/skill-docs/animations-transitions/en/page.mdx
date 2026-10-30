@@ -18,6 +18,124 @@ On the other hand, CSS **animations** offer complete control over complex sequen
 
 >For performance, it's preferable to use `transform` and `opacity` instead of properties like `width` or `margin`. It's also important to consider accessibility with `prefers-reduced-motion` for users sensitive to motion.
 
+## Transitions
+
+The `transition` shorthand receives the property, the duration, the timing function and the delay, in this order. It's also possible to animate more than one property by separating them with commas:
+
+```css
+.button {
+    background-color: crimson;
+    /* property | duration | timing function | delay */
+    transition: background-color 0.2s ease-in-out, transform 0.3s ease-out 0.1s;
+}
+
+.button:hover {
+    background-color: teal;
+    transform: translateY(-2px);
+}
+```
+
+The most common timing functions:
+
+- `linear` - Constant speed
+- `ease` - Default value, starts fast and slows down at the end
+- `ease-in` - Starts slow and speeds up
+- `ease-out` - Starts fast and slows down
+- `ease-in-out` - Slow at the beginning and at the end
+- `cubic-bezier()` - Custom curve
+- `steps()` - Changes in steps, without smoothness
+
+>Declaring the transition in the base state, and not in `:hover`, makes it run both when entering and when leaving the state.
+
+## Animations with keyframes
+
+The animation is defined with `@keyframes` and applied to the element with the `animation-*` properties:
+
+```css
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.7;
+    }
+}
+
+.badge {
+    animation-name: pulse;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 0s;
+    animation-iteration-count: infinite; /* Or a number of times */
+    animation-direction: alternate; /* normal | reverse | alternate | alternate-reverse */
+    animation-fill-mode: forwards; /* Keeps the last keyframe state when finished */
+}
+```
+
+Or using the `animation` shorthand:
+
+```css
+.badge {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+```
+
+## Performance
+
+When something changes on the screen, the browser can go through three steps: **layout** (sizes and positions), **paint** (pixels) and **composite** (layers). Properties like `width`, `height`, `top` or `margin` force the layout to be recalculated on every frame, while `transform` and `opacity` only go through the composite step, which can be handled by the GPU.
+
+Below is an example of a side menu opening:
+
+```css
+/* Avoid - recalculates the layout on every frame */
+.menu {
+    left: -300px;
+    transition: left 0.3s ease-out;
+}
+
+.menu.open {
+    left: 0;
+}
+
+/* Prefer - only composite */
+.menu {
+    transform: translateX(-300px);
+    transition: transform 0.3s ease-out;
+}
+
+.menu.open {
+    transform: translateX(0);
+}
+```
+
+## Reduced motion
+
+With the `prefers-reduced-motion` media query it's possible to disable or soften animations for users who enabled the reduced motion option in the operating system:
+
+```css
+.badge {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .badge {
+        animation: none;
+    }
+
+    /* Keeps a visual feedback without the movement */
+    .card:hover {
+        transform: none;
+        opacity: 0.8;
+    }
+}
+```
+
 ## Practical examples
 
 <AnimationsAndTransitionsExample />

@@ -19,6 +19,124 @@ Já as **animações** CSS oferecem controle total sobre sequências complexas a
 
 >Para performance, é preferivel `transform` e `opacity` em vez de propriedades como `width` ou `margin`. E é importante também considerar acessibilidade com `prefers-reduced-motion` para usuários sensíveis a movimento.
 
+## Transições
+
+O atalho `transition` recebe a propriedade, a duração, a curva de aceleração e o atraso, nessa ordem. Também é possível animar mais de uma propriedade separando-as por vírgula:
+
+```css
+.button {
+    background-color: crimson;
+    /* propriedade | duração | curva de aceleração | atraso */
+    transition: background-color 0.2s ease-in-out, transform 0.3s ease-out 0.1s;
+}
+
+.button:hover {
+    background-color: teal;
+    transform: translateY(-2px);
+}
+```
+
+As curvas de aceleração mais comuns:
+
+- `linear` - Velocidade constante
+- `ease` - Valor padrão, começa rápido e desacelera no final
+- `ease-in` - Começa devagar e acelera
+- `ease-out` - Começa rápido e desacelera
+- `ease-in-out` - Devagar no início e no final
+- `cubic-bezier()` - Curva personalizada
+- `steps()` - Muda em etapas, sem suavidade
+
+>Declarar a transição no estado base, e não no `:hover`, faz com que ela aconteça tanto ao entrar quanto ao sair do estado.
+
+## Animações com keyframes
+
+A animação é definida com `@keyframes` e aplicada ao elemento com as propriedades `animation-*`:
+
+```css
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.7;
+    }
+}
+
+.badge {
+    animation-name: pulse;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 0s;
+    animation-iteration-count: infinite; /* Ou um número de vezes */
+    animation-direction: alternate; /* normal | reverse | alternate | alternate-reverse */
+    animation-fill-mode: forwards; /* Mantém o estado do último keyframe ao terminar */
+}
+```
+
+Ou usando o atalho `animation`:
+
+```css
+.badge {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+```
+
+## Performance
+
+Quando algo muda na tela, o navegador pode passar por três etapas: **layout** (tamanhos e posições), **paint** (pixels) e **composite** (camadas). Propriedades como `width`, `height`, `top` ou `margin` obrigam o layout a ser recalculado a cada quadro, enquanto `transform` e `opacity` passam apenas pela etapa de composite, que pode ser feita pela GPU.
+
+Abaixo, um exemplo de um menu lateral abrindo:
+
+```css
+/* Evite - recalcula o layout a cada quadro */
+.menu {
+    left: -300px;
+    transition: left 0.3s ease-out;
+}
+
+.menu.open {
+    left: 0;
+}
+
+/* Prefira - apenas composite */
+.menu {
+    transform: translateX(-300px);
+    transition: transform 0.3s ease-out;
+}
+
+.menu.open {
+    transform: translateX(0);
+}
+```
+
+## Movimento reduzido
+
+Com a media query `prefers-reduced-motion` é possível desativar ou suavizar animações para usuários que ativaram a opção de movimento reduzido no sistema operacional:
+
+```css
+.badge {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .badge {
+        animation: none;
+    }
+
+    /* Mantém um retorno visual sem o movimento */
+    .card:hover {
+        transform: none;
+        opacity: 0.8;
+    }
+}
+```
+
 ## Exemplos práticos
 
 <AnimationsAndTransitionsExample />
