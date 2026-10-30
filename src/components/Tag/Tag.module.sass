@@ -1,6 +1,11 @@
 .tag
-    padding: 4px 8px
+    display: inline-block
+    padding: 4px 10px
     border-radius: var(--radius-sm)
-    text-overflow: ellipsis
-    background-color: var(--tag-background)
-    color: var(--tag-color)
+    background-color: var(--chip-background)
+    color: var(--chip-color)
+    // Set here so tags are the same size whether they sit in an li (home) or a div (experience)
+    font-size: 16px
+    line-height: 1.4
+    // A label longer than the line wraps inside the chip instead of being clipped
+    overflow-wrap: break-word
