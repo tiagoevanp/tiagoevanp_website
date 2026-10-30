@@ -80,6 +80,10 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
     colorScheme: 'light dark',
+    themeColor: [
+        { media: '(prefers-color-scheme: light)', color: '#F7F4EC' },
+        { media: '(prefers-color-scheme: dark)', color: '#1C1D19' },
+    ],
 };
 
 // Each language has its own root layout so the static HTML declares the page language
