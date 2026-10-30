@@ -3,11 +3,10 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useTheme } from 'next-themes';
-import { PropsWithChildren, startTransition, useEffect, useRef, useState, useSyncExternalStore } from 'react';
+import { PropsWithChildren, useEffect, useRef, useState, useSyncExternalStore } from 'react';
 
 import { Banner, Dropdown, DropdownOption, IconButton, Navbar, NavbarLink } from '@/components';
 import {
-    changeSkillDocLanguage,
     getSkillDocLanguage,
     getSkillDocPath,
     saveLanguage,
@@ -19,13 +18,11 @@ import { useSidebarContext } from '@/providers/hooks/useSidebarContext';
 
 import styles from './PageNavbar.module.sass';
 
-let latestPick = 0;
-
 // Nothing to subscribe to: only tells hydration (server snapshot) apart from later renders
 const subscribeToNothing = () => () => {};
 
 export const PageNavbar = ({ children }: PropsWithChildren) => {
-    const { t, i18n: { language, changeLanguage, loadLanguages } } = useTranslation();
+    const { t, language, i18n: { changeLanguage } } = useTranslation();
     const { resolvedTheme, setTheme } = useTheme();
     const { isTablet, isDesktop } = useScreenContext();
     const { isOpen: sidebarIsOpen, setOpen: setSidebarOpen } = useSidebarContext();
@@ -82,27 +79,17 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
         return () => document.removeEventListener('keydown', onKeyDown);
     }, [languageDropdownIsOpen]);
 
-    const selectLanguage = async (newLanguage: string) => {
-        const pick = ++latestPick;
-
+    const selectLanguage = (newLanguage: string) => {
         saveLanguage(newLanguage);
         setLanguageDropdownOpen(false);
         // The picked option unmounts with the dropdown, so keep focus on the toggle
         languageToggleRef.current?.focus();
 
         if (getSkillDocLanguage(path)) {
-            const { pathname: pickPathname, search, hash } = window.location;
-            const target = `${getSkillDocPath(path, newLanguage)}${search}${hash}`;
+            const { search, hash } = window.location;
 
-            router.prefetch(target);
-            await loadLanguages(newLanguage).catch(() => undefined);
-
-            if (pick !== latestPick || window.location.pathname !== pickPathname) return;
-
-            startTransition(() => {
-                changeSkillDocLanguage(newLanguage);
-                router.push(target);
-            });
+            // Each language has its own root layout, so this is a full page load
+            router.push(`${getSkillDocPath(path, newLanguage)}${search}${hash}`);
 
             return;
         }

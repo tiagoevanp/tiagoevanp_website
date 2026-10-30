@@ -5,7 +5,7 @@ import { useLayoutEffect } from 'react';
 import { useTranslation } from './client';
 
 export const HtmlLang = () => {
-    const { i18n: { language } } = useTranslation();
+    const { language } = useTranslation();
 
     useLayoutEffect(() => {
         if (language) document.documentElement.lang = language;

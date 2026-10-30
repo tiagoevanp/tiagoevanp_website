@@ -17,12 +17,12 @@ type FooterProps = {
 };
 
 export const Footer = ({ previous, next }: FooterProps) => {
-    const { t, i18n } = useTranslation();
+    const { t, language } = useTranslation();
 
     return <footer className={styles.footer}>
         <Link
             className={`${styles.link} ${styles.previous}`}
-            href={`/skill-docs/${previous?.href}/${i18n.language}`}
+            href={`/skill-docs/${previous?.href}/${language}`}
             aria-hidden={!previous}
             style={{ visibility: previous ? 'visible' : 'hidden' }}
         >
@@ -30,7 +30,7 @@ export const Footer = ({ previous, next }: FooterProps) => {
         </Link>
         <Link
             className={`${styles.link} ${styles.next}`}
-            href={`/skill-docs/${next?.href}/${i18n.language}`}
+            href={`/skill-docs/${next?.href}/${language}`}
             aria-hidden={!next}
             style={{ visibility: next ? 'visible' : 'hidden' }}
         >
