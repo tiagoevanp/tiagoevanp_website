@@ -4,6 +4,7 @@ import type { Metadata, Viewport } from 'next';
 import { Noto_Sans, Noto_Sans_Mono } from 'next/font/google';
 
 import { HtmlLang } from '@/i18n/HtmlLang';
+import { ogImage, siteName, siteUrl } from '@/lib/seo';
 import { ScreenProvider } from '@/providers/ScreenProvider';
 import { SidebarProvider } from '@/providers/SidebarProvider';
 import { ThemeProvider } from '@/providers/ThemeProvider';
@@ -23,7 +24,11 @@ const description = 'Personal webpage of Tiago, a full-stack engineer and React 
     + 'who also builds with PHP/Laravel and works as an AI engineer.';
 
 export const metadata: Metadata = {
-    title: 'Tiago\'s Webpage',
+    metadataBase: new URL(siteUrl),
+    title: {
+        default: siteName,
+        template: `%s | ${siteName}`,
+    },
     description,
     authors: [{ name: 'Tiago the EvanBrother' }],
     icons: {
@@ -61,15 +66,15 @@ export const metadata: Metadata = {
     },
     openGraph: {
         type: 'website',
-        url: 'https://tiagoevanp.github.io/',
-        title: 'Tiago\'s Webpage',
+        title: siteName,
         description,
-        siteName: 'Tiago\'s Webpage',
+        siteName,
+        locale: 'en_US',
+        images: [ogImage],
     },
+    // tiago.jpg is square, so the large image card would crop it
     twitter: {
-        card: 'summary_large_image',
-        site: 'https://tiagoevanp.github.io/',
-        creator: 'Tiago the Evanbrother',
+        card: 'summary',
     },
 };
 
