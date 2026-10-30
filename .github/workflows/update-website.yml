@@ -17,10 +17,11 @@ jobs:
         uses: pnpm/action-setup@v4.2.0
         with:
           version: 10
-      - name: Install pnpm packages and build
+      - name: Install pnpm packages, lint and build
         run: |
           cd source-repo
           pnpm i
+          pnpm run lint
           pnpm run build
 
       - name: Clone tiagoevanp.github.io project
@@ -35,16 +36,22 @@ jobs:
           git config user.name "Tiago Evangelista Pinto"
           git config user.email "tiagoevanp@hotmail.com"
 
-      - name: Copy from tiagoevanp_website/out to tiagoevanp.github.io project
+      - name: Sync tiagoevanp_website/out to tiagoevanp.github.io project
+        # --delete removes pages that no longer exist in the build;
+        # .git, CNAME and .nojekyll are not part of out/, so keep them in the target
         run:
-          cp -R source-repo/out/* target-repo/
-      
+          rsync -a --delete --exclude .git --exclude CNAME --exclude .nojekyll source-repo/out/ target-repo/
+
       - name: Commit changes and push into main
         env:
           GH_TOKEN: ${{ secrets.TARGET_REPO_TOKEN }}
         run: |
           cd target-repo
           git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to deploy"
+            exit 0
+          fi
           git commit -m "update-${{ github.run_id }}"
           git config --unset-all http.https://github.com/.extraheader
           git push --set-upstream https://user:$GH_TOKEN@github.com/tiagoevanp/tiagoevanp.github.io master
