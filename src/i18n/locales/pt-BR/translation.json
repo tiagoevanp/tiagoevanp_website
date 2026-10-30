@@ -22,12 +22,6 @@
     "image_alt": "Foto de Tiago",
     "stack_title": "Tecnologias",
     "skill_docs_title": "Dos meus artigos",
-    "skill_docs_summaries": {
-      "semantic": "Por que o elemento HTML certo importa",
-      "aria": "Papéis, estados e propriedades para componentes acessíveis",
-      "state_management": "Redux e Context API, comparados"
-    },
-    "skill_docs_read": "Ler",
     "skill_docs_see_all": "Ver todos os artigos"
   },
   "navbar": {
@@ -62,6 +56,24 @@
     "toggle": "Tópicos"
   },
   "skill_docs": {
+    "index": {
+      "title": "Artigos",
+      "description": "Artigos curtos sobre os temas de front-end com que trabalho todos os dias, de HTML e CSS a JavaScript e React."
+    },
+    "summaries": {
+      "semantic": "Por que o elemento HTML certo importa",
+      "aria": "Papéis, estados e propriedades para componentes acessíveis",
+      "modern_layouts": "Flexbox e CSS Grid, e quando usar cada um",
+      "animations_and_transitions": "Transições para mudanças de estado, keyframes para sequências",
+      "sass": "Variáveis, aninhamento e mixins, nas duas sintaxes",
+      "css_in_js": "Estilos escritos em JavaScript com Styled-components e Emotion",
+      "es6_plus": "Os recursos do JavaScript moderno a partir do ES2015",
+      "asynchronism": "Promises, async/await e o event loop",
+      "web_apis": "APIs de armazenamento, rede e dispositivo do navegador",
+      "lifecycle": "Montagem, atualização e desmontagem com Hooks",
+      "state_management": "Redux e Context API, comparados"
+    },
+    "read": "Ler",
     "code_example": "Exemplo de código",
     "example_animation_transitions": {
       "hover_me": "Passe o mouse",

@@ -22,12 +22,6 @@
     "image_alt": "Tiago's photo",
     "stack_title": "Tech stack",
     "skill_docs_title": "From my skill docs",
-    "skill_docs_summaries": {
-      "semantic": "Why the right HTML element matters",
-      "aria": "Roles, states and properties for accessible components",
-      "state_management": "Redux vs Context API, compared"
-    },
-    "skill_docs_read": "Read",
     "skill_docs_see_all": "See all articles"
   },
   "navbar": {
@@ -62,6 +56,24 @@
     "toggle": "Topics"
   },
   "skill_docs": {
+    "index": {
+      "title": "Skill docs",
+      "description": "Short articles on the front-end topics I work with every day, from HTML and CSS to JavaScript and React."
+    },
+    "summaries": {
+      "semantic": "Why the right HTML element matters",
+      "aria": "Roles, states and properties for accessible components",
+      "modern_layouts": "Flexbox and CSS Grid, and when to use each",
+      "animations_and_transitions": "Transitions for state changes, keyframes for sequences",
+      "sass": "Variables, nesting and mixins, in both syntaxes",
+      "css_in_js": "Writing styles in JavaScript with Styled-components and Emotion",
+      "es6_plus": "The modern JavaScript features from ES2015 onwards",
+      "asynchronism": "Promises, async/await and the event loop",
+      "web_apis": "Storage, network and device APIs the browser provides",
+      "lifecycle": "Mounting, updating and unmounting with Hooks",
+      "state_management": "Redux vs Context API, compared"
+    },
+    "read": "Read",
     "code_example": "Code example",
     "example_animation_transitions": {
       "hover_me": "Hover me",
