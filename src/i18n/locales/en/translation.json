@@ -1,5 +1,4 @@
 {
-  "title": "Tiago's website",
   "not_found": {
     "title": "Not Found",
     "description": "This page couldn't be found",
@@ -66,14 +65,8 @@
     "code_example": "Code example",
     "example_animation_transitions": {
       "hover_me": "Hover me",
-      "click_me": "Click here",
       "jumping": "Jumping",
       "reduced_motion_note": "Your system asks for reduced motion, so the movement in these examples is paused. Turn that setting off to see them animate."
-    },
-    "example_ecma_script": {
-      "caption": "caption",
-      "es5": "ES5",
-      "es6": "ES6"
     },
     "example_state_management": {
       "caption": "Comparison table between Redux and Context API",
@@ -171,6 +164,5 @@
   "page_under_construction": "This page is under construction and constantly being updated, stay tuned!",
   "banner": {
     "close": "Close notice"
-  },
-  "lorem_ipsum": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  }
 }

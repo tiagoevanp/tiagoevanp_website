@@ -1,5 +1,4 @@
 {
-  "title": "Site do Tiago",
   "not_found": {
     "title": "Página não encontrada",
     "description": "Esta página não pode ser encontrada",
@@ -50,12 +49,12 @@
       "semantic": "Semântica",
       "aria": "WAI-ARIA",
       "modern_layouts": "Leiautes modernos em CSS",
-      "animations_and_transitions": "Animations and transitions",
+      "animations_and_transitions": "Animações e transições",
       "sass": "SASS",
       "css_in_js": "CSS-in-JS",
       "es6_plus": "ES6+",
       "asynchronism": "Assincronismo",
-      "web_apis": "Web apis",
+      "web_apis": "APIs Web",
       "lifecycle": "Ciclo de vida",
       "state_management": "Gerenciamento de estado"
     },
@@ -66,14 +65,8 @@
     "code_example": "Exemplo de código",
     "example_animation_transitions": {
       "hover_me": "Passe o mouse",
-      "click_me": "Clique aqui",
       "jumping": "Pulando",
       "reduced_motion_note": "Seu sistema pede movimento reduzido, então o movimento destes exemplos está pausado. Desative essa configuração para vê-los animados."
-    },
-    "example_ecma_script": {
-      "caption": "caption",
-      "es5": "ES5",
-      "es6": "ES6"
     },
     "example_state_management": {
       "caption": "Tabela comparativa entre Redux e Context API",
@@ -171,6 +164,5 @@
   "page_under_construction": "Esta página segue em construção e em constante atualização, fique de olho!",
   "banner": {
     "close": "Fechar aviso"
-  },
-  "lorem_ipsum": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  }
 }
