@@ -9,14 +9,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Clone tiagoevanp_website and build
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           path: source-repo
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v4.2.0
+        uses: pnpm/action-setup@v6
         with:
           version: 10
+
+      # after pnpm/action-setup, so cache: pnpm can find the pnpm binary
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: source-repo/.nvmrc
+          cache: pnpm
+          cache-dependency-path: source-repo/pnpm-lock.yaml
+
       - name: Install pnpm packages, lint and build
         run: |
           cd source-repo
@@ -25,7 +34,7 @@ jobs:
           pnpm run build
 
       - name: Clone tiagoevanp.github.io project
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: 'tiagoevanp/tiagoevanp.github.io'
           path: target-repo
