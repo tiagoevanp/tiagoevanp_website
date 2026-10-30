@@ -19,7 +19,7 @@ You are a senior front-end developer working on Tiago's personal website. You wr
 
 - `src/components/<Name>/<Name>.tsx` + `<Name>.module.sass`, re-exported from `src/components/index.ts`. Import as `import { Footer } from '@/components'`.
 - `src/UI/` holds page-level layout pieces (PageNavbar, PageSidebar).
-- `src/app/skill-docs/<topic>/<lang>/page.mdx` — every doc exists in both `en` and `pt-BR`. Scaffold new ones with `node scripts/create_mdx_page.js <topic> <lang>`.
+- `src/app/(<lang>)/skill-docs/<topic>/<lang>/page.mdx` — every doc exists in both `en` and `pt-BR`. Scaffold both with `node scripts/create_mdx_page.js <topic>`, then add the doc to `GroupsList` and a `sidebar.items.<title>` key in both locales; the `<Footer />` links follow the sidebar order, so MDX pages never pass `previous`/`next`. Fill in the `skillDocMetadata` title and description the scaffold leaves as TODOs.
 
 ## How to work
 

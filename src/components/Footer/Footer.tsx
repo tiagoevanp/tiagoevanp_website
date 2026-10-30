@@ -1,40 +1,29 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
-import { useTranslation } from '@/i18n/client';
+import { getSkillDocSlug, useTranslation } from '@/i18n/client';
+import { skillDocPath } from '@/lib/seo';
+import GroupsList from '@/providers/lib/GroupsList';
 
 import styles from './Footer.module.sass';
 
-type LinkProps = {
-    title: string
-    href: string
-};
-
-type FooterProps = {
-    previous?: LinkProps
-    next?: LinkProps
-};
-
-export const Footer = ({ previous, next }: FooterProps) => {
+// Links to the docs before and after the current one, in sidebar order
+export const Footer = () => {
     const { t, language } = useTranslation();
+    const slug = getSkillDocSlug(usePathname());
+    const { previous, next } = slug ? GroupsList.getSiblings(slug) : {};
 
     return <footer className={styles.footer}>
-        <Link
-            className={`${styles.link} ${styles.previous}`}
-            href={`/skill-docs/${previous?.href}/${language}`}
-            aria-hidden={!previous}
-            style={{ visibility: previous ? 'visible' : 'hidden' }}
-        >
-            {previous?.title ? t(`sidebar.items.${previous?.title}`) : 'Previous'}
-        </Link>
-        <Link
-            className={`${styles.link} ${styles.next}`}
-            href={`/skill-docs/${next?.href}/${language}`}
-            aria-hidden={!next}
-            style={{ visibility: next ? 'visible' : 'hidden' }}
-        >
-            {next?.title ? t(`sidebar.items.${next?.title}`) : 'Next'}
-        </Link>
+        {/* The empty span keeps "next" on the right on the first doc */}
+        {previous
+            ? <Link className={`${styles.link} ${styles.previous}`} href={skillDocPath(previous.href, language)}>
+                {t(`sidebar.items.${previous.title}`)}
+            </Link>
+            : <span />}
+        {next && <Link className={`${styles.link} ${styles.next}`} href={skillDocPath(next.href, language)}>
+            {t(`sidebar.items.${next.title}`)}
+        </Link>}
     </footer>;
 };

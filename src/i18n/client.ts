@@ -8,7 +8,7 @@ import i18next from './i18next';
 import { getSkillDocLanguage } from './paths';
 import { fallbackLng } from './settings';
 
-export { getSkillDocLanguage, getSkillDocPath } from './paths';
+export { getSkillDocLanguage, getSkillDocPath, getSkillDocSlug } from './paths';
 
 const storageKey = 'i18nextLng';
 let pathLanguage: string | undefined;
