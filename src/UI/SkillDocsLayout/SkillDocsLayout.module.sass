@@ -40,7 +40,7 @@ $drawer-breakpoint: 991.98px
         grid-column: 1
         padding-block: 8px
         padding-inline: 16px
-        border-block-start: solid 4px var(--sidebar-border)
+        border-block-start: var(--hairline-width) solid var(--line)
 
     // The drawer and the article share the same grid cell, so the drawer overlays the article.
     // It stays below the navbar menus (1100 and up).
@@ -50,7 +50,9 @@ $drawer-breakpoint: 991.98px
         grid-column: 1
         width: min(320px, 100%)
         background-color: var(--page-background)
-        box-shadow: var(--shadow)
+        box-shadow: var(--shadow-md)
+        // The shadow barely shows on the dark background, so the hairline keeps the edge visible
+        border-inline-end: var(--hairline-width) solid var(--line)
         z-index: var(--elevated-index)
 
     .sidebar-open

@@ -5,7 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import { PropsWithChildren, useEffect, useRef, useState, useSyncExternalStore } from 'react';
 
-import { Banner, Dropdown, DropdownOption, IconButton, Navbar, NavbarLink } from '@/components';
+import { Dropdown, DropdownOption, IconButton, Navbar, NavbarLink } from '@/components';
 import {
     getSkillDocLanguage,
     getSkillDocPath,
@@ -232,9 +232,6 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                     </li>
                 </ul>
             </nav>}
-        </div>
-        <div className={styles['banner-container']}>
-            {path.match('/skill-docs') && <Banner message={t('page_under_construction')} variant='warning' />}
         </div>
         <main className={styles.content} tabIndex={-1}>
             {children}

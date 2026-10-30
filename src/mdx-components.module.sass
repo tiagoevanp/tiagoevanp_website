@@ -30,9 +30,9 @@ $margin-block: 16px
         color: var(--section-link-hover)
 
 .hr
-    border: solid 2px var(--section-hr)
-    margin-block-start: calc($margin-block / 2)
-    margin-block-end: $margin-block
+    border: 0
+    border-block-start: var(--hairline-width) solid var(--line)
+    margin-block: 24px 32px
 
 .ul
     margin-block: $margin-block
@@ -71,7 +71,7 @@ $margin-block: 16px
 .img
     max-width: 512px
     border-radius: 8px
-    box-shadow: var(--shadow)
+    box-shadow: var(--shadow-md)
 
 .img-container
     display: inline-block

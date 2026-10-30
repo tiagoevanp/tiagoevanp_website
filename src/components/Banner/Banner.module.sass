@@ -1,23 +1,33 @@
+// An in-article callout: no fixed height, so wrapped text (longer in pt-BR) is never clipped
 .banner
     display: flex
     justify-content: space-between
-    align-items: center
+    // Keeps the close button at the top right when the message wraps
+    align-items: flex-start
     gap: 16px
-    width: 100%
-    min-height: 48px
-    max-height: 96px
-    padding-inline: 16px
-    background-color: var(--banner-background)
+    max-inline-size: 60ch
+    margin-block-end: 32px
+    padding: 12px 16px
+    border-radius: var(--radius-sm)
+    background-color: var(--surface)
     color: var(--banner-text)
 
 .content
     display: flex
     gap: 16px
-    align-items: center
+    align-items: flex-start
+    min-width: 0
+
+    p
+        overflow-wrap: break-word
+
+    // The icon wrapper, centred on the first line of the message (18px text at 1.6 line height)
+    & > div
+        flex-shrink: 0
+        margin-block-start: 6px
 
 .warning
-    border-block: 4px solid var(--banner-warning)
-
+    border-inline-start: var(--accent-width) solid var(--banner-warning)
 
     & svg
         & path
@@ -27,15 +37,21 @@
     // Takes no space once dismissed, so the content moves back up
     display: none
 
+// A quiet icon-style button; the global :focus-visible ring marks keyboard focus
 .close
     display: flex
+    flex-shrink: 0
     justify-content: center
     align-items: center
-    width: 16px
-    height: 16px
-    padding: 8px
+    min-width: 24px
+    min-height: 24px
+    // Lines the 24px button up with the first 29px line of the message
+    margin-block-start: 2px
+    padding: 4px
+    border: none
+    border-radius: var(--radius-sm)
     background-color: transparent
-    border: 2px solid var(--banner-close-border)
-    color: var(--banner-close-text)
-    border-radius: 2px
+    font-family: inherit
+    font-size: 16px
+    color: var(--banner-text)
     cursor: pointer

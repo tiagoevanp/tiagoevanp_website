@@ -37,15 +37,12 @@ html.light
     --code-background: #{$PARCHMENT}
     --focus-ring: #{$RUST}
     --navbar-border: #{$RUST}
-    --navbar-dropdown-border: #{$RUST}
     --navbar-link-color: #{$RUST}
     --navbar-link-hover: #{$RUST}
     --navbar-link-active-color: #{$BONE}
     --navbar-link-active-background: #{$RUST}
-    --sidebar-border: #{$RUST}
     --sidebar-group: #{$OLIVE}
     --sidebar-item-color: #{$SOOT}
-    --sidebar-item-border-color: #{$DRIFTWOOD}
     --sidebar-item-border-active: #{$OLIVE}
     --home-image-primary-background: #{$OLIVE}
     --home-image-secondary-background: transparent
@@ -55,11 +52,9 @@ html.light
     --section-text-title: #{$OLIVE}
     --section-text-subtitle: #{$DRIFTWOOD}
     --section-text-color: #{$SOOT}
-    --section-hr: #{$OLIVE}
     --section-li: #{$SOOT}
     --section-link: #{$OLIVE}
     --section-link-hover: #{$RUST}
-    --footer-hr: #{$PARCHMENT_LINE}
     --footer-text: #{$OLIVE}
     --blockquote-text: #{$SOOT}
     --blockquote-pseudo-element: #{$OLIVE}
@@ -76,17 +71,16 @@ html.light
     --experience-title: #{$OLIVE}
     --experience-text: #{$SOOT}
     --banner-warning: #{$MUSTARD}
-    --banner-background: #{$BONE}
     --banner-text: #{$SOOT}
-    --banner-close-text: #{$OLIVE}
-    --banner-close-border: #{$OLIVE}
     --banner-icon-warning: #{$MUSTARD}
     --dropdown-background: #{$RUST}
     --dropdown-text: #{$BONE}
     --dropdown-focus-ring: #{$BONE}
     --table-thead-background: #{$OLIVE}
     --table-thead-color: #{$BONE}
-    --table-border: #{$OLIVE}
+    --surface: #{$PARCHMENT}
+    --line: #{$PARCHMENT_LINE}
+    --line-strong: #{$DRIFTWOOD}
 
 html.dark
     & .color-examples
@@ -106,15 +100,12 @@ html.dark
     --code-background: #{$PEAT_SOFT}
     --focus-ring: #{$MUSTARD_LIGHT}
     --navbar-border: #{$RUST_LIGHT}
-    --navbar-dropdown-border: #{$RUST_LIGHT}
     --navbar-link-color: #{$BONE_LIGHT}
     --navbar-link-hover: #{$BONE_LIGHT}
     --navbar-link-active-color: #{$PEAT}
     --navbar-link-active-background: #{$RUST_LIGHT}
-    --sidebar-border: #{$RUST_LIGHT}
     --sidebar-group: #{$OLIVE_LIGHT}
     --sidebar-item-color: #{$BONE_LIGHT}
-    --sidebar-item-border-color: #{$DRIFTWOOD_LIGHT}
     --sidebar-item-border-active: #{$OLIVE_LIGHT}
     --home-image-primary-background: #{$OLIVE_LIGHT}
     --home-image-secondary-background: transparent
@@ -124,11 +115,9 @@ html.dark
     --section-text-title: #{$OLIVE_LIGHT}
     --section-text-subtitle: #{$DRIFTWOOD_LIGHT}
     --section-text-color: #{$BONE_LIGHT}
-    --section-hr: #{$OLIVE_LIGHT}
     --section-li: #{$BONE_LIGHT}
     --section-link: #{$OLIVE_LIGHT}
     --section-link-hover: #{$RUST_LIGHT}
-    --footer-hr: #{$PEAT_LINE}
     --footer-text: #{$OLIVE_LIGHT}
     --blockquote-text: #{$BONE_LIGHT}
     --blockquote-pseudo-element: #{$OLIVE_LIGHT}
@@ -145,17 +134,16 @@ html.dark
     --experience-title: #{$OLIVE_LIGHT}
     --experience-text: #{$BONE_LIGHT}
     --banner-warning: #{$MUSTARD_LIGHT}
-    --banner-background: #{$PEAT}
     --banner-text: #{$BONE_LIGHT}
-    --banner-close-text: #{$OLIVE_LIGHT}
-    --banner-close-border: #{$OLIVE_LIGHT}
     --banner-icon-warning: #{$MUSTARD_LIGHT}
     --dropdown-background: #{$RUST_LIGHT}
     --dropdown-text: #{$PEAT}
     --dropdown-focus-ring: #{$PEAT}
     --table-thead-background: #{$OLIVE_LIGHT}
     --table-thead-color: #{$PEAT}
-    --table-border: #{$OLIVE_LIGHT}
+    --surface: #{$PEAT_SOFT}
+    --line: #{$PEAT_LINE}
+    --line-strong: #{$DRIFTWOOD_LIGHT}
 
 // Fluid sizes keep the headings on few lines on phones and at full size on desktop
 h1
@@ -186,6 +174,9 @@ li
     line-height: 1.6
 
 :root
-    --shadow: 0 8px 16px 4px rgba(38, 36, 33, 50%)
-    --light-shadow: 0 4px 8px 2px rgba(38, 36, 33, 25%)
+    --radius-sm: 4px
+    --hairline-width: 1px
+    --accent-width: 4px
+    --shadow-sm: 0 1px 2px rgba(38, 36, 33, 8%), 0 2px 6px rgba(38, 36, 33, 6%)
+    --shadow-md: 0 4px 12px rgba(38, 36, 33, 12%), 0 12px 32px rgba(38, 36, 33, 10%)
     --elevated-index: 10

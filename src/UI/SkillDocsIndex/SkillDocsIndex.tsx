@@ -1,6 +1,6 @@
 'use client';
 
-import { SkillDocCard } from '@/components';
+import { Banner, SkillDocCard } from '@/components';
 import { useTranslation } from '@/i18n/client';
 import GroupsList from '@/providers/lib/GroupsList';
 
@@ -13,6 +13,7 @@ export const SkillDocsIndex = () => {
     return <>
         <h1 className={styles.title}>{t('skill_docs.index.title')}</h1>
         <p className={styles.description}>{t('skill_docs.index.description')}</p>
+        <Banner message={t('page_under_construction')} variant='warning' />
         {Object.entries(GroupsList.all).map(([name, items], index) => (
             <section key={name} className={styles.group} aria-labelledby={`skill-docs-group-${index}`}>
                 <h2 id={`skill-docs-group-${index}`} className={styles['group-title']}>{name}</h2>

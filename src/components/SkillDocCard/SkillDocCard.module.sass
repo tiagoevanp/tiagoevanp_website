@@ -4,18 +4,19 @@
     gap: 8px
     height: 100%
     padding: 16px
-    border: 2px solid var(--navbar-border)
-    border-radius: 2px
+    border: var(--hairline-width) solid var(--line)
+    border-radius: var(--radius-sm)
     background-color: var(--page-background)
     color: var(--section-text-color)
     text-decoration: none
-    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out
+    transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out
 
-    &:hover
-        background-color: var(--button-hover-background)
+    &:hover, &:focus-visible
+        border-color: var(--navbar-border)
+        background-color: var(--surface)
 
-        &, .card-title, .card-summary, .card-action
-            color: var(--button-hover-color)
+        .card-action
+            text-decoration: underline
 
     &:focus-visible
         outline: 2px solid var(--navbar-border)
