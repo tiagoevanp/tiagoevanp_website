@@ -13,6 +13,9 @@ $RUST_BRIGHT: #A3461F
 $RUST_LIGHT: #E0855C
 $OLIVE: #556229
 $OLIVE_LIGHT: #B3C077
+// Chip fills: OLIVE text on the tint is 5.14:1, OLIVE_LIGHT text on the shade is 6.35:1
+$OLIVE_TINT: #E3E4CF
+$OLIVE_SHADE: #33361F
 $MUSTARD: #A87C10
 $MUSTARD_DARK: #86650E
 $MUSTARD_LIGHT: #E3B94A
@@ -66,8 +69,6 @@ html.light
     --input-value: #{$SOOT}
     --image-caption-background: #{$OLIVE}
     --image-caption-color: #{$BONE}
-    --tag-background: #{$RUST}
-    --tag-color: #{$BONE}
     --experience-title: #{$OLIVE}
     --experience-text: #{$SOOT}
     --banner-warning: #{$MUSTARD}
@@ -81,6 +82,8 @@ html.light
     --surface: #{$PARCHMENT}
     --line: #{$PARCHMENT_LINE}
     --line-strong: #{$DRIFTWOOD}
+    --chip-background: #{$OLIVE_TINT}
+    --chip-color: #{$OLIVE}
 
 html.dark
     & .color-examples
@@ -129,8 +132,6 @@ html.dark
     --input-value: #{$BONE_LIGHT}
     --image-caption-background: #{$OLIVE_LIGHT}
     --image-caption-color: #{$PEAT}
-    --tag-background: #{$RUST_LIGHT}
-    --tag-color: #{$PEAT}
     --experience-title: #{$OLIVE_LIGHT}
     --experience-text: #{$BONE_LIGHT}
     --banner-warning: #{$MUSTARD_LIGHT}
@@ -144,6 +145,8 @@ html.dark
     --surface: #{$PEAT_SOFT}
     --line: #{$PEAT_LINE}
     --line-strong: #{$DRIFTWOOD_LIGHT}
+    --chip-background: #{$OLIVE_SHADE}
+    --chip-color: #{$OLIVE_LIGHT}
 
 // Fluid sizes keep the headings on few lines on phones and at full size on desktop
 h1
@@ -175,6 +178,7 @@ li
 
 :root
     --radius-sm: 4px
+    --radius-md: 8px
     --hairline-width: 1px
     --accent-width: 4px
     --shadow-sm: 0 1px 2px rgba(38, 36, 33, 8%), 0 2px 6px rgba(38, 36, 33, 6%)

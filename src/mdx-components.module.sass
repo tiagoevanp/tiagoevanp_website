@@ -46,31 +46,24 @@ $margin-block: 16px
     color: var(--section-li)
 
 .blockquote
-    display: flex
-    align-content: center
     margin-block: $margin-block * 2
-    padding-inline: 16px
+    padding: 16px 24px
+    border-inline-start: var(--accent-width) solid var(--blockquote-pseudo-element)
+    border-radius: 0 var(--radius-md) var(--radius-md) 0
+    background-color: var(--surface)
     font-style: italic
     color: var(--blockquote-text)
 
+    // The container padding already spaces the quote, so only paragraphs after the first get a gap
     p
-        padding: 16px
+        margin-block: 0
 
-.blockquote::before 
-    content: open-quote
-    align-content: flex-start
-    font-size: 48px
-    color: var(--blockquote-pseudo-element)
-
-.blockquote::after
-    align-content: flex-end
-    content: close-quote
-    font-size: 48px
-    color: var(--blockquote-pseudo-element)
+        & + p
+            margin-block-start: $margin-block
 
 .img
     max-width: 512px
-    border-radius: 8px
+    border-radius: var(--radius-md)
     box-shadow: var(--shadow-md)
 
 .img-container

@@ -4,8 +4,12 @@
     margin-block: 32px
     padding-inline: 16px
     height: 48px
-    border: solid 2px var(--input-border)
+    border: var(--hairline-width) solid var(--line-strong)
     border-radius: var(--radius-sm)
+    background-color: var(--surface)
+
+    &:focus-within
+        border-color: var(--input-border)
 
 .icon
     padding-inline-end: 16px
