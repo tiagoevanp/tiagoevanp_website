@@ -17,7 +17,7 @@ type PageSidebarProps = {
 export const PageSidebar = ({ onNavigate }: PageSidebarProps) => {
     const { groups } = useSidebarContext();
     const path = usePathname();
-    const { t, i18n } = useTranslation();
+    const { t, language } = useTranslation();
 
     const skillsPath = '/skill-docs';
 
@@ -33,7 +33,7 @@ export const PageSidebar = ({ onNavigate }: PageSidebarProps) => {
                                 return (
                                     <li key={id} >
                                         <Link
-                                            href={`${skillsPath}/${href}/${i18n.language}`}
+                                            href={`${skillsPath}/${href}/${language}`}
                                             onClick={onNavigate}
                                             className={
                                                 path.match(href) !== null

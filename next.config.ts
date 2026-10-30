@@ -7,6 +7,10 @@ const nextConfig: NextConfig = {
     pageExtensions: ['md', 'mdx', 'ts', 'tsx'],
     reactStrictMode: true,
     expireTime: 30,
+    experimental: {
+        // Needed for the 404 page, since each language has its own root layout
+        globalNotFound: true,
+    },
 };
 
 const withMDX = createMDX({

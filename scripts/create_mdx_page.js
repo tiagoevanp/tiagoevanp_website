@@ -6,7 +6,7 @@ const args = process.argv.slice(2);
 const folderName = args[0];
 const languageFolder = args[1] ?? 'pt-BR';
 
-const path = `${__dirname}/../src/app/skill-docs`;
+const path = `${__dirname}/../src/app/(${languageFolder})/skill-docs`;
 
 try {
     fs.mkdirSync(`${path}/${folderName}`);
