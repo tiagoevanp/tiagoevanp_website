@@ -6,6 +6,7 @@ export { Footer } from './Footer/Footer';
 export { IconButton } from './IconButton/IconButton';
 export { Image } from './Image/Image';
 export * from './Navbar';
+export { SkillDocCard } from './SkillDocCard/SkillDocCard';
 export { SvgIcon } from './SvgIcon/SvgIcon';
 export { Tag } from './Tag/Tag';
 export { TextContainer } from './TextContainer/TextContainer';

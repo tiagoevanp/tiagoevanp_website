@@ -1,0 +1,26 @@
+@use '../../app/breakpoints' as *
+
+.title
+    color: var(--section-text-title)
+    overflow-wrap: break-word
+
+    @media (max-width: $bp-mobile)
+        font-size: 36px
+
+.description
+    margin-block: 16px 32px
+    color: var(--section-text-color)
+
+.group + .group
+    margin-block-start: 48px
+
+.group-title
+    margin-block-end: 16px
+    color: var(--section-text-subtitle)
+
+// min() keeps a single column from overflowing below 260px plus padding
+.cards
+    display: grid
+    grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr))
+    gap: 24px
+    list-style: none

@@ -112,7 +112,7 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                 </li>
                 <li>
                     <NavbarLink
-                        to={`/skill-docs/semantic/${language}`}
+                        to='/skill-docs'
                         className={isSkillDocsPage ? styles['navbar-link-active'] : ''}
                         aria-current={isSkillDocsPage ? 'page' : undefined}
                     >
@@ -214,7 +214,7 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                     </li>
                     <li>
                         <Link
-                            href={`/skill-docs/semantic/${language}`}
+                            href='/skill-docs'
                             aria-current={isSkillDocsPage ? 'page' : undefined}
                             onClick={() => setMobileDropdownOpen(false)}
                         >

@@ -2,14 +2,14 @@
 
 import Link from 'next/link';
 
-import { Availability, Image, Tag, TextContainer } from '@/components';
+import { Availability, Image, SkillDocCard, Tag, TextContainer } from '@/components';
 import { useTranslation } from '@/i18n/client';
-import { featuredSkillDocs, getAllSkillDocsPath, stack } from '@/lib/home';
+import { featuredSkillDocs, stack } from '@/lib/home';
 
 import styles from './page.module.sass';
 
 export default function Home() {
-    const { t, language } = useTranslation();
+    const { t } = useTranslation();
 
     return (
         <div className={styles.page}>
@@ -49,24 +49,9 @@ export default function Home() {
                         {t('home.skill_docs_title')}
                     </h2>
                     <ul className={styles.cards}>
-                        {featuredSkillDocs.map(({ id, href, title }) => (
-                            <li key={id}>
-                                <Link className={styles.card} href={`/skill-docs/${href}/${language}`}>
-                                    <h3 className={styles['card-title']}>
-                                        {t(`sidebar.items.${title}`)}
-                                    </h3>
-                                    <p className={styles['card-summary']}>
-                                        {t(`home.skill_docs_summaries.${title}`)}
-                                    </p>
-                                    <span className={styles['card-action']}>
-                                        {t('home.skill_docs_read')}
-                                        <span aria-hidden='true'> →</span>
-                                    </span>
-                                </Link>
-                            </li>
-                        ))}
+                        {featuredSkillDocs.map((item) => <li key={item.id}><SkillDocCard item={item} /></li>)}
                     </ul>
-                    <Link className={styles['see-all']} href={getAllSkillDocsPath(language)}>
+                    <Link className={styles['see-all']} href='/skill-docs'>
                         {t('home.skill_docs_see_all')}
                         <span aria-hidden='true'> →</span>
                     </Link>

@@ -24,6 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     return [
         { url: toUrl('/') },
         { url: toUrl('/experience') },
+        { url: toUrl('/skill-docs') },
         ...skillDocs,
     ];
 }
