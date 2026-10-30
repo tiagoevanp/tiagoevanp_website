@@ -1,150 +1,161 @@
 @use 'sass:meta'
 
-$IMPERIAL_RED: #E43636
-$INDIAN_RED: #E35959
-$AMBER: #F3B700
-$NAPLES_YELLOW: #F2CE61
-$MIDNIGHT_GREEN: #114B5F
-$DARK_SLATE_GRAY: #2F535E
-$ZOMP: #539987
-$CAMBRIDGE_BLUE: #73998F
-$GUNMETAL: #1E2528
-$EERIE_BLACK: #1F1F1F
-$SEA_SALT: #FAFAFA
-$SILVER: #AEAEAE
-$DIM_GRAY: #6E6E6E
+$BONE: #F7F4EC
+$PARCHMENT: #EBE5D6
+$PARCHMENT_LINE: #D3CCBC
+$BONE_LIGHT: #EFEADF
+$SOOT: #262421
+$PEAT: #1C1D19
+$PEAT_SOFT: #2A2B25
+$PEAT_LINE: #45463D
+$RUST: #8F3B1B
+$RUST_BRIGHT: #A3461F
+$RUST_LIGHT: #E0855C
+$OLIVE: #556229
+$OLIVE_LIGHT: #B3C077
+$MUSTARD: #A87C10
+$MUSTARD_DARK: #86650E
+$MUSTARD_LIGHT: #E3B94A
+$DRIFTWOOD: #6A645A
+$DRIFTWOOD_LIGHT: #A39D90
 
 html.light
     & .color-examples
-        --red: #{$IMPERIAL_RED}
-        --green-blue: #{$MIDNIGHT_GREEN}
-        --yellow: #{$AMBER}
-        --gray: #{$DIM_GRAY}
-        --text: #{$SEA_SALT}
+        --swatch-primary: #{$RUST_BRIGHT}
+        --swatch-secondary: #{$OLIVE}
+        --swatch-highlight: #{$MUSTARD_DARK}
+        --swatch-neutral: #{$DRIFTWOOD}
+        --swatch-text: #{$BONE}
 
-    @include meta.load-css("highlight.js/styles/panda-syntax-light.min")
+    @include meta.load-css("highlight.js/styles/a11y-light.min")
 
-    --h1: #{$MIDNIGHT_GREEN}
-    --h2: #{$EERIE_BLACK}
-    --p: #{$EERIE_BLACK}
-    --a: #{$ZOMP}
-    --page-background: #{$SEA_SALT}
-    --focus-ring: #{$MIDNIGHT_GREEN}
-    --navbar-border: #{$MIDNIGHT_GREEN}
-    --navbar-dropdown-border: #{$MIDNIGHT_GREEN}
-    --navbar-link-color: #{$MIDNIGHT_GREEN}
-    --navbar-link-hover: #{$MIDNIGHT_GREEN}
-    --navbar-link-active-color: #{$SEA_SALT}
-    --navbar-link-active-background: #{$MIDNIGHT_GREEN}
-    --sidebar-border: #{$MIDNIGHT_GREEN}
-    --sidebar-group: #{$ZOMP}
-    --sidebar-item-color: #{$EERIE_BLACK}
-    --sidebar-item-border-color: #{$DIM_GRAY}
-    --sidebar-item-border-active: #{$ZOMP}
-    --home-image-primary-background: #{$ZOMP}
+    --h1: #{$RUST}
+    --h2: #{$SOOT}
+    --p: #{$SOOT}
+    --a: #{$OLIVE}
+    --page-background: #{$BONE}
+    --code-background: #{$PARCHMENT}
+    --focus-ring: #{$RUST}
+    --navbar-border: #{$RUST}
+    --navbar-dropdown-border: #{$RUST}
+    --navbar-link-color: #{$RUST}
+    --navbar-link-hover: #{$RUST}
+    --navbar-link-active-color: #{$BONE}
+    --navbar-link-active-background: #{$RUST}
+    --sidebar-border: #{$RUST}
+    --sidebar-group: #{$OLIVE}
+    --sidebar-item-color: #{$SOOT}
+    --sidebar-item-border-color: #{$DRIFTWOOD}
+    --sidebar-item-border-active: #{$OLIVE}
+    --home-image-primary-background: #{$OLIVE}
     --home-image-secondary-background: transparent
-    --home-availability-title: #{$MIDNIGHT_GREEN}
-    --button-hover-background: #{$MIDNIGHT_GREEN}
-    --button-hover-color: #{$SEA_SALT}
-    --section-text-title: #{$ZOMP}
-    --section-text-color: #{$EERIE_BLACK}
-    --section-hr: #{$ZOMP}
-    --section-li: #{$EERIE_BLACK}
-    --section-link: #{$ZOMP}
-    --section-link-hover: #{$MIDNIGHT_GREEN}
-    --footer-hr: #{$SILVER}
-    --footer-text: #{$ZOMP}
-    --blockquote-text: #{$EERIE_BLACK}
-    --blockquote-pseudo-element: #{$ZOMP}
-    --icon-fill-color: #{$MIDNIGHT_GREEN}
-    --icon-fill-hover: #{$ZOMP}
-    --input-icon: #{$MIDNIGHT_GREEN}
-    --input-border: #{$MIDNIGHT_GREEN}
-    --input-placeholder: #{$SILVER}
-    --input-value: #{$EERIE_BLACK}
-    --image-caption-background: #{$ZOMP}
-    --image-caption-color: #{$SEA_SALT}
-    --tag-background: #{$MIDNIGHT_GREEN}
-    --tag-color: #{$SEA_SALT}
-    --experience-title: #{$ZOMP}
-    --experience-text: #{$EERIE_BLACK}
-    --banner-warning: #{$AMBER}
-    --banner-background: #{$SEA_SALT}
-    --banner-text: #{$EERIE_BLACK}
-    --banner-close-text: #{$ZOMP}
-    --banner-close-border: #{$ZOMP}
-    --banner-icon-warning: #{$AMBER}
-    --dropdown-background: #{$MIDNIGHT_GREEN}
-    --dropdown-text: #{$SEA_SALT}
-    --dropdown-focus-ring: #{$SEA_SALT}
-    --table-thead-background: #{$ZOMP}
-    --table-thead-color: #{$SEA_SALT}
-    --table-border: #{$ZOMP}
+    --home-availability-title: #{$RUST}
+    --button-hover-background: #{$RUST}
+    --button-hover-color: #{$BONE}
+    --section-text-title: #{$OLIVE}
+    --section-text-subtitle: #{$DRIFTWOOD}
+    --section-text-color: #{$SOOT}
+    --section-hr: #{$OLIVE}
+    --section-li: #{$SOOT}
+    --section-link: #{$OLIVE}
+    --section-link-hover: #{$RUST}
+    --footer-hr: #{$PARCHMENT_LINE}
+    --footer-text: #{$OLIVE}
+    --blockquote-text: #{$SOOT}
+    --blockquote-pseudo-element: #{$OLIVE}
+    --icon-fill-color: #{$RUST}
+    --icon-fill-hover: #{$OLIVE}
+    --input-icon: #{$RUST}
+    --input-border: #{$RUST}
+    --input-placeholder: #{$DRIFTWOOD}
+    --input-value: #{$SOOT}
+    --image-caption-background: #{$OLIVE}
+    --image-caption-color: #{$BONE}
+    --tag-background: #{$RUST}
+    --tag-color: #{$BONE}
+    --experience-title: #{$OLIVE}
+    --experience-text: #{$SOOT}
+    --banner-warning: #{$MUSTARD}
+    --banner-background: #{$BONE}
+    --banner-text: #{$SOOT}
+    --banner-close-text: #{$OLIVE}
+    --banner-close-border: #{$OLIVE}
+    --banner-icon-warning: #{$MUSTARD}
+    --dropdown-background: #{$RUST}
+    --dropdown-text: #{$BONE}
+    --dropdown-focus-ring: #{$BONE}
+    --table-thead-background: #{$OLIVE}
+    --table-thead-color: #{$BONE}
+    --table-border: #{$OLIVE}
 
 html.dark
     & .color-examples
-        --red: #{$INDIAN_RED}
-        --green-blue: #{$DARK_SLATE_GRAY}
-        --yellow: #{$NAPLES_YELLOW}
-        --gray: #{$SILVER}
-        --text: #{$EERIE_BLACK}
+        --swatch-primary: #{$RUST_LIGHT}
+        --swatch-secondary: #{$OLIVE_LIGHT}
+        --swatch-highlight: #{$MUSTARD_LIGHT}
+        --swatch-neutral: #{$DRIFTWOOD_LIGHT}
+        --swatch-text: #{$PEAT}
 
-    @include meta.load-css("highlight.js/styles/panda-syntax-dark.min")
+    @include meta.load-css("highlight.js/styles/a11y-dark.min")
 
-    --h1: #{$CAMBRIDGE_BLUE}
-    --h2: #{$SEA_SALT}
-    --p: #{$SEA_SALT}
-    --a: #{$CAMBRIDGE_BLUE}
-    --page-background: #{$GUNMETAL}
-    --focus-ring: #{$NAPLES_YELLOW}
-    --navbar-border: #{$CAMBRIDGE_BLUE}
-    --navbar-dropdown-border: #{$CAMBRIDGE_BLUE}
-    --navbar-link-color: #{$SEA_SALT}
-    --navbar-link-hover: #{$SEA_SALT}
-    --navbar-link-active-color: #{$EERIE_BLACK}
-    --navbar-link-active-background: #{$CAMBRIDGE_BLUE}
-    --sidebar-border: #{$CAMBRIDGE_BLUE}
-    --sidebar-group: #{$CAMBRIDGE_BLUE}
-    --sidebar-item-color: #{$SEA_SALT}
-    --sidebar-item-border-color: #{$SILVER}
-    --sidebar-item-border-active: #{$CAMBRIDGE_BLUE}
-    --home-image-primary-background: #{$CAMBRIDGE_BLUE}
+    --h1: #{$RUST_LIGHT}
+    --h2: #{$BONE_LIGHT}
+    --p: #{$BONE_LIGHT}
+    --a: #{$OLIVE_LIGHT}
+    --page-background: #{$PEAT}
+    --code-background: #{$PEAT_SOFT}
+    --focus-ring: #{$MUSTARD_LIGHT}
+    --navbar-border: #{$RUST_LIGHT}
+    --navbar-dropdown-border: #{$RUST_LIGHT}
+    --navbar-link-color: #{$BONE_LIGHT}
+    --navbar-link-hover: #{$BONE_LIGHT}
+    --navbar-link-active-color: #{$PEAT}
+    --navbar-link-active-background: #{$RUST_LIGHT}
+    --sidebar-border: #{$RUST_LIGHT}
+    --sidebar-group: #{$OLIVE_LIGHT}
+    --sidebar-item-color: #{$BONE_LIGHT}
+    --sidebar-item-border-color: #{$DRIFTWOOD_LIGHT}
+    --sidebar-item-border-active: #{$OLIVE_LIGHT}
+    --home-image-primary-background: #{$OLIVE_LIGHT}
     --home-image-secondary-background: transparent
-    --home-availability-title: #{$SEA_SALT}
-    --button-hover-background: #{$CAMBRIDGE_BLUE}
-    --button-hover-color: #{$EERIE_BLACK}
-    --section-text-title: #{$CAMBRIDGE_BLUE}
-    --section-text-color: #{$SEA_SALT}
-    --section-hr: #{$CAMBRIDGE_BLUE}
-    --section-li: #{$SEA_SALT}
-    --section-link: #{$CAMBRIDGE_BLUE}
-    --section-link-hover: #{$CAMBRIDGE_BLUE}
-    --footer-hr: #{$SILVER}
-    --footer-text: #{$CAMBRIDGE_BLUE}
-    --blockquote-text: #{$SEA_SALT}
-    --blockquote-pseudo-element: #{$CAMBRIDGE_BLUE}
-    --icon-fill-color: #{$CAMBRIDGE_BLUE}
-    --icon-fill-hover: #{$CAMBRIDGE_BLUE}
-    --input-icon: #{$CAMBRIDGE_BLUE}
-    --input-border: #{$CAMBRIDGE_BLUE}
-    --input-placeholder: #{$DIM_GRAY}
-    --input-value: #{$SEA_SALT}
-    --tag-background: #{$CAMBRIDGE_BLUE}
-    --tag-color: #{$EERIE_BLACK}
-    --experience-title: #{$CAMBRIDGE_BLUE}
-    --banner-background: #{$GUNMETAL}
-    --experience-text: #{$SEA_SALT}
-    --banner-warning: #{$NAPLES_YELLOW}
-    --banner-text: #{$SEA_SALT}
-    --banner-icon-warning: #{$NAPLES_YELLOW}
-    --banner-close-text: #{$CAMBRIDGE_BLUE}
-    --banner-close-border: #{$CAMBRIDGE_BLUE}
-    --dropdown-background: #{$CAMBRIDGE_BLUE}
-    --dropdown-text: #{$SEA_SALT}
-    --dropdown-focus-ring: #{$GUNMETAL}
-    --table-thead-background: #{$CAMBRIDGE_BLUE}
-    --table-thead-color: #{$SEA_SALT}
-    --table-border: #{$CAMBRIDGE_BLUE}
+    --home-availability-title: #{$BONE_LIGHT}
+    --button-hover-background: #{$RUST_LIGHT}
+    --button-hover-color: #{$PEAT}
+    --section-text-title: #{$OLIVE_LIGHT}
+    --section-text-subtitle: #{$DRIFTWOOD_LIGHT}
+    --section-text-color: #{$BONE_LIGHT}
+    --section-hr: #{$OLIVE_LIGHT}
+    --section-li: #{$BONE_LIGHT}
+    --section-link: #{$OLIVE_LIGHT}
+    --section-link-hover: #{$RUST_LIGHT}
+    --footer-hr: #{$PEAT_LINE}
+    --footer-text: #{$OLIVE_LIGHT}
+    --blockquote-text: #{$BONE_LIGHT}
+    --blockquote-pseudo-element: #{$OLIVE_LIGHT}
+    --icon-fill-color: #{$RUST_LIGHT}
+    --icon-fill-hover: #{$OLIVE_LIGHT}
+    --input-icon: #{$RUST_LIGHT}
+    --input-border: #{$RUST_LIGHT}
+    --input-placeholder: #{$DRIFTWOOD_LIGHT}
+    --input-value: #{$BONE_LIGHT}
+    --image-caption-background: #{$OLIVE_LIGHT}
+    --image-caption-color: #{$PEAT}
+    --tag-background: #{$RUST_LIGHT}
+    --tag-color: #{$PEAT}
+    --experience-title: #{$OLIVE_LIGHT}
+    --experience-text: #{$BONE_LIGHT}
+    --banner-warning: #{$MUSTARD_LIGHT}
+    --banner-background: #{$PEAT}
+    --banner-text: #{$BONE_LIGHT}
+    --banner-close-text: #{$OLIVE_LIGHT}
+    --banner-close-border: #{$OLIVE_LIGHT}
+    --banner-icon-warning: #{$MUSTARD_LIGHT}
+    --dropdown-background: #{$RUST_LIGHT}
+    --dropdown-text: #{$PEAT}
+    --dropdown-focus-ring: #{$PEAT}
+    --table-thead-background: #{$OLIVE_LIGHT}
+    --table-thead-color: #{$PEAT}
+    --table-border: #{$OLIVE_LIGHT}
 
 // Fluid sizes keep the headings on few lines on phones and at full size on desktop
 h1
@@ -175,6 +186,6 @@ li
     line-height: 1.6
 
 :root
-    --shadow: 0 8px 16px 4px rgba(0, 0, 0, 50%)
-    --light-shadow: 0 4px 8px 2px rgba(0, 0, 0, 25%)
+    --shadow: 0 8px 16px 4px rgba(38, 36, 33, 50%)
+    --light-shadow: 0 4px 8px 2px rgba(38, 36, 33, 25%)
     --elevated-index: 10

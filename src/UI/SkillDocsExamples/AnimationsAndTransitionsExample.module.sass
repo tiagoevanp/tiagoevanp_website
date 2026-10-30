@@ -8,9 +8,9 @@
     gap: 64px
     margin-block: 32px
     padding: 32px
-    border: 2px solid var(--gray)
+    border: 2px solid var(--swatch-neutral)
     border-radius: 4px
-    color: var(--text)
+    color: var(--swatch-text)
     font-size: 24px
 
     > div
@@ -20,7 +20,7 @@
         width: 100%
         height: 100px
         border-radius: 8px
-        box-shadow: 2px 2px 4px black
+        box-shadow: var(--light-shadow)
 
     // Stack the examples on narrow screens
     @media (max-width: $bp-mobile)
@@ -33,15 +33,15 @@
 
 .background-color-transition
     grid-area: a
-    background-color: var(--red)
+    background-color: var(--swatch-primary)
     transition: background-color 0.2s linear
 
     &:hover
-        background-color: var(--green-blue)
+        background-color: var(--swatch-secondary)
 
 .transform-transition
     grid-area: b
-    background-color: var(--red)
+    background-color: var(--swatch-primary)
     transition: transform 0.5s ease-in-out
 
     &:hover
@@ -49,7 +49,7 @@
 
 .opacity-transition
     grid-area: c
-    background-color: var(--red)
+    background-color: var(--swatch-primary)
     transition: opacity 0.2s ease-in
 
     &:hover
@@ -57,14 +57,14 @@
 
 .jump-animation
     grid-area: d
-    background-color: var(--yellow)
+    background-color: var(--swatch-highlight)
     animation: 2s ease-in-out infinite jump
 
 // The demos only show motion when the reader hasn't asked to reduce it
 .reduced-motion-note
     display: none
     margin-top: 16px
-    color: var(--text)
+    color: var(--p)
     font-size: 16px
 
 @media (prefers-reduced-motion: reduce)
