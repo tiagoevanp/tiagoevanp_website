@@ -85,14 +85,18 @@ export const viewport: Viewport = {
 // Each language has its own root layout so the static HTML declares the page language
 export function RootLayout({
     lang,
+    beforeContent,
     children,
 }: Readonly<{
     lang: string;
+    // Rendered first in <body>, so an inline script here runs before the page paints
+    beforeContent?: React.ReactNode;
     children: React.ReactNode;
 }>) {
     return (
         <html lang={lang} suppressHydrationWarning>
             <body className={`${notoSans.variable} ${notoSansMono.variable}`}>
+                {beforeContent}
                 <HtmlLang />
                 <ThemeProvider
                     attribute="class"

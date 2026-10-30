@@ -2,13 +2,14 @@
 
 import { useLayoutEffect } from 'react';
 
-import { useTranslation } from './client';
+import { hasDetectedLanguage, useTranslation } from './client';
 
 export const HtmlLang = () => {
     const { language } = useTranslation();
 
     useLayoutEffect(() => {
-        if (language) document.documentElement.lang = language;
+        // Hydration renders in the fallback language, which would undo a lang set before it (see detectLanguage.ts)
+        if (language && hasDetectedLanguage()) document.documentElement.lang = language;
     }, [language]);
 
     return null;
