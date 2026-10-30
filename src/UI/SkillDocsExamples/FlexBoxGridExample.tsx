@@ -26,7 +26,7 @@ export const FlexBoxGridExample = () => {
             height: '100px',
             margin: 'auto',
             backgroundColor: 'var(--swatch-primary)',
-            boxShadow: 'var(--light-shadow)',
+            boxShadow: 'var(--shadow-sm)',
             borderRadius: '8px',
         },
         main: {
@@ -38,7 +38,7 @@ export const FlexBoxGridExample = () => {
             height: '100px',
             margin: 'auto',
             backgroundColor: 'var(--swatch-secondary)',
-            boxShadow: 'var(--light-shadow)',
+            boxShadow: 'var(--shadow-sm)',
             borderRadius: '8px',
         },
         sidebar: {
@@ -50,7 +50,7 @@ export const FlexBoxGridExample = () => {
             height: '100px',
             margin: 'auto',
             backgroundColor: 'var(--swatch-highlight)',
-            boxShadow: 'var(--light-shadow)',
+            boxShadow: 'var(--shadow-sm)',
             borderRadius: '8px',
         },
         footer: {
@@ -62,7 +62,7 @@ export const FlexBoxGridExample = () => {
             height: '100px',
             margin: 'auto',
             backgroundColor: 'var(--swatch-neutral)',
-            boxShadow: 'var(--light-shadow)',
+            boxShadow: 'var(--shadow-sm)',
             borderRadius: '8px',
         },
     };

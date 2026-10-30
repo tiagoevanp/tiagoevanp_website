@@ -1,11 +1,11 @@
 .dropdown
     position: absolute
     width: 256px
-    // Just below the navbar's 4px bottom border, with the arrow overlapping it
-    top: calc(100% - 4px)
+    // Just below the navbar's 1px bottom border, with the arrow overlapping it
+    top: calc(100% - 1px)
     right: 16px
     padding: 8px
-    border-radius: 2px
+    border-radius: var(--radius-sm)
     background-color: var(--dropdown-background)
     color: var(--dropdown-text)
     list-style: none
@@ -24,5 +24,5 @@
         border: solid var(--dropdown-background)
         transform: rotate(45deg)
         border-width: 16px 0 0 16px
-        border-radius: 2px
+        border-radius: var(--radius-sm)
         margin: -10px
