@@ -13,19 +13,17 @@ Lifecycle
 
 The lifecycle in React represents the different stages a component goes through, from its creation (mounting) to its end (unmounting) in the application.
 
-Lifecycle phases
-----------------
+## Lifecycle phases
 
 1. Mounting (When the component is created and will be inserted into the DOM)
 2. Updating (Phase where the component undergoes DOM updates due to changes in `props` or state)
 3. Unmounting (End of the cycle where the component is removed from the DOM)
 
-Lifecycle management
---------------------
+## Lifecycle management
 
 Example of how to manage a component's lifecycle using Hooks:
 
-```javascript
+```js
 import { useState, useEffect } from 'react';
 
 function MyFunctionalComponent() {
@@ -34,9 +32,9 @@ function MyFunctionalComponent() {
 
   useEffect(() => {
     console.log('mounted or updated');
-    
+
     return () => {
-      console.log('unmounted');
+      console.log('cleanup before the next update, or unmounted');
     };
   });
 
@@ -62,5 +60,138 @@ function MyFunctionalComponent() {
   );
 }
 ```
+
+## From class methods to Hooks
+
+Before Hooks, each phase had its own method in class components. Most of them map to a Hook:
+
+- `constructor` → the initial value of `useState` (or `useRef` for values that don't trigger a render)
+- `componentDidMount` → `useEffect` with an empty dependency array
+- `componentDidUpdate` → `useEffect` with the values it depends on in the array
+- `componentWillUnmount` → the cleanup function returned by `useEffect`
+- `shouldComponentUpdate` → `React.memo` around the component
+- `getDerivedStateFromProps` → compute the value during render instead of storing it in state
+- `componentDidCatch` and `getDerivedStateFromError` → no Hook equivalent yet: error boundaries are still class components
+
+The same component as a class and with Hooks:
+
+```js
+class Clock extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { now: new Date() };
+  }
+
+  componentDidMount() {
+    this.timer = setInterval(() => this.setState({ now: new Date() }), 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+
+  render() {
+    return <p>{this.state.now.toLocaleTimeString()}</p>;
+  }
+}
+
+function Clock() {
+  const [now, setNow] = useState(() => new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => setNow(new Date()), 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  return <p>{now.toLocaleTimeString()}</p>;
+}
+```
+
+The difference is in how the code is organised: in a class, one feature (the timer) is split between `componentDidMount` and `componentWillUnmount`; with Hooks, setting it up and cleaning it up stay together in the same effect.
+
+## Cleanup
+
+The function returned by an effect undoes what the effect did: it removes listeners, clears timers, closes connections and cancels requests. React calls it on unmount and also **before running the effect again** when a dependency changes, so the previous effect never stays active alongside the new one.
+
+```js
+function UserProfile({ userId }) {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    fetch(`/api/users/${userId}`, { signal: controller.signal })
+      .then(response => response.json())
+      .then(setUser)
+      .catch(error => {
+        if (error.name !== 'AbortError') console.error(error);
+      });
+
+    // If userId changes before the response arrives, the old request is cancelled
+    // and can't overwrite the new user's data
+    return () => controller.abort();
+  }, [userId]);
+
+  return <p>{user?.name}</p>;
+}
+```
+
+## Dependency arrays
+
+The second argument of `useEffect` defines when the effect runs again:
+
+- No array → after every render
+- `[]` → only after mounting
+- `[a, b]` → after mounting and whenever `a` or `b` changes (compared with `Object.is`)
+
+Every value from the component used inside the effect (props, state, functions) must be in the array, otherwise the effect reads values from an old render (a *stale closure*). The `react-hooks/exhaustive-deps` rule from `eslint-plugin-react-hooks` points out what's missing.
+
+Objects and functions created during render are new on every render, so as dependencies they run the effect every time. Create them inside the effect, or memoize them with `useMemo` / `useCallback`. When the effect only needs to update state from its previous value, an updater function removes the dependency:
+
+```js
+useEffect(() => {
+  const timer = setInterval(() => {
+    // The updater receives the current value, so count doesn't need to be a dependency
+    setCount(count => count + 1);
+  }, 1000);
+
+  return () => clearInterval(timer);
+}, []);
+```
+
+## StrictMode
+
+In development, `<StrictMode>` mounts every component, unmounts it and mounts it again right away, so each effect runs setup → cleanup → setup. It also calls render functions twice. That's intentional: it reveals effects without cleanup (two listeners, two connections) and renders that aren't pure. It doesn't happen in production.
+
+If an effect breaks when it runs twice, the fix is usually to write the missing cleanup, not to prevent the second run.
+
+## useLayoutEffect
+
+`useEffect` runs after the browser paints the screen. `useLayoutEffect` has the same signature, but runs right after React updates the DOM and **before the paint**. It's the right choice when the effect measures the layout and changes something visible, so the user never sees the intermediate state (like a tooltip flickering in the wrong place):
+
+```js
+import { useLayoutEffect, useRef, useState } from 'react';
+
+function Tooltip({ targetRect, children }) {
+  const ref = useRef(null);
+  const [height, setHeight] = useState(0);
+
+  useLayoutEffect(() => {
+    setHeight(ref.current.getBoundingClientRect().height);
+  }, []);
+
+  // Above the target when there's room, below it otherwise
+  const top = targetRect.top - height < 0 ? targetRect.bottom : targetRect.top - height;
+
+  return (
+    <div ref={ref} style={{ position: 'fixed', top, left: targetRect.left }}>
+      {children}
+    </div>
+  );
+}
+```
+
+Since it blocks the paint, use `useLayoutEffect` only in these cases and prefer `useEffect` for everything else.
 
 <Footer />
