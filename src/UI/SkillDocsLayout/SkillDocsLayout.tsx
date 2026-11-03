@@ -108,16 +108,38 @@ export function SkillDocsLayout({
             }
         };
 
+        // The drawer is last in the DOM, so Tab from its last link leaves the page and the blur has no
+        // relatedTarget. Close it once focus comes back anywhere else, so it never covers the focused element.
+        // Focus on an element around the drawer (main#content, after a click on a label or the padding) stays open
+        const handleFocusIn = (event: FocusEvent) => {
+            const target = event.target as Node;
+
+            if (
+                !sidebarRef.current?.contains(target)
+                && !toggleRef.current?.contains(target)
+                && !target.contains(sidebarRef.current)
+            ) {
+                closeSidebar(false);
+            }
+        };
+
         document.addEventListener('keydown', handleKeyDown);
         document.addEventListener('pointerdown', handlePointerDown);
+        document.addEventListener('focusin', handleFocusIn);
 
         return () => {
             document.removeEventListener('keydown', handleKeyDown);
             document.removeEventListener('pointerdown', handlePointerDown);
+            document.removeEventListener('focusin', handleFocusIn);
         };
     }, [isOpen, closeSidebar]);
 
+    // The article comes first, so the skip link lands in it instead of in front of the topic list;
+    // the grid puts the sidebar back on the left
     return <div className={styles.container}>
+        <section className={styles.section}>
+            {children}
+        </section>
         <div className={styles.toolbar}>
             {/* Named "Topics" by its visible label; the open article is its description, so the two aren't
                 read run together as one name */}
@@ -146,16 +168,20 @@ export function SkillDocsLayout({
             onBlur={(event) => {
                 const next = event.relatedTarget;
 
-                // Close when keyboard focus leaves the drawer, but not when it goes back to the toggle
-                if (isOpen && next && !event.currentTarget.contains(next) && next !== toggleRef.current) {
+                // Close when keyboard focus leaves the drawer, but not when it goes back to the toggle, or to an
+                // element around the drawer after a click on a part of it that can't take focus
+                if (
+                    isOpen
+                    && next
+                    && !event.currentTarget.contains(next)
+                    && next !== toggleRef.current
+                    && !next.contains(event.currentTarget)
+                ) {
                     closeSidebar(false);
                 }
             }}
         >
             <PageSidebar onNavigate={() => closeSidebar(true)} />
         </div>
-        <section className={styles.section}>
-            {children}
-        </section>
     </div>;
 }
