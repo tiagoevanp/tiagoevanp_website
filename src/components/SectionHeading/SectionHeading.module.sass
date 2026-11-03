@@ -1,0 +1,33 @@
+// The "#" follows the heading's text on its first line and stays next to it when the heading wraps
+.container
+    display: flex
+    align-items: baseline
+    gap: 8px
+
+.heading
+    min-width: 0
+    // Jumped to from a link, the heading lands a little below the sticky header (the page's scroll-padding-top)
+    // instead of touching it
+    scroll-margin-top: 16px
+
+// Hidden until the heading is hovered or the link focused, but always in the tab order
+.anchor
+    flex: none
+    font-size: 1.5em
+    color: var(--section-text-subtitle)
+    opacity: 0
+    transition: opacity 0.2s ease-out
+
+    .container:hover &,
+    &:focus
+        opacity: 1
+
+    &:hover
+        text-decoration: underline
+
+    // No hover to reveal it on touch screens
+    @media (hover: none)
+        opacity: 1
+
+    @media (prefers-reduced-motion: reduce)
+        transition: none

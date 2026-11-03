@@ -14,15 +14,18 @@ $space-section: 48px
     @media (max-width: $bp-mobile)
         font-size: 36px
 
-.h2
+// Wraps the h2 and its section link (see SectionHeading), so the spacing goes on it
+.h2-container
     margin-block: $space-section $margin-block
     max-inline-size: var(--text-measure)
-    color: var(--section-text-subtitle)
-    overflow-wrap: break-word
 
     // Right under the title the section spacing would only push the first section away from it
     .h1 + &
         margin-block-start: $margin-block
+
+.h2
+    color: var(--section-text-subtitle)
+    overflow-wrap: break-word
 
 .p
     max-inline-size: var(--text-measure)
