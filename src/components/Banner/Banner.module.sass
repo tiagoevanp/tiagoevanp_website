@@ -51,10 +51,12 @@
     border: none
     border-radius: var(--radius-sm)
     background-color: transparent
-    font-family: inherit
-    font-size: 16px
     color: var(--banner-text)
     cursor: pointer
+
+    // Comes after .warning, so the cross keeps the text colour instead of the warning icon's
+    & svg path
+        fill: currentColor
 
 // A notice about the site, not part of the printed content
 @media print

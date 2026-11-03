@@ -27,6 +27,8 @@ export const Banner = ({ message, variant }: BannerProps) => {
             <SvgIcon name='warning' variant='small' />
             <p>{message}</p>
         </div>
-        <button className={styles.close} aria-label={t('banner.close')} onClick={dismiss}>X</button>
+        <button type='button' className={styles.close} aria-label={t('banner.close')} onClick={dismiss}>
+            <SvgIcon name='xmark' variant='small' />
+        </button>
     </div>;
 };
