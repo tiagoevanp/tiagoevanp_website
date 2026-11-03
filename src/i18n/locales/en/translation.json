@@ -118,7 +118,7 @@
       "title": "Ducon Corretora de Seguros",
       "occupation": "Full-stack Developer",
       "time": "Dec 2025 - Jul 2026 · 8 months",
-      "location": "Porto Alegre, Rio Grande do Sul, Brazil · On-site",
+      "location": "Porto Alegre, RS · On-site",
       "highlights": [
         "Modernized legacy insurance systems using React and Laravel.",
         "Containerized legacy applications with Docker, simplifying deployment and infrastructure management.",
@@ -126,13 +126,13 @@
         "Collaborated with marketing and product teams to maintain CMS-driven websites.",
         "Collaborated on CI/CD workflows using GitHub Actions to support automated build and deployment processes."
       ],
-      "website_link": "Ducon website (opens in new tab)"
+      "website_link": "Ducon Corretora de Seguros website (opens in new tab)"
     },
     "rocket_chat": {
       "title": "Rocket.Chat",
       "occupation": "Software Engineer",
       "time": "Oct 2020 - Sep 2025 · 5 years",
-      "location": "Porto Alegre, Rio Grande do Sul, Brazil · Remote",
+      "location": "Porto Alegre, RS · Remote",
       "highlights": [
         "Designed, developed, and delivered frontend features for a communication platform serving over 12 million users.",
         "Led the migration of large frontend modules from JavaScript to TypeScript, modernizing approximately 30% of the codebase and improving maintainability and type safety.",
@@ -148,8 +148,8 @@
     "canopus": {
       "title": "Canopus",
       "occupation": "Software Engineer",
-      "time": "Sep 2017 - Oct 2020 · 3 years 2 months",
-      "location": "Porto Alegre, Rio Grande do Sul, Brazil · On-site",
+      "time": "Sep 2017 - Oct 2020 · 3 years, 2 months",
+      "location": "Porto Alegre, RS · On-site",
       "highlights": [
         "Delivered 10+ custom web applications for enterprise and public-sector clients with a strong focus on security and business process automation.",
         "Developed financial features including boleto (Brazilian bank slip) generation, reporting, and payment workflows.",

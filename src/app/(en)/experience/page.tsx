@@ -29,17 +29,18 @@ const Experience = () => {
                         <h3 id={`${id}-title`} className={styles.role}>
                             {t(`experience.${id}.occupation`)}
                         </h3>
-                        {/* A div, not a p: SvgIcon renders a div */}
+                        {/* A div, not a p: SvgIcon renders a div. The company name itself is the link */}
                         <div className={styles.company}>
-                            <span>{t(`experience.${id}.title`)}</span>
-                            {url && <Link
+                            {url ? <Link
+                                className={styles['company-link']}
                                 href={url}
                                 rel='noopener noreferrer'
                                 target='_blank'
                                 aria-label={t(`experience.${id}.website_link`)}
                             >
-                                <SvgIcon name='external-link' variant='large'/>
-                            </Link>}
+                                {t(`experience.${id}.title`)}
+                                <SvgIcon className={styles['company-icon']} name='external-link' variant='small'/>
+                            </Link> : <span>{t(`experience.${id}.title`)}</span>}
                         </div>
                         <p className={styles.meta}>
                             <span>{t(`experience.${id}.time`)}</span>
