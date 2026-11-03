@@ -112,10 +112,11 @@
   },
   "experience": {
     "page_title": "Experiência",
+    "work_title": "Experiência profissional",
+    "technologies": "Tecnologias",
     "ducon": {
       "title": "Ducon Corretora de Seguros",
       "occupation": "Desenvolvedor Full-stack",
-      "full_time": "Período Integral",
       "time": "dez de 2025 - jul de 2026 · 8 meses",
       "location": "Porto Alegre, Rio Grande do Sul, Brasil · Presencial",
       "highlights": [
@@ -130,7 +131,6 @@
     "rocket_chat": {
       "title": "Rocket.Chat",
       "occupation": "Engenheiro de Software",
-      "full_time": "Período Integral",
       "time": "out de 2020 - set de 2025 · 5 anos",
       "location": "Porto Alegre, Rio Grande do Sul, Brasil · Remota",
       "highlights": [
@@ -148,7 +148,6 @@
     "canopus": {
       "title": "Canopus",
       "occupation": "Engenheiro de Software",
-      "full_time": "Período Integral",
       "time": "set de 2017 - out de 2020 · 3 anos 2 meses",
       "location": "Porto Alegre, Rio Grande do Sul, Brasil · Presencial",
       "highlights": [

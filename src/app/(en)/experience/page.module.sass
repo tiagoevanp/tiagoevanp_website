@@ -1,7 +1,7 @@
 @use '../../breakpoints' as *
 
 // No height or overflow: the document scrolls. Capped and centred like the home content, so the left edges line up
-.section
+.page
     display: flex
     flex-direction: column
     flex-grow: 1
@@ -15,12 +15,40 @@
     @media (min-width: $bp-tablet)
         padding: 64px 32px
 
-.title
-    display: flex
-    align-items: center
+.page-title
     margin-block-end: 32px
     color: var(--experience-title)
-    
+
+// Sections sit further apart than jobs, with a hairline above each, so the two levels read differently
+.subsection + .subsection
+    margin-block-start: 56px
+    padding-block-start: 24px
+    border-block-start: var(--hairline-width) solid var(--line)
+
+.section-title
+    margin-block-end: 24px
+    color: var(--experience-title)
+
+.job + .job
+    margin-block-start: 24px
+
+// Role, then company, then the meta, stacked at every width so the dates stay next to the job they belong to
+.header
+    display: grid
+    grid-template-columns: minmax(0, 1fr)
+    gap: 4px
+
+.role
+    color: var(--experience-title)
+
+.company
+    display: flex
+    align-items: center
+    font-size: 18px
+    font-weight: 600
+    line-height: 1.4
+    color: var(--experience-text)
+
     a
         display: flex
         align-items: center
@@ -30,47 +58,34 @@
             & path
                 fill: var(--icon-fill-color)
 
-.technologies
+// Upright and lighter than role and company. Each span is its own line
+.meta
     display: flex
-    gap: 8px
-    flex-wrap: wrap
-    margin-block-end: 16px;
-
-.job-info
-    p
-        max-width: 72ch
-        margin-block: 8px
-
-        span
-            font-style: italic
-
-.subsection
-    margin-block-start: 32px
-
-.section-title
-    margin-block-end: 16px
-    color: var(--experience-title)
-
-.entry-title
-    color: var(--experience-title)
-
-.languages
-    margin: 0
-    padding-inline-start: 20px
-
-    li
-        margin-block: 8px
-.page-title
-    margin-block-end: 32px
-    color: var(--experience-title)
-
-.job + .job
-    margin-block-start: 32px
+    flex-direction: column
+    font-size: 16px
+    line-height: 1.5
+    color: var(--experience-text)
+    font-variant-numeric: tabular-nums
 
 // Keeps lines to a readable length on wide screens
 .highlights
     max-width: 72ch
     margin-block: 16px 0
+    padding-inline-start: 20px
+
+    li
+        margin-block: 8px
+
+// After the highlights: supporting detail, not the first thing read
+.technologies
+    display: flex
+    flex-wrap: wrap
+    gap: 8px
+    margin-block-start: 16px
+    list-style: none
+
+.languages
+    margin: 0
     padding-inline-start: 20px
 
     li
