@@ -31,7 +31,8 @@ $DRIFTWOOD_LIGHT: #A39D90
         padding: 0
         background: transparent
 
-html.light
+// Each theme's tokens and highlight.js colours, included under the selectors below
+@mixin light-theme
     & .color-examples
         --swatch-primary: #{$RUST_BRIGHT}
         --swatch-secondary: #{$OLIVE}
@@ -110,7 +111,7 @@ html.light
     --chip-background: #{$OLIVE_TINT}
     --chip-color: #{$OLIVE}
 
-html.dark
+@mixin dark-theme
     & .color-examples
         --swatch-primary: #{$RUST_LIGHT}
         --swatch-secondary: #{$OLIVE_LIGHT}
@@ -175,6 +176,19 @@ html.dark
     --line-strong: #{$DRIFTWOOD_LIGHT}
     --chip-background: #{$OLIVE_SHADE}
     --chip-color: #{$OLIVE_LIGHT}
+
+// next-themes sets html.light or html.dark before the page paints, and that class always wins so the toggle can
+// override the OS. Without JS there's no class: light applies, and dark when the OS prefers it. The dark rule beats
+// the light one there on specificity, so the dark theme has to set every token and highlight colour the light one does
+html:not(.dark)
+    @include light-theme
+
+html.dark
+    @include dark-theme
+
+@media (prefers-color-scheme: dark)
+    html:not(.light):not(.dark)
+        @include dark-theme
 
 // Fluid sizes keep the headings on few lines on phones and at full size on desktop
 h1
