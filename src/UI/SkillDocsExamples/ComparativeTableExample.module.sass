@@ -1,5 +1,18 @@
 @use '../../app/breakpoints' as *
 
+.figure
+    margin: 0
+
+// Looks like the table caption it replaces, which the browser centres
+.caption
+    font-size: 20px
+    font-weight: 400
+    text-align: center
+    padding-block: 16px
+
+    @media (max-width: $bp-mobile)
+        font-size: 16px
+
 // Scrolls sideways when the table's narrowest layout is still wider than the column (the page doesn't scroll, see
 // globals.sass), so the right column is never cut off
 .scroller
@@ -18,10 +31,6 @@
     border-radius: var(--radius-md)
     overflow: hidden
 
-    caption
-        font-size: 20px
-        padding-block: 16px
-
     thead tr th
         background-color: var(--table-thead-background)
         color:  var(--table-thead-color)
@@ -39,9 +48,6 @@
     // Tighter cells so the three columns fit narrow screens
     @media (max-width: $bp-mobile)
         font-size: 14px
-
-        caption
-            font-size: 16px
 
         thead tr th, tbody tr th, tbody tr td
             padding-block: 8px

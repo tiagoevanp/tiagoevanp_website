@@ -90,7 +90,6 @@
       "reduced_motion_note": "Seu sistema pede movimento reduzido, então o movimento destes exemplos está pausado. Desative essa configuração para vê-los animados."
     },
     "example_state_management": {
-      "scroll_label": "Tabela Redux vs Context API",
       "caption": "Tabela comparativa entre Redux e Context API",
       "characteristics": "Características",
       "complexity": {

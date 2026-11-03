@@ -90,7 +90,6 @@
       "reduced_motion_note": "Your system asks for reduced motion, so the movement in these examples is paused. Turn that setting off to see them animate."
     },
     "example_state_management": {
-      "scroll_label": "Redux vs Context API table",
       "caption": "Comparison table between Redux and Context API",
       "characteristics": "Characteristics",
       "complexity": {
