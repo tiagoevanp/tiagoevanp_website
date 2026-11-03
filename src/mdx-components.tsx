@@ -1,6 +1,6 @@
 import type { MDXComponents } from 'mdx/types';
 
-import { ArticleLink, Image, SectionHeading } from './components';
+import { ArticleLink, Image, SectionHeading, TableOfContents } from './components';
 import styles from './mdx-components.module.sass';
 
 const components = {
@@ -44,6 +44,8 @@ const components = {
             imageStyle={styles.img}
         />
     ),
+    // Inserted before the first section of longer pages by src/lib/tableOfContents.mjs
+    TableOfContents,
 } satisfies MDXComponents;
 
 export function useMDXComponents(): MDXComponents {
