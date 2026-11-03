@@ -113,6 +113,7 @@
   "experience": {
     "page_title": "Experience",
     "work_title": "Work experience",
+    "contact_title": "Contact",
     "technologies": "Technologies",
     "show_more_one": "Show {{count}} more",
     "show_more_other": "Show {{count}} more",
