@@ -87,8 +87,9 @@ $toolbar-height: 49px
         flex: 1
         min-width: 0
         min-height: 44px
-        padding-inline: 4px
+        padding-inline: 8px
         border: none
+        border-radius: var(--radius-sm)
         background-color: transparent
         font: inherit
         font-size: 16px
@@ -103,8 +104,12 @@ $toolbar-height: 49px
             &:hover path
                 fill: var(--icon-fill-hover)
 
-        &:focus-visible path
-            fill: var(--icon-fill-hover)
+        // The toolbar only has 2px around the button, so the ring goes inside it instead of off the screen's edge
+        &:focus-visible
+            outline-offset: -2px
+
+            & path
+                fill: var(--icon-fill-hover)
 
     .toggle-icon
         flex-shrink: 0

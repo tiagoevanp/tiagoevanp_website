@@ -17,6 +17,8 @@ import { PageSidebar } from '@/UI/PageSidebar/PageSidebar';
 import styles from './SkillDocsLayout.module.sass';
 
 const sidebarId = 'skill-docs-sidebar';
+const toggleLabelId = 'skill-docs-toggle-label';
+const toggleCurrentId = 'skill-docs-toggle-current';
 
 // Only the languages the articles use, so the rest of highlight.js stays out of the bundle. xml covers html
 hljs.registerLanguage('javascript', javascript);
@@ -117,20 +119,23 @@ export function SkillDocsLayout({
 
     return <div className={styles.container}>
         <div className={styles.toolbar}>
-            {/* Labelled with the visible text, and shows which article is open */}
+            {/* Named "Topics" by its visible label; the open article is its description, so the two aren't
+                read run together as one name */}
             <button
                 ref={toggleRef}
                 type='button'
                 className={styles.toggle}
+                aria-labelledby={toggleLabelId}
+                aria-describedby={current ? toggleCurrentId : undefined}
                 aria-expanded={isOpen}
                 aria-controls={sidebarId}
                 onClick={() => setOpen(!isOpen)}
             >
                 <SvgIcon name='bars' variant='small' className={styles['toggle-icon']} />
-                <span className={styles['toggle-label']}>{t('sidebar.toggle')}</span>
+                <span id={toggleLabelId} className={styles['toggle-label']}>{t('sidebar.toggle')}</span>
                 {current && <span className={styles['toggle-current']}>
                     <span aria-hidden='true'> · </span>
-                    {t(`sidebar.items.${current.title}`)}
+                    <span id={toggleCurrentId}>{t(`sidebar.items.${current.title}`)}</span>
                 </span>}
             </button>
         </div>
