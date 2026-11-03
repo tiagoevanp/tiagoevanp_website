@@ -36,7 +36,7 @@ export const createSlugger = (reserved = reservedIds) => {
 };
 
 // The text of a hast node, including inline code and emphasis inside a heading
-const toText = (node) => {
+export const toText = (node) => {
     if (node.type === 'text') return node.value;
 
     return node.children ? node.children.map(toText).join('') : '';

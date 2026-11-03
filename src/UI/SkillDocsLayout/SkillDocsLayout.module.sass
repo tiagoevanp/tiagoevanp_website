@@ -1,3 +1,5 @@
+@use '../../app/breakpoints' as *
+
 // Below this width the sidebar becomes a drawer behind the toolbar toggle
 $drawer-breakpoint: 991.98px
 // The toolbar's hairline, 2px padding, 44px toggle and 2px padding, before the safe area inset
@@ -54,6 +56,26 @@ $toolbar-height: 49px
 // No specificity, so the text elements' own --text-measure cap (mdx-components.module.sass) wins
 :where(.section) > *
     max-inline-size: var(--wide-measure)
+
+// Articles with a table of contents get a 220px rail on wide screens (TableOfContents.module.sass). The article stays
+// in the first column, one element per row, no wider than code blocks are; at 1280px that still leaves the text its
+// measure. The rail spans all the rows, so it can stick for the article's whole height: grid-row can't end on the
+// last implicit line, so it spans more rows than any article has (the empty ones have no height)
+@media (min-width: $bp-wide)
+    .section:has(> [data-toc])
+        display: grid
+        grid-template-columns: minmax(0, var(--wide-measure)) 220px
+        justify-content: start
+        align-content: start
+        column-gap: 48px
+
+        & > *
+            grid-column: 1
+
+        & > [data-toc]
+            grid-column: 2
+            grid-row: 1 / span 500
+            align-self: start
 
 @media (max-width: $drawer-breakpoint)
     .container

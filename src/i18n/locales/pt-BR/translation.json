@@ -101,6 +101,10 @@
       "next": "Próximo"
     },
     "section_link": "Link para a seção: {{title}}",
+    "toc": {
+      "title": "Nesta página",
+      "summary": "Nesta página ({{count}})"
+    },
     "opens_in_new_tab": "(abre em nova aba)",
     "example_animation_transitions": {
       "hover_me": "Passe o mouse",

@@ -101,6 +101,10 @@
       "next": "Next"
     },
     "section_link": "Link to section: {{title}}",
+    "toc": {
+      "title": "On this page",
+      "summary": "On this page ({{count}})"
+    },
     "opens_in_new_tab": "(opens in new tab)",
     "example_animation_transitions": {
       "hover_me": "Hover me",

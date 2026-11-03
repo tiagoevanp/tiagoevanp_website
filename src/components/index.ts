@@ -11,5 +11,6 @@ export * from './Navbar';
 export { SectionHeading } from './SectionHeading/SectionHeading';
 export { SkillDocCard } from './SkillDocCard/SkillDocCard';
 export { SvgIcon } from './SvgIcon/SvgIcon';
+export { TableOfContents } from './TableOfContents/TableOfContents';
 export { Tag } from './Tag/Tag';
 export { TextContainer } from './TextContainer/TextContainer';
