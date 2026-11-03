@@ -5,7 +5,7 @@ export const metadata = skillDocMetadata(
     'css-in-js',
     'pt-BR',
     'CSS-in-JS',
-    'Como o CSS-in-JS escreve estilos diretamente em JavaScript, com exemplos usando bibliotecas como Styled-components e Emotion.',
+    'Como o CSS-in-JS escreve estilos diretamente em JavaScript, com exemplos em Styled-components e Emotion, seu custo em tempo de execução e alternativas sem runtime como vanilla-extract e Linaria.',
 );
 
 CSS-in-JS
@@ -50,13 +50,92 @@ const Button = () => {
 }
 ```
 
-Dentre as principais vantagens, é possível destacar:
+## Como funciona
 
-- Estilo por componente
-- Propriedades dinâmicas
+Com bibliotecas de runtime, como Styled-components e Emotion, os estilos são processados no navegador durante a renderização do componente: a biblioteca interpola as props no template, serializa o resultado, gera um nome de classe com hash (como `.css-1x2y3z`) e insere uma tag `<style>` no documento quando essa classe ainda não existe. Cada combinação diferente de props gera uma nova classe.
+
+Na renderização no servidor (SSR), a biblioteca coleta os estilos usados na página e os envia junto com o HTML, para que o conteúdo não apareça sem estilo antes do JavaScript carregar.
+
+## Vantagens
+
+- Estilo por componente, sem colisão de nomes de classe
+- Propriedades dinâmicas baseadas em `props` e estado
 - Tematização fácil via API Context (React)
+- Os estilos ficam junto do componente, então remover o componente remove os seus estilos (sem CSS morto)
 - Manutenção simples
 
-> Quando o site é feito com páginas estáticas ou exige ser performático, CSS-in-JS não se torna uma grande vantagem. No entanto, para uma aplicação moderna que se utiliza de React, com uma vasta biblioteca de componentes, com estilização dinâmica, a opção é interessante.
+## Desvantagens
+
+- **Custo em tempo de execução:** serializar e inserir estilos acontece durante a renderização, na thread principal. Componentes cujas props mudam com frequência (animações, listas com muitos itens) geram muitas classes e recalculam estilos o tempo todo
+- **Tamanho do bundle:** a própria biblioteca é enviada ao navegador, além dos estilos
+- **Renderização no servidor:** exige configuração extra para coletar e enviar os estilos, que muda de framework para framework
+- **Depuração:** os nomes de classe gerados dizem pouco sobre a origem do estilo sem um plugin do Babel/SWC ou as ferramentas de desenvolvimento da biblioteca
+
+## React Server Components
+
+Bibliotecas de runtime dependem de Context (para o tema) e de inserir estilos durante a renderização, e nenhum dos dois existe em [Server Components](https://react.dev/reference/rsc/server-components). Em frameworks como o App Router do Next.js, todo componente que as utiliza precisa ser um Client Component (`'use client'`), o que envia mais JavaScript ao navegador e abre mão de parte dos benefícios de renderizar no servidor.
+
+## Alternativas sem runtime (zero-runtime)
+
+Algumas bibliotecas mantêm a forma de escrever do CSS-in-JS, mas extraem os estilos para arquivos `.css` estáticos durante o build, então nenhum estilo é processado no navegador. Como geram CSS puro, funcionam em Server Components.
+
+O [vanilla-extract](https://vanilla-extract.style/) usa arquivos `.css.ts` (ou `.css.js`); escritos em TypeScript, os estilos passam pela checagem de tipos:
+
+```js
+// button.css.js
+import { style, styleVariants } from '@vanilla-extract/css';
+
+export const base = style({
+  padding: '1rem 2rem',
+  border: 'none',
+  borderRadius: 4,
+});
+
+export const variant = styleVariants({
+  primary: { background: '#007bff', color: 'white' },
+  secondary: { background: '#6c757d', color: 'white' },
+});
+
+// Button.jsx
+import { base, variant } from './button.css';
+
+const Button = ({ kind = 'primary', children }) => {
+  return <button className={`${base} ${variant[kind]}`}>{children}</button>;
+}
+```
+
+O [Linaria](https://linaria.dev/) mantém a sintaxe de template literals do Styled-components. As funções interpoladas viram propriedades customizadas do CSS, definidas pelo `style` do componente:
+
+```js
+import { styled } from '@linaria/react';
+
+const Title = styled.h1`
+  font-size: 2rem;
+  color: ${props => props.color};
+`;
+```
+
+Outras opções na mesma linha são o [Panda CSS](https://panda-css.com/) e o [StyleX](https://stylexjs.com/), da Meta.
+
+A mesma ideia funciona sem nenhuma biblioteca: CSS Modules para o escopo e propriedades customizadas para os valores dinâmicos.
+
+```js
+import styles from './Progress.module.css';
+
+const Progress = ({ value }) => {
+  return <div className={styles.bar} style={{ '--progress': `${value}%` }} />;
+}
+```
+
+```css
+/* Progress.module.css */
+.bar {
+  width: var(--progress);
+  height: 8px;
+  background: #007bff;
+}
+```
+
+> Quando o site é feito com páginas estáticas ou exige ser performático, CSS-in-JS com runtime não se torna uma grande vantagem. Para uma aplicação React com uma vasta biblioteca de componentes e estilização dinâmica, ainda é uma opção interessante, e as bibliotecas sem runtime trazem a mesma forma de escrever estilos sem o custo em tempo de execução.
 
 <Footer />

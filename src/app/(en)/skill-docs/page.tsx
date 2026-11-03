@@ -1,15 +1,16 @@
-import { pageMetadata } from '@/lib/seo';
-import { SkillDocsIndex } from '@/UI/SkillDocsIndex/SkillDocsIndex';
+import { pageMetadata, skillDocsIndexAlternates } from '@/lib/seo';
+import { LanguageRedirect } from '@/UI/LanguageRedirect/LanguageRedirect';
 
-// Only exists under the en root layout; the client switches to the visitor's language
+// Kept so existing links still work: sends each visitor to /skill-docs/<lng> in their language
 export const metadata = pageMetadata({
     path: '/skill-docs',
     lng: 'en',
     title: 'Skill docs',
     description: 'Tiago\'s articles on front-end development: semantic HTML, ARIA, CSS layouts, animations, SASS, '
         + 'CSS-in-JS, modern and asynchronous JavaScript, Web APIs and React.',
+    alternates: skillDocsIndexAlternates(),
 });
 
 export default function Page() {
-    return <SkillDocsIndex />;
+    return <LanguageRedirect path='/skill-docs' />;
 }

@@ -1,6 +1,6 @@
 import type { MDXComponents } from 'mdx/types';
 
-import { ArticleLink, Image, SectionHeading, TableOfContents } from './components';
+import { ArticleLink, CodeBlock, Image, SectionHeading, TableOfContents } from './components';
 import styles from './mdx-components.module.sass';
 
 const components = {
@@ -34,6 +34,10 @@ const components = {
         <div className={styles['blockquote-container']}>
             <blockquote className={styles.blockquote}>{children}</blockquote>
         </div>
+    ),
+    // Fenced code blocks only: inline code is a code element without a pre, so it keeps the chip style
+    pre: (props) => (
+        <CodeBlock {...props} />
     ),
     img: ({ src, alt, title }) => (
         <Image

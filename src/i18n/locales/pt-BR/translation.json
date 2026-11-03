@@ -45,9 +45,6 @@
     "language": "Idioma: {{language}}"
   },
   "sidebar": {
-    "input": {
-      "placeholder": "Pesquisar..."
-    },
     "items": {
       "semantic": "Semântica",
       "aria": "WAI-ARIA",
@@ -83,8 +80,21 @@
       "lifecycle": "Montagem, atualização e desmontagem com Hooks",
       "state_management": "Redux e Context API, comparados"
     },
+    "groups": {
+      "html_css": "HTML & CSS",
+      "javascript": "JavaScript",
+      "react": "React"
+    },
+    "sections_one": "{{count}} seção",
+    "sections_other": "{{count}} seções",
+    "live_example": "Exemplo interativo",
     "read": "Ler",
     "code_example": "Exemplo de código",
+    "code": {
+      "copy": "Copiar",
+      "copied": "Copiado",
+      "copy_label": "Copiar código {{language}}"
+    },
     "pager": {
       "label": "Paginação dos artigos",
       "previous": "Anterior",
@@ -229,7 +239,7 @@
       "es": "Espanhol — Proficiência profissional limitada"
     }
   },
-  "page_under_construction": "Estes artigos ainda estão sendo escritos e atualizados, fique de olho!",
+  "page_under_construction": "Novos artigos adicionados regularmente.",
   "banner": {
     "close": "Fechar aviso"
   }

@@ -15,7 +15,7 @@ JavaScript é single-threaded, mas precisa lidar com operações que levam tempo
 
 Abaixo um exemplo de como funciona o uso de `async` e `await` a partir do ES2017 comparado ao uso de promises introduzido no ES6:
 
-```JavaScript
+```js
 // Uma Promise representa um valor que pode estar disponível agora, no futuro ou nunca
 const promise = new Promise((resolve, reject) => {
     // Simulando operação assíncrona
@@ -60,7 +60,7 @@ JavaScript usa um event loop para gerenciar operações assíncronas:
 3. Quando a _call stack_ está vazia, o _event loop_ move _callbacks_ para execução
 
 ## Microtasks vs Macrotasks
-```JavaScript
+```js
 // Microtasks (Promises) têm prioridade
 Promise.resolve().then(() => console.log('Microtask'));
 

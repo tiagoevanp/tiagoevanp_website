@@ -19,8 +19,13 @@ const withMDX = createMDX({
     extension: /\.(md|mdx)$/,
     options: {
         // Turbopack needs plugins as paths it can import. An absolute one, since the loader resolves it from each
-        // page's folder (see src/lib/headingIds.mjs). The table of contents needs the heading ids, so it runs after
-        rehypePlugins: [path.resolve('src/lib/headingIds.mjs'), path.resolve('src/lib/tableOfContents.mjs')],
+        // page's folder (see src/lib/headingIds.mjs and src/lib/highlightCode.mjs). The table of contents needs the
+        // heading ids, so it runs after them
+        rehypePlugins: [
+            path.resolve('src/lib/headingIds.mjs'),
+            path.resolve('src/lib/tableOfContents.mjs'),
+            path.resolve('src/lib/highlightCode.mjs'),
+        ],
     },
 });
 

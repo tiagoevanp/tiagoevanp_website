@@ -3,8 +3,9 @@
 // Only Markdown headings are seen: headings written as JSX (<h2 id='…'> in MDX, or inside example components) are
 // neither given an id nor checked against, so keep their ids clear of the generated ones.
 
-// Ids the page layout already uses (PageNavbar, SkillDocsLayout, the language Dropdown); a heading must not take one
-const reservedIds = ['content', 'mobile-menu', 'skill-docs-sidebar', 'language'];
+// Ids the page layout already uses (PageNavbar, SkillDocsLayout, the language Dropdown, the Availability call to
+// action under each article); a heading must not take one
+const reservedIds = ['content', 'mobile-menu', 'skill-docs-sidebar', 'language', 'availability-title'];
 
 const headingTags = new Set(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']);
 
@@ -49,6 +50,18 @@ const visitHeadings = (node, onHeading) => {
     }
 
     node.children?.forEach((child) => visitHeadings(child, onHeading));
+};
+
+// A page's sections are its Markdown h2s, the same headings given ids below. Counted for the skill docs cards
+// (src/lib/skillDocSections.ts)
+export const countSections = (tree) => {
+    let count = 0;
+
+    visitHeadings(tree, (heading) => {
+        if (heading.tagName === 'h2') count++;
+    });
+
+    return count;
 };
 
 // Rehype plugin: gives every section heading (h2 to h6) without an id one from its text, in document order. The h1

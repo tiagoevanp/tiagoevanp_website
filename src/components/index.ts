@@ -2,6 +2,7 @@ export { ArticleLink } from './ArticleLink/ArticleLink';
 export { Availability } from './Availability/Availability';
 export { Banner } from './Banner/Banner';
 export { Button } from './Button/Button';
+export { CodeBlock } from './CodeBlock/CodeBlock';
 export * from './Dropdown';
 export { Footer } from './Footer/Footer';
 export { IconButton } from './IconButton/IconButton';

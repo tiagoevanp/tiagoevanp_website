@@ -33,6 +33,13 @@
         & path
             fill: var(--banner-icon-warning)
 
+.info
+    border-inline-start: var(--accent-width) solid var(--banner-info)
+
+    & svg
+        & path
+            fill: var(--banner-icon-info)
+
 .hidden
     // Takes no space once dismissed, so the content moves back up
     display: none
@@ -51,10 +58,12 @@
     border: none
     border-radius: var(--radius-sm)
     background-color: transparent
-    font-family: inherit
-    font-size: 16px
     color: var(--banner-text)
     cursor: pointer
+
+    // Comes after .info and .warning, so the cross keeps the text colour instead of the warning icon's
+    & svg path
+        fill: currentColor
 
 // A notice about the site, not part of the printed content
 @media print

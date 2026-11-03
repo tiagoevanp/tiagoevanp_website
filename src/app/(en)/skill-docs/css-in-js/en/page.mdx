@@ -5,7 +5,7 @@ export const metadata = skillDocMetadata(
     'css-in-js',
     'en',
     'CSS-in-JS',
-    'How CSS-in-JS writes styles directly in JavaScript, with examples using libraries like Styled-components and Emotion.',
+    'How CSS-in-JS writes styles directly in JavaScript, with Styled-components and Emotion examples, its runtime cost and zero-runtime alternatives like vanilla-extract and Linaria.',
 );
 
 CSS-in-JS
@@ -50,13 +50,92 @@ const Button = () => {
 }
 ```
 
-Among the main advantages, we can highlight:
+## How it works
 
-- Component-scoped styling
-- Dynamic properties
+With runtime libraries like Styled-components and Emotion, styles are processed in the browser while the component renders: the library interpolates the props into the template, serializes the result, generates a hashed class name (such as `.css-1x2y3z`) and inserts a `<style>` tag in the document when that class doesn't exist yet. Each different combination of props produces a new class.
+
+On server-side rendering, the library collects the styles used on the page and sends them along with the HTML, so the content isn't shown unstyled before JavaScript loads.
+
+## Advantages
+
+- Component-scoped styling, with no class name collisions
+- Dynamic properties based on `props` and state
 - Easy theming via Context API (React)
+- Styles live next to the component, so removing the component removes its styles (no dead CSS)
 - Simple maintenance
 
-> For websites with static pages or that require high performance, CSS-in-JS doesn't offer significant advantages. However, for modern React applications with extensive component libraries and dynamic styling, it's an interesting option.
+## Drawbacks
+
+- **Runtime cost:** serializing and inserting styles happens during render, on the main thread. Components whose props change often (animations, lists with many items) generate many classes and recalculate styles constantly
+- **Bundle size:** the library itself is shipped to the browser, on top of the styles
+- **Server-side rendering:** it needs extra setup to collect and send the styles, which varies with each framework
+- **Debugging:** generated class names say little about where the style came from without a Babel/SWC plugin or the library's dev tools
+
+## React Server Components
+
+Runtime libraries depend on Context (for the theme) and on inserting styles while rendering, and neither exists in [Server Components](https://react.dev/reference/rsc/server-components). In frameworks like the Next.js App Router, every component that uses them must be a Client Component (`'use client'`), which sends more JavaScript to the browser and gives up part of the benefits of rendering on the server.
+
+## Zero-runtime alternatives
+
+Some libraries keep the authoring experience of CSS-in-JS, but extract the styles to static `.css` files at build time, so no style is processed in the browser. Since they produce plain CSS, they work in Server Components.
+
+[vanilla-extract](https://vanilla-extract.style/) uses `.css.ts` (or `.css.js`) files; written in TypeScript, the styles are type-checked:
+
+```js
+// button.css.js
+import { style, styleVariants } from '@vanilla-extract/css';
+
+export const base = style({
+  padding: '1rem 2rem',
+  border: 'none',
+  borderRadius: 4,
+});
+
+export const variant = styleVariants({
+  primary: { background: '#007bff', color: 'white' },
+  secondary: { background: '#6c757d', color: 'white' },
+});
+
+// Button.jsx
+import { base, variant } from './button.css';
+
+const Button = ({ kind = 'primary', children }) => {
+  return <button className={`${base} ${variant[kind]}`}>{children}</button>;
+}
+```
+
+[Linaria](https://linaria.dev/) keeps the tagged template syntax of Styled-components. Interpolated functions become CSS custom properties, set by the component's `style`:
+
+```js
+import { styled } from '@linaria/react';
+
+const Title = styled.h1`
+  font-size: 2rem;
+  color: ${props => props.color};
+`;
+```
+
+Other options in the same direction are [Panda CSS](https://panda-css.com/) and [StyleX](https://stylexjs.com/), from Meta.
+
+The same idea works without any library: CSS Modules for scoping and custom properties for dynamic values.
+
+```js
+import styles from './Progress.module.css';
+
+const Progress = ({ value }) => {
+  return <div className={styles.bar} style={{ '--progress': `${value}%` }} />;
+}
+```
+
+```css
+/* Progress.module.css */
+.bar {
+  width: var(--progress);
+  height: 8px;
+  background: #007bff;
+}
+```
+
+> For websites with static pages or that require high performance, runtime CSS-in-JS doesn't offer significant advantages. For React applications with extensive component libraries and dynamic styling, it's still an interesting option, and zero-runtime libraries bring the same way of writing styles without the runtime cost.
 
 <Footer />

@@ -3,6 +3,8 @@ import { GroupItem } from '../SidebarProvider';
 class ItemsList {
     private items: GroupItem[];
 
+    // `liveExample` is shown on the article's card next to its section count (src/lib/skillDocSections.ts).
+    // Keep it in step with the article
     constructor() {
         this.items = [
             {
@@ -19,11 +21,13 @@ class ItemsList {
                 id: 'modern-layouts',
                 title: 'modern_layouts',
                 href: 'modern-layouts',
+                liveExample: true,
             },
             {
                 id: 'animations-transitions',
                 title: 'animations_and_transitions',
                 href: 'animations-transitions',
+                liveExample: true,
             },
             {
                 id: 'sass',
@@ -59,6 +63,7 @@ class ItemsList {
                 id: 'state-management',
                 title: 'state_management',
                 href: 'state-management',
+                liveExample: true,
             },
         ];
     }
