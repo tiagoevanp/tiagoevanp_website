@@ -112,10 +112,11 @@
   },
   "experience": {
     "page_title": "Experience",
+    "work_title": "Work experience",
+    "technologies": "Technologies",
     "ducon": {
       "title": "Ducon Corretora de Seguros",
       "occupation": "Full-stack Developer",
-      "full_time": "Full-time",
       "time": "Dec 2025 - Jul 2026 · 8 months",
       "location": "Porto Alegre, Rio Grande do Sul, Brazil · On-site",
       "highlights": [
@@ -130,7 +131,6 @@
     "rocket_chat": {
       "title": "Rocket.Chat",
       "occupation": "Software Engineer",
-      "full_time": "Full-time",
       "time": "Oct 2020 - Sep 2025 · 5 years",
       "location": "Porto Alegre, Rio Grande do Sul, Brazil · Remote",
       "highlights": [
@@ -148,7 +148,6 @@
     "canopus": {
       "title": "Canopus",
       "occupation": "Software Engineer",
-      "full_time": "Full-time",
       "time": "Sep 2017 - Oct 2020 · 3 years 2 months",
       "location": "Porto Alegre, Rio Grande do Sul, Brazil · On-site",
       "highlights": [
