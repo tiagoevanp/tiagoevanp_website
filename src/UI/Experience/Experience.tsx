@@ -1,12 +1,16 @@
 'use client';
 
 import Link from 'next/link';
+import { Trans } from 'react-i18next';
 
 import { SvgIcon, Tag } from '@/components';
 import { useTranslation } from '@/i18n/client';
 import { education, getDuration, jobs } from '@/lib/experience';
 
 import styles from './Experience.module.sass';
+
+// Bullets shown before the disclosure. The copy lists them by impact, so the strongest are the visible ones
+const VISIBLE_HIGHLIGHTS = 4;
 
 // Rendered at /experience/<lng>, so useTranslation shows it in the path language from the static HTML on
 export const Experience = () => {
@@ -35,6 +39,17 @@ export const Experience = () => {
             </h2>
             {jobs.map(({ id, url, start, end, workMode, technologies }) => {
                 const highlights = t(`experience.${id}.highlights`, { returnObjects: true }) as string | string[];
+                const count = Array.isArray(highlights) ? highlights.length : 0;
+                const hidden = Math.max(count - VISIBLE_HIGHLIGHTS, 0);
+                // The strings mark metrics with <b>, rendered as <strong>. Passing t keeps the path language
+                const renderHighlight = (index: number) => <li key={index}>
+                    <Trans
+                        t={t}
+                        i18nKey={`experience.${id}.highlights.${index}`}
+                        components={{ b: <strong className={styles.metric}/> }}
+                    />
+                </li>;
+                const range = (from: number, to: number) => Array.from({ length: to - from }, (_, i) => from + i);
 
                 return <article key={id} className={styles.job} aria-labelledby={`${id}-title`}>
                     {/* Who, where and when first, so they are the fastest scan */}
@@ -67,9 +82,18 @@ export const Experience = () => {
                             </span>
                         </p>
                     </header>
-                    {Array.isArray(highlights) && <ul className={styles.highlights}>
-                        {highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
+                    {count > 0 && <ul className={styles.highlights}>
+                        {range(0, count - hidden).map(renderHighlight)}
                     </ul>}
+                    {/* Native disclosure: works by keyboard without JS, and the rest stay in the static HTML */}
+                    {hidden > 0 && <details className={styles.more}>
+                        <summary className={styles['more-summary']}>
+                            {t('experience.show_more', { count: hidden })}
+                        </summary>
+                        <ul className={styles.highlights}>
+                            {range(count - hidden, count).map(renderHighlight)}
+                        </ul>
+                    </details>}
                     <ul className={styles.technologies} aria-label={t('experience.technologies')}>
                         {technologies.map((tech) => <li key={tech}><Tag>{tech}</Tag></li>)}
                     </ul>
