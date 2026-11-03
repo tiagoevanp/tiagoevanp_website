@@ -85,6 +85,11 @@
     },
     "read": "Read",
     "code_example": "Code example",
+    "code": {
+      "copy": "Copy",
+      "copied": "Copied",
+      "copy_label": "Copy {{language}} code"
+    },
     "pager": {
       "label": "Skill docs pagination",
       "previous": "Previous",
