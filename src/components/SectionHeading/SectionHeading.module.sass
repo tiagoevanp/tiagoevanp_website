@@ -2,7 +2,8 @@
 .container
     display: flex
     align-items: baseline
-    gap: 8px
+    // With the anchor's padding, the "#" is 8px from the text
+    gap: 2px
 
 .heading
     min-width: 0
@@ -13,7 +14,11 @@
 // Hidden until the heading is hovered or the link focused, but always in the tab order
 .anchor
     flex: none
-    font-size: 1.5em
+    // The h2's type scale (theme.sass), so the "#" is the heading's size and never makes the row taller than it
+    font-size: clamp(1.25rem, 1rem + 1.2vw, 1.75rem)
+    line-height: 1.3
+    // A tap target at least 24px wide; the padding is on the "#" side of the gap, so the heading text doesn't move
+    padding-inline: 6px
     color: var(--section-text-subtitle)
     opacity: 0
     transition: opacity 0.2s ease-out

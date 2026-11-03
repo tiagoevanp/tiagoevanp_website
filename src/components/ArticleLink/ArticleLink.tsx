@@ -15,14 +15,21 @@ type ArticleLinkProps = {
     className?: string;
 };
 
-// Only http(s) links to another site count as external; links to this site are taken as paths
+// The site answers on http and https, with and without www (both redirect to siteUrl)
+const siteHost = new URL(siteUrl).hostname.replace(/^www\./, '');
+const siteHosts = [siteHost, `www.${siteHost}`];
+
+// Only http(s) and protocol-relative (//…) links to another site count as external; links to this site are taken
+// as paths. URL lowercases the protocol and host, so the comparison ignores case
 const toExternalOrPath = (href: string): { external: boolean; path?: string } => {
-    if (!/^https?:\/\//i.test(href)) return { external: false };
+    if (!/^(https?:)?\/\//i.test(href)) return { external: false };
 
     try {
-        const url = new URL(href);
+        const url = new URL(href, siteUrl);
 
-        if (url.origin === siteUrl) return { external: false, path: `${url.pathname}${url.search}${url.hash}` };
+        if (siteHosts.includes(url.hostname)) {
+            return { external: false, path: `${url.pathname}${url.search}${url.hash}` };
+        }
     } catch {
         // not a valid URL: still leaves the site
     }

@@ -1,5 +1,7 @@
 // Ids for the headings of MDX pages, so sections can be linked to. Plain JavaScript because next.config.ts passes
 // the rehype plugin to the MDX loader by path (Turbopack only takes serializable options) and Node imports it as is.
+// Only Markdown headings are seen: headings written as JSX (<h2 id='…'> in MDX, or inside example components) are
+// neither given an id nor checked against, so keep their ids clear of the generated ones.
 
 // Ids the page layout already uses (PageNavbar, SkillDocsLayout, the language Dropdown); a heading must not take one
 const reservedIds = ['content', 'mobile-menu', 'skill-docs-sidebar', 'language'];
@@ -49,7 +51,8 @@ const visitHeadings = (node, onHeading) => {
     node.children?.forEach((child) => visitHeadings(child, onHeading));
 };
 
-// Rehype plugin: gives every heading without an id one from its text, in document order
+// Rehype plugin: gives every section heading (h2 to h6) without an id one from its text, in document order. The h1
+// is the page title, rendered without an id, so it doesn't take a slug a section with the same text would want
 export default function rehypeHeadingIds() {
     return (tree) => {
         // Ids written by hand in the MDX are kept and can't be taken by another heading
@@ -62,6 +65,8 @@ export default function rehypeHeadingIds() {
         const slug = createSlugger([...reservedIds, ...handWritten]);
 
         visitHeadings(tree, (heading) => {
+            if (heading.tagName === 'h1') return;
+
             heading.properties ??= {};
             heading.properties.id ??= slug(toText(heading));
         });
