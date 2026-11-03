@@ -109,11 +109,16 @@ export function SkillDocsLayout({
         };
 
         // The drawer is last in the DOM, so Tab from its last link leaves the page and the blur has no
-        // relatedTarget. Close it once focus comes back anywhere else, so it never covers the focused element
+        // relatedTarget. Close it once focus comes back anywhere else, so it never covers the focused element.
+        // Focus on an element around the drawer (main#content, after a click on a label or the padding) stays open
         const handleFocusIn = (event: FocusEvent) => {
             const target = event.target as Node;
 
-            if (!sidebarRef.current?.contains(target) && !toggleRef.current?.contains(target)) {
+            if (
+                !sidebarRef.current?.contains(target)
+                && !toggleRef.current?.contains(target)
+                && !target.contains(sidebarRef.current)
+            ) {
                 closeSidebar(false);
             }
         };
@@ -163,8 +168,15 @@ export function SkillDocsLayout({
             onBlur={(event) => {
                 const next = event.relatedTarget;
 
-                // Close when keyboard focus leaves the drawer, but not when it goes back to the toggle
-                if (isOpen && next && !event.currentTarget.contains(next) && next !== toggleRef.current) {
+                // Close when keyboard focus leaves the drawer, but not when it goes back to the toggle, or to an
+                // element around the drawer after a click on a part of it that can't take focus
+                if (
+                    isOpen
+                    && next
+                    && !event.currentTarget.contains(next)
+                    && next !== toggleRef.current
+                    && !next.contains(event.currentTarget)
+                ) {
                     closeSidebar(false);
                 }
             }}
