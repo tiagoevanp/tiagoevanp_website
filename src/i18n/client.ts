@@ -5,10 +5,10 @@ import { useEffect, useSyncExternalStore } from 'react';
 import { useTranslation as useT } from 'react-i18next';
 
 import i18next from './i18next';
-import { getSkillDocLanguage } from './paths';
+import { getPathLanguage } from './paths';
 import { fallbackLng, storageKey } from './settings';
 
-export { getSkillDocLanguage, getSkillDocPath, getSkillDocSlug } from './paths';
+export { getLanguagePath, getPathLanguage, getSkillDocSlug } from './paths';
 
 let pathLanguage: string | undefined;
 let chosenLanguage: string | undefined;
@@ -19,7 +19,7 @@ i18next.on('languageChanged', (lng) => {
 });
 
 // The language last read in this tab. Each language is a separate page load, so this is how pages that
-// only exist in English follow a skill doc opened in another language (see the detection order in i18next.ts)
+// only exist in English follow a page opened in another language (see the detection order in i18next.ts)
 const rememberReadingLanguage = (lng: string) => {
     try {
         window.sessionStorage.setItem(storageKey, lng);
@@ -49,9 +49,9 @@ const subscribeToLanguage = (onChange: () => void) => {
 };
 
 export const useTranslation = () => {
-    const lng = getSkillDocLanguage(usePathname());
+    const lng = getPathLanguage(usePathname());
 
-    // A skill doc is always shown in its path language, from the first render on, so its static
+    // A page with the language in its path is always shown in it, from the first render on, so its static
     // HTML (rendered in that language) and hydration match whatever language the client has saved
     const translation = useT(undefined, { lng });
     // Re-renders on every language change. react-i18next can miss one that happens while Strict Mode

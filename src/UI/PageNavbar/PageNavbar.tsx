@@ -7,12 +7,13 @@ import { PropsWithChildren, useEffect, useRef, useState, useSyncExternalStore } 
 
 import { Dropdown, DropdownOption, IconButton, Navbar, NavbarLink } from '@/components';
 import {
-    getSkillDocLanguage,
-    getSkillDocPath,
+    getLanguagePath,
+    getPathLanguage,
     saveLanguage,
     useTranslation,
 } from '@/i18n/client';
 import { ExternalLinks } from '@/lib/ExternalLinks';
+import { experiencePath } from '@/lib/seo';
 import { useScreenContext } from '@/providers/hooks/useScreenContext';
 import { useSidebarContext } from '@/providers/hooks/useSidebarContext';
 
@@ -85,11 +86,11 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
         // The picked option unmounts with the dropdown, so keep focus on the toggle
         languageToggleRef.current?.focus();
 
-        if (getSkillDocLanguage(path)) {
+        if (getPathLanguage(path)) {
             const { search, hash } = window.location;
 
             // Each language has its own root layout, so this is a full page load
-            router.push(`${getSkillDocPath(path, newLanguage)}${search}${hash}`);
+            router.push(`${getLanguagePath(path, newLanguage)}${search}${hash}`);
 
             return;
         }
@@ -122,7 +123,7 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                     </li>
                     <li>
                         <NavbarLink
-                            to={'/experience'}
+                            to={experiencePath(language)}
                             className={isExperiencePage ? styles['navbar-link-active'] : ''}
                             aria-current={isExperiencePage ? 'page' : undefined}
                         >
@@ -229,7 +230,7 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                         </li>
                         <li>
                             <Link
-                                href={'/experience'}
+                                href={experiencePath(language)}
                                 aria-current={isExperiencePage ? 'page' : undefined}
                                 onClick={() => setMobileDropdownOpen(false)}
                             >

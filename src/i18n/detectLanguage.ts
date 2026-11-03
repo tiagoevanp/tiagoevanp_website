@@ -25,17 +25,20 @@ const detect = (supported: string[], fallback: string, key: string, cookie: stri
     for (const code of codes) {
         const lng = code && match(code);
 
-        if (lng) {
-            document.documentElement.lang = lng;
-
-            return;
-        }
+        if (lng) return lng;
     }
 
-    document.documentElement.lang = fallback;
+    return fallback;
 };
 
-// For pages served in whatever language the visitor reads, like the single 404.html of the static export
-const args = [languages, fallbackLng, storageKey, cookieName].map((arg) => JSON.stringify(arg)).join(',');
+export const detectLanguage = () => detect(languages, fallbackLng, storageKey, cookieName);
 
-export const detectLanguageScript = `(${detect.toString()})(${args})`;
+const args = [languages, fallbackLng, storageKey, cookieName].map((arg) => JSON.stringify(arg)).join(',');
+const detectedLanguage = `(${detect.toString()})(${args})`;
+
+// For pages served in whatever language the visitor reads, like the single 404.html of the static export
+export const detectLanguageScript = `document.documentElement.lang = ${detectedLanguage}`;
+
+// For a path that only sends the visitor on to their language's version of it, e.g. /experience to /experience/pt-BR
+export const redirectToLanguageScript = (path: string) => `location.replace(${JSON.stringify(`${path}/`)} + `
+    + `${detectedLanguage} + location.search + location.hash)`;

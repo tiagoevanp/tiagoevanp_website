@@ -11,9 +11,9 @@ i18next
     .use(initReactI18next)
     .init({
         // Start in the fallback on both sides so the static HTML and hydration match; the client
-        // switches to the detected or skill doc language after mounting (see client.ts)
+        // switches to the detected or path language after mounting (see client.ts)
         lng: fallbackLng,
-        // Bundled, so a skill doc can render in its own language on the first render (see client.ts)
+        // Bundled, so a page can render in its path language on the first render (see client.ts)
         resources: {
             en: { [defaultNS]: en },
             'pt-BR': { [defaultNS]: ptBR },

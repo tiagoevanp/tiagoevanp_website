@@ -5,11 +5,12 @@ import Link from 'next/link';
 import { Availability, Image, SkillDocCard, Tag, TextContainer } from '@/components';
 import { useTranslation } from '@/i18n/client';
 import { featuredSkillDocs, stack } from '@/lib/home';
+import { experiencePath } from '@/lib/seo';
 
 import styles from './page.module.sass';
 
 export default function Home() {
-    const { t } = useTranslation();
+    const { t, language } = useTranslation();
 
     return (
         <div className={styles.page}>
@@ -20,7 +21,7 @@ export default function Home() {
                     aside={<Availability />}
                     paragraph={t('home.paragraph')}
                     actions={
-                        <Link className={styles['experience-link']} href='/experience'>
+                        <Link className={styles['experience-link']} href={experiencePath(language)}>
                             {t('home.cta_experience')}
                             <span aria-hidden='true'> →</span>
                         </Link>

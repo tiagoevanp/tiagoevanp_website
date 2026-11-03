@@ -18,12 +18,18 @@ const ogLocales: Record<string, string> = {
 };
 
 export const skillDocPath = (slug: string, lng: string) => `/skill-docs/${slug}/${lng}`;
+export const experiencePath = (lng: string) => `/experience/${lng}`;
 
-// hreflang links between the language versions of a doc, plus x-default for any other language
-export const skillDocAlternates = (slug: string) => ({
-    ...Object.fromEntries(languages.map((lng) => [lng, skillDocPath(slug, lng)])),
-    'x-default': skillDocPath(slug, fallbackLng),
+// hreflang links between the language versions of a page, plus x-default for any other language
+const languageAlternates = (pathFor: (lng: string) => string, defaultPath = pathFor(fallbackLng)) => ({
+    ...Object.fromEntries(languages.map((lng) => [lng, pathFor(lng)])),
+    'x-default': defaultPath,
 });
+
+export const skillDocAlternates = (slug: string) => languageAlternates((lng) => skillDocPath(slug, lng));
+
+// /experience sends each visitor to their language (see app/(en)/experience/page.tsx), so it is the default
+export const experienceAlternates = () => languageAlternates(experiencePath, '/experience');
 
 type PageMetadata = {
     path: string;

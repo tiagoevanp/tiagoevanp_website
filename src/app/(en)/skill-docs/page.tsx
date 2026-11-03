@@ -1,7 +1,7 @@
 import { pageMetadata } from '@/lib/seo';
 import { SkillDocsIndex } from '@/UI/SkillDocsIndex/SkillDocsIndex';
 
-// Only exists under the en root layout, like /experience; the client switches to the visitor's language
+// Only exists under the en root layout; the client switches to the visitor's language
 export const metadata = pageMetadata({
     path: '/skill-docs',
     lng: 'en',
