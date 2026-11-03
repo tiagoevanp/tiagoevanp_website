@@ -49,14 +49,35 @@
     line-height: 1.4
     color: var(--experience-text)
 
-    a
-        display: flex
-        align-items: center
-        margin-inline-start: 16px
+// The padding makes a 44px tap target and the negative margin takes it back out of the layout,
+// so the header keeps its height. Relative so the padding sits above the meta line for hit testing
+.company-link
+    position: relative
+    display: inline-flex
+    align-items: center
+    gap: 6px
+    color: var(--section-link)
+    text-decoration: underline
+    text-decoration-color: transparent
+    text-underline-offset: 3px
 
-        & svg
-            & path
-                fill: var(--icon-fill-color)
+    // Grows the tap target to 48px without padding the link, so the focus ring still hugs the name and icon
+    &::before
+        content: ''
+        position: absolute
+        inset: -10px 0
+
+    &:hover, &:focus-visible
+        color: var(--section-link-hover)
+        text-decoration-color: currentColor
+
+// Fixed size, so a wrapped name never squeezes it. Flex, so the svg isn't put on the text baseline
+.company-icon
+    display: flex
+    flex-shrink: 0
+
+    & svg path
+        fill: currentColor
 
 // Upright and lighter than role and company. Each span is its own line
 .meta

@@ -14,7 +14,7 @@ export type SvgIconProps = {
 export const SvgIcon = ({ name, variant, className, label }: SvgIconProps) => {
     return (
         <div
-            className={`${styles[variant]} ${className}`}
+            className={className ? `${styles[variant]} ${className}` : styles[variant]}
             {...(label ? { role: 'img', 'aria-label': label } : { 'aria-hidden': true })}
         >
             <svg className={`${styles.icon}`} xmlns="http://www.w3.org/2000/svg" viewBox={`0 0 ${viewBox[name].x} ${viewBox[name].y}`} focusable='false'>
