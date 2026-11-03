@@ -1,6 +1,13 @@
 @use '../../app/breakpoints' as *
 
+// Scrolls sideways when the table's narrowest layout is still wider than the column (the page doesn't scroll, see
+// globals.sass), so the right column is never cut off
+.scroller
+    overflow-x: auto
+
 .tab
+    // Fills the column like before it was wrapped, and grows past it (into the scroller) when the words don't fit
+    width: 100%
     font-size: 18px
     font-weight: 400
     text-align: left
