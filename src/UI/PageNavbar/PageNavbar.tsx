@@ -13,7 +13,7 @@ import {
     useTranslation,
 } from '@/i18n/client';
 import { ExternalLinks } from '@/lib/ExternalLinks';
-import { experiencePath } from '@/lib/seo';
+import { experiencePath, skillDocsIndexPath } from '@/lib/seo';
 import { useScreenContext } from '@/providers/hooks/useScreenContext';
 import { useSidebarContext } from '@/providers/hooks/useSidebarContext';
 import { SiteFooter } from '@/UI/SiteFooter/SiteFooter';
@@ -119,7 +119,7 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                     </li>
                     <li>
                         <NavbarLink
-                            to='/skill-docs'
+                            to={skillDocsIndexPath(language)}
                             className={isSkillDocsPage ? styles['navbar-link-active'] : ''}
                             aria-current={isSkillDocsPage ? 'page' : undefined}
                         >
@@ -226,7 +226,7 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                         </li>
                         <li>
                             <Link
-                                href='/skill-docs'
+                                href={skillDocsIndexPath(language)}
                                 aria-current={isSkillDocsPage ? 'page' : undefined}
                                 onClick={() => setMobileDropdownOpen(false)}
                             >
