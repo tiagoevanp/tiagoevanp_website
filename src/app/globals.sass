@@ -21,8 +21,9 @@ body
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
 
-// Blocks are styled on pre, not on .hljs, so they look the same before highlight.js runs. The pre scrolls
-// sideways instead of the page; the highlight theme's own block styles are reset in theme.sass
+// The pre scrolls sideways instead of the page. In articles it sits in a CodeBlock frame, which draws the border and
+// the header; the tokens are coloured when the page builds (src/lib/highlightCode.mjs), and code in a language it
+// doesn't know takes the plain code colour
 pre
   margin-block: 16px
   overflow-x: auto
@@ -30,7 +31,7 @@ pre
   border-radius: var(--radius-md)
   border: var(--hairline-width) solid var(--line)
   background-color: var(--code-background)
-  color: var(--p)
+  color: var(--code-foreground)
 
 code
   font-family: var(--font-noto-sans-mono), 'Courier New', Courier, monospace

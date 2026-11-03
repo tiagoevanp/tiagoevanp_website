@@ -20,7 +20,7 @@ O que torna essas APIs particularmente poderosas é sua natureza assíncrona. A 
 Abaixo, alguns exemplos de uso:
 
 ## Geolocation
-```JavaScript
+```js
 // Verificar se o navegador suporta geolocalização
 if ("geolocation" in navigator) {
   navigator.geolocation.getCurrentPosition(
@@ -44,7 +44,7 @@ if ("geolocation" in navigator) {
 ```
 
 ## LocalStorage
-```JavaScript
+```js
 // Salvar dados
 localStorage.setItem("name", "João Silva");
 
@@ -60,7 +60,7 @@ localStorage.clear();
 ```
 
 ## Fetch
-```JavaScript
+```js
 async function getUsers() {
   try {
     const response = await fetch('https://webpage.com/users');

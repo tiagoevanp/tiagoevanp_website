@@ -18,7 +18,7 @@ O marco mais significativo para as versões de ECMAScript foi o ES6 (2015), tamb
 A seguir alguns exemplos comparativos entre ES5 e ES6:
 
 ## const, let, var
-```JavaScript
+```js
 // ES5
 var example = 'this var can be changed and his scope is by function';
 
@@ -53,7 +53,7 @@ console.log(c); // 7
 ```
 
 ## Arrow function
-```JavaScript
+```js
 // ES5
 function (parameters) {
     ...
@@ -86,7 +86,7 @@ const obj = {
 
 ## Template literals
 
-```JavaScript
+```js
 const nome = "Tiago";
 const mensagem = `Olá, ${nome}!
 Bem-vindo ao sistema.`;
@@ -96,7 +96,7 @@ Bem-vindo ao sistema.`;
 ```
 
 ## Destructuring
-```JavaScript
+```js
 // ES6
 // Array
 const [a, b] = [1, 2];
@@ -113,7 +113,7 @@ function mostraDados() {
 ```
 
 ## Spread e Rest
-```JavaScript
+```js
 // Spread (espalhar)
 const numbers = [1, 2, 3];
 const newNumbers = [...numbers, 4, 5];
@@ -126,7 +126,7 @@ function sum(...numbers) {
 ```
 
 ## class
-```JavaScript
+```js
 // ES5
 function Person(name, age) {
     this.name = name;
@@ -150,7 +150,7 @@ class Person {
 ```
 
 ## Modules
-```JavaScript
+```js
 // ES5
 var PI = 3.14;
 module.exports = PI
@@ -167,7 +167,7 @@ import sum, { PI } from './math.js';
 ```
 
 ## Promises e Async/Await
-```JavaScript
+```js
 // Promise
 fetch('/api/data')
     .then(response => response.json())
@@ -187,7 +187,7 @@ async function getData() {
 ```
 
 ## Map e Set
-```JavaScript
+```js
 const map = new Map();
 map.set('chave', 'valor');
 
@@ -195,19 +195,19 @@ const set = new Set([1, 2, 3, 3, 2]); // [1, 2, 3]
 ```
 
 ## Optional chaining (?.)
-```JavaScript
+```js
 const cidade = user?.address?.city;
 // Se o objeto ou alguma das propriedades for null/undefined, retorna undefined sem dar throw no erro
 ```
 
 ## Nullish coalescing (??)
-```JavaScript
+```js
 const value = input ?? "valor padrão";
 // Só retorna valor padrão se input for null/undefined
 ```
 
 ## Métodos úteis de array
-```JavaScript
+```js
 [1, 2, 3].map(x => x * 2);        // [2, 4, 6]
 [1, 2, 3].filter(x => x > 1);     // [2, 3]
 [1, 2, 3].find(x => x > 1);       // 2

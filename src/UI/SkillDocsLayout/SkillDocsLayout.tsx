@@ -1,10 +1,5 @@
 'use client';
 
-import hljs from 'highlight.js/lib/core';
-import css from 'highlight.js/lib/languages/css';
-import javascript from 'highlight.js/lib/languages/javascript';
-import scss from 'highlight.js/lib/languages/scss';
-import xml from 'highlight.js/lib/languages/xml';
 import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useRef } from 'react';
 
@@ -19,12 +14,6 @@ import styles from './SkillDocsLayout.module.sass';
 const sidebarId = 'skill-docs-sidebar';
 const toggleLabelId = 'skill-docs-toggle-label';
 const toggleCurrentId = 'skill-docs-toggle-current';
-
-// Only the languages the articles use, so the rest of highlight.js stays out of the bundle. xml covers html
-hljs.registerLanguage('javascript', javascript);
-hljs.registerLanguage('css', css);
-hljs.registerLanguage('scss', scss);
-hljs.registerLanguage('xml', xml);
 
 export function SkillDocsLayout({
     children,
@@ -48,14 +37,6 @@ export function SkillDocsLayout({
     }, [setOpen]);
 
     useEffect(() => {
-        // Inline code keeps the site's chip style, so only blocks are highlighted
-        document.querySelectorAll<HTMLElement>('pre > code').forEach((block) => {
-            if (!block.hasAttribute('data-hljs-highlighted')) {
-                hljs.highlightElement(block);
-                block.setAttribute('data-hljs-highlighted', 'true');
-            }
-        });
-
         // Blocks that scroll sideways need a Tab stop so keyboard users can scroll them (Safari
         // doesn't make scroll areas focusable on its own). Blocks that fit get none. The pre is
         // what scrolls (see globals.sass), so it gets the Tab stop.
