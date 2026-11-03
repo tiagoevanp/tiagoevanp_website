@@ -1,6 +1,10 @@
 'use client';
 
-import hljs from 'highlight.js';
+import hljs from 'highlight.js/lib/core';
+import css from 'highlight.js/lib/languages/css';
+import javascript from 'highlight.js/lib/languages/javascript';
+import scss from 'highlight.js/lib/languages/scss';
+import xml from 'highlight.js/lib/languages/xml';
 import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useRef } from 'react';
 
@@ -12,6 +16,12 @@ import { PageSidebar } from '@/UI/PageSidebar/PageSidebar';
 import styles from './SkillDocsLayout.module.sass';
 
 const sidebarId = 'skill-docs-sidebar';
+
+// Only the languages the articles use, so the rest of highlight.js stays out of the bundle. xml covers html
+hljs.registerLanguage('javascript', javascript);
+hljs.registerLanguage('css', css);
+hljs.registerLanguage('scss', scss);
+hljs.registerLanguage('xml', xml);
 
 export function SkillDocsLayout({
     children,
@@ -33,16 +43,21 @@ export function SkillDocsLayout({
     }, [setOpen]);
 
     useEffect(() => {
-        document.querySelectorAll('code').forEach((block) => {
-            if (block && !block.hasAttribute('data-hljs-highlighted')) {
-                hljs.highlightElement(block as HTMLElement);
+        // Inline code keeps the site's chip style, so only blocks are highlighted
+        document.querySelectorAll<HTMLElement>('pre > code').forEach((block) => {
+            if (!block.hasAttribute('data-hljs-highlighted')) {
+                hljs.highlightElement(block);
                 block.setAttribute('data-hljs-highlighted', 'true');
             }
         });
 
         // Blocks that scroll sideways need a Tab stop so keyboard users can scroll them (Safari
-        // doesn't make scroll areas focusable on its own). Blocks that fit get none.
-        const blocks = Array.from(document.querySelectorAll<HTMLElement>('pre > code'));
+        // doesn't make scroll areas focusable on its own). Blocks that fit get none. The pre is
+        // what scrolls (see globals.sass), so it gets the Tab stop.
+        const blocks = Array.from(
+            document.querySelectorAll('pre > code'),
+            (code) => code.parentElement as HTMLElement,
+        );
 
         const updateFocusable = (block: HTMLElement) => {
             if (block.scrollWidth > block.clientWidth) {

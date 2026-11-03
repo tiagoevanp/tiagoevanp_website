@@ -21,11 +21,16 @@ body
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
 
+// Blocks are styled on pre, not on .hljs, so they look the same before highlight.js runs. The pre scrolls
+// sideways instead of the page; the highlight theme's own block styles are reset in theme.sass
 pre
   margin-block: 16px
-
-pre code.hljs
+  overflow-x: auto
+  padding: 16px 20px
   border-radius: var(--radius-md)
+  border: var(--hairline-width) solid var(--line)
+  background-color: var(--code-background)
+  color: var(--p)
 
 code
   font-family: var(--font-noto-sans-mono), 'Courier New', Courier, monospace
