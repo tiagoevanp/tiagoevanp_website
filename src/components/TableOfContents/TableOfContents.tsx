@@ -41,15 +41,23 @@ export const TableOfContents = ({ headings }: TableOfContentsProps) => {
             setCurrentId(targets.findLast((target) => target.getBoundingClientRect().top <= line)?.id);
         };
 
-        // The observed band ends at the line, so the callback runs whenever a heading crosses it, in either
-        // direction, and once on start
-        const observer = new IntersectionObserver(update, {
-            rootMargin: `0px 0px -${(1 - currentLine) * 100}% 0px`,
-        });
+        // On every scroll, at most once a frame. An IntersectionObserver misses instant jumps (End, a dragged
+        // scrollbar, a restored position) that carry headings across the line without stopping near it
+        let frame = 0;
+        const schedule = () => {
+            cancelAnimationFrame(frame);
+            frame = requestAnimationFrame(update);
+        };
 
-        targets.forEach((target) => observer.observe(target));
+        update();
+        window.addEventListener('scroll', schedule, { passive: true });
+        window.addEventListener('resize', schedule, { passive: true });
 
-        return () => observer.disconnect();
+        return () => {
+            cancelAnimationFrame(frame);
+            window.removeEventListener('scroll', schedule);
+            window.removeEventListener('resize', schedule);
+        };
     }, [entries]);
 
     const list = (
