@@ -2,8 +2,8 @@
 
 .page
     display: grid
-    // The sticky header and the content; 1fr makes the content fill the rest
-    grid-template-rows: var(--navbar-height) 1fr
+    // The sticky header, the content and the site footer; 1fr makes the content fill the rest
+    grid-template-rows: var(--navbar-height) 1fr auto
     // minmax(0, 1fr) keeps wide content from stretching the page past the viewport
     grid-template-columns: minmax(0, 1fr)
     min-height: 100vh
@@ -30,6 +30,20 @@
     z-index: 1200
     // Opaque (the navbar itself is transparent), so the page doesn't show through as it scrolls underneath
     background-color: var(--page-background)
+
+// Off screen until focused, then over the navbar's top-left corner. The header is sticky, so it anchors the link
+.skip-link
+    position: absolute
+    inset-inline-start: 16px
+    inset-block-start: -100px
+    z-index: 1300
+    padding: 8px 16px
+    border-radius: var(--radius-sm)
+    background-color: var(--navbar-link-active-background)
+    color: var(--navbar-link-active-color)
+
+    &:focus-visible
+        inset-block-start: 16px
 
 .dropdown-container
     position: relative
