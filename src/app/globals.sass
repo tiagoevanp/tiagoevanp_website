@@ -73,3 +73,17 @@ a
     transition-duration: 0.01ms !important
     animation-duration: 0.01ms !important
     animation-iteration-count: 1 !important
+
+@page
+  margin: 15mm
+
+// Paper is white whatever the theme: themed colours and fills would print faint, or not at all in the dark theme
+@media print
+  :root
+    color-scheme: light
+
+  *, *::before, *::after
+    color: #000 !important
+    background: transparent !important
+    box-shadow: none !important
+    text-shadow: none !important

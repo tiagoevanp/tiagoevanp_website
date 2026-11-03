@@ -121,9 +121,35 @@
   },
   "experience": {
     "page_title": "Experiência",
+    "person_name": "Tiago Evangelista Pinto",
+    "glance": {
+      "title": "Em resumo",
+      "years": {
+        "value": "{{count}}+",
+        "label_one": "ano de experiência",
+        "label_other": "anos de experiência"
+      },
+      "users": {
+        "value": "12 mi+",
+        "label": "usuários atendidos"
+      },
+      "pull_requests": {
+        "value": "300+",
+        "label": "pull requests revisados"
+      },
+      "components": {
+        "value": "5",
+        "label": "componentes reutilizáveis do UiKit"
+      }
+    },
     "work_title": "Experiência profissional",
     "contact_title": "Contato",
     "technologies": "Tecnologias",
+    "filter": {
+      "hint": "Selecione uma tecnologia para destacar os empregos que a usam.",
+      "status_one": "{{count}} de {{total}} empregos usa {{technology}}. Selecione-a de novo para mostrar todos os empregos igualmente.",
+      "status_other": "{{count}} de {{total}} empregos usam {{technology}}. Selecione-a de novo para mostrar todos os empregos igualmente."
+    },
     "show_more_one": "Mostrar mais {{count}}",
     "show_more_other": "Mostrar mais {{count}}",
     "duration_years_one": "{{count}} ano",
