@@ -33,7 +33,16 @@
     "button_linkedin": "Tiago no LinkedIn",
     "button_theme": "Tema escuro",
     "button_language": "Idioma",
-    "button_ellipsis": "Menu de navegação"
+    "button_ellipsis": "Menu de navegação",
+    "skip_link": "Pular para o conteúdo"
+  },
+  "site_footer": {
+    "aria_label": "Contato",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "email": "E-mail",
+    "copyright": "© {{year}} Tiago Evangelista Pinto",
+    "language": "Idioma: {{language}}"
   },
   "sidebar": {
     "input": {

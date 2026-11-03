@@ -16,6 +16,7 @@ import { ExternalLinks } from '@/lib/ExternalLinks';
 import { experiencePath } from '@/lib/seo';
 import { useScreenContext } from '@/providers/hooks/useScreenContext';
 import { useSidebarContext } from '@/providers/hooks/useSidebarContext';
+import { SiteFooter } from '@/UI/SiteFooter/SiteFooter';
 
 import styles from './PageNavbar.module.sass';
 
@@ -100,6 +101,10 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
 
     return <div className={`fade-colors-transition ${styles.page}`}>
         <div className={`fade-colors-transition ${styles.header}`}>
+            {/* First in tab order, so keyboard users can jump past the navbar to the page content */}
+            <a className={styles['skip-link']} href='#content'>
+                {t('navbar.skip_link')}
+            </a>
             <Navbar>
                 {/* Both variants are rendered; CSS shows one per breakpoint so the static HTML matches the screen */}
                 <ul className={`${styles['navbar-list']} ${styles['navbar-list-desktop']}`}>
@@ -241,8 +246,9 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                 </nav>}
             </div>
         </div>
-        <main className={styles.content} tabIndex={-1}>
+        <main id='content' className={styles.content} tabIndex={-1}>
             {children}
         </main>
+        {!isSkillDocsPage && <SiteFooter />}
     </div>;
 };
