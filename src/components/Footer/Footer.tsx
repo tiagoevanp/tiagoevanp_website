@@ -9,21 +9,37 @@ import GroupsList from '@/providers/lib/GroupsList';
 
 import styles from './Footer.module.sass';
 
-// Links to the docs before and after the current one, in sidebar order
+// Pager to the docs before and after the current one, in sidebar order
 export const Footer = () => {
     const { t, language } = useTranslation();
     const slug = getSkillDocSlug(usePathname());
     const { previous, next } = slug ? GroupsList.getSiblings(slug) : {};
+    // Read as "Previous: <title>", though the title is on its own line. It starts with the visible label
+    const name = (direction: 'previous' | 'next', title: string) =>
+        `${t(`skill_docs.pager.${direction}`)}: ${t(`sidebar.items.${title}`)}`;
 
-    return <footer className={styles.footer}>
-        {/* The empty span keeps "next" on the right on the first doc */}
-        {previous
-            ? <Link className={`${styles.link} ${styles.previous}`} href={skillDocPath(previous.href, language)}>
-                {t(`sidebar.items.${previous.title}`)}
-            </Link>
-            : <span />}
-        {next && <Link className={`${styles.link} ${styles.next}`} href={skillDocPath(next.href, language)}>
-            {t(`sidebar.items.${next.title}`)}
+    return <nav className={styles.pager} aria-label={t('skill_docs.pager.label')}>
+        {previous && <Link
+            className={styles.link}
+            href={skillDocPath(previous.href, language)}
+            aria-label={name('previous', previous.title)}
+        >
+            <span className={styles.direction}>
+                <span aria-hidden='true'>←</span>
+                {t('skill_docs.pager.previous')}
+            </span>
+            <span className={styles.title}>{t(`sidebar.items.${previous.title}`)}</span>
         </Link>}
-    </footer>;
+        {next && <Link
+            className={`${styles.link} ${styles.next}`}
+            href={skillDocPath(next.href, language)}
+            aria-label={name('next', next.title)}
+        >
+            <span className={styles.direction}>
+                {t('skill_docs.pager.next')}
+                <span aria-hidden='true'>→</span>
+            </span>
+            <span className={styles.title}>{t(`sidebar.items.${next.title}`)}</span>
+        </Link>}
+    </nav>;
 };

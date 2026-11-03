@@ -8,9 +8,10 @@ import xml from 'highlight.js/lib/languages/xml';
 import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useRef } from 'react';
 
-import { IconButton } from '@/components';
-import { useTranslation } from '@/i18n/client';
+import { SvgIcon } from '@/components';
+import { getSkillDocSlug, useTranslation } from '@/i18n/client';
 import { useSidebarContext } from '@/providers/hooks/useSidebarContext';
+import GroupsList from '@/providers/lib/GroupsList';
 import { PageSidebar } from '@/UI/PageSidebar/PageSidebar';
 
 import styles from './SkillDocsLayout.module.sass';
@@ -30,6 +31,8 @@ export function SkillDocsLayout({
 }>) {
     const { t } = useTranslation();
     const path = usePathname();
+    const slug = getSkillDocSlug(path);
+    const current = slug ? GroupsList.getItem(slug) : undefined;
     const { isOpen, setOpen } = useSidebarContext();
     const toggleRef = useRef<HTMLButtonElement>(null);
     const sidebarRef = useRef<HTMLDivElement>(null);
@@ -114,15 +117,22 @@ export function SkillDocsLayout({
 
     return <div className={styles.container}>
         <div className={styles.toolbar}>
-            <IconButton
+            {/* Labelled with the visible text, and shows which article is open */}
+            <button
                 ref={toggleRef}
-                icon='bars'
-                description={t('sidebar.toggle')}
-                variant='medium'
+                type='button'
+                className={styles.toggle}
                 aria-expanded={isOpen}
                 aria-controls={sidebarId}
                 onClick={() => setOpen(!isOpen)}
-            />
+            >
+                <SvgIcon name='bars' variant='small' className={styles['toggle-icon']} />
+                <span className={styles['toggle-label']}>{t('sidebar.toggle')}</span>
+                {current && <span className={styles['toggle-current']}>
+                    <span aria-hidden='true'> · </span>
+                    {t(`sidebar.items.${current.title}`)}
+                </span>}
+            </button>
         </div>
         <div
             ref={sidebarRef}

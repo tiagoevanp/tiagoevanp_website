@@ -18,6 +18,10 @@ class GroupsList {
         }
     }
 
+    getItem(href: string) {
+        return Object.values(this.groups).flat().find((item) => item.href === href);
+    }
+
     // The docs around `href`, flattened across groups in the order the sidebar shows them
     getSiblings(href: string): { previous?: GroupItem; next?: GroupItem } {
         const items = Object.values(this.groups).flat();

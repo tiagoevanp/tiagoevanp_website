@@ -84,6 +84,11 @@
     },
     "read": "Ler",
     "code_example": "Exemplo de código",
+    "pager": {
+      "label": "Paginação dos artigos",
+      "previous": "Anterior",
+      "next": "Próximo"
+    },
     "example_animation_transitions": {
       "hover_me": "Passe o mouse",
       "jumping": "Pulando",
