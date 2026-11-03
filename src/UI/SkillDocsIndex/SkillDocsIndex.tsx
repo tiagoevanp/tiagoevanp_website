@@ -15,7 +15,7 @@ export const SkillDocsIndex = ({ sections }: { sections: SkillDocSections }) => 
     return <div className={styles.page}>
         <h1 className={styles.title}>{t('skill_docs.index.title')}</h1>
         <p className={styles.description}>{t('skill_docs.index.description')}</p>
-        <Banner message={t('page_under_construction')} variant='warning' />
+        <Banner message={t('page_under_construction')} variant='info' />
         {Object.entries(GroupsList.all).map(([name, items], index) => (
             <section key={name} className={styles.group} aria-labelledby={`skill-docs-group-${index}`}>
                 <h2 id={`skill-docs-group-${index}`} className={styles['group-title']}>

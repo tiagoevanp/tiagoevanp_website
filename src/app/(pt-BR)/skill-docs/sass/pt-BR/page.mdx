@@ -15,13 +15,14 @@ Pré-processador CSS que adiciona funcionalidades avançadas como variáveis, an
 
 Contém duas sintaxes diferentes:
 - SCSS (`.scss`) - Similar ao CSS onde é utilizado `{}` e `;`
-- Sass (`.sass`) - Identada e sem `{}` e `;`
+- Sass (`.sass`) - Indentada e sem `{}` e `;`
 
-A seguir alguns exemplos dos benfícios de se utilizar a ferramenta:
+A seguir alguns exemplos dos benefícios de se utilizar a ferramenta, nas duas sintaxes. O nome do arquivo na primeira linha de cada exemplo indica qual delas é.
 
 ## Variáveis
 
 ```scss
+// styles.scss
 $primary-color: #007bff;
 $spacing: 1rem;
 
@@ -31,18 +32,29 @@ $spacing: 1rem;
 }
 ```
 
+```sass
+// styles.sass
+$primary-color: #007bff
+$spacing: 1rem
+
+.btn
+  background: $primary-color
+  padding: $spacing
+```
+
 ## Aninhamento (Nesting)
 
 ```scss
+// styles.scss
 .nav {
   background: #333;
-  
+
   &__list {
     display: flex;
-    
+
     &__item {
       margin: 0 1rem;
-      
+
       &:hover {
         color: $primary-color;
       }
@@ -51,9 +63,25 @@ $spacing: 1rem;
 }
 ```
 
+```sass
+// styles.sass
+.nav
+  background: #333
+
+  &__list
+    display: flex
+
+    &__item
+      margin: 0 1rem
+
+      &:hover
+        color: $primary-color
+```
+
 ## Mixins (Funções reutilizáveis)
 
 ```scss
+// styles.scss
 @mixin flex($position) {
   display: flex;
   justify-content: $position;
@@ -66,9 +94,24 @@ $spacing: 1rem;
 }
 ```
 
+```sass
+// styles.sass
+@mixin flex($position)
+  display: flex
+  justify-content: $position
+  align-items: $position
+
+.container
+  @include flex(center)
+  height: 100vh
+```
+
+> A sintaxe indentada também tem uma forma abreviada: `=flex($position)` declara o mixin e `+flex(center)` o inclui.
+
 ## Extensões (Placeholders)
 
 ```scss
+// styles.scss
 %button-base {
   padding: 10px 20px;
   border: none;
@@ -86,7 +129,25 @@ $spacing: 1rem;
 }
 ```
 
-## Parciais e Importação
+```sass
+// styles.sass
+%button-base
+  padding: 10px 20px
+  border: none
+  border-radius: 4px
+
+.btn-primary
+  @extend %button-base
+  background: blue
+
+.btn-secondary
+  @extend %button-base
+  background: gray
+```
+
+## Parciais e módulos
+
+Arquivos cujo nome começa com `_` são parciais: não são compilados sozinhos, apenas carregados por outros arquivos. O `@use` carrega um parcial como módulo, e seus membros são acessados por um namespace (por padrão, o nome do arquivo), evitando conflito de nomes entre arquivos diferentes. Ele substitui o `@import`, que está obsoleto e será removido no Dart Sass 3.0.
 
 ```scss
 // _variables.scss
@@ -96,24 +157,56 @@ $colors: (
 );
 
 // main.scss
-@import 'variables';
+@use 'sass:map';
+@use 'variables';
 
 .btn {
-  background: map-get($colors, primary);
+  background: map.get(variables.$colors, primary);
 }
 ```
 
+```sass
+// _variables.sass
+$colors: (primary: #007bff, secondary: #6c757d)
+
+// main.sass
+@use 'sass:map'
+@use 'variables'
+
+.btn
+  background: map.get(variables.$colors, primary)
+```
+
+> `@use 'variables' as *` remove o namespace, e `@use 'variables' as vars` troca o nome dele.
+
 ## Funções e Operações
 
+A divisão com `/` está obsoleta, já que `/` também é um separador no CSS (como em `grid-area: 1 / 3`). No lugar dela, use o `math.div` do módulo nativo `sass:math`.
+
 ```scss
+// styles.scss
+@use 'sass:math';
+
 @function calculate-rem($size) {
-  @return $size / 16px * 1rem;
+  @return math.div($size, 16px) * 1rem;
 }
 
 .container {
   font-size: calculate-rem(18px);
-  width: 100% / 3;
+  width: math.div(100%, 3);
 }
+```
+
+```sass
+// styles.sass
+@use 'sass:math'
+
+@function calculate-rem($size)
+  @return math.div($size, 16px) * 1rem
+
+.container
+  font-size: calculate-rem(18px)
+  width: math.div(100%, 3)
 ```
 
 <Footer />
