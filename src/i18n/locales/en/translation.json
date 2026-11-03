@@ -61,7 +61,8 @@
       "lifecycle": "Lifecycle",
       "state_management": "State management"
     },
-    "aria_label": "Secondary menu",
+    "aria_label": "Skill docs topics",
+    "index": "All skill docs",
     "toggle": "Topics"
   },
   "skill_docs": {

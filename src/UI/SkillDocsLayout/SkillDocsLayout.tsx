@@ -117,7 +117,12 @@ export function SkillDocsLayout({
         };
     }, [isOpen, closeSidebar]);
 
+    // The article comes first, so the skip link lands in it instead of in front of the topic list;
+    // the grid puts the sidebar back on the left
     return <div className={styles.container}>
+        <section className={styles.section}>
+            {children}
+        </section>
         <div className={styles.toolbar}>
             {/* Named "Topics" by its visible label; the open article is its description, so the two aren't
                 read run together as one name */}
@@ -154,8 +159,5 @@ export function SkillDocsLayout({
         >
             <PageSidebar onNavigate={() => closeSidebar(true)} />
         </div>
-        <section className={styles.section}>
-            {children}
-        </section>
     </div>;
 }

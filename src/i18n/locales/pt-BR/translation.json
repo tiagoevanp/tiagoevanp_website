@@ -61,7 +61,8 @@
       "lifecycle": "Ciclo de vida",
       "state_management": "Gerenciamento de estado"
     },
-    "aria_label": "Menu secundário",
+    "aria_label": "Tópicos dos artigos",
+    "index": "Todos os artigos",
     "toggle": "Tópicos"
   },
   "skill_docs": {

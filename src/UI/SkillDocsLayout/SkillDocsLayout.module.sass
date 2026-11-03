@@ -6,7 +6,7 @@ $toolbar-height: 49px
 // The article scrolls with the document; only the sidebar scrolls on its own
 .container
     display: grid
-    grid-template-columns: 384px minmax(0, 1fr)
+    grid-template-columns: 280px minmax(0, 1fr)
     width: 100%
     min-width: 0
 
@@ -14,8 +14,11 @@ $toolbar-height: 49px
     display: none
 
 // Stays in view below the sticky header while the article scrolls; the nav inside scrolls if the list is longer.
-// align-self: start lets it stick instead of stretching to the article's height
+// align-self: start lets it stick instead of stretching to the article's height.
+// It comes after the article in the DOM, so it's placed in the first column explicitly; the article fills the next cell
 .sidebar
+    grid-row: 1
+    grid-column: 1
     position: sticky
     top: var(--navbar-height)
     align-self: start
