@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { Trans } from 'react-i18next';
 
-import { SvgIcon, Tag } from '@/components';
+import { Availability, SvgIcon, Tag } from '@/components';
 import { useTranslation } from '@/i18n/client';
 import { education, getDuration, jobs } from '@/lib/experience';
 
@@ -130,6 +130,13 @@ export const Experience = () => {
                 <li>{t('experience.languages.en')}</li>
                 <li>{t('experience.languages.es')}</li>
             </ul>
+        </section>
+        {/* The next step for a recruiter who reached the end. Availability's own title stays a p under this h2 */}
+        <section className={styles.subsection} aria-labelledby='contact-title'>
+            <h2 id='contact-title' className={styles['section-title']}>
+                {t('experience.contact_title')}
+            </h2>
+            <Availability />
         </section>
     </div>;
 };
