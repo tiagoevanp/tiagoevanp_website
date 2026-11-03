@@ -36,7 +36,7 @@ const components = {
         <li className={styles.li}>{children}</li>
     ),
     blockquote: ({ children }) => (
-        <div className={styles.blockquoteContainer}>
+        <div className={styles['blockquote-container']}>
             <blockquote className={styles.blockquote}>{children}</blockquote>
         </div>
     ),
