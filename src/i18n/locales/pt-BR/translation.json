@@ -114,6 +114,8 @@
     "page_title": "Experiência",
     "work_title": "Experiência profissional",
     "technologies": "Tecnologias",
+    "show_more_one": "Mostrar mais {{count}}",
+    "show_more_other": "Mostrar mais {{count}}",
     "duration_years_one": "{{count}} ano",
     "duration_years_other": "{{count}} anos",
     "duration_months_one": "{{count}} mês",
@@ -129,11 +131,11 @@
       "occupation": "Desenvolvedor Full-stack",
       "location": "Porto Alegre, RS",
       "highlights": [
-        "Modernizei sistemas legados de seguros usando React e Laravel.",
+        "Modernizei sistemas legados de seguros com React e Laravel.",
         "Conteinerizei aplicações legadas com Docker, simplificando o deploy e o gerenciamento de infraestrutura.",
         "Aumentei a confiabilidade dos deploys ao migrar aplicações para ambientes VPS.",
-        "Colaborei com as equipes de marketing e produto na manutenção de sites baseados em CMS.",
-        "Colaborei em fluxos de CI/CD com GitHub Actions para apoiar processos automatizados de build e deploy."
+        "Construí fluxos de CI/CD com GitHub Actions para automatizar builds e deploys.",
+        "Mantive sites baseados em CMS com as equipes de marketing e produto."
       ],
       "website_link": "Site da Ducon Corretora de Seguros (abre em nova aba)"
     },
@@ -142,14 +144,14 @@
       "occupation": "Engenheiro de Software",
       "location": "Porto Alegre, RS",
       "highlights": [
-        "Projetei, desenvolvi e entreguei funcionalidades de frontend para uma plataforma de comunicação com mais de 12 milhões de usuários.",
-        "Liderei a migração de grandes módulos de frontend de JavaScript para TypeScript, modernizando cerca de 30% da base de código e melhorando a manutenibilidade e a segurança de tipos.",
-        "Projetei e implementei 5 componentes reutilizáveis do UiKit usados por aplicativos do marketplace do Rocket.Chat, melhorando a consistência e a extensibilidade para desenvolvedores de apps de terceiros.",
-        "Resolvi mais de 30 problemas críticos do Omnichannel, melhorando a estabilidade da plataforma e a experiência dos clientes.",
-        "Revisei mais de 300 pull requests, elevando a qualidade, a consistência e os padrões de engenharia da base de código de frontend.",
-        "Fui mentor de engenheiros de frontend por meio de code reviews e orientação técnica, ajudando a ampliar a adoção de TypeScript e a qualidade do código em vários squads.",
-        "Colaborei com gerentes de produto, designers e engenheiros para definir uma arquitetura de frontend escalável e entregar iniciativas complexas de interface.",
-        "Melhorei a confiabilidade, a acessibilidade e a experiência de desenvolvimento do frontend ao ampliar a cobertura de testes automatizados e aprimorar padrões de componentes compartilhados com React Testing Library, Jest e TypeScript."
+        "Entreguei funcionalidades de frontend para uma plataforma de comunicação com <b>mais de 12 milhões de usuários</b>.",
+        "Liderei a migração de grandes módulos de frontend de JavaScript para TypeScript, modernizando <b>cerca de 30% da base de código</b>.",
+        "Revisei <b>mais de 300 pull requests</b>, elevando a qualidade do código e os padrões de engenharia do frontend.",
+        "Resolvi <b>mais de 30 problemas críticos</b> do Omnichannel, melhorando a estabilidade da plataforma e a experiência dos clientes.",
+        "Criei <b>5 componentes reutilizáveis do UiKit</b> para apps do marketplace do Rocket.Chat, dando a desenvolvedores terceiros blocos consistentes e extensíveis.",
+        "Fui mentor de engenheiros de frontend com code reviews e orientação técnica, ampliando a adoção de TypeScript em vários squads.",
+        "Ampliei os testes automatizados e os padrões de componentes compartilhados com React Testing Library e Jest, melhorando a confiabilidade e a acessibilidade.",
+        "Defini uma arquitetura de frontend escalável com gerentes de produto, designers e engenheiros para entregar iniciativas complexas de interface."
       ],
       "website_link": "Site da Rocket.Chat (abre em nova aba)"
     },
@@ -158,9 +160,9 @@
       "occupation": "Engenheiro de Software",
       "location": "Porto Alegre, RS",
       "highlights": [
-        "Entreguei mais de 10 aplicações web sob medida para clientes corporativos e do setor público, com forte foco em segurança e automação de processos de negócio.",
-        "Desenvolvi funcionalidades financeiras, incluindo geração de boletos, relatórios e fluxos de pagamento.",
-        "Mantive e evoluí uma plataforma legada com mais de 50.000 usuários, entregando novas funcionalidades e correções em produção."
+        "Entreguei <b>mais de 10 aplicações web</b> sob medida para clientes corporativos e do setor público, com foco em segurança e automação de processos de negócio.",
+        "Mantive e evoluí uma plataforma legada com <b>mais de 50.000 usuários</b>, entregando novas funcionalidades e correções em produção.",
+        "Desenvolvi funcionalidades financeiras, incluindo geração de boletos, relatórios e fluxos de pagamento."
       ],
       "website_link": "Site da Canopus (abre em nova aba)"
     },

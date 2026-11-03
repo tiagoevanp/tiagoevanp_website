@@ -111,3 +111,51 @@
 
     li
         margin-block: 8px
+
+// Same weight as a heading's supporting text, in the body colour, so numbers stand out without a new hue
+.metric
+    font-weight: 600
+    color: var(--experience-text)
+
+// The hidden bullets continue the visible list, so the disclosure's list sits flush under the summary
+.more
+    max-width: 72ch
+
+    & > .highlights
+        margin-block-start: 0
+
+// Styled as an in-content link. The chevron replaces the native marker so it can rotate
+.more-summary
+    display: inline-flex
+    align-items: center
+    gap: 8px
+    margin-block-start: 8px
+    padding-block: 10px
+    list-style: none
+    color: var(--section-link)
+    text-decoration: underline
+    text-decoration-color: transparent
+    text-underline-offset: 3px
+    cursor: pointer
+
+    &::-webkit-details-marker
+        display: none
+
+    &::before
+        content: ''
+        width: 6px
+        height: 6px
+        border-top: 2px solid currentColor
+        border-right: 2px solid currentColor
+        transform: rotate(45deg)
+        transition: transform 0.2s ease-in-out
+
+        @media (prefers-reduced-motion: reduce)
+            transition: none
+
+    &:hover, &:focus-visible
+        color: var(--section-link-hover)
+        text-decoration-color: currentColor
+
+    .more[open] > &::before
+        transform: rotate(135deg)
