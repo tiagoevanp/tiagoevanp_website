@@ -9,3 +9,28 @@
     line-height: 1.4
     // A label longer than the line wraps inside the chip instead of being clipped
     overflow-wrap: break-word
+
+// Resets the button so the toggle looks like the plain tag until hovered or pressed
+.toggle
+    border: var(--hairline-width) solid transparent
+    font-family: inherit
+    text-align: start
+    cursor: pointer
+    transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out
+
+    &:hover
+        border-color: currentColor
+
+    // The navbar's active-link pair, so a pressed tag reads like the current page link in both themes
+    &[aria-pressed='true']
+        border-color: var(--navbar-link-active-background)
+        background-color: var(--navbar-link-active-background)
+        color: var(--navbar-link-active-color)
+
+    @media (prefers-reduced-motion: reduce)
+        transition: none
+
+// No fills on paper: the tag keeps an outline so it still reads as one
+@media print
+    .tag
+        border: var(--hairline-width) solid currentColor

@@ -1,5 +1,11 @@
 @use '../../app/breakpoints' as *
 
+// The timeline's date column, and the gap the line runs down the middle of
+$date-column: 10rem
+$timeline-gap: 32px
+$dot-size: 12px
+$job-gap: 24px
+
 // No height or overflow: the document scrolls. Capped and centred like the home content, so the left edges line up
 .page
     display: flex
@@ -19,6 +25,48 @@
     margin-block-end: 32px
     color: var(--experience-title)
 
+// Only on paper, where the page is a CV and needs the name above the title
+.print-name
+    display: none
+
+// Two cards a row on phones, four from tablets up. Cards like the skill-docs index, without the hover lift
+.glance
+    display: grid
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 8rem), 1fr))
+    gap: 16px
+    margin-block-end: 56px
+    list-style: none
+
+    @media (min-width: $bp-tablet)
+        grid-template-columns: repeat(4, minmax(0, 1fr))
+
+.glance-card
+    display: flex
+    flex-direction: column
+    gap: 4px
+    padding: 16px
+    border: var(--hairline-width) solid var(--line)
+    border-radius: var(--radius-sm)
+    background-color: var(--surface)
+
+    @media (min-width: $bp-tablet)
+        padding: 24px
+
+.glance-value
+    font-size: clamp(1.5rem, 1.25rem + 1vw, 2rem)
+    font-weight: 600
+    line-height: 1.2
+    color: var(--experience-title)
+    font-variant-numeric: tabular-nums
+
+// pt-BR labels have long words, which would overflow a phone-width card
+.glance-label
+    font-size: 16px
+    line-height: 1.4
+    color: var(--experience-text)
+    hyphens: auto
+    overflow-wrap: break-word
+
 // Sections sit further apart than jobs, with a hairline above each, so the two levels read differently
 .subsection + .subsection
     margin-block-start: 56px
@@ -29,14 +77,83 @@
     margin-block-end: 24px
     color: var(--experience-title)
 
-.job + .job
-    margin-block-start: 24px
+// Under the section title, in the quieter subtitle colour: guidance, not content
+.filter-status
+    margin-block-end: 24px
+    font-size: 16px
+    line-height: 1.5
+    color: var(--section-text-subtitle)
 
-// Role, then company, then the meta, stacked at every width so the dates stay next to the job they belong to
+.job + .job
+    margin-block-start: $job-gap
+
+// Tablets up: a line down the left of the jobs with a dot per role, and the dates in a column before it.
+// The line spans each job and the gap under it, so the segments join; the last stops at its job
+.job
+    position: relative
+
+    @media (min-width: $bp-tablet)
+        display: grid
+        grid-template-columns: $date-column minmax(0, 1fr)
+        column-gap: $timeline-gap
+
+        & > *
+            grid-column: 2
+
+        &::before
+            content: ''
+            position: absolute
+            inset-block: 0 -#{$job-gap}
+            inset-inline-start: calc(#{$date-column} + #{$timeline-gap} / 2 - 1px)
+            width: 2px
+            background-color: var(--experience-accent)
+
+        &:last-of-type::before
+            inset-block-end: 0
+
+        // Level with the middle of the role's first line. Hollow, filled when the job uses the picked technology
+        &::after
+            content: ''
+            position: absolute
+            inset-block-start: 8px
+            inset-inline-start: calc(#{$date-column} + #{$timeline-gap} / 2 - #{$dot-size} / 2)
+            width: $dot-size
+            height: $dot-size
+            border: 2px solid var(--experience-accent)
+            border-radius: 50%
+            background-color: var(--page-background)
+
+.job-matched::after
+    background-color: var(--experience-accent)
+
+// Muted, not faded: every colour in the job becomes the subtitle colour, which still passes 4.5:1 in both
+// themes on the page and on the tags, where opacity would not
+.job-dimmed
+    --experience-title: var(--section-text-subtitle)
+    --experience-text: var(--section-text-subtitle)
+    --section-link: var(--section-text-subtitle)
+    --chip-color: var(--section-text-subtitle)
+    --chip-background: var(--surface)
+
+// Role, then company, then the meta, stacked on phones so the dates stay next to the job they belong to.
+// From tablets up a job's header spans the timeline's columns and its dates move into the first
 .header
     display: grid
     grid-template-columns: minmax(0, 1fr)
     gap: 4px
+
+    @media (min-width: $bp-tablet)
+        .job > &
+            grid-column: 1 / -1
+            grid-template-columns: $date-column minmax(0, 1fr)
+            column-gap: $timeline-gap
+
+            & > *
+                grid-column: 2
+
+            & > .dates
+                grid-column: 1
+                grid-row: 1 / span 3
 
 .role
     color: var(--experience-title)
@@ -87,6 +204,21 @@
     line-height: 1.5
     color: var(--experience-text)
     font-variant-numeric: tabular-nums
+
+// One line on phones. In the date column the range and the duration are a line each, without the dot
+.dates
+    display: block
+
+    @media (min-width: $bp-tablet)
+        display: flex
+
+.dates-separator
+    @media (min-width: $bp-tablet)
+        display: none
+
+// Months never split from their year, so a narrow date column breaks the range at the dash
+.date-range time
+    white-space: nowrap
 
 // Keeps lines to a readable length on wide screens
 .highlights
@@ -159,3 +291,43 @@
 
     .more[open] > &::before
         transform: rotate(135deg)
+
+// Save as PDF gives a CV: black on white (see globals.sass), every highlight shown, no screen-only controls,
+// and the address of each link printed after it
+@media print
+    .page
+        max-width: none
+        padding: 0
+
+    .print-name
+        display: block
+        margin-block-end: 8px
+        font-size: 24px
+        font-weight: 600
+
+    .page-title
+        margin-block-end: 16px
+
+    .glance
+        grid-template-columns: repeat(4, minmax(0, 1fr))
+        gap: 8px
+        margin-block-end: 24px
+
+    .glance-card
+        padding: 8px 12px
+
+    .filter-status, .more-summary, .company-icon
+        display: none
+
+    .subsection + .subsection
+        margin-block-start: 24px
+
+    .job
+        break-inside: avoid
+
+        &::before, &::after
+            display: none
+
+    .page a[href^='http']::after, .page a[href^='mailto:']::after
+        content: ' (' attr(href) ')'
+        font-weight: 400

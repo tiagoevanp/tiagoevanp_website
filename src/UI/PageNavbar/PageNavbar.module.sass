@@ -111,3 +111,12 @@
     &:focus
         outline: none
 
+
+// Paper has no navigation, so only the content prints, from the top of the first page
+@media print
+    .page
+        display: block
+        min-height: 0
+
+    .header
+        display: none
