@@ -4,13 +4,25 @@ import Link from 'next/link';
 
 import { SvgIcon, Tag } from '@/components';
 import { useTranslation } from '@/i18n/client';
-import { jobs } from '@/lib/experience';
+import { education, getDuration, jobs } from '@/lib/experience';
 
 import styles from './Experience.module.sass';
 
 // Rendered at /experience/<lng>, so useTranslation shows it in the path language from the static HTML on
 export const Experience = () => {
-    const { t } = useTranslation();
+    const { t, language } = useTranslation();
+    // UTC on both sides, so the month never shifts with the visitor's time zone and hydration matches
+    const monthFormat = new Intl.DateTimeFormat(language, { month: 'short', year: 'numeric', timeZone: 'UTC' });
+    const formatMonth = (month: string) => monthFormat.format(new Date(`${month}-01T00:00:00Z`));
+    const formatDuration = (range: { start: string; end: string }) => {
+        const { years, months } = getDuration(range);
+        const yearsText = years ? t('experience.duration_years', { count: years }) : '';
+        const monthsText = months ? t('experience.duration_months', { count: months }) : '';
+
+        return yearsText && monthsText
+            ? t('experience.duration_join', { years: yearsText, months: monthsText })
+            : yearsText || monthsText;
+    };
 
     // A div, not a section: <main> is already the landmark
     return <div className={styles.page}>
@@ -21,7 +33,7 @@ export const Experience = () => {
             <h2 id='work-title' className={styles['section-title']}>
                 {t('experience.work_title')}
             </h2>
-            {jobs.map(({ id, url, technologies }) => {
+            {jobs.map(({ id, url, start, end, workMode, technologies }) => {
                 const highlights = t(`experience.${id}.highlights`, { returnObjects: true }) as string | string[];
 
                 return <article key={id} className={styles.job} aria-labelledby={`${id}-title`}>
@@ -44,8 +56,15 @@ export const Experience = () => {
                             </Link> : <span>{t(`experience.${id}.title`)}</span>}
                         </div>
                         <p className={styles.meta}>
-                            <span>{t(`experience.${id}.time`)}</span>
-                            <span>{t(`experience.${id}.location`)}</span>
+                            <span>
+                                <time dateTime={start}>{formatMonth(start)}</time>
+                                {' – '}
+                                <time dateTime={end}>{formatMonth(end)}</time>
+                                {' · '}{formatDuration({ start, end })}
+                            </span>
+                            <span>
+                                {t(`experience.${id}.location`)}{' · '}{t(`experience.work_mode.${workMode}`)}
+                            </span>
                         </p>
                     </header>
                     {Array.isArray(highlights) && <ul className={styles.highlights}>
@@ -69,7 +88,12 @@ export const Experience = () => {
                     {t('experience.education.ifrs.degree')}
                 </p>
                 <p className={styles.meta}>
-                    <span>{t('experience.education.ifrs.time')}</span>
+                    <span>
+                        <time dateTime={education.start}>{education.start}</time>
+                        {' – '}
+                        <time dateTime={education.end}>{formatMonth(education.end)}</time>
+                        {' '}{t('experience.education.ifrs.expected')}
+                    </span>
                 </p>
             </div>
         </section>
