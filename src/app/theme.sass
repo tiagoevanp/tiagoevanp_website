@@ -1,4 +1,3 @@
-@use 'sass:meta'
 @use 'breakpoints' as *
 
 $BONE: #F7F4EC
@@ -23,15 +22,8 @@ $MUSTARD_LIGHT: #E3B94A
 $DRIFTWOOD: #6A645A
 $DRIFTWOOD_LIGHT: #A39D90
 
-// The block is drawn by pre (globals.sass), so the highlight theme only colours the tokens. Included after the
-// theme's CSS so it wins over the theme's equally specific rules
-@mixin highlight-block-reset
-    & pre code.hljs
-        overflow-x: visible
-        padding: 0
-        background: transparent
-
-// Each theme's tokens and highlight.js colours, included under the selectors below
+// Each theme's tokens, included under the selectors below. The --code-* colours are the syntax highlighting of code
+// blocks: the spans are coloured with these variables when the page builds (src/lib/highlightCode.mjs)
 @mixin light-theme
     & .color-examples
         --swatch-primary: #{$RUST_BRIGHT}
@@ -40,22 +32,15 @@ $DRIFTWOOD_LIGHT: #A39D90
         --swatch-neutral: #{$DRIFTWOOD}
         --swatch-text: #{$BONE}
 
-    @include meta.load-css("highlight.js/styles/a11y-light.min")
-    @include highlight-block-reset
-
-    // a11y-light's token colours are tuned for #FEFEFE; these reach 4.5:1 on PARCHMENT (4.59:1 to 5.17:1)
-    & .hljs-comment, & .hljs-quote
-        color: #5E5E5E
-    & .hljs-variable, & .hljs-template-variable, & .hljs-tag, & .hljs-name, & .hljs-selector-id,
-    & .hljs-selector-class, & .hljs-regexp, & .hljs-deletion
-        color: #C41A15
-    & .hljs-number, & .hljs-built_in, & .hljs-literal, & .hljs-type, & .hljs-params, & .hljs-meta, & .hljs-link,
-    & .hljs-attribute
-        color: #9A5400
-    & .hljs-string, & .hljs-symbol, & .hljs-bullet, & .hljs-addition
-        color: #006E00
-    & .hljs-title, & .hljs-section
-        color: #006A8F
+    // The a11y-light palette, darkened where needed to reach 4.5:1 on PARCHMENT (4.59:1 to 6.35:1)
+    --code-foreground: #545454
+    --code-comment: #5E5E5E
+    --code-keyword: #7928A1
+    --code-string: #006E00
+    --code-constant: #9A5400
+    --code-attribute: #9A5400
+    --code-function: #006A8F
+    --code-variable: #C41A15
 
     --h1: #{$RUST}
     --h2: #{$SOOT}
@@ -120,9 +105,15 @@ $DRIFTWOOD_LIGHT: #A39D90
         --swatch-neutral: #{$DRIFTWOOD_LIGHT}
         --swatch-text: #{$PEAT}
 
-    // a11y-dark's token colours all reach 7:1 or more on PEAT_SOFT, so they're kept as they are
-    @include meta.load-css("highlight.js/styles/a11y-dark.min")
-    @include highlight-block-reset
+    // The a11y-dark palette, which reaches 7:1 or more on PEAT_SOFT as it is
+    --code-foreground: #F8F8F2
+    --code-comment: #D4D0AB
+    --code-keyword: #DCC6E0
+    --code-string: #ABE338
+    --code-constant: #F5AB35
+    --code-attribute: #FFD700
+    --code-function: #00E0E0
+    --code-variable: #FFA07A
 
     --h1: #{$RUST_LIGHT}
     --h2: #{$BONE_LIGHT}
@@ -181,7 +172,7 @@ $DRIFTWOOD_LIGHT: #A39D90
 
 // next-themes sets html.light or html.dark before the page paints, and that class always wins so the toggle can
 // override the OS. Without JS there's no class: light applies, and dark when the OS prefers it. The dark rule beats
-// the light one there on specificity, so the dark theme has to set every token and highlight colour the light one does
+// the light one there on specificity, so the dark theme has to set every token the light one does
 html:not(.dark)
     @include light-theme
 

@@ -90,6 +90,11 @@
     "live_example": "Exemplo interativo",
     "read": "Ler",
     "code_example": "Exemplo de código",
+    "code": {
+      "copy": "Copiar",
+      "copied": "Copiado",
+      "copy_label": "Copiar código {{language}}"
+    },
     "pager": {
       "label": "Paginação dos artigos",
       "previous": "Anterior",
