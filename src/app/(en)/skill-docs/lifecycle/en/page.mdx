@@ -39,7 +39,8 @@ function MyFunctionalComponent() {
   });
 
   useEffect(() => {
-    console.log('mounted (runs only once)');
+    // Runs after the first render (twice in development under StrictMode, see below)
+    console.log('mounted');
 
     fetch('/api/data')
       .then(response => response.json())
@@ -76,7 +77,7 @@ Before Hooks, each phase had its own method in class components. Most of them ma
 The same component as a class and with Hooks:
 
 ```js
-class Clock extends React.Component {
+class ClockClass extends React.Component {
   constructor(props) {
     super(props);
     this.state = { now: new Date() };

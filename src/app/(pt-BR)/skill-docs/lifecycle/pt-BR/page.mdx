@@ -39,7 +39,8 @@ function MeuComponenteFuncional() {
   });
 
   useEffect(() => {
-    console.log('montado (executa só uma vez)');
+    // Executa depois da primeira renderização (duas vezes em desenvolvimento com StrictMode, veja abaixo)
+    console.log('montado');
 
     fetch('/api/dados')
       .then(response => response.json())
@@ -76,7 +77,7 @@ Antes dos Hooks, cada fase tinha seu próprio método nos componentes de classe.
 O mesmo componente como classe e com Hooks:
 
 ```js
-class Clock extends React.Component {
+class ClockClass extends React.Component {
   constructor(props) {
     super(props);
     this.state = { now: new Date() };

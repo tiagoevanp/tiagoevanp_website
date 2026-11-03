@@ -79,7 +79,7 @@ Runtime libraries depend on Context (for the theme) and on inserting styles whil
 
 Some libraries keep the authoring experience of CSS-in-JS, but extract the styles to static `.css` files at build time, so no style is processed in the browser. Since they produce plain CSS, they work in Server Components.
 
-[vanilla-extract](https://vanilla-extract.style/) uses `.css.ts` (or `.css.js`) files, with typed styles in TypeScript:
+[vanilla-extract](https://vanilla-extract.style/) uses `.css.ts` (or `.css.js`) files; written in TypeScript, the styles are type-checked:
 
 ```js
 // button.css.js

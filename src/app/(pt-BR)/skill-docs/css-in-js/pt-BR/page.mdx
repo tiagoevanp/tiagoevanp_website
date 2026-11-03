@@ -79,7 +79,7 @@ Bibliotecas de runtime dependem de Context (para o tema) e de inserir estilos du
 
 Algumas bibliotecas mantêm a forma de escrever do CSS-in-JS, mas extraem os estilos para arquivos `.css` estáticos durante o build, então nenhum estilo é processado no navegador. Como geram CSS puro, funcionam em Server Components.
 
-O [vanilla-extract](https://vanilla-extract.style/) usa arquivos `.css.ts` (ou `.css.js`), com estilos tipados em TypeScript:
+O [vanilla-extract](https://vanilla-extract.style/) usa arquivos `.css.ts` (ou `.css.js`); escritos em TypeScript, os estilos passam pela checagem de tipos:
 
 ```js
 // button.css.js
