@@ -25,6 +25,8 @@ hljs.registerLanguage('javascript', javascript);
 hljs.registerLanguage('css', css);
 hljs.registerLanguage('scss', scss);
 hljs.registerLanguage('xml', xml);
+// highlight.js has no grammar for the indented syntax; the SCSS one covers its variables, selectors and at-rules
+hljs.registerAliases('sass', { languageName: 'scss' });
 
 export function SkillDocsLayout({
     children,

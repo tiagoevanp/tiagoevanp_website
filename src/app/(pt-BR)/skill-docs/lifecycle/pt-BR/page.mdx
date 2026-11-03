@@ -13,19 +13,17 @@ Ciclo de vida
 
 O ciclo de vida no React representa os diferentes estágios pelos quais um componente passa, desde sua criação (montagem) até seu fim (desmontagem) na aplicação.
 
-Fases do ciclo
---------------
+## Fases do ciclo
 
 1. Montagem (Momento onde o componente é criado e será inserido no DOM)
 2. Atualização (Fase onde o componente sofre atualizações na DOM devido a mudança em `props` ou estado)
 3. Desmontagem (Fim do ciclo onde o componente é removido da DOM)
 
-Gerenciamento do ciclo de vida
-------------------------------
+## Gerenciamento do ciclo de vida
 
 Exemplo de como gerenciar ciclo de vida de um componente usando Hooks:
 
-```javascript
+```js
 import { useState, useEffect } from 'react';
 
 function MeuComponenteFuncional() {
@@ -33,15 +31,16 @@ function MeuComponenteFuncional() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    console.log('mounted or updated');
-    
+    console.log('montado ou atualizado');
+
     return () => {
-      console.log('unmounted');
+      console.log('limpeza antes da próxima atualização, ou desmontado');
     };
   });
 
   useEffect(() => {
-    console.log('mounted (runs only once)');
+    // Executa depois da primeira renderização (duas vezes em desenvolvimento com StrictMode, veja abaixo)
+    console.log('montado');
 
     fetch('/api/dados')
       .then(response => response.json())
@@ -49,18 +48,151 @@ function MeuComponenteFuncional() {
   }, []);
 
   useEffect(() => {
-    console.log('updated (runs only when counter change)');
+    console.log('atualizado (executa só quando counter muda)');
   }, [counter]);
 
   return (
     <div>
-      <p>Counter: {counter}</p>
-      <button onClick={() => setContador(counter + 1)}>
-        Increment
+      <p>Contador: {counter}</p>
+      <button onClick={() => setCounter(counter + 1)}>
+        Incrementar
       </button>
     </div>
   );
 }
-``` 
+```
+
+## Dos métodos de classe aos Hooks
+
+Antes dos Hooks, cada fase tinha seu próprio método nos componentes de classe. A maioria deles tem um Hook correspondente:
+
+- `constructor` → o valor inicial do `useState` (ou `useRef` para valores que não disparam uma nova renderização)
+- `componentDidMount` → `useEffect` com o array de dependências vazio
+- `componentDidUpdate` → `useEffect` com os valores dos quais ele depende no array
+- `componentWillUnmount` → a função de limpeza retornada pelo `useEffect`
+- `shouldComponentUpdate` → `React.memo` em volta do componente
+- `getDerivedStateFromProps` → calcular o valor durante a renderização em vez de guardá-lo no estado
+- `componentDidCatch` e `getDerivedStateFromError` → ainda sem Hook equivalente: error boundaries continuam sendo componentes de classe
+
+O mesmo componente como classe e com Hooks:
+
+```js
+class ClockClass extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { now: new Date() };
+  }
+
+  componentDidMount() {
+    this.timer = setInterval(() => this.setState({ now: new Date() }), 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+
+  render() {
+    return <p>{this.state.now.toLocaleTimeString()}</p>;
+  }
+}
+
+function Clock() {
+  const [now, setNow] = useState(() => new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => setNow(new Date()), 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  return <p>{now.toLocaleTimeString()}</p>;
+}
+```
+
+A diferença está na organização do código: na classe, uma mesma funcionalidade (o timer) fica dividida entre `componentDidMount` e `componentWillUnmount`; com Hooks, a configuração e a limpeza ficam juntas no mesmo efeito.
+
+## Limpeza (cleanup)
+
+A função retornada por um efeito desfaz o que ele fez: remove listeners, limpa timers, fecha conexões e cancela requisições. O React a chama na desmontagem e também **antes de executar o efeito de novo** quando uma dependência muda, então o efeito anterior nunca continua ativo junto com o novo.
+
+```js
+function UserProfile({ userId }) {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    fetch(`/api/users/${userId}`, { signal: controller.signal })
+      .then(response => response.json())
+      .then(setUser)
+      .catch(error => {
+        if (error.name !== 'AbortError') console.error(error);
+      });
+
+    // Se o userId mudar antes de a resposta chegar, a requisição antiga é cancelada
+    // e não sobrescreve os dados do novo usuário
+    return () => controller.abort();
+  }, [userId]);
+
+  return <p>{user?.name}</p>;
+}
+```
+
+## Arrays de dependências
+
+O segundo argumento do `useEffect` define quando o efeito executa de novo:
+
+- Sem array → depois de toda renderização
+- `[]` → só depois da montagem
+- `[a, b]` → depois da montagem e sempre que `a` ou `b` mudar (comparados com `Object.is`)
+
+Todo valor do componente usado dentro do efeito (props, estado, funções) precisa estar no array; caso contrário, o efeito lê valores de uma renderização antiga (uma *stale closure*). A regra `react-hooks/exhaustive-deps` do `eslint-plugin-react-hooks` aponta o que está faltando.
+
+Objetos e funções criados durante a renderização são novos a cada renderização, então, como dependências, fazem o efeito executar toda vez. Crie-os dentro do efeito ou use `useMemo` / `useCallback` para memoizá-los. Quando o efeito só precisa atualizar o estado a partir do valor anterior, uma função de atualização elimina a dependência:
+
+```js
+useEffect(() => {
+  const timer = setInterval(() => {
+    // A função de atualização recebe o valor atual, então count não precisa ser dependência
+    setCount(count => count + 1);
+  }, 1000);
+
+  return () => clearInterval(timer);
+}, []);
+```
+
+## StrictMode
+
+Em desenvolvimento, o `<StrictMode>` monta cada componente, desmonta e monta de novo em seguida, então cada efeito executa configuração → limpeza → configuração. Ele também chama as funções de renderização duas vezes. Isso é proposital: revela efeitos sem limpeza (dois listeners, duas conexões) e renderizações que não são puras. Em produção, isso não acontece.
+
+Se um efeito quebra ao executar duas vezes, a solução normalmente é escrever a limpeza que está faltando, e não impedir a segunda execução.
+
+## useLayoutEffect
+
+O `useEffect` executa depois que o navegador pinta a tela. O `useLayoutEffect` tem a mesma assinatura, mas executa logo depois que o React atualiza o DOM e **antes da pintura**. É a escolha certa quando o efeito mede o layout e muda algo visível, para que o usuário nunca veja o estado intermediário (como um tooltip piscando no lugar errado):
+
+```js
+import { useLayoutEffect, useRef, useState } from 'react';
+
+function Tooltip({ targetRect, children }) {
+  const ref = useRef(null);
+  const [height, setHeight] = useState(0);
+
+  useLayoutEffect(() => {
+    setHeight(ref.current.getBoundingClientRect().height);
+  }, []);
+
+  // Acima do alvo quando há espaço, abaixo dele caso contrário
+  const top = targetRect.top - height < 0 ? targetRect.bottom : targetRect.top - height;
+
+  return (
+    <div ref={ref} style={{ position: 'fixed', top, left: targetRect.left }}>
+      {children}
+    </div>
+  );
+}
+```
+
+Como bloqueia a pintura, use o `useLayoutEffect` só nesses casos e prefira o `useEffect` para todo o resto.
 
 <Footer />

@@ -3,8 +3,9 @@
 // Only Markdown headings are seen: headings written as JSX (<h2 id='…'> in MDX, or inside example components) are
 // neither given an id nor checked against, so keep their ids clear of the generated ones.
 
-// Ids the page layout already uses (PageNavbar, SkillDocsLayout, the language Dropdown); a heading must not take one
-const reservedIds = ['content', 'mobile-menu', 'skill-docs-sidebar', 'language'];
+// Ids the page layout already uses (PageNavbar, SkillDocsLayout, the language Dropdown, the Availability call to
+// action under each article); a heading must not take one
+const reservedIds = ['content', 'mobile-menu', 'skill-docs-sidebar', 'language', 'availability-title'];
 
 const headingTags = new Set(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']);
 
