@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Availability, Image, SkillDocCard, Tag, TextContainer } from '@/components';
 import { useTranslation } from '@/i18n/client';
 import { featuredSkillDocs, stack } from '@/lib/home';
-import { experiencePath } from '@/lib/seo';
+import { experiencePath, skillDocsIndexPath } from '@/lib/seo';
 
 import styles from './page.module.sass';
 
@@ -52,7 +52,7 @@ export default function Home() {
                     <ul className={styles.cards}>
                         {featuredSkillDocs.map((item) => <li key={item.id}><SkillDocCard item={item} /></li>)}
                     </ul>
-                    <Link className={styles['see-all']} href='/skill-docs'>
+                    <Link className={styles['see-all']} href={skillDocsIndexPath(language)}>
                         {t('home.skill_docs_see_all')}
                         <span aria-hidden='true'> →</span>
                     </Link>

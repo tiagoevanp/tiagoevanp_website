@@ -1,7 +1,15 @@
 import type { MetadataRoute } from 'next';
 
 import { languages } from '@/i18n/settings';
-import { experienceAlternates, experiencePath, siteUrl, skillDocAlternates, skillDocPath } from '@/lib/seo';
+import {
+    experienceAlternates,
+    experiencePath,
+    siteUrl,
+    skillDocAlternates,
+    skillDocPath,
+    skillDocsIndexAlternates,
+    skillDocsIndexPath,
+} from '@/lib/seo';
 import GroupsList from '@/providers/lib/GroupsList';
 
 // Required by output: 'export' to generate sitemap.xml at build time
@@ -28,7 +36,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     return [
         { url: toUrl('/') },
         ...languageVersions(experiencePath, experienceAlternates()),
-        { url: toUrl('/skill-docs') },
+        ...languageVersions(skillDocsIndexPath, skillDocsIndexAlternates()),
         ...skillDocs,
     ];
 }

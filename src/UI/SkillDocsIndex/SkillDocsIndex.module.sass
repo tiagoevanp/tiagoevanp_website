@@ -1,5 +1,17 @@
 @use '../../app/breakpoints' as *
 
+// No sidebar: capped and centred with the same padding as Experience, so the left edges line up across pages
+.page
+    flex-grow: 1
+    min-width: 0
+    width: 100%
+    max-width: 1200px
+    margin-inline: auto
+    padding: 24px 16px
+
+    @media (min-width: $bp-tablet)
+        padding: 64px 32px
+
 .title
     color: var(--section-text-title)
     overflow-wrap: break-word

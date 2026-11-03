@@ -134,6 +134,9 @@ export function SkillDocsLayout({
         };
     }, [isOpen, closeSidebar]);
 
+    // The index lists every doc itself, so it gets the full width without the sidebar or the phone toolbar
+    if (!slug) return children;
+
     // The article comes first, so the skip link lands in it instead of in front of the topic list;
     // the grid puts the sidebar back on the left
     return <div className={styles.container}>

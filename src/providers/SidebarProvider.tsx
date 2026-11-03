@@ -8,6 +8,9 @@ export type GroupItem = {
     id: string;
     title: string;
     href: string;
+    sections: number;
+    // Whether the article has an interactive example
+    liveExample?: boolean;
 };
 
 export type SidebarGroup = {
@@ -16,8 +19,6 @@ export type SidebarGroup = {
 
 type SidebarContextType = {
     groups: SidebarGroup;
-    filteredGroups: SidebarGroup;
-    setFilteredGroups: (value: SidebarGroup) => void;
     // Whether the sidebar drawer is open on smaller screens
     isOpen: boolean;
     setOpen: (value: boolean) => void;
@@ -25,21 +26,16 @@ type SidebarContextType = {
 
 export const SidebarContext = createContext<SidebarContextType>({
     groups: {},
-    filteredGroups: {},
-    setFilteredGroups: () => null,
     isOpen: false,
     setOpen: () => null,
 });
 
 export function SidebarProvider({ children }: PropsWithChildren) {
-    const [filteredGroups, setFilteredGroups] = useState(GroupsList.all);
     const [isOpen, setOpen] = useState(false);
 
     return <SidebarContext.Provider
         value={{
             groups: GroupsList.all,
-            filteredGroups,
-            setFilteredGroups,
             isOpen,
             setOpen,
         }}
