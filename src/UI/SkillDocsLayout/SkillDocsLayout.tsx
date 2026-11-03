@@ -108,12 +108,24 @@ export function SkillDocsLayout({
             }
         };
 
+        // The drawer is last in the DOM, so Tab from its last link leaves the page and the blur has no
+        // relatedTarget. Close it once focus comes back anywhere else, so it never covers the focused element
+        const handleFocusIn = (event: FocusEvent) => {
+            const target = event.target as Node;
+
+            if (!sidebarRef.current?.contains(target) && !toggleRef.current?.contains(target)) {
+                closeSidebar(false);
+            }
+        };
+
         document.addEventListener('keydown', handleKeyDown);
         document.addEventListener('pointerdown', handlePointerDown);
+        document.addEventListener('focusin', handleFocusIn);
 
         return () => {
             document.removeEventListener('keydown', handleKeyDown);
             document.removeEventListener('pointerdown', handlePointerDown);
+            document.removeEventListener('focusin', handleFocusIn);
         };
     }, [isOpen, closeSidebar]);
 

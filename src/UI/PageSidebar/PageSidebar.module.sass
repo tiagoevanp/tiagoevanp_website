@@ -1,7 +1,9 @@
 .nav
     border-inline-end: var(--hairline-width) solid var(--line)
     z-index: var(--elevated-index)
-    padding-inline: 24px
+    // Less at the end, where nothing shows, so the longest pt-BR label still fits on one line when a classic
+    // scrollbar takes 15px of the 280px column
+    padding-inline: 24px 8px
     padding-block: 24px
     overflow: auto
     height: 100%
