@@ -23,12 +23,34 @@ $toolbar-height: 49px
     height: calc(100vh - var(--navbar-height))
     height: calc(100dvh - var(--navbar-height))
 
+// Registered as lengths so the ch below resolve once, on .section, and headings with larger fonts get the same
+// measure as the text. Unset, they're none and nothing is capped
+@property --text-measure
+    syntax: '<length> | none'
+    inherits: true
+    initial-value: none
+
+@property --wide-measure
+    syntax: '<length> | none'
+    inherits: true
+    initial-value: none
+
+// The article keeps its left edge on the sidebar; its children are capped at a reading measure instead of filling
+// the column. .section has the default 16px, so 1.125 scales the ch to the 18px body text. A ch is the width of a
+// "0", wider than most letters, so 60ch (as in TextContainer) gives lines of about 75 characters. Code blocks,
+// tables and live examples get 90ch, so wide snippets scroll less
 .section
+    --text-measure: calc(60ch * 1.125)
+    --wide-measure: calc(90ch * 1.125)
     display: flex
     flex-direction: column
     width: 100%
     padding-block: 64px
     padding-inline: 64px
+
+// No specificity, so the text elements' own --text-measure cap (mdx-components.module.sass) wins
+:where(.section) > *
+    max-inline-size: var(--wide-measure)
 
 @media (max-width: $drawer-breakpoint)
     .container

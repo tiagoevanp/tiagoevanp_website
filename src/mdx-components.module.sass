@@ -1,26 +1,38 @@
 @use 'app/breakpoints' as *
 
 $margin-block: 16px
+// Above each section heading, so a new section is clearly further away than the next paragraph
+$space-section: 48px
 
 .h1
     color: var(--section-text-title)
     // Long single words (e.g. in pt-BR titles) must not overflow narrow screens
     overflow-wrap: break-word
     hyphens: auto
+    max-inline-size: var(--text-measure)
 
     @media (max-width: $bp-mobile)
         font-size: 36px
 
 .h2
-    margin-top: $margin-block
+    margin-block: $space-section $margin-block
+    max-inline-size: var(--text-measure)
     color: var(--section-text-subtitle)
     overflow-wrap: break-word
 
+    // Right under the title the section spacing would only push the first section away from it
+    .h1 + &
+        margin-block-start: $margin-block
+
 .p
+    max-inline-size: var(--text-measure)
     color: var(--section-text-color)
     margin-block: $margin-block
+    text-wrap: pretty
 
 .a
+    // The global link size is larger than the body text, so links in a sentence match the text around them
+    font-size: inherit
     color: var(--section-link)
     position: relative
     transition: color 0.2s ease-out
@@ -35,15 +47,20 @@ $margin-block: 16px
     margin-block: 24px 32px
 
 .ul
+    max-inline-size: var(--text-measure)
     margin-block: $margin-block
     margin-inline-start: 32px
 
 .ol
+    max-inline-size: var(--text-measure)
     margin-block: $margin-block
     margin-inline-start: 32px
 
 .li
     color: var(--section-li)
+
+.blockquote-container
+    max-inline-size: var(--text-measure)
 
 .blockquote
     margin-block: $margin-block * 2
