@@ -18,6 +18,7 @@ const ogLocales: Record<string, string> = {
 };
 
 export const skillDocPath = (slug: string, lng: string) => `/skill-docs/${slug}/${lng}`;
+export const skillDocsIndexPath = (lng: string) => `/skill-docs/${lng}`;
 export const experiencePath = (lng: string) => `/experience/${lng}`;
 
 // hreflang links between the language versions of a page, plus x-default for any other language
@@ -27,6 +28,7 @@ const languageAlternates = (pathFor: (lng: string) => string, defaultPath = path
 });
 
 export const skillDocAlternates = (slug: string) => languageAlternates((lng) => skillDocPath(slug, lng));
+export const skillDocsIndexAlternates = () => languageAlternates(skillDocsIndexPath);
 
 // /experience sends each visitor to their language (see app/(en)/experience/page.tsx), so it is the default
 export const experienceAlternates = () => languageAlternates(experiencePath, '/experience');

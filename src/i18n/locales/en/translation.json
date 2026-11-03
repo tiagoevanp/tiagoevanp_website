@@ -45,9 +45,6 @@
     "language": "Language: {{language}}"
   },
   "sidebar": {
-    "input": {
-      "placeholder": "Search..."
-    },
     "items": {
       "semantic": "Semantics",
       "aria": "WAI-ARIA",
@@ -83,6 +80,14 @@
       "lifecycle": "Mounting, updating and unmounting with Hooks",
       "state_management": "Redux vs Context API, compared"
     },
+    "groups": {
+      "html_css": "HTML & CSS",
+      "javascript": "JavaScript",
+      "react": "React"
+    },
+    "sections_one": "{{count}} section",
+    "sections_other": "{{count}} sections",
+    "live_example": "Live example",
     "read": "Read",
     "code_example": "Code example",
     "code": {
