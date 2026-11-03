@@ -1,4 +1,5 @@
 import { pageMetadata, skillDocsIndexAlternates, skillDocsIndexPath } from '@/lib/seo';
+import { getSkillDocSections } from '@/lib/skillDocSections';
 import { SkillDocsIndex } from '@/UI/SkillDocsIndex/SkillDocsIndex';
 
 export const metadata = pageMetadata({
@@ -10,6 +11,6 @@ export const metadata = pageMetadata({
     alternates: skillDocsIndexAlternates(),
 });
 
-export default function Page() {
-    return <SkillDocsIndex />;
+export default async function Page() {
+    return <SkillDocsIndex sections={await getSkillDocSections()} />;
 }

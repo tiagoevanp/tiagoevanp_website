@@ -51,6 +51,18 @@ const visitHeadings = (node, onHeading) => {
     node.children?.forEach((child) => visitHeadings(child, onHeading));
 };
 
+// A page's sections are its Markdown h2s, the same headings given ids below. Counted for the skill docs cards
+// (src/lib/skillDocSections.ts)
+export const countSections = (tree) => {
+    let count = 0;
+
+    visitHeadings(tree, (heading) => {
+        if (heading.tagName === 'h2') count++;
+    });
+
+    return count;
+};
+
 // Rehype plugin: gives every section heading (h2 to h6) without an id one from its text, in document order. The h1
 // is the page title, rendered without an id, so it doesn't take a slug a section with the same text would want
 export default function rehypeHeadingIds() {

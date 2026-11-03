@@ -8,7 +8,6 @@ export type GroupItem = {
     id: string;
     title: string;
     href: string;
-    sections: number;
     // Whether the article has an interactive example
     liveExample?: boolean;
 };

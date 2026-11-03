@@ -2,13 +2,14 @@
 
 import { Banner, SkillDocCard } from '@/components';
 import { useTranslation } from '@/i18n/client';
+import type { SkillDocSections } from '@/lib/skillDocSections';
 import GroupsList from '@/providers/lib/GroupsList';
 
 import styles from './SkillDocsIndex.module.sass';
 
 // Every doc, grouped and ordered as in the sidebar. Rendered at /skill-docs/<lng>, so the static HTML is in that
 // language from the start
-export const SkillDocsIndex = () => {
+export const SkillDocsIndex = ({ sections }: { sections: SkillDocSections }) => {
     const { t } = useTranslation();
 
     return <div className={styles.page}>
@@ -21,7 +22,9 @@ export const SkillDocsIndex = () => {
                     {t(`skill_docs.groups.${name}`)}
                 </h2>
                 <ul className={styles.cards}>
-                    {items.map((item) => <li key={item.id}><SkillDocCard item={item} /></li>)}
+                    {items.map((item) => <li key={item.id}>
+                        <SkillDocCard item={item} sections={sections[item.href]} />
+                    </li>)}
                 </ul>
             </section>
         ))}
