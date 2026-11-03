@@ -114,11 +114,20 @@
     "page_title": "Experiência",
     "work_title": "Experiência profissional",
     "technologies": "Tecnologias",
+    "duration_years_one": "{{count}} ano",
+    "duration_years_other": "{{count}} anos",
+    "duration_months_one": "{{count}} mês",
+    "duration_months_other": "{{count}} meses",
+    "duration_join": "{{years}} e {{months}}",
+    "work_mode": {
+      "remote": "Remoto",
+      "onsite": "Presencial",
+      "hybrid": "Híbrido"
+    },
     "ducon": {
       "title": "Ducon Corretora de Seguros",
       "occupation": "Desenvolvedor Full-stack",
-      "time": "dez de 2025 - jul de 2026 · 8 meses",
-      "location": "Porto Alegre, RS · Presencial",
+      "location": "Porto Alegre, RS",
       "highlights": [
         "Modernizei sistemas legados de seguros usando React e Laravel.",
         "Conteinerizei aplicações legadas com Docker, simplificando o deploy e o gerenciamento de infraestrutura.",
@@ -131,8 +140,7 @@
     "rocket_chat": {
       "title": "Rocket.Chat",
       "occupation": "Engenheiro de Software",
-      "time": "out de 2020 - set de 2025 · 5 anos",
-      "location": "Porto Alegre, RS · Remoto",
+      "location": "Porto Alegre, RS",
       "highlights": [
         "Projetei, desenvolvi e entreguei funcionalidades de frontend para uma plataforma de comunicação com mais de 12 milhões de usuários.",
         "Liderei a migração de grandes módulos de frontend de JavaScript para TypeScript, modernizando cerca de 30% da base de código e melhorando a manutenibilidade e a segurança de tipos.",
@@ -148,8 +156,7 @@
     "canopus": {
       "title": "Canopus",
       "occupation": "Engenheiro de Software",
-      "time": "set de 2017 - out de 2020 · 3 anos e 2 meses",
-      "location": "Porto Alegre, RS · Presencial",
+      "location": "Porto Alegre, RS",
       "highlights": [
         "Entreguei mais de 10 aplicações web sob medida para clientes corporativos e do setor público, com forte foco em segurança e automação de processos de negócio.",
         "Desenvolvi funcionalidades financeiras, incluindo geração de boletos, relatórios e fluxos de pagamento.",
@@ -162,7 +169,7 @@
       "ifrs": {
         "institution": "IFRS – Instituto Federal do Rio Grande do Sul",
         "degree": "Graduação em Tecnologia em Sistemas para Internet",
-        "time": "2019 – dez de 2027 (previsão)"
+        "expected": "(previsão)"
       }
     },
     "languages": {
