@@ -84,6 +84,11 @@
     },
     "read": "Read",
     "code_example": "Code example",
+    "pager": {
+      "label": "Skill docs pagination",
+      "previous": "Previous",
+      "next": "Next"
+    },
     "example_animation_transitions": {
       "hover_me": "Hover me",
       "jumping": "Jumping",
