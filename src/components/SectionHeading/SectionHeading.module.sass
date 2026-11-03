@@ -1,0 +1,38 @@
+// The "#" follows the heading's text on its first line and stays next to it when the heading wraps
+.container
+    display: flex
+    align-items: baseline
+    // With the anchor's padding, the "#" is 8px from the text
+    gap: 2px
+
+.heading
+    min-width: 0
+    // Jumped to from a link, the heading lands a little below the sticky header (the page's scroll-padding-top)
+    // instead of touching it
+    scroll-margin-top: 16px
+
+// Hidden until the heading is hovered or the link focused, but always in the tab order
+.anchor
+    flex: none
+    // The h2's type scale (theme.sass), so the "#" is the heading's size and never makes the row taller than it
+    font-size: clamp(1.25rem, 1rem + 1.2vw, 1.75rem)
+    line-height: 1.3
+    // A tap target at least 24px wide; the padding is on the "#" side of the gap, so the heading text doesn't move
+    padding-inline: 6px
+    color: var(--section-text-subtitle)
+    opacity: 0
+    transition: opacity 0.2s ease-out
+
+    .container:hover &,
+    &:focus
+        opacity: 1
+
+    &:hover
+        text-decoration: underline
+
+    // No hover to reveal it on touch screens
+    @media (hover: none)
+        opacity: 1
+
+    @media (prefers-reduced-motion: reduce)
+        transition: none

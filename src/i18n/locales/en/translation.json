@@ -89,6 +89,8 @@
       "previous": "Previous",
       "next": "Next"
     },
+    "section_link": "Link to section: {{title}}",
+    "opens_in_new_tab": "(opens in new tab)",
     "example_animation_transitions": {
       "hover_me": "Hover me",
       "jumping": "Jumping",
