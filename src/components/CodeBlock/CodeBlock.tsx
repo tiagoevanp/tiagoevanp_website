@@ -73,7 +73,8 @@ export const CodeBlock = ({ children, ...props }: ComponentProps<'pre'>) => {
                 {canCopy && <button
                     type='button'
                     className={styles.copy}
-                    aria-label={language
+                    // While "Copied" shows, the visible text is the name, so it matches what sighted users read
+                    aria-label={language && !copied
                         ? t('skill_docs.code.copy_label', {
                             language,
                             // React escapes the label, so i18next must not escape it too
