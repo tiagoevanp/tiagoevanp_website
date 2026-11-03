@@ -9,7 +9,7 @@ import styles from './Banner.module.sass';
 
 type BannerProps = {
     message: string;
-    variant: 'warning' | 'success' | 'danger';
+    variant: 'info' | 'warning' | 'success' | 'danger';
 };
 
 export const Banner = ({ message, variant }: BannerProps) => {
@@ -24,9 +24,11 @@ export const Banner = ({ message, variant }: BannerProps) => {
 
     return <div className={`${styles.banner} ${styles[variant]} ${hidden ? styles.hidden : ''}`} role="status">
         <div className={styles.content}>
-            <SvgIcon name='warning' variant='small' />
+            <SvgIcon name={variant === 'info' ? 'circle-info' : 'warning'} variant='small' />
             <p>{message}</p>
         </div>
-        <button className={styles.close} aria-label={t('banner.close')} onClick={dismiss}>X</button>
+        <button type='button' className={styles.close} aria-label={t('banner.close')} onClick={dismiss}>
+            <SvgIcon name='xmark' variant='small' />
+        </button>
     </div>;
 };
