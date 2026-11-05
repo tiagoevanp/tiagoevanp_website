@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
 
 import { languages } from '@/i18n/settings';
+import { SKILL_DOCS_ENABLED } from '@/lib/features';
 import {
     experienceAlternates,
     experiencePath,
@@ -36,7 +37,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     return [
         { url: toUrl('/') },
         ...languageVersions(experiencePath, experienceAlternates()),
-        ...languageVersions(skillDocsIndexPath, skillDocsIndexAlternates()),
-        ...skillDocs,
+        // Left out while the skill docs are hidden (src/lib/features.ts)
+        ...SKILL_DOCS_ENABLED ? [
+            ...languageVersions(skillDocsIndexPath, skillDocsIndexAlternates()),
+            ...skillDocs,
+        ] : [],
     ];
 }

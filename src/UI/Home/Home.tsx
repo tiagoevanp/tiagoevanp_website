@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 import { Availability, Image, SkillDocCard, Tag, TextContainer } from '@/components';
 import { useTranslation } from '@/i18n/client';
+import { SKILL_DOCS_ENABLED } from '@/lib/features';
 import { featuredSkillDocs, stack } from '@/lib/home';
 import { experiencePath, skillDocsIndexPath } from '@/lib/seo';
 import type { SkillDocSections } from '@/lib/skillDocSections';
@@ -46,7 +47,7 @@ export const Home = ({ sections }: { sections: SkillDocSections }) => {
                         {stack.map((tech) => <li key={tech}><Tag>{tech}</Tag></li>)}
                     </ul>
                 </section>
-                <section aria-labelledby='skill-docs-title'>
+                {SKILL_DOCS_ENABLED && <section aria-labelledby='skill-docs-title'>
                     <h2 id='skill-docs-title' className={styles['section-title']}>
                         {t('home.skill_docs_title')}
                     </h2>
@@ -59,7 +60,7 @@ export const Home = ({ sections }: { sections: SkillDocSections }) => {
                         {t('home.skill_docs_see_all')}
                         <span aria-hidden='true'> →</span>
                     </Link>
-                </section>
+                </section>}
             </div>
         </div>
     );

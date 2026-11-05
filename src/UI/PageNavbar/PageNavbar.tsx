@@ -13,6 +13,7 @@ import {
     useTranslation,
 } from '@/i18n/client';
 import { ExternalLinks } from '@/lib/ExternalLinks';
+import { SKILL_DOCS_ENABLED } from '@/lib/features';
 import { experiencePath, skillDocsIndexPath } from '@/lib/seo';
 import { useScreenContext } from '@/providers/hooks/useScreenContext';
 import { useSidebarContext } from '@/providers/hooks/useSidebarContext';
@@ -117,7 +118,7 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                             {t('navbar.home_link')}
                         </NavbarLink>
                     </li>
-                    <li>
+                    {SKILL_DOCS_ENABLED && <li>
                         <NavbarLink
                             to={skillDocsIndexPath(language)}
                             className={isSkillDocsPage ? styles['navbar-link-active'] : ''}
@@ -125,7 +126,7 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                         >
                             {t('navbar.skills_link')}
                         </NavbarLink>
-                    </li>
+                    </li>}
                     <li>
                         <NavbarLink
                             to={experiencePath(language)}
@@ -224,7 +225,7 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                                 {t('navbar.home_link')}
                             </Link>
                         </li>
-                        <li>
+                        {SKILL_DOCS_ENABLED && <li>
                             <Link
                                 href={skillDocsIndexPath(language)}
                                 aria-current={isSkillDocsPage ? 'page' : undefined}
@@ -232,7 +233,7 @@ export const PageNavbar = ({ children }: PropsWithChildren) => {
                             >
                                 {t('navbar.skills_link')}
                             </Link>
-                        </li>
+                        </li>}
                         <li>
                             <Link
                                 href={experiencePath(language)}
